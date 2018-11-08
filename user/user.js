@@ -22,7 +22,7 @@ module.exports = () => {
 				res.end();
 			}
 			context[users] = rows;
-		}
+		})
 		context.title = 'User Table';
 		context.css = ['style.css']
 		res.render("User/userTable", context);
