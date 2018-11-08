@@ -10,7 +10,7 @@ function tableSelect(){
 	tableSelector.value = sessionStorage.getItem('previousTableSelected');
 	var tableSelectorForm = document.getElementById('tableSelectorForm');
 	tableSelectorForm.setAttribute('action', '/' + tableSelector.value + 'Table');
-	tableSelector.addEventListener('change', () => {
+	tableSelector.addEventListener('change', function(){
 		sessionStorage.setItem('previousTableSelected', tableSelector.value);
 		tableSelectorForm.setAttribute('action', '/' + tableSelector.value + 'Table');
 	});

@@ -128,7 +128,8 @@ CREATE TABLE `order` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
   `price` decimal (9,2) NOT NULL,
   `retailer` int NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- REVIEW TABLE --
@@ -159,7 +160,9 @@ CREATE TABLE `history` (
   `user` varchar(255) NOT NULL,
   `timestamp` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
   `price` decimal(9,2) NOT NULL,
-  PRIMARY KEY (`order`, `user`, `timestamp`)
+  PRIMARY KEY (`order`, `user`, `timestamp`),
+  CONSTRAINT `fk_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- FAVORITES_ORDER TABLE --
@@ -169,7 +172,9 @@ CREATE TABLE `history` (
 CREATE TABLE `favorites_order` (
   `user` int(15) NOT NULL,
   `order` int(15) NOT NULL,
-  PRIMARY KEY (`user`, `order`)
+  PRIMARY KEY (`user`, `order`),
+  CONSTRAINT `fk_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- WISH_LIST TABLE --
@@ -258,7 +263,7 @@ CREATE TABLE `favorites_retailer` (
 -- ************************************ INSERTIONS **************************************
 
 -- USER TABLE INSERTIONS --
-INSERT INTO user ('fridkisb', 'ESaveRules', 'fridkisb@oregonstate.edu', '1234 Lone Star,
+INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'fridkisb@oregonstate.edu', '1234 Lone Star,
 					TX, 77042', NULL, 'Y', 'Y', 'Y');
 
 -- Works Referenced
