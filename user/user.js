@@ -25,7 +25,7 @@ module.exports = function(){
 				context["users"] = rows;
 				context.title = 'User Table';
 				context.css = ['style.css']
-				res.render("user/userTable", context);
+				res.render("users/usersTable", context);
 			}
 		});
 	});
