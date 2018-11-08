@@ -26,5 +26,5 @@ module.exports = () => {
 		context.title = 'User Table';
 		context.css = ['style.css']
 		res.render("User/userTable", context);
-	}
+	})
 });
