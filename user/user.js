@@ -5,7 +5,7 @@
 ** Main server engine. dev1 renders table views, for development
 ** purposes only.
 *******************************************************************/
-module.exports = () => {
+module.exports = function(){
     var express = require('express');
     var router = express.Router();
 	var app = express();
@@ -16,7 +16,7 @@ module.exports = () => {
 		var mysql = req.app.get('mysql');
 		var context = {};
 		mysql.pool.query("select * from user", 
-		(err, rows, fields) => {
+		function(err, rows, fields){
 			if(err){
 				res.write(JSON.stringify(err));
 				res.end();
