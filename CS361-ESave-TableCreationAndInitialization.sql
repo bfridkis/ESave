@@ -4,9 +4,7 @@
 
 -- Drop Tables IF Previously Existing
 DROP TABLE IF EXISTS `user`;
-DROP TABLE IF EXISTS `retailer`;
 DROP TABLE IF EXISTS `product`;
-DROP TABLE IF EXISTS `order`;
 DROP TABLE IF EXISTS `review`;
 DROP TABLE IF EXISTS `history`;
 DROP TABLE IF EXISTS `favorites_order`;
@@ -16,6 +14,11 @@ DROP TABLE IF EXISTS `order_product`;
 DROP TABLE IF EXISTS `retailer_product`;
 DROP TABLE IF EXISTS `promotion_ecoupon`;
 DROP TABLE IF EXISTS `favorites_retailer`;
+DROP TABLE IF EXISTS `ecoupon`;
+DROP TABLE IF EXISTS `promotion`;
+DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `retailer`;
+
 
 -- USER TABLE --
 -- id - an auto incrementing integer which is the primary key
@@ -85,6 +88,7 @@ CREATE TABLE `product` (
   CONSTRAINT `unique_isbn` UNIQUE (`isbn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- PROMOTION TABLE --
 -- id - an auto incrementing integer which is the primary key
 -- discount - a floating point value
@@ -123,9 +127,8 @@ CREATE TABLE `ecoupon` (
 CREATE TABLE `order` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
   `price` decimal (9,2) NOT NULL,
-  `retailer` int NOT NULL
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `retailer` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- REVIEW TABLE --
@@ -156,9 +159,7 @@ CREATE TABLE `history` (
   `user` varchar(255) NOT NULL,
   `timestamp` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
   `price` decimal(9,2) NOT NULL,
-  PRIMARY KEY (`order`, `user`, `date`),
-  CONSTRAINT `fk_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_user` FOREIGN KEY (`user`) REFERENCES `user` (`user`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`order`, `user`, `timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- FAVORITES_ORDER TABLE --
@@ -168,9 +169,7 @@ CREATE TABLE `history` (
 CREATE TABLE `favorites_order` (
   `user` int(15) NOT NULL,
   `order` int(15) NOT NULL,
-  PRIMARY KEY (`user`, `order`),
-  CONSTRAINT `fk_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`user`, `order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- WISH_LIST TABLE --
@@ -216,8 +215,8 @@ CREATE TABLE `order_product` (
   `order` int(15) NOT NULL,
   `product` int(15) NOT NULL,
   PRIMARY KEY (`order`, `product`),
-  CONSTRAINT `fk_user` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_order` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- RETAILER_PRODUCT TABLE --
@@ -228,8 +227,8 @@ CREATE TABLE `retailer_product` (
   `retailer` int(15) NOT NULL,
   `product` int(15) NOT NULL,
   PRIMARY KEY (`retailer`, `product`),
-  CONSTRAINT `fk_user` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_order` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- PROMOTION_ECOUPON TABLE --
@@ -240,8 +239,8 @@ CREATE TABLE `promotion_ecoupon` (
   `promotion` int(15) NOT NULL,
   `ecoupon` int(15) NOT NULL,
   PRIMARY KEY (`promotion`, `ecoupon`),
-  CONSTRAINT `fk_user` FOREIGN KEY (`promotion`) REFERENCES `promotion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_order` FOREIGN KEY (`ecoupon`) REFERENCES `ecoupon` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_promotion` FOREIGN KEY (`promotion`) REFERENCES `promotion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_ecoupon` FOREIGN KEY (`ecoupon`) REFERENCES `ecoupon` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- FAVORITES_RETAILER TABLE --
@@ -251,16 +250,20 @@ CREATE TABLE `promotion_ecoupon` (
 CREATE TABLE `favorites_retailer` (
   `user` int(15) NOT NULL,
   `retailer` int(15) NOT NULL,
-  PRIMARY KEY (`promotion`, `ecoupon`),
+  PRIMARY KEY (`user`, `retailer`),
   CONSTRAINT `fk_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_order` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ************************************ INSERTIONS **************************************
 
--- PLOT TABLE INSERTIONS --
+-- USER TABLE INSERTIONS --
 INSERT INTO user ('fridkisb', 'ESaveRules', 'fridkisb@oregonstate.edu', '1234 Lone Star,
 					TX, 77042', NULL, 'Y', 'Y', 'Y');
 
 -- Works Referenced
 -- -- https://www.w3schools.com/sql/sql_datatypes.asp
+
+
+
+
