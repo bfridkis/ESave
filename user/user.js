@@ -22,10 +22,10 @@ module.exports = function(){
 				res.end();
 			}
 			else{
-				context[users] = rows;
+				context["users"] = rows;
 				context.title = 'User Table';
 				context.css = ['style.css']
-				res.render("User/userTable", context);
+				res.render("user/userTable", context);
 			}
 		});
 	});
