@@ -1,0 +1,17 @@
+{
+  "name": "ESave",
+  "version": "1.0.0",
+  "description": "Main - ESave Web Server - CS361 - Software Engineering 1",
+  "main": "esave-main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BenjaminFridkis, et al.",
+  "license": "None",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.2",
+    "express-handlebars": "^2.0.1",
+    "mysql": "^2.8.0"
+  }
+}
