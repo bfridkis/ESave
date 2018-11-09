@@ -36,8 +36,7 @@ app.get('/', function(req,res,next){
 	res.render('home', context)
 });
 
-//var userRoute = require('./user/user.js');
-app.use('/userTable', require('./user/user.js')("user"));
+app.use('/userTable', require('./tableSelectBE.js')("user"));
 /*
 app.use('/retailer', require('./retailer/retailer.js'));
 app.use('/product', require('./product/product.js'));

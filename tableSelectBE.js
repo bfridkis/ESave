@@ -23,7 +23,8 @@ module.exports = function(tableName){
 			else{
 				context.css = ['style.css'];
 				context[tableName] = rows;
-				context.title = tableName + ' Table';
+				context.title = tableName.charAt(0).toUpperCase() + tableName.slice(1)
+								+ ' Table';
 				context.css = ['style.css']
 				res.render("user/userTable", context);
 			}
@@ -33,3 +34,11 @@ module.exports = function(tableName){
 	return router;
 	
 };
+
+/**************************************************************************************************************************
+** References
+** https://paulund.co.uk/how-to-capitalize-the-first-letter-of-a-string-in-javascript
+** https://stackoverflow.com/questions/49335352/express-routes-with-es6-classes-cannot-create-property-next-on-string?rq=1
+** https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module
+** https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module/13151726#13151726
+***************************************************************************************************************************/
