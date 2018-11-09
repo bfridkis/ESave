@@ -1,9 +1,9 @@
-/********************************************
+/**********************************************
 ** Main - ESave Web Server
 ** CS361 - SOFTWARE ENGINEERING I
 ** ------------------------------------------
-** Router for user table. Development only
-*********************************************/
+** Router for viewing tables. Development only
+***********************************************/
 module.exports = function(tableName){
     var express = require('express');
     var router = express.Router();
@@ -35,7 +35,7 @@ module.exports = function(tableName){
 									+ ' Table';
 				}
 				context.jsscriptsTableView = [];
-				res.render("user/userTable", context);
+				res.render(tableName + "/" + tableName + "Table", context);
 			}
 		});
 	});
