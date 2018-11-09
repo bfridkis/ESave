@@ -37,7 +37,7 @@ app.get('/', function(req,res,next){
 });
 
 
-app.use('/userTable', require('./user/user.js')("user");
+app.use('/userTable', require('./user/user.js')("user"));
 /*
 app.use('/retailer', require('./retailer/retailer.js'));
 app.use('/product', require('./product/product.js'));
