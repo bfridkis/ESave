@@ -22,6 +22,7 @@ module.exports = function(){
 				res.end();
 			}
 			else{
+				context.css = ['style.css'];
 				context["users"] = rows;
 				context.title = 'User Table';
 				context.css = ['style.css']
