@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS `favorites_retailer`;
 DROP TABLE IF EXISTS `retailer_product`;
 DROP TABLE IF EXISTS `order_promotion`;
 DROP TABLE IF EXISTS `order_product`;
-DROP TABLE IF EXISTS `order_user`;
 DROP TABLE IF EXISTS `message`;
 DROP TABLE IF EXISTS `wish_list`;
 DROP TABLE IF EXISTS `favorites_order`;
@@ -115,7 +114,7 @@ CREATE TABLE `order` (
   `price` decimal(9,2) NOT NULL,
   `retailer` int(15) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_order_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_order_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_order_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -276,7 +275,7 @@ INSERT INTO promotion values (1, 20, 1,
 	'$20 Off Your First Three Orders Over $49 + Free Shipping (requires thrive membership)', 'bd20x3');
 	
 -- ORDER TABLE INSERTIONS --
-INSERT INTO `order` values (1, 31.96, 1);
+INSERT INTO `order` values (1, 1, 31.96, 1);
 
 -- REVIEW TABLE INSERTIONS --
 INSERT INTO review values (1, 5, 'Excellent products! Loved the $20 off promotion!');
