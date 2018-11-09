@@ -32,4 +32,4 @@ module.exports = function(tableName){
 	
 	return router;
 	
-}(tableName);
+};
