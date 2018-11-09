@@ -77,5 +77,8 @@ app.listen(app.get('port'), () => {
 ** https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module/13151726#13151726
 ** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind
 ** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+** https://devcenter.heroku.com/articles/getting-started-with-nodejs
+** https://devcenter.heroku.com/articles/git
+** https://devcenter.heroku.com/articles/cleardb
 *******************************************************************************************************************/
 	
