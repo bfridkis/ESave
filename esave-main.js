@@ -23,7 +23,7 @@ app.set('mysql', mysql);
 
 app.get('/dev1', function(req, res, next){
 	context = {};
-	context.jsscriptsHomePage = ['tableSelect.js'];
+	context.jsscriptsDevHomePage = ['tableSelectFE.js'];
 	context.css = ["style.css", "homePageStyle.css"];
 	res.render('dev1', context)
 });
