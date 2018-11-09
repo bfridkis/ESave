@@ -30,7 +30,8 @@ module.exports = tableName => {
 						else if(typeof(row[key]) === 'object'){
 							row[key] = new Date(row[key]);
 							row[key] = row[key].toJSON();
-							row[key] = String(row[key]).substring(0, 24);
+							row[key] = String(row[key]).substring(0, 10) +
+									   " " + String(row[key]).substring(11,19);
 						}
 					}
 				});
@@ -38,9 +39,9 @@ module.exports = tableName => {
 				let _index = tableName.indexOf("_");
 				if(_index !== -1){
 					context.title = tableName.charAt(0).toUpperCase() + 
-									tableName.slice(1, _index) + " " +
+									tableName.substring(1, _index) + " " +
 									tableName.charAt(_index + 1).toUpperCase() +
-									tableName.slice(_index + 2) + ' Table';
+									tableName.substring(_index + 2) + ' Table';
 				}
 				else{
 					context.title = tableName.charAt(0).toUpperCase() + tableName.slice(1)
