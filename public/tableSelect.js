@@ -14,5 +14,4 @@ function tableSelect(){
 		sessionStorage.setItem('previousTableSelected', tableSelector.value);
 		tableSelectorForm.setAttribute('action', '/' + tableSelector.value + 'Table');
 	});
-	console.log("Test");
 }
