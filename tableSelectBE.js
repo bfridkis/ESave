@@ -25,7 +25,7 @@ module.exports = function(tableName){
 				context[tableName] = rows;
 				context.title = tableName.charAt(0).toUpperCase() + tableName.slice(1)
 								+ ' Table';
-				context.css = ['style.css']
+				context.jsscriptsTableView= ['tableSelectFE.js']
 				res.render("user/userTable", context);
 			}
 		});
