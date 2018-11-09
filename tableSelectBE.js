@@ -22,12 +22,13 @@ module.exports = function(tableName){
 			}
 			else{
 				context.css = ['style.css'];
-				for(key in rows){
-					console.log("Key/Value", key.value);
-					if(key.value == ""){
-						key.value = "NULL";
+				rows.forEach(row => {
+					for(var key in row){
+						if(row[key] === null || row[key] === ''){
+							key.value = "NULL";
+						}
 					}
-				}
+				)
 				context[tableName] = rows;
 				let _index = tableName.indexOf("_");
 				if(_index !== -1){
