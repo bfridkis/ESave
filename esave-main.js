@@ -31,7 +31,7 @@ app.get('/dev1', function(req, res, next){
 
 app.get('/', function(req,res,next){
 	context = {};
-	context.jsscriptsHomePage = ['tableSelect.js'];
+	context.jsscriptsHomePage = ['tableSelectFE.js'];
 	context.css = ["style.css", "homePageStyle.css"];
 	res.render('home', context)
 });
