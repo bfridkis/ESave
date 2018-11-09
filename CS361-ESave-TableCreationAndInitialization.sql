@@ -142,11 +142,9 @@ CREATE TABLE `review` (
 CREATE TABLE `history` (
   `order` int(15) NOT NULL,
   `purchased` boolean NOT NULL,
-  `user` int(15) NOT NULL,
   `timestamp` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
-  PRIMARY KEY (`order`, `user`, `timestamp`),
-  CONSTRAINT `fk_history_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_history_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`order`, `timestamp`),
+  CONSTRAINT `fk_history_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- FAVORITES_ORDER TABLE --
@@ -281,7 +279,7 @@ INSERT INTO `order` values (1, 1, 31.96, 1);
 INSERT INTO review values (1, 5, 'Excellent products! Loved the $20 off promotion!');
 
 -- HISTORY TABLE INSERTIONS --
-INSERT INTO history values (1, TRUE, 1, '2018-11-09 10:49:21');
+INSERT INTO history values (1, TRUE, '2018-11-09 10:49:21');
 
 -- FAVORITES_ORDER TABLE INSERTIONS --
 INSERT INTO favorites_order values (1, 1);
