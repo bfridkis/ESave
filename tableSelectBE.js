@@ -28,7 +28,7 @@ module.exports = function(tableName){
 							key.value = "NULL";
 						}
 					}
-				)
+				});
 				context[tableName] = rows;
 				let _index = tableName.indexOf("_");
 				if(_index !== -1){
