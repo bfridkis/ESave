@@ -25,7 +25,7 @@ module.exports = function(tableName){
 				rows.forEach(row => {
 					for(var key in row){
 						if(row[key] === null || row[key] === ''){
-							key.value = "NULL";
+							row[key] = "NULL";
 						}
 					}
 				});
