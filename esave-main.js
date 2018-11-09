@@ -52,7 +52,6 @@ app.use('/order_userTable', require('./tableSelectBE.js')("order_user"));
 app.use('/order_productTable', require('./tableSelectBE.js')("order_product"));
 app.use('/order_promotionTable', require('./tableSelectBE.js')("order_promotion"));
 app.use('/retailer_productTable', require('./tableSelectBE.js')("retailer_product"));
-app.use('/promotion_ecouponTable', require('./tableSelectBE.js')("promotion_ecoupon"));
 app.use('/favorites_retailerTable', require('./tableSelectBE.js')("favorites_retailer"));
 app.use('/retailer_ratingTable', require('./tableSelectBE.js')("retailer_rating"));
 
