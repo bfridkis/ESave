@@ -2,7 +2,7 @@
 //by the user's table input (via selector with id 'tableSelector'). Also
 //uses local storage to pre-populate the selector with the user's last selection
 //when returning to the home page.
-function tableSelect(){
+function tableSelectFE(){
 	var tableSelector = document.getElementById('tableSelector');
 	if(sessionStorage.getItem('previousTableSelected') === null){
 		sessionStorage.setItem('previousTableSelected', 'user');
