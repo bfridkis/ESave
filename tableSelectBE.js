@@ -27,6 +27,11 @@ module.exports = tableName => {
 						if(row[key] === null || row[key] === ''){
 							row[key] = "NULL";
 						}
+						else if(typeof(row[key]) === 'object'){
+							row[key] = new Date(row[key]);
+							row[key] = row[key].toJSON();
+							row[key] = String(row[key]).substring(0, 24);
+						}
 					}
 				});
 				context[tableName] = rows;
