@@ -48,7 +48,6 @@ app.use('/historyTable', require('./tableSelectBE.js')("history"));
 app.use('/favorites_orderTable', require('./tableSelectBE.js')("favorites_order"));
 app.use('/wish_listTable', require('./tableSelectBE.js')("wish_list"));
 app.use('/messageTable', require('./tableSelectBE.js')("message"));
-app.use('/order_userTable', require('./tableSelectBE.js')("order_user"));
 app.use('/order_productTable', require('./tableSelectBE.js')("order_product"));
 app.use('/order_promotionTable', require('./tableSelectBE.js')("order_promotion"));
 app.use('/retailer_productTable', require('./tableSelectBE.js')("retailer_product"));
