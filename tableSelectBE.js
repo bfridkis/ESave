@@ -4,7 +4,7 @@
 ** ------------------------------------------
 ** Router for viewing tables. Development only
 ***********************************************/
-module.exports = function(tableName){
+module.exports = tableName => {
     var express = require('express');
     var router = express.Router();
 	var app = express();
@@ -15,7 +15,7 @@ module.exports = function(tableName){
 		var mysql = req.app.get('mysql');
 		var context = {};
 		mysql.pool.query("select * from " + tableName, 
-		function(err, rows, fields){
+		(err, rows, fields) => {
 			if(err){
 				res.write(JSON.stringify(err));
 				res.end();
@@ -57,4 +57,5 @@ module.exports = function(tableName){
 ** https://stackoverflow.com/questions/49335352/express-routes-with-es6-classes-cannot-create-property-next-on-string?rq=1
 ** https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module
 ** https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module/13151726#13151726
+** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 ***************************************************************************************************************************/

@@ -57,19 +57,26 @@ app.use('/favorites_retailerTable', require('./tableSelectBE.js')("favorites_ret
 app.use('/retailer_ratingTable', require('./tableSelectBE.js')("retailer_rating"));
 
 
-app.use(function(req,res){
+app.use((req,res) => {
   res.status(404);
   res.render('404');
 });
 
-app.use(function(err, req, res, next){
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.type('plain/text');
   res.status(500);
   res.render('500');
 });
 
-app.listen(app.get('port'), function(){
+app.listen(app.get('port'), () => {
   console.log('Express started on esave.herokuapp.com:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
+/*******************************************************************************************************************
+** References
+** https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module/13151726#13151726
+** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind
+** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+*******************************************************************************************************************/
 	
