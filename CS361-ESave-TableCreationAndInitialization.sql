@@ -57,7 +57,6 @@ CREATE TABLE `user` (
 -- name - a varchar of maximum length 255, cannot be null
 -- web_address - a varchar of maximum length 255, cannot be null
 -- mailing_address - a varchar of maximum length 255, cannot be null
--- rating - an int
 -- ** Constraints **
 -- -- name must be unique
 
@@ -213,7 +212,7 @@ CREATE TABLE `order_user` (
 CREATE TABLE `order_product` (
   `order` int(15) NOT NULL,
   `product` int(15) NOT NULL,
-  `quantity` int(6),
+  `quantity` int(6) NOT NULL,
   PRIMARY KEY (`order`, `product`),
   CONSTRAINT `fk_order_product_order` FOREIGN KEY (`order`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_order_product_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -259,6 +258,7 @@ CREATE TABLE `favorites_retailer` (
 -- RETAILER_RATING TABLE --
 -- user - an int corresponding to a user (foreign key)
 -- retailer - an int corresponding to a retailer (foreign key)
+-- rating - an int for user rating
 
 CREATE TABLE `retailer_rating` (
   `user` int(15) NOT NULL,

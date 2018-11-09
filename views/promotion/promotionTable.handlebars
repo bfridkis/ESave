@@ -1,0 +1,27 @@
+<h1>{{title}}</h1>
+<table>
+	<thead>
+		<th>ID</th>
+		<th>Discount</th>
+		<th>Retailer</th>
+		<th>Description</th>
+		<th>ECoupon</th>
+	</thead>
+	<tbody>
+		{{#each user}}
+		<tr>
+			<td>{{id}}</td>
+			<td>{{discount}}</td>
+			<td>{{retailer}}</td>
+			<td>{{description}}</td>
+			<td>{{ecoupon}}</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
+<form action="/dev1" method="get">
+	<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
+</form>
+{{#each jsscriptsTableView}}
+	<script src="{{this}}"></script>
+{{/each}}

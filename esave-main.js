@@ -28,7 +28,8 @@ app.get('/dev1', function(req, res, next){
 	res.render('dev1', context)
 });
 
-
+//Note there is not yet a "home.handlebars" in the views directory,
+//so this currently leads nowhere..."
 app.get('/', function(req,res,next){
 	context = {};
 	context.jsscriptsHomePage = ['tableSelectFE.js'];
@@ -36,21 +37,24 @@ app.get('/', function(req,res,next){
 	res.render('home', context)
 });
 
+//Table select routers ("middleware")
 app.use('/userTable', require('./tableSelectBE.js')("user"));
-/*
-app.use('/retailer', require('./retailer/retailer.js'));
-app.use('/product', require('./product/product.js'));
-app.use('/order', require('./order/order.js'));
-app.use('/review', require('./review/review.js'));
-app.use('/history', require('./history/history.js'));
-app.use('/favorites_order', require('./favorites_order/favorites_order.js'));
-app.use('/wish_list', require('./wish_list/wish_list.js'));
-app.use('/message', require('./message/message.js'));
-app.use('/order_product', require('./order_product/order_product.js'));
-app.use('/retailer_product', require('./retailer_product/retailer_product.js'));
-app.use('/promotion_ecoupon', require('./promotion_ecoupon/promotion_ecoupon.js'));
-app.use('/favorites_retailer', require('./favorites_retailer/favorites_retailer.js'));
-*/
+app.use('/retailerTable', require('./tableSelectBE.js')("retailer"));
+app.use('/productTable', require('./tableSelectBE.js')("product"));
+app.use('/promotionTable', require('./tableSelectBE.js')("promotion"));
+app.use('/order', require('./tableSelectBE.js')("order"));
+app.use('/reviewTable', require('./tableSelectBE.js')("review"));
+app.use('/historyTable', require('./tableSelectBE.js')("history"));
+app.use('/favorites_orderTable', require('./tableSelectBE.js')("favorites_order"));
+app.use('/wish_listTable', require('./tableSelectBE.js')("wish_list"));
+app.use('/messageTable', require('./tableSelectBE.js')("message"));
+app.use('/order_userTable', require('./tableSelectBE.js')("order_user"));
+app.use('/order_productTable', require('./tableSelectBE.js')("order_product"));
+app.use('/order_promotionTable', require('./tableSelectBE.js')("order_promotion"));
+app.use('/retailer_productTable', require('./tableSelectBE.js')("retailer_product"));
+app.use('/promotion_ecouponTable', require('./tableSelectBE.js')("promotion_ecoupon"));
+app.use('/favorites_retailerTable', require('./tableSelectBE.js')("favorites_retailer"));
+app.use('/retailer_ratingTable', require('./tableSelectBE.js')("retailer_rating"));
 
 
 app.use(function(req,res){
