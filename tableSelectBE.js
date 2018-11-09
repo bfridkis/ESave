@@ -23,8 +23,16 @@ module.exports = function(tableName){
 			else{
 				context.css = ['style.css'];
 				context[tableName] = rows;
-				context.title = tableName.charAt(0).toUpperCase() + tableName.slice(1)
-								+ ' Table';
+				let _index = tableName.indexOf("_");
+				if(_index !== -1){
+					context.title = tableName.charAt(0).toUpperCase() + 
+									tableName.slice(1, _index) + " " +
+									tableName.charAt(_index + 1).toUpperCase() +
+									tableName.slice(_index + 2) + ' Table';
+				else{
+					context.title = tableName.charAt(0).toUpperCase() + tableName.slice(1)
+									+ ' Table';
+				}
 				context.jsscriptsTableView = [];
 				res.render("user/userTable", context);
 			}
