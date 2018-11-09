@@ -29,6 +29,7 @@ module.exports = function(tableName){
 									tableName.slice(1, _index) + " " +
 									tableName.charAt(_index + 1).toUpperCase() +
 									tableName.slice(_index + 2) + ' Table';
+				}
 				else{
 					context.title = tableName.charAt(0).toUpperCase() + tableName.slice(1)
 									+ ' Table';
