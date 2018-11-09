@@ -316,10 +316,10 @@ INSERT INTO order_promotion values (1, 1);
 
 -- RETAILER_PRODUCT TABLE INSERTIONS --
 INSERT INTO retailer_product values (1, 1, 
-	'Really Raw Unstrained Honey takes honey straight from the hive to the jar. It’s not heated and cooled, 
+	"Really Raw Unstrained Honey takes honey straight from the hive to the jar. It’s not heated and cooled, 
 	nor does Really Raw filter out the honeycomb or pollen like most conventional brands do. Raw honey is great 
 	to use as a natural sweetener since it has fewer carbs than sugar, and is less likely to cause blood sugar 
-	spikes or sugar crashes.');
+	spikes or sugar crashes.");
 	
 -- FAVORITES_RETAILER TABLE INSERTIONS --
 INSERT INTO favorites_retailer values (1, 1);

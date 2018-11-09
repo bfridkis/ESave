@@ -22,6 +22,11 @@ module.exports = function(tableName){
 			}
 			else{
 				context.css = ['style.css'];
+				for(key in rows){
+					if(key.value == NULL){
+						key.value = "NULL";
+					}
+				}
 				context[tableName] = rows;
 				let _index = tableName.indexOf("_");
 				if(_index !== -1){

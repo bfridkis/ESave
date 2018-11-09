@@ -42,7 +42,7 @@ app.use('/userTable', require('./tableSelectBE.js')("user"));
 app.use('/retailerTable', require('./tableSelectBE.js')("retailer"));
 app.use('/productTable', require('./tableSelectBE.js')("product"));
 app.use('/promotionTable', require('./tableSelectBE.js')("promotion"));
-app.use('/order', require('./tableSelectBE.js')("order"));
+app.use('/orderTable', require('./tableSelectBE.js')("order"));
 app.use('/reviewTable', require('./tableSelectBE.js')("review"));
 app.use('/historyTable', require('./tableSelectBE.js')("history"));
 app.use('/favorites_orderTable', require('./tableSelectBE.js')("favorites_order"));
