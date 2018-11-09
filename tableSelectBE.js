@@ -14,7 +14,7 @@ module.exports = tableName => {
 	router.get('/', (req, res) => {
 		var mysql = req.app.get('mysql');
 		var context = {};
-		mysql.pool.query("select * from '" + tableName + "'", 
+		mysql.pool.query("select * from `" + tableName + "`", 
 		(err, rows, fields) => {
 			if(err){
 				res.write(JSON.stringify(err));
