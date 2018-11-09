@@ -21,7 +21,7 @@ app.set('port', process.env.PORT || 5000);
 app.set('mysql', mysql);
 
 
-app.get('/dev1', req, res, next => {
+app.get('/dev1', (req, res, next) => {
 	context = {};
 	context.jsscriptsDevHomePage = ['tableSelectFE.js'];
 	context.css = ["style.css", "homePageStyle.css"];
@@ -30,7 +30,7 @@ app.get('/dev1', req, res, next => {
 
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
-app.get('/', req,res,next => {
+app.get('/', (req,res,next) => {
 	context = {};
 	context.jsscriptsHomePage = ['tableSelectFE.js'];
 	context.css = ["style.css", "homePageStyle.css"];
