@@ -2,9 +2,9 @@
 ** Main - ESave Web Server
 ** CS361 - SOFTWARE ENGINEERING I
 ** ------------------------------------------
-** Router for user table. Development only
+** Router for message table. Development only
 *********************************************/
-module.exports = function(tableName){
+module.exports = function(){
     var express = require('express');
     var router = express.Router();
 	var app = express();
@@ -14,7 +14,7 @@ module.exports = function(tableName){
 	router.get('/', (req, res) => {
 		var mysql = req.app.get('mysql');
 		var context = {};
-		mysql.pool.query("select * from " + tableName, 
+		mysql.pool.query("select * from message", 
 		function(err, rows, fields){
 			if(err){
 				res.write(JSON.stringify(err));
@@ -22,10 +22,10 @@ module.exports = function(tableName){
 			}
 			else{
 				context.css = ['style.css'];
-				context[tableName] = rows;
-				context.title = tableName + ' Table';
+				context["messages"] = rows;
+				context.title = 'message Table';
 				context.css = ['style.css']
-				res.render("user/userTable", context);
+				res.render("message/messageTable", context);
 			}
 		});
 	});
