@@ -23,7 +23,7 @@ module.exports = function(tableName){
 			else{
 				context.css = ['style.css'];
 				for(key in rows){
-					if(key.value == NULL){
+					if(key.value == ""){
 						key.value = "NULL";
 					}
 				}
