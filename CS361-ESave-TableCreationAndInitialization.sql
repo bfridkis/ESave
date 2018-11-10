@@ -24,9 +24,11 @@ DROP TABLE IF EXISTS `user`;
 -- id - an auto incrementing integer which is the primary key
 -- username - a varchar of maximum length 255, cannot be null
 -- password - a varchar of maximum length 255, cannot be null
+-- first_name - a varchar of maximum length 255, cannot be null
+-- last_name - a varchar of maximum length 255, cannot be null
 -- email - a varchar of maximum length 255, cannot be null
--- shipping_address - a varchar of maximum length 255, cannot be null
--- billing_address - a varchar of maximum length 255, cannot be null
+-- shipping_address - text
+-- billing_address - text
 -- recommendations - a boolean flag to indicate if user can be sent recommendations
 -- price_drop_email - a boolean flag to indicate if user can be sent emails when saved
 --					  orders (i.e. those on wish list or favories) see a lowest price 
@@ -35,19 +37,23 @@ DROP TABLE IF EXISTS `user`;
 --				   when new ESave messages are received
 -- ** Constraints **
 -- -- username must be unique
+-- -- email must be unique
 
 CREATE TABLE `user` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `shipping_address` varchar(255) NOT NULL,
-  `billing_address` varchar(255) NOT NULL,
+  `shipping_address` text,
+  `billing_address` text,
   `recommendations` boolean,
   `price_drop_email` boolean,
   `message_email` boolean,
   PRIMARY KEY (`id`),
-  CONSTRAINT `unique_user_username` UNIQUE (`username`)
+  CONSTRAINT `unique_user_username` UNIQUE (`username`),
+  CONSTRAINT `unique_email` UNIQUE (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- RETAILER TABLE --
@@ -259,8 +265,8 @@ CREATE TABLE `retailer_rating` (
 -- ************************************ INSERTIONS **************************************
 
 -- USER TABLE INSERTIONS --
-INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'fridkisb@oregonstate.edu', '1234 Lone Star,
-						 TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
+INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu', 
+						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
 					
 -- RETAILER TABLE INSERTIONS --
 INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL);
