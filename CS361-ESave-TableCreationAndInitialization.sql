@@ -97,6 +97,7 @@ CREATE TABLE `product` (
 -- retailer - a int corresponding to a retailer entry (foreign key)
 -- description - text with max 65,535 characters
 -- ecoupon - a varchar(255) to hold ecoupon code (if applicable)
+-- expiration_date - datetime to indicate promotion expiration
 
 CREATE TABLE `promotion` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
@@ -104,6 +105,7 @@ CREATE TABLE `promotion` (
   `retailer` int(15) NOT NULL,
   `description` text,
   `ecoupon` varchar(255),
+  `expiration_date` datetime,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_promotion_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -281,7 +283,7 @@ INSERT INTO product values (1, 'Really Raw Honey', 720054111124, NULL);
 	
 -- PROMOTION TABLE INSERTIONS --
 INSERT INTO promotion values (1, 20, 1, 
-	'$20 Off Your First Three Orders Over $49 + Free Shipping (requires thrive membership)', 'bd20x3');
+	'$20 Off Your First Three Orders Over $49 + Free Shipping (requires thrive membership)', 'bd20x3', NULL);
 	
 -- ORDER TABLE INSERTIONS --
 INSERT INTO `order` values (1, 1, 31.96, 1);
