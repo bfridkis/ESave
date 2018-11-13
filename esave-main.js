@@ -38,7 +38,8 @@ app.get('/', (req,res,next) => {
 });
 
 //Router for favicon
-app.use(express.favicon(path.join('./', 'public','images','favicon.ico'))); 
+var favicon = require('serve-favicon');
+app.use(favicon(path.join('./','public','images','favicon.ico')));
 
 //Table select routers ("middleware")
 app.use('/userTable', require('./tableSelectBE.js')("user"));
