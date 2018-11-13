@@ -20,6 +20,9 @@ app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 5000);
 app.set('mysql', mysql);
 
+//Router for favicon
+var favicon = require('serve-favicon');
+app.use(favicon(path.join('./','public','images','favicon.ico')));
 
 app.get('/dev1', (req, res, next) => {
 	context = {};
@@ -36,10 +39,6 @@ app.get('/', (req,res,next) => {
 	context.css = ["style.css", "homePageStyle.css"];
 	res.render('home', context)
 });
-
-//Router for favicon
-var favicon = require('serve-favicon');
-app.use(favicon(path.join('./','public','images','favicon.ico')));
 
 //Table select routers ("middleware")
 app.use('/userTable', require('./tableSelectBE.js')("user"));
