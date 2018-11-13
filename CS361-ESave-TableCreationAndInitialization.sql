@@ -228,6 +228,7 @@ CREATE TABLE `order_promotion` (
 -- RETAILER_PRODUCT TABLE --
 -- retailer - an int corresponding to an retailer (foreign key)
 -- product - an int corresponding to a product (foreign key)
+-- price - a decimal corresponding to a product's current price
 -- retailer_description - text for retailer specific description of product
 -- last_updated - timestamp used for conditional GET request, to only
 --				  ensure data is only serviced by 3rd party sites if changed
@@ -236,6 +237,7 @@ CREATE TABLE `order_promotion` (
 CREATE TABLE `retailer_product` (
   `retailer` int(15) NOT NULL,
   `product` int(15) NOT NULL,
+  `price` decimal(9,2) NOT NULL,
   `retailer_description` text,
   `last_updated` timestamp,
   PRIMARY KEY (`retailer`, `product`),
@@ -312,7 +314,7 @@ INSERT INTO order_product values (1, 1, 4);
 INSERT INTO order_promotion values (1, 1);
 
 -- RETAILER_PRODUCT TABLE INSERTIONS --
-INSERT INTO retailer_product values (1, 1, 
+INSERT INTO retailer_product values (1, 1, 12.99,
 	"Really Raw Unstrained Honey takes honey straight from the hive to the jar. It's not heated and cooled, 
 	nor does Really Raw filter out the honeycomb or pollen like most conventional brands do. Raw honey is great 
 	to use as a natural sweetener since it has fewer carbs than sugar, and is less likely to cause blood sugar 
