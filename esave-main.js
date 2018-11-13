@@ -10,7 +10,7 @@ var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 var mysql = require('./dbcon.js');
-var path = require('path');
+//var path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
@@ -19,10 +19,6 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 5000);
 app.set('mysql', mysql);
-
-//Router for favicon
-//var favicon = require('serve-favicon');
-//app.use(favicon(path.join('./','public','images','favicon.ico')));
 
 app.get('/dev1', (req, res, next) => {
 	context = {};
@@ -82,4 +78,5 @@ app.listen(app.get('port'), () => {
 ** https://devcenter.heroku.com/articles/getting-started-with-nodejs
 ** https://devcenter.heroku.com/articles/git
 ** https://devcenter.heroku.com/articles/cleardb
+** https://stackoverflow.com/questions/15463199/how-to-set-custom-favicon-in-express
 *******************************************************************************************************************/

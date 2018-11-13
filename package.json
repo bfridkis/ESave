@@ -12,7 +12,6 @@
     "body-parser": "^1.13.3",
     "express": "^4.13.2",
     "express-handlebars": "^2.0.1",
-    "serve-favicon": "^2.5.0",
     "mysql": "^2.8.0"
   }
 }
