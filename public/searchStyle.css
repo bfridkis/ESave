@@ -1,0 +1,17 @@
+body {
+	background-color: rgb(255, 254, 244);
+}
+
+.fa-user, .fa-cog {
+  font-size: 40px;
+  color: rgb(255, 254, 244);
+}
+
+.banner-logo {
+  height: 15%;
+  width: 15%;
+}
+
+.bg-light {
+   background-color: purple !important;
+}
