@@ -27,6 +27,13 @@ app.get('/dev1', (req, res, next) => {
 	res.render('dev1', context)
 });
 
+app.get('/search', (req, res, next) => {
+	context = {};
+	context.jsscriptsSearchPage = ['sparkle.jquery.js', 'search.js'];
+	context.css = ["sparkle.css", "searchStyle.css"];
+	res.render('search/search', context)
+});
+
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
 app.get('/', (req,res,next) => {
