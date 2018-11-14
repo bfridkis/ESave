@@ -1,5 +1,6 @@
 body {
 	background-color: rgb(255, 254, 244);
+  font-family: 'Righteous', cursive;
 }
 
 .fa-user, .fa-cog {
@@ -7,11 +8,82 @@ body {
   color: rgb(255, 254, 244);
 }
 
+.fa-user:hover, .fa-cog:hover {
+  opacity: 0.9;
+  color: rgb(39, 206, 100);
+}
+
 .banner-logo {
   height: 15%;
   width: 15%;
+  border-radius: 5px;
 }
 
 .bg-light {
    background-color: purple !important;
+}
+
+.navbar-nav {
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+.main-logo-outer-container {
+  display: flex;
+  padding-top: 85px;
+}
+
+.main-logo-inner-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-logo {
+  border-radius: 5px;
+  margin: auto;
+  vertical-align: bottom;
+}
+
+#save-text {
+  font-size: 6rem;
+  color: purple;
+  margin: auto;
+}
+
+.quantity-label {
+  padding-top: 60px;
+  padding-left: 40px;
+  max-width: 57%;
+  margin: auto;
+}
+
+.input-group {
+  padding-left: 40px;
+  padding-right: 40px;
+  max-width: 60%;
+  margin: auto;
+}
+
+#quantity {
+  max-width: 110px;
+  padding-left:10px;
+  text-align:center;
+}
+
+.btn-outline-secondary {
+  border-color: purple;
+}
+
+.btn-outline-secondary:hover {
+  border-color: rgb(39, 206, 100);
+}
+
+.btn {
+  color: purple;
+  background-color: rgb(39, 206, 100);
+}
+
+.btn:hover {
+  color: rgb(39, 206, 100);
+  background-color: purple;
 }
