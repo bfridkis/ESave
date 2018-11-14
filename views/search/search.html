@@ -38,25 +38,35 @@
       </div>
     </div>
 
-  <div class="quantity-label">Quantity</div>
-  <div class="input-group mb-3">
-    <input type="number" label="Quantity" id="quantity" class="form-control" min="1" value="1">
-    <input type="text" class="form-control" placeholder="Enter product name, model, upc, or description..."
-     aria-describedby="basic-addon2">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button">+</button>
+    <div class="quantity-label">Quantity</div>
+    <div class="input-group mb-3">
+      <input type="number" label="Quantity" id="quantity" class="form-control" min="1" value="1">
+      <input type="text" class="form-control" placeholder="Enter product name, model, upc, or description..."
+       aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">+</button>
+      </div>
     </div>
-  </div>
 
-  <div class="order-stage">
-      <div class="order-stage-left">
+    <div id="order-stage">
+      <div id="order-stage-left">
         <table id="order-stage-table">
           <thead>
             <tr>
               <th class="order-stage-table-headings" scope="col">Searching For</th>
-              <th class="order-stage-table-headings" scope="col">Quantity</th>
+              <th class="order-stage-table-headings quantity-heading" scope="col">Quantity</th>
               <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
 
+      <div id="order-stage-right"><span id="order-stage-right-text">
+        Click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>
+      </div>
+    </div>
   </body>
 
 <!-- References
@@ -68,4 +78,7 @@
   * https://stackoverflow.com/questions/7693224/how-do-i-right-align-div-elements
   * https://stackoverflow.com/questions/17481660/darken-background-image-on-hover
   * https://stackoverflow.com/questions/23715881/center-text-in-html-number-input
+  * https://stackoverflow.com/questions/2156712/how-to-float-3-divs-side-by-side-using-css
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout
+  * https://www.w3docs.com/snippets/css/how-to-vertically-center-text-with-css.html
   -->
