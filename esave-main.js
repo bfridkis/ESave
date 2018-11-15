@@ -34,7 +34,7 @@ app.get('/search', (req, res, next) => {
 	context.navbarLogo = ["images/logo.jpg"];
 	context.mainLogo = ["images/logo-medium.jpg"];
 	if(req.params){
-
+		console.log(req.params.p1);
 	}
 	res.render('search/search', context)
 });
