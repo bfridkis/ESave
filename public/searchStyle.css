@@ -8,6 +8,10 @@ body {
   color: rgb(255, 254, 244);
 }
 
+.fa-user {
+  padding-right: 20px;
+}
+
 .fa-user:hover, .fa-cog:hover {
   opacity: 0.9;
   color: rgb(39, 206, 100);
@@ -81,9 +85,111 @@ body {
 .btn {
   color: purple;
   background-color: rgb(39, 206, 100);
+  font-size: 1rem;
 }
 
 .btn:hover {
   color: rgb(39, 206, 100);
   background-color: purple;
+}
+
+#order-stage, #button-stage {
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* fraction*/
+  max-width: 1250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#order-stage-left, #order-stage-right {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  min-height: 300px;
+  width: 500px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 25px;
+  border-color: purple;
+}
+
+.order-stage-table-headings {
+  padding: 20px;
+}
+
+.quantity-heading {
+  padding-left: 125px;
+}
+
+#order-stage-right {
+  float: left;
+  padding-left: 50px;
+  display: table;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#order-stage-table {
+  white-space: nowrap;
+  margin-left: 10px;
+  text-overflow: ellipsis;
+}
+
+#order-stage-right-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.fa-check-square {
+  color: rgb(39, 206, 100);
+}
+
+#button-stage {
+  padding-top: 20px;
+}
+
+#button-stage-left {
+  padding-right: 25px;
+  margin: auto;
+  font-size: 4rem;
+}
+
+#esave-button:hover {
+  transition: color .3s;
+  color: purple;
+}
+
+#button-stage-right {
+  margin: auto;
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.button-stage-right-button {
+  padding-right: 25px;
+  padding-left: 25px;
+  color: purple;
+}
+
+.button-stage-right-button:hover {
+  transition: color .1s;
+  color: rgb(39, 206, 100);
+}
+
+#shopping-cart-outer {
+  font-size: 5rem;
+  width: 1000px;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 50px;
+  width: 100px;
+}
+
+.fa-shopping-cart {
+  background-image: -webkit-gradient( linear, left top, right top, color-stop(0, purple), color-stop(0.15, purple), color-stop(0.3, purple), color-stop(0.45, purple), color-stop(0.6, rgb(39, 206, 100)),color-stop(0.75, rgb(39, 206, 100)), color-stop(0.9, rgb(39, 206, 100)), color-stop(1, rgb(39, 206, 100)) );
+  background-image: gradient( linear, left top, right top, color-stop(0, purple), color-stop(0.15, purple), color-stop(0.3, purple), color-stop(0.45, purple), color-stop(0.6, rgb(39, 206, 100)),color-stop(0.75, rgb(39, 206, 100)), color-stop(0.9, rgb(39, 206, 100)), color-stop(1, rgb(39, 206, 100)) );
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
 }

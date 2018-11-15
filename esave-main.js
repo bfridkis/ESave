@@ -22,9 +22,18 @@ app.set('mysql', mysql);
 
 app.get('/dev1', (req, res, next) => {
 	context = {};
-	context.jsscriptsDevHomePage = ['tableSelectFE.js'];
+	context.jsscriptsDevHomePage = ["tableSelectFE.js"];
 	context.css = ["style.css", "homePageStyle.css"];
 	res.render('dev1', context)
+});
+
+app.get('/search', (req, res, next) => {
+	context = {};
+	context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js"];
+	context.css = ["sparkle.css", "searchStyle.css"];
+	context.navbarLogo = ["images/logo.jpg"];
+	context.mainLogo = ["images/logo-medium.jpg"]
+	res.render('search/search', context)
 });
 
 //Note there is not yet a "home.handlebars" in the views directory,
