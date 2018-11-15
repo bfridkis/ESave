@@ -35,10 +35,6 @@ app.get('/search', (req, res, next) => {
 	context.mainLogo = ["images/logo-medium.jpg"];
 	if(req.params.p1){
 		console.log(req.params.p1);
-		//Here is where I'm trying to log back server side what I'm sending
-		//But the log isn't showing anything
-		//I know I have the right query generated client side...or at least i think so
-		
 	}
 	res.render('search/search', context)
 });

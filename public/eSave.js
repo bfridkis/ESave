@@ -13,8 +13,6 @@ function eSave(){
     req.open("GET", queryString, true);
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
-        //Now I'm here, logging client side to see what status
-        //I'm getting, if any...
         console.log(req.status + " " + req.statusText);
         window.location.replace("/search");
       }
@@ -22,6 +20,7 @@ function eSave(){
         alert("Error: " + req.status + " " + req.statusText);
       }
     });
+    req.send(null);
   });
 };
 
