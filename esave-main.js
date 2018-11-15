@@ -24,6 +24,8 @@ app.get('/dev1', (req, res, next) => {
 	context = {};
 	context.jsscriptsDevHomePage = ['tableSelectFE.js'];
 	context.css = ["style.css", "homePageStyle.css"];
+	context.navbarLogo = ["logo.jpg"];
+	context.mainLogo = ["logo-medium.jpg"]
 	res.render('dev1', context)
 });
 
