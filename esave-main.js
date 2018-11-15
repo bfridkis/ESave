@@ -31,8 +31,8 @@ app.get('/search', (req, res, next) => {
 	context = {};
 	context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js"];
 	context.css = ["sparkle.css", "searchStyle.css"];
-	context.navbarLogo = ["logo.jpg"];
-	context.mainLogo = ["logo-medium.jpg"]
+	context.navbarLogo = ["images/logo.jpg"];
+	context.mainLogo = ["images/logo-medium.jpg"]
 	res.render('search/search', context)
 });
 
