@@ -33,7 +33,7 @@ app.get('/search', (req, res, next) => {
 	context.css = ["sparkle.css", "searchStyle.css"];
 	context.navbarLogo = ["images/logo.jpg"];
 	context.mainLogo = ["images/logo-medium.jpg"];
-	if(req.params){
+	if(req.params.p1){
 		console.log(req.params.p1);
 	}
 	res.render('search/search', context)
