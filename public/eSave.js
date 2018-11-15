@@ -13,6 +13,8 @@ function eSave(){
     req.open("GET", queryString, true);
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
+        //Now I'm here, logging client side to see what status
+        //I'm getting, if any...
         console.log(req.status + " " + req.statusText);
         window.location.replace("/search");
       }
@@ -29,3 +31,6 @@ function eSave(){
 // * https://codeburst.io/javascript-increment-and-decrement-8c223858d5ed
 // * https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByClassName
 // * https://stackoverflow.com/questions/921789/how-to-loop-through-a-plain-javascript-object-with-the-objects-as-members
+
+//We can type at the same time! Just like google Docs...
+//Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
