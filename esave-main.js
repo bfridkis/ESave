@@ -29,10 +29,13 @@ app.get('/dev1', (req, res, next) => {
 
 app.get('/search', (req, res, next) => {
 	context = {};
-	context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js"];
+	context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
 	context.css = ["sparkle.css", "searchStyle.css"];
 	context.navbarLogo = ["images/logo.jpg"];
-	context.mainLogo = ["images/logo-medium.jpg"]
+	context.mainLogo = ["images/logo-medium.jpg"];
+	if(req.params){
+
+	}
 	res.render('search/search', context)
 });
 

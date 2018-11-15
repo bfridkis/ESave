@@ -11,16 +11,12 @@
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../public/searchStyle.css"></script>
 
-  {{#each css}}
-		<link rel="stylesheet" type="text/css" href="{{this}}"></script>
-	{{/each}}
-
   </head>
 -->
 
   <body>
     <nav class="navbar navbar-expand navbar-light bg-light">
-      <!--<a class="navbar-brand" href="#"><img src="images/logo.jpg" class="banner-logo"></a>-->
+      <!--<a class="navbar-brand" href="#"><img src="../../public/images/logo.jpg" class="banner-logo"></a>-->
       <a class="navbar-brand" href="#"><img src="{{navbarLogo}}" class="banner-logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,7 +44,7 @@
     <div class="input-group mb-3">
       <input type="number" label="Quantity" id="quantity" class="form-control" min="1" value="1">
       <input type="text" class="form-control" placeholder="Enter product name, model, upc, or description..."
-       aria-describedby="basic-addon2">
+       aria-describedby="basic-addon2" id="prodInput">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button">+</button>
       </div>
@@ -112,8 +108,11 @@
     * https://www.w3schools.com/css/css3_animations.asp
     * https://www.w3schools.com/css/css3_gradients.asp
     * https://stackoverflow.com/questions/37831837/gradient-text-color
+    * https://www.w3schools.com/cssref/pr_text_text-decoration.asp
     -->
   </body>
 
-  <!--<script src="../../public/sparkle.jquery.js"></script>-->
-  <!--<script src="../../public/search.js"></script>-->
+  <!--<script src="../../public/sparkle.jquery.js"></script>
+  <script src="../../public/search.js"></script>
+  <script src="../../public/eSave.js"></script>
+  <script defer>eSave();</script>-->

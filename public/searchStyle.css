@@ -116,10 +116,15 @@ body {
 
 .order-stage-table-headings {
   padding: 20px;
+  width: 285px;
+  text-decoration: underline;
+  font-size: 1.25rem;
 }
 
 .quantity-heading {
-  padding-left: 125px;
+  text-decoration: underline;
+  font-size: 1.25rem;
+  width: 100px;
 }
 
 #order-stage-right {
@@ -133,7 +138,8 @@ body {
 #order-stage-table {
   white-space: nowrap;
   margin-left: 10px;
-  text-overflow: ellipsis;
+  table-layout: fixed;
+  width: 100%;
 }
 
 #order-stage-right-text {
