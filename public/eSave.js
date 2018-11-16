@@ -19,8 +19,8 @@ function eSave(){
     req.open("GET", "/search?p1=test&q1=1&p2=tester&q2=2", true);
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
-        //console.log(req.status + " " + req.statusText);
-        window.location.replace("/search");
+        console.log(req.status + " " + req.statusText);
+       // window.location.replace("/search");
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
