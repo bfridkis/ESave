@@ -33,7 +33,7 @@ function eSave(){
   clearButton.addEventListener("click", () => {
     let rows = document.getElementsByClassName("searchItemRow");
     rows = [...rows];
-    rows.forEach(item => {
+    rows.forEach(row => {
       while(row.firstChild){
         row.removeChild(row.firstChild);
       }
