@@ -147,10 +147,6 @@ body {
   vertical-align: middle;
 }
 
-.fa-check-square {
-  color: rgb(39, 206, 100);
-}
-
 #button-stage {
   padding-top: 20px;
 }
@@ -159,6 +155,14 @@ body {
   padding-right: 25px;
   margin: auto;
   font-size: 4rem;
+}
+
+.fa-check-square {
+  color: rgb(39, 206, 100);
+}
+
+.fa-check-square {
+  color: red;
 }
 
 #esave-button:hover {

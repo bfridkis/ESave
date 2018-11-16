@@ -12,6 +12,7 @@ var stageTable = document.querySelector("#order-stage-table");
 addProd.addEventListener("click", () => {
   if(prodInput.value !== ""){
     let row = document.createElement("tr");
+    row.setAttribute("class", "searchItemRow");
     stageTable.appendChild(row);
     let prodDesc = row.appendChild(document.createElement("td"));
     prodDesc.textContent = prodInput.value;
@@ -35,6 +36,8 @@ addProd.addEventListener("click", () => {
     });
   }
 });
+
+var
 
 // References
 // https://www.w3schools.com/js/js_htmldom_elements.asp

@@ -3,7 +3,7 @@ function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
     let items = document.getElementsByClassName("searchItem");
-    let qts = document.getElementsByClassName("qtSearchItem")
+    let qts = document.getElementsByClassName("qtSearchItem");
     items = [...items];
     qts = [...qts];
     let queryString = "/search?";
@@ -28,6 +28,17 @@ function eSave(){
     });
     req.send(null);
   });
+
+  let clearButton = document.querySelector("#clear-button");
+  clearButton.addEventListener("click", () => {
+    let rows = document.getElementsByClassName("searchItemRow");
+    rows = [...rows];
+    rows.forEach(item => {
+      while(row.firstChild){
+        row.removeChild(row.firstChild);
+      }
+    }
+  });
 };
 
 // References
@@ -38,6 +49,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/921789/how-to-loop-through-a-plain-javascript-object-with-the-objects-as-members
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 // * https://stackoverflow.com/questions/24775725/loop-through-childnodes
+// * https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
