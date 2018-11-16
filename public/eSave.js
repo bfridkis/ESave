@@ -7,6 +7,9 @@ function eSave(){
     let queryString = "/search?";
     items.forEach((item, i) => {
       queryString += "p" + (i + 1) + "=" + String(item.textContent);
+      if(i < items.length - 1){
+        queryString += "&";
+      }
     });
     console.log(queryString);
     let req = new XMLHttpRequest();
