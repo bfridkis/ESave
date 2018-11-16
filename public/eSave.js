@@ -21,7 +21,7 @@ function eSave(){
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
         //console.log(req.status + " " + req.statusText);
-        window.location.replace("/search");
+        //window.location.replace("/search");
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
