@@ -6,7 +6,7 @@ function eSave(){
     items = [...items];
     let queryString = "/search?";
     items.forEach((item, i) => {
-      console.log(item.textContent);
+      console.log(item.textContent + "*");
       queryString += "p" + (i + 1) + "=" + String(item.textContent);
       if(i < items.length - 1){
         queryString += "&";
