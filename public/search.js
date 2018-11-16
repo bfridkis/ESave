@@ -22,7 +22,8 @@ addProd.addEventListener("click", () => {
     prodDesc.setAttribute("class", "searchItem");
     let prodQT = row.appendChild(document.createElement("td"));
     prodQT.textContent = qtInput.value;
-    prodQT.style.paddingLeft = ("55px");
+    prodQT.style.paddingLeft = ("25px");
+    prodQT.style.textAlign = ("center");
     prodQT.style.fontSize = "1.15rem";
     prodQT.setAttribute("class", "qtSearchItem");
     let deleteB = row.appendChild(document.createElement("td"));
