@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Esave Registration Form</title>
+	<link rel="stylesheet" type= "text/css" href="style.css">
+</head>
+<body>
+	<div id="form_wrapper">
+		<!–– registration form: regForm ––>
+		<form method="POST" action="" onsubmit="" name="regForm">
+			<div>
+				<!–– username ––>
+				<input type="text" name="username" class="textInput">
+				<div id="name_err" class="input_error"></div>
+			</div>
+			<div>
+				<!–– password ––>
+				<input type="password" name="password" class="textInput">
+				<div id="pass_err" class="input_error"></div>
+
+			</div>
+			<div>
+				<!–– password confirmation ––>
+				<input type="password" name="passwordConfirmation" class="textInput">
+				<div id="passC_err" class="input_error"></div>
+			</div>
+			<div>
+				<!–– email ––>
+				<input type="email" name="email" class="textInput">
+				<div id="email_err" class="input_error"></div>
+			</div>
+			<div>
+				<!–– submit button ––>
+				<input type="submit" value="Sign-up" class="btn" name="register">
+			</div>
+
+		</form>
+	</div>	
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+	//get text objects from input fields
+	var username = document.forms["regForm"]["username"];
+	var password = document.forms["regForm"]["password"];
+	var passwordConf = document.forms["regForm"]["passwordConfirmation"];
+	var email = document.forms["regForm"]["email"];
+
+	//input validation for all fields
+	function Validate(){
+		if (username.value == "") {
+			username.style.border = "1px solid red";
+			name_err.textContent = "Username not Valid";
+			username.focus();
+			return false;
+		}
+		if (password.value == "") {
+			password.style.border = "1px solid red";
+			pass_err.textContent = "Password not Valid";
+			password.focus();
+			return false;
+		}
+		if (email.value == "") {
+			email.style.border = "1px solid red";
+			email_err.textContent = "Email not Valid";
+			email.focus();
+			return false;
+		}
+	}
+	//after Validation, if something is changed, revert things to normal
+	function usernameVerify() {
+		if (username.value !="") {
+			//username.style.border = "1px solid red"; ORIGNAL STYLE GOES HERE
+			name_err.textContent = "";
+		}
+	}
+	function passwordVerify() {
+		if (password.value !="") {
+			//password.style.border = "1px solid red"; ORIGNAL STYLE GOES HERE
+			pass_err.textContent = "";
+		}
+	}
+	function emailVerify() {
+		if (email.value !="") {
+			//email.style.border = "1px solid red"; ORIGNAL STYLE GOES HERE
+			email_err.textContent = "";
+		}
+	}
+
+	//nothing currently that checks the password confirmation or if both password and password confirmation are the same, working on it
+</script>
