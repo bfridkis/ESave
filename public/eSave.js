@@ -15,7 +15,7 @@ function eSave(){
         queryString += "&";
       }
     });
-    //console.log(queryString);
+    console.log(queryString);
     let req = new XMLHttpRequest();
     req.open("GET", queryString, true);
     req.addEventListener("load", () => {
@@ -27,7 +27,7 @@ function eSave(){
         alert("Error: " + req.status + " " + req.statusText);
       }
     });
-    req.send(null);
+    //req.send(null);
   });
 };
 
