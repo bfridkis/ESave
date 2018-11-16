@@ -27,7 +27,7 @@ function eSave(){
         alert("Error: " + req.status + " " + req.statusText);
       }
     });
-    req.send(null);
+    //req.send(null);
   });
 };
 
