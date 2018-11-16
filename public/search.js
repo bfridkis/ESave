@@ -37,8 +37,6 @@ addProd.addEventListener("click", () => {
   }
 });
 
-var
-
 // References
 // https://www.w3schools.com/js/js_htmldom_elements.asp
 // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
