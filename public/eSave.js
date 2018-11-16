@@ -37,7 +37,7 @@ function eSave(){
       while(row.firstChild){
         row.removeChild(row.firstChild);
       }
-    }
+    });
   });
 };
 
