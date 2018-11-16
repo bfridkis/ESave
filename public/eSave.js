@@ -9,8 +9,8 @@ function eSave(){
     let queryString = "/search?";
     items.forEach((item, i) => {
       console.log(item.textContent + "*");
-      queryString += "p" + (i + 1) + "=" + String(item.textContent) + "&"
-                    + "q" + (i + 1) + "=" + String(qts[i].textContent);
+      queryString += "p" + (i + 1) + "=" + item.textContent + "&"
+                    + "q" + (i + 1) + "=" + qts[i].textContent;
       if(i < items.length - 1){
         queryString += "&";
       }
