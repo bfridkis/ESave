@@ -18,4 +18,6 @@ module.exports = () => {
 			res.render('search/search', context)
 		}
 	});
+
+	return router;
 };
