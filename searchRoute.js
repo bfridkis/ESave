@@ -14,5 +14,7 @@ module.exports = () => {
     let searchRouteEsave = req.app.get('searchRouteEsave');
 		searchRouteEsave(req, res, context);
 	}
+	else{
 		res.render('search/search', context)
-});
+	}
+};
