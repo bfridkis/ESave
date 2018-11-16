@@ -17,8 +17,8 @@ form {
     border: 3px dashed purple;
 		max-width: 700px;
 		margin-top: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 50px;
     outline: 3px solid #000000;
     outline-offset: 5px;
