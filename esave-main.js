@@ -34,7 +34,10 @@ app.get('/search', (req, res, next) => {
 	context.navbarLogo = ["images/logo.jpg"];
 	context.mainLogo = ["images/logo-medium.jpg"];
 	console.log(req.query); //*************************
-	res.render('search/search', context)
+	if(req.query){
+
+	}
+		res.render('search/search', context)
 });
 
 //Note there is not yet a "home.handlebars" in the views directory,

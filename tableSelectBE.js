@@ -5,16 +5,16 @@
 ** Router for viewing tables. Development only
 ***********************************************/
 module.exports = tableName => {
-    var express = require('express');
-    var router = express.Router();
+  var express = require('express');
+  var router = express.Router();
 	var app = express();
-	
+
 	//Handles GET requests to table page. Redirected here after updates
 	//and deletes.
 	router.get('/', (req, res) => {
 		var mysql = req.app.get('mysql');
 		var context = {};
-		mysql.pool.query("select * from `" + tableName + "`", 
+		mysql.pool.query("select * from `" + tableName + "`",
 		(err, rows, fields) => {
 			if(err){
 				res.write(JSON.stringify(err));
@@ -38,7 +38,7 @@ module.exports = tableName => {
 				context[tableName] = rows;
 				let _index = tableName.indexOf("_");
 				if(_index !== -1){
-					context.title = tableName.charAt(0).toUpperCase() + 
+					context.title = tableName.charAt(0).toUpperCase() +
 									tableName.substring(1, _index) + " " +
 									tableName.charAt(_index + 1).toUpperCase() +
 									tableName.substring(_index + 2) + ' Table';
@@ -52,9 +52,8 @@ module.exports = tableName => {
 			}
 		});
 	});
-	
+
 	return router;
-	
 };
 
 /**************************************************************************************************************************

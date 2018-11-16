@@ -61,6 +61,7 @@ CREATE TABLE `user` (
 -- name - a varchar of maximum length 255, cannot be null
 -- web_address - a varchar of maximum length 255, cannot be null
 -- mailing_address - a varchar of maximum length 255, cannot be null
+-- shipping_price - flat rate shipping cost for retailer
 -- ** Constraints **
 -- -- name must be unique
 
@@ -69,6 +70,7 @@ CREATE TABLE `retailer` (
   `name` varchar(255) NOT NULL,
   `web_address` varchar(255) NOT NULL,
   `mailing_address` varchar(255),
+  `shipping_price` decimal(6,2),
   PRIMARY KEY (`id`),
   CONSTRAINT `unique_retailer_name` UNIQUE (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -98,6 +100,8 @@ CREATE TABLE `product` (
 -- description - text with max 65,535 characters
 -- ecoupon - a varchar(255) to hold ecoupon code (if applicable)
 -- expiration_date - datetime to indicate promotion expiration
+-- product - if promo is specific to a product, corresponds to product id
+--			 otherwise, NULL
 
 CREATE TABLE `promotion` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
@@ -106,6 +110,7 @@ CREATE TABLE `promotion` (
   `description` text,
   `ecoupon` varchar(255),
   `expiration_date` datetime,
+  `product` int(15),
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_promotion_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -231,20 +236,24 @@ CREATE TABLE `order_promotion` (
 -- retailer - an int corresponding to an retailer (foreign key)
 -- product - an int corresponding to a product (foreign key)
 -- price - a decimal corresponding to a product's current price
--- retailer_description - text for retailer specific description of product
+-- description - text for retailer specific description of product
 -- last_updated - timestamp used for conditional GET request, to only
 --				  ensure data is only serviced by 3rd party sites if changed
 --				  since it was last serviced.
+-- promotion - an int corresponding to a promotion id, for retailer-product
+--			   specific promotions.
 
 CREATE TABLE `retailer_product` (
   `retailer` int(15) NOT NULL,
   `product` int(15) NOT NULL,
   `price` decimal(9,2) NOT NULL,
-  `retailer_description` text,
+  `description` text,
   `last_updated` timestamp,
+  `promotion` int(15),
   PRIMARY KEY (`retailer`, `product`),
   CONSTRAINT `fk_retailer_product_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_retailer_product_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_retailer_product_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_retailer_product_promotion` FOREIGN KEY (`promotion`) REFERENCES `promotion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- FAVORITES_RETAILER TABLE --
@@ -280,14 +289,14 @@ INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fr
 						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
 					
 -- RETAILER TABLE INSERTIONS --
-INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL);
+INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL, 5.99);
 
 -- PRODUCT TABLE INSERTIONS --
 INSERT INTO product values (1, 'Really Raw Honey', 720054111124, NULL);
 	
 -- PROMOTION TABLE INSERTIONS --
 INSERT INTO promotion values (1, 20, 1, 
-	'$20 Off Your First Three Orders Over $49 + Free Shipping (requires thrive membership)', 'bd20x3', NULL);
+	'$20 Off Your First Three Orders Over $49 + Free Shipping (requires thrive membership)', 'bd20x3', NULL, FALSE);
 	
 -- ORDER TABLE INSERTIONS --
 INSERT INTO `order` values (1, 1, 31.96, 5.99, 1);
@@ -320,7 +329,7 @@ INSERT INTO retailer_product values (1, 1, 12.99,
 	"Really Raw Unstrained Honey takes honey straight from the hive to the jar. It's not heated and cooled, 
 	nor does Really Raw filter out the honeycomb or pollen like most conventional brands do. Raw honey is great 
 	to use as a natural sweetener since it has fewer carbs than sugar, and is less likely to cause blood sugar 
-	spikes or sugar crashes.", '2018-11-10 08:38:22');
+	spikes or sugar crashes.", '2018-11-10 08:38:22', NULL);
 	
 -- FAVORITES_RETAILER TABLE INSERTIONS --
 INSERT INTO favorites_retailer values (1, 1);
