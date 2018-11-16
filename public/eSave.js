@@ -18,7 +18,7 @@ function eSave(){
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
-        window.location.replace("/search");
+        //window.location.replace("/search");
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
@@ -34,6 +34,8 @@ function eSave(){
 // * https://codeburst.io/javascript-increment-and-decrement-8c223858d5ed
 // * https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByClassName
 // * https://stackoverflow.com/questions/921789/how-to-loop-through-a-plain-javascript-object-with-the-objects-as-members
+// * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+// * https://stackoverflow.com/questions/24775725/loop-through-childnodes
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
