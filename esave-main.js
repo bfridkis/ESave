@@ -40,6 +40,18 @@ app.get('/search', (req, res, next) => {
 		res.render('search/search', context)
 });
 
+app.get('/login', (req, res, next) => {
+	context = {};
+	context.jsscriptsLoginPage = ["login.js"];
+	context.css = ["loginStyle.css"];
+	context.mainLogo = ["images/logo-medium.jpg"];
+	console.log(req.query);
+	if(req.query){
+
+	}
+		res.render('login/login', context)
+});
+
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
 app.get('/', (req,res,next) => {
