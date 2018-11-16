@@ -16,7 +16,7 @@ function eSave(){
     });
     //console.log(queryString);
     let req = new XMLHttpRequest();
-    req.open("GET", "/search?p1=test&q1=1&p2=tester&q2=2", true);
+    req.open("GET", "/sisearch?p1=test&q1=1&p2=tester&q2=2", true);
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
