@@ -3,11 +3,14 @@ function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
     let items = document.getElementsByClassName("searchItem");
+    let qts = document.getElementsByClassName("qtSearchItem")
     items = [...items];
+    qts = [...qts];
     let queryString = "/search?";
     items.forEach((item, i) => {
       console.log(item.textContent + "*");
-      queryString += "p" + (i + 1) + "=" + String(item.textContent);
+      queryString += "p" + (i + 1) + "=" + String(item.textContent) + "&"
+                    + "q" + (i + 1) + "=" + String(qts[i].textContent);
       if(i < items.length - 1){
         queryString += "&";
       }

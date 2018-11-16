@@ -24,6 +24,7 @@ addProd.addEventListener("click", () => {
     prodQT.textContent = qtInput.value;
     prodQT.style.paddingLeft = ("60px");
     prodQT.style.fontSize = "1.15rem";
+    prodQT.setAttribute("class", "qtSearchItem");
     let deleteB = row.appendChild(document.createElement("td"));
     deleteB.innerHTML = '<i class="fas fa-minus-circle"></i>';
     deleteB.childNodes[0].style.color = "red";
