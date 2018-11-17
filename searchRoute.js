@@ -55,15 +55,15 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 																"when sum(promotion.discount) IS NULL then 0 " +
 																"else sum(promotion.discount) " +
 																"end AS TOTAL_DISCOUNT " +
-														"from product join retailer_product on product.id = retailer_product.product AND" +
+														"from product join retailer_product on product.id = retailer_product.product AND " +
 																"(product.name LIKE '%" + req.query[key] + "%' OR " +
 																"'" + req.query[key] + "' = product.upc OR " +
 																"'" + req.query[key] + "' = product.model_number OR " +
 																"retailer_product.description LIKE '%" + req.query[key] + "%') " +
 														"join retailer on retailer_product.retailer = retailer.id " +
-														"(promotion.product = product.id or promotion.product IS NULL) and " +
+														"(promotion.product = product.id or promotion.product IS NULL) AND " +
 														"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' OR " +
-														"promotion.min_spend IS NULL) and " +
+														"promotion.min_spend IS NULL) AND " +
 														"(promotion.qt_required <= '" + req.query[qtKey] + "' OR promotion.qt_required IS NULL) " +
 														"GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1",
 		      (err, rows, fields) => {
