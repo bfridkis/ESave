@@ -25,7 +25,7 @@ module.exports = () => {
 		        }
 		        else{
 							console.log(rows);
-		          eSaveResults.push(JSON.stringify(rows));
+		          eSaveResults.push("TEST");
 		        }
 		      });
 		    }
