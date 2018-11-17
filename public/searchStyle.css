@@ -159,12 +159,11 @@ body {
 
 .fa-check-square {
   color: rgb(39, 206, 100);
-  padding-right: 10px;
 }
 
 .fa-times-circle {
   color: red;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 #esave-button:hover {

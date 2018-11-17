@@ -294,7 +294,10 @@ INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fr
 						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
 					
 -- RETAILER TABLE INSERTIONS --
-INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL, 5.99);
+INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL, 5.99),
+							(2, 'Amazon', 'amazon.com', NULL, 4.99),
+							(3, 'Target', 'target.com', NULL, 3.99),
+							(4, 'Jet', 'jet.com', NULL, 6.99);
 
 -- PRODUCT TABLE INSERTIONS --
 INSERT INTO product values (1, 'Really Raw Honey', 720054111124, NULL);
