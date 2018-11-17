@@ -2,6 +2,8 @@
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
+    let orderStageRight = document.querySelector("#order-stage-right-text");
+		orderStageRight.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     let items = document.getElementsByClassName("searchItem");
     let qts = document.getElementsByClassName("qtSearchItem");
     items = [...items];

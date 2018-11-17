@@ -28,8 +28,6 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 
 	router.get('/', (req, res, next) => {
 		//var searchRouteEsave = req.app.get('./searchRouteEsave');
-		var orderStageRight = document.querySelector("#order-stage-right-text");
-		orderStageRight.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';'
 		var callbackCount = 0;
 		var eSaveResults = [];
 		context = {};
@@ -74,7 +72,7 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 		        }
 		        else{
 							//console.log(rows);
-		          eSaveResults.push(rows);
+		          eSaveResults.push(rows[0]);
 							console.log(eSaveResults);
 							complete();
 		        }
