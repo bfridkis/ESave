@@ -22,7 +22,7 @@ module.exports = () => {
 		      mysql.pool.query("select product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
 													 "retailer_product.price * " + req.query[qtKey] + " AS INITIAL_PRICE, " +
 													 "retailer_product.price * " + req.query[qtKey] + " - sum(promotion.discount) - " +
-													 "retailer.shipping_price AS FINAL_PRICE, retailer.shipping_price, " +
+													 "retailer.shipping_price AS FINAL_PRICE, retailer.shipping_price AS SHIPPING_PRICE, " +
 													 "sum(promotion.discount) AS TOTAL_DISCOUNT " +
 													 "from product, retailer, retailer_product, promotion " +
 													 "where (product.name LIKE '%" + req.query[key] + "%' OR '" + req.query[key] + "' " +
