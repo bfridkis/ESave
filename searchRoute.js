@@ -11,7 +11,7 @@ module.exports = () => {
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
 		if(Object.keys(req.query).length !== 0){
-	    var searchRouteEsave = req.app.get('searchRouteEsave');
+	    var searchRouteEsave = require('searchRouteEsave');
 			searchRouteEsave(req, res, context);
 		}
 		else{
