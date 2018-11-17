@@ -24,7 +24,7 @@ function eSave(){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
       console.log(JSON.parse(req.responseText));
-      await sleep(2000);
+      sleepFor(2000);
    		let orderStageRight = document.querySelector("#order-stage-right");
       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
       orderStageRight.removeChild(orderStageRightText);
