@@ -25,8 +25,8 @@ function eSave(){
        //window.location.replace("/search");
        console.log(JSON.parse(req.responseText));
    		let orderStageRight = document.querySelector("#order-stage-right");
-      orderStageRight.removeChild(orderStageRightText);
-      orderStageRight
+      //orderStageRight.removeChild(orderStageRightText);
+    //  orderStageRight
 
       }
       else{
