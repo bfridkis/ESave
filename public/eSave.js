@@ -24,11 +24,12 @@ function eSave(){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
       console.log(JSON.parse(req.responseText));
-      sleepFor(2000);
+      sleepFor(10000);
    		let orderStageRight = document.querySelector("#order-stage-right");
       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
       orderStageRight.removeChild(orderStageRightText);
       let stageTable = document.createElement("table");
+      stageTable.style.margin = "auto";
       orderStageRight.appendChild(stageTable);
       let prodNameRow = stageTable.appendChild(document.createElement("tr"));
       let prodNameHeader = prodNameRow.appendChild(document.createElement("th"));
@@ -55,6 +56,8 @@ function eSave(){
     });
   });
 
+  //The following two functions provide a mechanism to "sleep"
+  //They are taken directly from here: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -75,6 +78,7 @@ function eSave(){
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 // * https://stackoverflow.com/questions/24775725/loop-through-childnodes
 // * https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+// * https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
