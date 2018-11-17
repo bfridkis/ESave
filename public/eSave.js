@@ -27,7 +27,7 @@ function eSave(){
       sleepFor(2000);
    		let orderStageRight = document.querySelector("#order-stage-right");
       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
-      orderStageRight.removeChild(orderStageRightText);
+      //orderStageRight.removeChild(orderStageRightText);
       let stageTable = document.createElement("table");
       stageTable.style.margin = "auto";
       orderStageRight.appendChild(stageTable);
