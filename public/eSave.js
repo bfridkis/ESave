@@ -24,7 +24,7 @@ function eSave(){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
       console.log(JSON.parse(req.responseText));
-      sleepFor(10000);
+      await sleep(2000);
    		let orderStageRight = document.querySelector("#order-stage-right");
       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
       orderStageRight.removeChild(orderStageRightText);
@@ -56,16 +56,10 @@ function eSave(){
     });
   });
 
-  //The following two functions provide a mechanism to "sleep"
+  //The following function provides a mechanism to "sleep"
   //They are taken directly from here: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async function sleepFor(time_ms) {
-    console.log('Taking a break...');
-    await sleep(time_ms);
-    console.log('Two seconds later');
   }
 };
 
