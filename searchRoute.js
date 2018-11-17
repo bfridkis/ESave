@@ -53,16 +53,17 @@ module.exports = () => {
 		else{
 			res.render('search/search', context)
 		}
+
+		function complete(){
+			callbackCount++;
+			if(callbackCount >= req.query.length){
+				res.send(JSON.stringify(eSaveResults));
+			}
+		}
 	});
 
 	return router;
 
-	function complete(){
-		callbackCount++;
-		if(callbackCount >= req.query.length){
-			res.send(JSON.stringify(eSaveResults));
-		}
-	}
 };
 
 
