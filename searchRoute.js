@@ -29,7 +29,7 @@ module.exports = () => {
 					                  "retailer_product.description LIKE %" + req.query[key] + "% AND " +
 					                  "product.id = retailer_product.product AND "+
 					                  "promotion.retailer =  retailer.id AND " +
-					                  "(promotion.product = product.id OR promotion.product = NULL) AND" +
+					                  "(promotion.product = product.id OR promotion.product IS NULL) AND" +
 					                  "(promotion.min_spend <= retailer_product.price * " + req.query[qtKey] +
 					                  " promotion.min_spend IS NULL) AND " +
 					                  "(promotion.qt_required <= 1 OR promotion.qt_required IS NULL) " +
