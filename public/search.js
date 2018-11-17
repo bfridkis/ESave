@@ -33,6 +33,7 @@ addProd.addEventListener("click", () => {
     increaseQT.childNodes[0].style.paddingLeft = "10px";
     increaseQT.childNodes[0].addEventListener("click", () => {
       prodQT.textContent = String(Number(prodQT.textContent)++);
+    });
     let deleteB = row.appendChild(document.createElement("td"));
     deleteB.innerHTML = '<i class="fas fa-minus-circle"></i>';
     deleteB.childNodes[0].style.color = "red";
