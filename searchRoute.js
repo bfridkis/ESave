@@ -13,7 +13,7 @@ module.exports = () => {
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
 		if(Object.keys(req.query).length !== 0){
-			let eSaveResults = [];
+			var eSaveResults = [];
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p"){
@@ -70,3 +70,4 @@ module.exports = () => {
 
 // References
 // * https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
+// * https://stackoverflow.com/questions/5223/length-of-a-javascript-object
