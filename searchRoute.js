@@ -10,7 +10,7 @@ module.exports = () => {
 		context.navbarLogo = ["images/logo.jpg"];
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
-		if(req.query){
+		if(Object.keys(req.query).length === 0 && req.query.constructor === Object){
 	    let searchRouteEsave = req.app.get('searchRouteEsave');
 			searchRouteEsave(req, res, context);
 		}
@@ -21,3 +21,6 @@ module.exports = () => {
 
 	return router;
 };
+
+// References
+// * https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
