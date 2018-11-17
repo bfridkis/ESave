@@ -27,7 +27,12 @@ module.exports = () => {
 													 "where (product.name LIKE '%" + req.query[key] + "%' OR '" + req.query[key] + "' " +
 													 "= product.upc OR '" + req.query[key] + "' = product.model_number OR  " +
 													 "retailer_product.description LIKE '%" + req.query[key] + "%') AND " +
-													 "product.id = retailer_product.product AND promotion.retailer =  retailer.id AND (promotion.product = product.id OR promotion.product IS NULL) AND (promotion.min_spend <= retailer_product.price * 4 OR promotion.min_spend IS NULL) AND (promotion.qt_required <= 4 OR promotion.qt_required IS NULL) GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
+													 "product.id = retailer_product.product AND promotion.retailer =  retailer.id AND " +
+													 "(promotion.product = product.id OR promotion.product IS NULL) AND " +
+													 "(promotion.min_spend <= retailer_product.price * " + req.query[qtKey] + " OR " +
+													 "promotion.min_spend IS NULL) AND (promotion.qt_required <= " + req.query[qtKey] + " OR " +
+													 "promotion.qt_required IS NULL) " +
+													 "GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
 		      (err, rows, fields) => {
 		        if(err){
 		          res.write(JSON.stringify(err));
