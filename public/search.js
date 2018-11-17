@@ -35,9 +35,9 @@ addProd.addEventListener("click", () => {
       prodQT.textContent = String(Number(prodQT.textContent) + 1);
     });
     let decreaseQT = row.appendChild(document.createElement("td"));
-    decreaseQT.innerHTML = '<i class="fas fa-caret-up"></i>';
+    decreaseQT.innerHTML = '<i class="fas fa-caret-down"></i>';
     decreaseQT.childNodes[0].style.color = "rgb(39, 206, 100)";
-    decreaseQT.childNodes[0].style.paddingLeft = "10px";
+    decreaseQT.childNodes[0].style.paddingLeft = "2px";
     decreaseQT.childNodes[0].addEventListener("click", () => {
       if(Number(prodQT.textContent) >= 1){
       prodQT.textContent = String(Number(prodQT.textContent) - 1);
@@ -46,7 +46,7 @@ addProd.addEventListener("click", () => {
     let deleteB = row.appendChild(document.createElement("td"));
     deleteB.innerHTML = '<i class="fas fa-minus-circle"></i>';
     deleteB.childNodes[0].style.color = "red";
-    deleteB.childNodes[0].style.paddingLeft = "2px";
+    deleteB.childNodes[0].style.paddingLeft = "4px";
     deleteB.childNodes[0].addEventListener("click", () => {
       stageTable.removeChild(row);
     });
