@@ -56,14 +56,16 @@ module.exports = () => {
 	});
 
 	return router;
+
+	function complete(){
+		callbackCount++;
+		if(callbackCount >= req.query.length){
+			res.send(JSON.stringify(eSaveResults));
+		}
+	}
 };
 
-function complete(){
-	callbackCount++;
-	if(callbackCount >= req.query.length){
-		res.send(JSON.stringify(eSaveResults));
-	}
-}
+
 
 // References
 // * https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
