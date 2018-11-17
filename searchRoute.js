@@ -17,6 +17,7 @@ module.exports = () => {
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p"){
 		      qtKey = "q" + key.substring(1);
+					console.log("QT", req.query[qtKey]);//**********************************
 		      mysql.pool.query("select product.name, retailer.name, retailer.product_price * " + req.query[qtKey] + ", " +
 					                  "retailer_product.price * " + req.query[qtKey] + " - sum(promotion.discount) - " +
 					                  "retailer.shipping_price AS FINAL_PRICE, " +
