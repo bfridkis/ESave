@@ -56,10 +56,16 @@ function eSave(){
     });
   });
 
-  //The following function provides a mechanism to "sleep"
+  //The following two functions provide a mechanism to "sleep"
   //They are taken directly from here: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function sleepFor(time_ms) {
+    console.log('Taking a break...');
+    await sleep(time_ms);
+    console.log('Two seconds later');
   }
 };
 
