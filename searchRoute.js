@@ -25,7 +25,9 @@ module.exports = () => {
 													 "sum(promotion.discount) AS TOTAL_DISCOUNT " +
 													 "from product, retailer, retailer_product, promotion " +
 													 "where (product.name LIKE '%" + req.query[key] + "%' OR '" + req.query[key] + "' " +
-													 "= product.upc OR 'honey' = product.model_number OR  retailer_product.description LIKE '%" + "4" + "%') AND product.id = retailer_product.product AND promotion.retailer =  retailer.id AND (promotion.product = product.id OR promotion.product IS NULL) AND (promotion.min_spend <= retailer_product.price * 4 OR promotion.min_spend IS NULL) AND (promotion.qt_required <= 4 OR promotion.qt_required IS NULL) GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
+													 "= product.upc OR '" + req.query[key] + "' = product.model_number OR  " +
+													 "retailer_product.description LIKE '%" + req.query[key] + "%') AND " +
+													 "product.id = retailer_product.product AND promotion.retailer =  retailer.id AND (promotion.product = product.id OR promotion.product IS NULL) AND (promotion.min_spend <= retailer_product.price * 4 OR promotion.min_spend IS NULL) AND (promotion.qt_required <= 4 OR promotion.qt_required IS NULL) GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
 		      (err, rows, fields) => {
 		        if(err){
 		          res.write(JSON.stringify(err));
@@ -49,6 +51,13 @@ module.exports = () => {
 
 	return router;
 };
+
+function complete(){
+	callbackCount++;
+	if(callbackCount >= tableNames.length){
+		res.render(tableToRender + '/' + tableToRender + 'Table', context);
+	}
+}
 
 // References
 // * https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
