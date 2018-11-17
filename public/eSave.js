@@ -36,7 +36,7 @@ function eSave(){
       let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
       prodNameHeader.textContent = "PRODUCT";
       prodNameHeader.style.textDecoration = "underline";
-      let prodNameRow =
+      let prodNameRow = stageTable.appendChild(document.createElement("tr"));
       let prodName = prodNameRow.appendChild(document.createElement("td"));
       prodName.textContent = results[0]["PROD_NAME"];
 
