@@ -3,7 +3,7 @@ module.exports = () => {
 	var router = express.Router();
 	var app = express();
 
-	router.get('/search', (req, res, next) => {
+	router.get('/', (req, res, next) => {
 		context = {};
 		context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
 		context.css = ["sparkle.css", "searchStyle.css"];
