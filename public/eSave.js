@@ -35,7 +35,7 @@ function eSave(){
       let prodNameHeader = prodNameRow.appendChild(document.createElement("th"));
       prodNameHeader.textContent = "PRODUCT";
       let prodName = prodNameRow.appendChild(document.createElement("td"));
-      prodName.textContent = req.responseText[0][PROD_NAME];
+      prodName.textContent = req.responseText[0]["PROD_NAME"];
 
       }
       else{
