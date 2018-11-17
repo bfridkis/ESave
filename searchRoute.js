@@ -31,7 +31,7 @@ module.exports = () => {
 					                  "product.id = retailer_product.product AND "+
 					                  "promotion.retailer =  retailer.id AND " +
 					                  "(promotion.product = product.id OR promotion.product IS NULL) AND" +
-					                  "(promotion.min_spend <= retailer_product.price * " + req.query[qtKey] + "OR "
+					                  "(promotion.min_spend <= retailer_product.price * " + req.query[qtKey] + "OR " +
 					                  "promotion.min_spend IS NULL) AND " +
 					                  "(promotion.qt_required <= " + req.query[qtKey] + " OR promotion.qt_required IS NULL) " +
 					                  "GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
