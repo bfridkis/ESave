@@ -53,9 +53,22 @@ app.get('/login', (req, res, next) => {
 		res.render('login/login', context)
 });
 
+//also leads to login page to prompt user to sign in when they first use the app
+app.get('/', (req, res, next) => {
+	context = {};
+	context.jsscriptsLoginPage = ["login.js"];
+	context.css = ["loginStyle.css"];
+	context.mainLogo = ["images/logo-medium.jpg"];
+	console.log(req.query);
+	if(req.query){
+
+	}
+		res.render('login/login', context)
+});
+
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
-app.get('/', (req,res,next) => {
+app.get('/home', (req,res,next) => {
 	context = {};
 	context.jsscriptsHomePage = ['tableSelectFE.js'];
 	context.css = ["style.css", "homePageStyle.css"];
