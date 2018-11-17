@@ -3,6 +3,29 @@ module.exports = () => {
 	var router = express.Router();
 	var app = express();
 
+/*select product.name AS PROD_NAME, retailer.name AS RET_NAME,
+retailer_product.price * '1' AS INITIAL_PRICE,
+case
+	when sum(promotion.discount) IS NULL then
+		retailer_product.price * '1' - retailer.shipping_price
+	else retailer_product.price * '1' - retailer.shipping_price - sum(promotion.discount)
+    end AS FINAL_PRICE,
+retailer.shipping_price AS SHIPPING_PRICE,
+case
+	when sum(promotion.discount) IS NULL then 0
+    else sum(promotion.discount)
+    end AS TOTAL_DISCOUNT
+from product join retailer_product on product.id = retailer_product.product and
+	(product.name LIKE '%honey%' or '720054111124' = product.upc or
+	null = product.model_number or retailer_product.description LIKE '%raw%')
+join retailer on retailer_product.retailer = retailer.id
+left join promotion on promotion.retailer = retailer.id and
+(promotion.product = product.id or promotion.product IS NULL) and
+(promotion.min_spend <= retailer_product.price * '1' or
+promotion.min_spend IS NULL) and
+(promotion.qt_required <= '1' or promotion.qt_required IS NULL)
+GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
+
 	router.get('/', (req, res, next) => {
 		//var searchRouteEsave = req.app.get('./searchRouteEsave');
 		var callbackCount = 0;
@@ -20,20 +43,29 @@ module.exports = () => {
 		      qtKey = "q" + key.substring(1);
 					console.log("QT", req.query[qtKey]);//**********************************
 		      mysql.pool.query("select product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
-													 "retailer_product.price * " + req.query[qtKey] + " AS INITIAL_PRICE, " +
-													 "retailer_product.price * " + req.query[qtKey] + " - sum(promotion.discount) - " +
-													 "retailer.shipping_price AS FINAL_PRICE, retailer.shipping_price AS SHIPPING_PRICE, " +
-													 "sum(promotion.discount) AS TOTAL_DISCOUNT " +
-													 "from product, retailer, retailer_product, promotion " +
-													 "where (product.name LIKE '%" + req.query[key] + "%' OR '" + req.query[key] + "' " +
-													 "= product.upc OR '" + req.query[key] + "' = product.model_number OR  " +
-													 "retailer_product.description LIKE '%" + req.query[key] + "%') AND " +
-													 "product.id = retailer_product.product AND promotion.retailer =  retailer.id AND " +
-													 "(promotion.product = product.id OR promotion.product IS NULL) AND " +
-													 "(promotion.min_spend <= retailer_product.price * " + req.query[qtKey] + " OR " +
-													 "promotion.min_spend IS NULL) AND (promotion.qt_required <= " + req.query[qtKey] + " OR " +
-													 "promotion.qt_required IS NULL) " +
-													 "GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
+													 "retailer_product.price * '" + req.query[qtKey] + "' AS INITIAL_PRICE, " +
+													 "case " +
+													 		"when sum(promotion.discount) IS NULL then " +
+															"retailer_product.price * '" + req.query[qtKey] + "' - retailer.shipping_price " +
+															"else retailer_product.price * '" + req.query[qtKey] + "' "+
+															 		"- retailer.shipping_price - sum(promotion.discount) " +
+															"end AS FINAL_PRICE " +
+														"retailer.shipping_price AS SHIPPING_PRICE, "
+														"case " +
+																"when sum(promotion.discount) IS NULL then 0 " +
+																"else sum(promotion.discount) " +
+																"end AS TOTAL_DISCOUNT " +
+														"from product join retailer_product on product.id = retailer_product.product AND" +
+																"(product.name LIKE '%" + req.query[key] + "%' OR " +
+																"'" + req.query[key] + "' = product.upc OR " +
+																"'" + req.query[key] + "' = product.model_number OR " +
+																"retailer_product.description LIKE '%" + req.query[key] + "%') " +
+														"join retailer on retailer_product.retailer = retailer.id " +
+														"(promotion.product = product.id or promotion.product IS NULL) and " +
+														"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' OR " +
+														"promotion.min_spend IS NULL) and " +
+														"(promotion.qt_required <= '" + req.query[qtKey] + "' OR promotion.qt_required IS NULL) " +
+														"GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1"
 		      (err, rows, fields) => {
 		        if(err){
 		          res.write(JSON.stringify(err));
