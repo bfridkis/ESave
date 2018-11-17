@@ -1,4 +1,4 @@
-module.exports = function(req, res, context){
+module.exports = (req, res, context) => {
   let eSaveResults = [];
   for(let key in req.query){
     let mysql = req.app.get('mysql');
@@ -42,7 +42,7 @@ module.exports = function(req, res, context){
 		}
 	}
   */
-}
+};
 
 // References
 // * https://www.w3schools.com/nodejs/nodejs_mysql_select.asp
