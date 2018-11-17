@@ -10,7 +10,7 @@ module.exports = () => {
 		context.navbarLogo = ["images/logo.jpg"];
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
-		if(Object.keys(req.query).length === 0 && req.query.constructor === Object){
+		if(Object.keys(req.query).length !== 0){
 	    let searchRouteEsave = req.app.get('searchRouteEsave');
 			searchRouteEsave(req, res, context);
 		}
