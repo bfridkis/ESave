@@ -25,10 +25,10 @@ module.exports = () => {
 		        }
 		        else{
 							//console.log(rows);
-		          eSaveResults.push(JSON.stringify(rows[0]));
+		          eSaveResults.push(rows[0]);
 		        }
 						console.log(eSaveResults);
-						res.send(eSaveResults);
+						res.send(JSON.stringify(eSaveResults));
 		      });
 		    }
 		  }

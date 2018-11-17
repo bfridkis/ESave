@@ -21,7 +21,7 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-       console.log(JSON.parse(req.responseText[0]));
+       console.log(JSON.parse(req.responseText));
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
