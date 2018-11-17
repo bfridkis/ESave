@@ -24,6 +24,7 @@ function eSave(){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
       console.log(JSON.parse(req.responseText));
+      sleepFor(2000);
    		let orderStageRight = document.querySelector("#order-stage-right");
       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
       orderStageRight.removeChild(orderStageRightText);
@@ -31,8 +32,9 @@ function eSave(){
       orderStageRight.appendChild(stageTable);
       let prodNameRow = stageTable.appendChild(document.createElement("tr"));
       let prodNameHeader = prodNameRow.appendChild(document.createElement("th"));
+      prodNameHeader.textContent = "PRODUCT";
       let prodName = prodNameRow.appendChild(document.createElement("td"));
-      prodName = req.responseText[0].PROD_NAME;
+      prodName.textContent = req.responseText[0].PROD_NAME;
 
       }
       else{
@@ -52,6 +54,16 @@ function eSave(){
       }
     });
   });
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function sleepFor(time_ms) {
+    console.log('Taking a break...');
+    await sleep(time_ms);
+    console.log('Two seconds later');
+  }
 };
 
 // References
