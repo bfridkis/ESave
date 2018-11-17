@@ -3,6 +3,7 @@ module.exports = () => {
 	var router = express.Router();
 	var app = express();
 	var callbackCount = 0;
+	var eSaveResults = [];
 
 	router.get('/', (req, res, next) => {
 		//var searchRouteEsave = req.app.get('./searchRouteEsave');
@@ -13,7 +14,6 @@ module.exports = () => {
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
 		if(Object.keys(req.query).length !== 0){
-			var eSaveResults = [];
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p"){
@@ -42,9 +42,9 @@ module.exports = () => {
 		        else{
 							//console.log(rows);
 		          eSaveResults.push(rows[0]);
+							console.log(eSaveResults);
+							complete();
 		        }
-						console.log(eSaveResults);
-						complete();
 		      });
 		    }
 		  }
