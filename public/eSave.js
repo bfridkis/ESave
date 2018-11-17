@@ -3,7 +3,7 @@ function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
     let orderStageRightText = document.querySelector("#order-stage-right-text");
-		orderStageRightText.innerHTML = '<i class="far fa-sync fa-shopping-cart fa-spin"></i></i>';
+		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
     let items = document.getElementsByClassName("searchItem");
     let qts = document.getElementsByClassName("qtSearchItem");
     items = [...items];
@@ -23,10 +23,16 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-       console.log(JSON.parse(req.responseText));
+      console.log(JSON.parse(req.responseText));
    		let orderStageRight = document.querySelector("#order-stage-right");
-      //orderStageRight.removeChild(orderStageRightText);
-    //  orderStageRight
+      orderStageRight.style.borderColor = "rgb(39, 206, 100)";
+      orderStageRight.removeChild(orderStageRightText);
+      let stageTable = document.createElement("table");
+      orderStageRight.appendChild(stageTable);
+      let prodNameRow = stageTable.appendChild(document.createElement("tr"));
+      let prodNameHeader = prodNameRow.appendChild(document.createElement("th"));
+      let prodName = prodNameRow.appendChild(document.createElement("td"));
+      prodName = req.responseText[0].PROD_NAME;
 
       }
       else{

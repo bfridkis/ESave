@@ -206,5 +206,10 @@ body {
 }
 
 .fa-sync {
-	font-size: 3rem;
+	font-size: 2.75rem;
+	background-image: -webkit-gradient( linear, left top, right top, color-stop(0, purple), color-stop(0.15, purple), color-stop(0.3, purple), color-stop(0.45, purple), color-stop(0.6, rgb(39, 206, 100)),color-stop(0.75, rgb(39, 206, 100)), color-stop(0.9, rgb(39, 206, 100)), color-stop(1, rgb(39, 206, 100)) );
+	background-image: gradient( linear, left top, right top, color-stop(0, purple), color-stop(0.15, purple), color-stop(0.3, purple), color-stop(0.45, purple), color-stop(0.6, rgb(39, 206, 100)),color-stop(0.75, rgb(39, 206, 100)), color-stop(0.9, rgb(39, 206, 100)), color-stop(1, rgb(39, 206, 100)) );
+	color:transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
 }
