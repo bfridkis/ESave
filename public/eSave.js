@@ -41,6 +41,20 @@ function eSave(){
       let prodNameRow = stageTable.appendChild(document.createElement("tr"));
       let prodName = prodNameRow.appendChild(document.createElement("td"));
       prodName.textContent = results[0]["PROD_NAME"];
+      let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+      let retNameHeader = retNameHeaderRow.appendChild(document.createElement("th"));
+      retNameHeader.textContent = "RETAILER";
+      retNameHeader.style.textDecoration = "underline";
+      let retNameRow = stageTable.appendChild(document.createElement("tr"));
+      let retName = retNameRow.appendChild(document.createElement("td"));
+      retName.textContent = results[0]["RET_NAME"];
+      let ppuNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+      let ppuNameHeader = ppuNameHeaderRow.appendChild(document.createElement("th"));
+      ppuNameHeader.textContent = "PRICE PER UNIT";
+      ppuNameHeader.style.textDecoration = "underline";
+      let ppuNameRow = stageTable.appendChild(document.createElement("tr"));
+      let ppuName = prodNameRow.appendChild(document.createElement("td"));
+      ppuName.textContent = results[0]["PRICE_PER_UNIT"];
 
       }
       else{
