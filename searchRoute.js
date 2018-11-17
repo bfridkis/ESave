@@ -4,6 +4,7 @@ module.exports = () => {
 	var app = express();
 
 	router.get('/', (req, res, next) => {
+		var searchRouteEsave = req.app.get('./searchRouteEsave');
 		context = {};
 		context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
 		context.css = ["sparkle.css", "searchStyle.css"];
@@ -11,7 +12,6 @@ module.exports = () => {
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
 		if(Object.keys(req.query).length !== 0){
-	    var searchRouteEsave = req.app.get('./searchRouteEsave');
 			console.log(typeof(searchRouteEsave));
 			searchRouteEsave(req, res, context);
 		}
