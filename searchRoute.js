@@ -19,21 +19,21 @@ module.exports = () => {
 		      qtKey = "q" + key.substring(1);
 					console.log("QT", req.query[qtKey]);//**********************************
 		      mysql.pool.query("select product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
-					                  "retailer_product.price * " + req.query[qtKey] + " AS INITIAL_PRICE, " +
-					                  "retailer_product.price * " + req.query[qtKey] + " - sum(promotion.discount) - " +
+					                  "retailer_product.price * " + 4 + " AS INITIAL_PRICE, " +
+					                  "retailer_product.price * " + 4 + " - sum(promotion.discount) - " +
 					                  "retailer.shipping_price AS FINAL_PRICE, " +
 					                  "retailer.shipping_price, sum(promotion.discount) AS TOTAL_DISCOUNT" +
 					                  "from product, retailer, retailer_product, promotion " +
-					                  "where (product.name LIKE '%" + req.query[key] + "%' OR '" +
-					                  req.query[key] + "' = product.upc OR '" +
-					                  req.query[key] + "' = product.model_number OR " +
-					                  "retailer_product.description LIKE '%" + req.query[key] + "%') AND " +
+					                  "where (product.name LIKE '%" + "honey" + "%' OR '" +
+					                  "honey" + "' = product.upc OR '" +
+					                  "honey" + "' = product.model_number OR " +
+					                  "retailer_product.description LIKE '%" + 4 + "%') AND " +
 					                  "product.id = retailer_product.product AND "+
 					                  "promotion.retailer =  retailer.id AND " +
 					                  "(promotion.product = product.id OR promotion.product IS NULL) AND" +
-					                  "(promotion.min_spend <= retailer_product.price * " + req.query[qtKey] + "OR " +
+					                  "(promotion.min_spend <= retailer_product.price * " + 4 + "OR " +
 					                  "promotion.min_spend IS NULL) AND " +
-					                  "(promotion.qt_required <= " + req.query[qtKey] + " OR promotion.qt_required IS NULL) " +
+					                  "(promotion.qt_required <= " + 4 + " OR promotion.qt_required IS NULL) " +
 					                  "GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
 		      (err, rows, fields) => {
 		        if(err){
