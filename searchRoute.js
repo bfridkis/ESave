@@ -44,6 +44,7 @@ module.exports = () => {
 		      });
 		    }
 		  }
+			console.log(rows);
 		  console.log(eSaveResults);
 		  res.send(eSaveResults);
 		}
