@@ -27,7 +27,7 @@ function eSave(){
       sleepFor(2000);
    		let orderStageRight = document.querySelector("#order-stage-right");
       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
-      //orderStageRight.removeChild(orderStageRightText);
+      orderStageRightText.innerHTML = "";
       let stageTable = document.createElement("table");
       stageTable.style.margin = "auto";
       orderStageRight.appendChild(stageTable);
@@ -35,7 +35,7 @@ function eSave(){
       let prodNameHeader = prodNameRow.appendChild(document.createElement("th"));
       prodNameHeader.textContent = "PRODUCT";
       let prodName = prodNameRow.appendChild(document.createElement("td"));
-      prodName.textContent = req.responseText[0]["PROD_NAME"];
+      prodName.textContent = req.responseText[0];
 
       }
       else{
