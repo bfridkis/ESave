@@ -27,10 +27,16 @@ addProd.addEventListener("click", () => {
     prodQT.style.textAlign = ("center");
     prodQT.style.fontSize = "1.15rem";
     prodQT.setAttribute("class", "qtSearchItem");
+    let increaseQT = row.appendChild(document.createElement("td"));
+    increaseQT.innerHTML = '<i class="fas fa-caret-up"></i>';
+    increaseQT.childNodes[0].style.color = "purple";
+    increaseQT.childNodes[0].style.paddingLeft = "10px";
+    increaseQT.childNodes[0].addEventListener("click", () => {
+      prodQT.textContent = String(Number(prodQT.textContent)++);
     let deleteB = row.appendChild(document.createElement("td"));
     deleteB.innerHTML = '<i class="fas fa-minus-circle"></i>';
     deleteB.childNodes[0].style.color = "red";
-    deleteB.childNodes[0].style.paddingLeft = "10px";
+    deleteB.childNodes[0].style.paddingLeft = "2px";
     deleteB.childNodes[0].addEventListener("click", () => {
       stageTable.removeChild(row);
     });
