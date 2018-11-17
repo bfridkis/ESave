@@ -23,7 +23,8 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-      console.log(JSON.parse(req.responseText));
+       let results = JSON.parse(req.responseText);
+      console.log(results);
       sleepFor(2000);
    		let orderStageRight = document.querySelector("#order-stage-right");
       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
@@ -35,7 +36,7 @@ function eSave(){
       let prodNameHeader = prodNameRow.appendChild(document.createElement("th"));
       prodNameHeader.textContent = "PRODUCT";
       let prodName = prodNameRow.appendChild(document.createElement("td"));
-      prodName.textContent = req.responseText;
+      prodName.textContent = results[0]["PROD_NAME"];
 
       }
       else{
