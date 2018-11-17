@@ -42,7 +42,7 @@ module.exports = (req, res, context) => {
 		}
 	}
   */
-});
+};
 
 // References
 // * https://www.w3schools.com/nodejs/nodejs_mysql_select.asp
