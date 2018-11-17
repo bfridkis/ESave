@@ -24,7 +24,7 @@ module.exports = () => {
 		          res.end();
 		        }
 		        else{
-							console.log(rows);
+							//console.log(rows);
 		          eSaveResults.push(rows);
 		        }
 		      });
