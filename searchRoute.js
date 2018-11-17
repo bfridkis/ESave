@@ -5,6 +5,7 @@ module.exports = () => {
 
 	router.get('/', (req, res, next) => {
 		//var searchRouteEsave = req.app.get('./searchRouteEsave');
+		let callbackCount = 0;
 		context = {};
 		context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
 		context.css = ["sparkle.css", "searchStyle.css"];
@@ -12,7 +13,7 @@ module.exports = () => {
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
 		if(Object.keys(req.query).length !== 0){
-			var eSaveResults = [];
+			let eSaveResults = [];
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p"){
@@ -43,7 +44,7 @@ module.exports = () => {
 		          eSaveResults.push(rows[0]);
 		        }
 						console.log(eSaveResults);
-						res.send(JSON.stringify(eSaveResults));
+						complete();
 		      });
 		    }
 		  }
@@ -59,8 +60,8 @@ module.exports = () => {
 
 function complete(){
 	callbackCount++;
-	if(callbackCount >= tableNames.length){
-		res.render(tableToRender + '/' + tableToRender + 'Table', context);
+	if(callbackCount >= req.query.length / 2){
+		res.send(JSON.stringify(eSaveResults));
 	}
 }
 
