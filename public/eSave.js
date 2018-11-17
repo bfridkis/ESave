@@ -32,9 +32,11 @@ function eSave(){
       let stageTable = document.createElement("table");
       stageTable.style.margin = "auto";
       orderStageRight.appendChild(stageTable);
-      let prodNameRow = stageTable.appendChild(document.createElement("tr"));
-      let prodNameHeader = prodNameRow.appendChild(document.createElement("th"));
+      let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+      let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
       prodNameHeader.textContent = "PRODUCT";
+      prodNameHeader.style.textDecoration = "underline";
+      let prodNameRow =
       let prodName = prodNameRow.appendChild(document.createElement("td"));
       prodName.textContent = results[0]["PROD_NAME"];
 
