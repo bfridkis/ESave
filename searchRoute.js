@@ -13,7 +13,7 @@ module.exports = () => {
 		context.mainLogo = ["images/logo-medium.jpg"];
 		console.log(req.query); //*************************
 		if(Object.keys(req.query).length !== 0){
-			var eSaveResults = [];
+			let eSaveResults = [];
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p"){
@@ -60,7 +60,7 @@ module.exports = () => {
 
 function complete(){
 	callbackCount++;
-	if(callbackCount >= req.query.length / 2){
+	if(callbackCount >= req.query.length){
 		res.send(JSON.stringify(eSaveResults));
 	}
 }
