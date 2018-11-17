@@ -27,11 +27,11 @@ module.exports = () => {
 							//console.log(rows);
 		          eSaveResults.push(rows);
 		        }
+						console.log(eSaveResults);
+						res.send(eSaveResults);
 		      });
 		    }
 		  }
-		  console.log(eSaveResults);
-		  res.send(eSaveResults);
 		}
 
 		else{
