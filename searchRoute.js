@@ -34,7 +34,7 @@ module.exports = () => {
 					                  "(promotion.min_spend <= retailer_product.price * " + req.query[qtKey] +
 					                  " promotion.min_spend IS NULL) AND " +
 					                  "(promotion.qt_required <= 1 OR promotion.qt_required IS NULL) " +
-					                  "GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1"",
+					                  "GROUP BY product.id, retailer.id ORDER BY FINAL_PRICE ASC LIMIT 1",
 		      (err, rows, fields) => {
 		        if(err){
 		          res.write(JSON.stringify(err));
