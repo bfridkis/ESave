@@ -5,7 +5,7 @@ module.exports = () => {
 
 	router.get('/', (req, res, next) => {
 		//var searchRouteEsave = req.app.get('./searchRouteEsave');
-		let callbackCount = 0;
+		var callbackCount = 0;
 		context = {};
 		context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
 		context.css = ["sparkle.css", "searchStyle.css"];
