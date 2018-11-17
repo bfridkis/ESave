@@ -204,3 +204,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+.fa-spinner {
+	font-size: 2rem;
+}
