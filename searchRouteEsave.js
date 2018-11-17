@@ -31,6 +31,7 @@ module.exports = (req, res, context) => {
       });
     }
   }
+  console.log(eSaveResults);
   res.send(eSaveResults);
 
   /*  Not needed because we only run a single select statement
