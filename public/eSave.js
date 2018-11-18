@@ -36,8 +36,10 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-       console.log(req.responseText);
+       //console.log(req.responseText);
+       console.log(queryString);
        if(queryString === "/search?"){
+         console.log("In here!";)
          req.responseText = [[]];
        }
       sleepFor(1500, req, qts);
