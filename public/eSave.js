@@ -70,7 +70,7 @@ function eSave(){
         ppu.style.paddingBottom = "20px";
         let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
-        initPriHeader.textContent = "TOTAL BEFORE SHIPPING AND PROMOTIONS";
+        initPriHeader.textContent = "TOTAL PRODUCT COST";
         initPriHeader.style.textDecoration = "underline";
         let initPriRow = stageTable.appendChild(document.createElement("tr"));
         let initPri = initPriRow.appendChild(document.createElement("td"));
@@ -78,7 +78,7 @@ function eSave(){
         let initPriBDS = initPri.appendChild(document.createElement("span"));
         initPriBDS.style.fontSize = "1rem";
         initPriBDS.style.textStyle = "italic";
-        initPriBDS.textContent = "(qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
+        initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
         //initPriBDS.style.whiteSpace = "nowrap";
         initPri.style.paddingBottom = "20px";
         let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
@@ -100,15 +100,15 @@ function eSave(){
         let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
         finPriHeader.innerHTML = "<span style='color:rgb(39, 206, 100)'>$$</span> " +
-                                  "<span style='text-decoration:underline'>ESAVE BEST PRICE</span> " +
-                                  "<span style='color:rgb(39, 206, 100)'>$$</span>";
+                                 "<span style='text-decoration:underline'>ESAVE BEST PRICE</span> " +
+                                 "<span style='color:rgb(39, 206, 100)'>$$</span>";
         finPriHeader.style.color = "purple";
         let finPriRow = stageTable.appendChild(document.createElement("tr"));
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
         finPri.style.paddingBottom = "20px";
         finPri.style.color = "rgb(39, 206, 100)";
-        orderStageLeft.setAttribute("height", orderStageLeftHeight + "px");
+        orderStageLeft.style.height = orderStageLeftHeight + "px";
         console.log(orderStageLeft.getAttribute("height"));
         let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
         checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("div"));
