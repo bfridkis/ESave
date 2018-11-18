@@ -30,7 +30,7 @@ function eSave(){
         console.log(results);
         sleepFor(2000);
         if(!results[0]){
-          let orderStageLeftText = document.querySelector("#order-stage-left-text");
+          orderStageRightText.innerHTML = "";
           orderStageLeftText.innerText = "No results. Please modify your search and try again."
         }
         else{
