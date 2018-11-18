@@ -50,9 +50,14 @@ function eSave(){
   }
 
   async function sleepFor(time_ms, req, qts) {
-    let prevOrderTable = document.querySelector("order-table");
+    let prevOrderTable = document.querySelector(".order-table");
+    console.log(prevOrderTable);
     if(prevOrderTable){
       prevOrderTable.parentNode.removeChild(prevOrderTable);
+    }
+    let prevCheckOutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
+    if(prevCheckOutMessageLinkContainer){
+      prevCheckOutMessageLinkContainer.parentNode.removeChild(checkoutMessageLinkContainter);
     }
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
@@ -150,6 +155,7 @@ function eSave(){
        orderStageLeft.style.height = orderStageLeftHeight + "px";
        console.log(orderStageLeft.getAttribute("height"));
        let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
+       checkoutMessageContainter.classList.add("checkout-message-containter")
        let checkoutMessageLink = checkoutMessageContainter.appendChild(document.createElement("a"));
        checkoutMessageLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
        checkoutMessageLink.setAttribute("target", "_blank");
