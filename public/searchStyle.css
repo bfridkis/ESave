@@ -167,8 +167,8 @@ body {
 }
 
 .fa-times-circle:hover {
-  transition: opacity .3s;
-	opacity: 0.75;
+  transition: opacity .1s;
+	opacity: 0.5;
 }
 
 #esave-button:hover {

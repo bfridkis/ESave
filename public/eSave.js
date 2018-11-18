@@ -117,6 +117,16 @@ function eSave(){
         checkoutMessage.style.margin = "auto";
         checkoutMessage.style.textAlign = "center";
         checkoutMessage.style.paddingBottom = "50px";
+
+        //shoppingCart = document.querySelector("#shopping-cart-inner");
+        // `element` is the element you want to wrap
+        //var parent = shoppingCart.parentNode;
+        var retailerLink = document.createElement("a");
+        retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"])
+        // set the wrapper as child (instead of the element)
+        shoppingCart.replaceChild(retailerLink, document.querySelector("#shopping-cart-inner"));
+        // set element as child of wrapper
+        retailerLink.appendChild(document.querySelector("#shopping-cart-inner"));
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
@@ -160,6 +170,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 // * https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 // * https://stackoverflow.com/questions/48647942/table-caption-goes-bottom-using-bootstrap
+// * https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...

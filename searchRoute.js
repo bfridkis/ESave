@@ -43,6 +43,7 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 		      qtKey = "q" + key.substring(1);
 					console.log("QT", req.query[qtKey]);//**********************************
 		      mysql.pool.query("select product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
+														"retailer.web_address AS RET_WEB_ADD, " +
 														"FORMAT(retailer_product.price * '" + req.query[qtKey] + "', 2) AS INITIAL_PRICE, " +
 														"FORMAT(retailer_product.price, 2) AS PRICE_PER_UNIT, " +
 														"case " +
