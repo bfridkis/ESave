@@ -157,7 +157,7 @@ function eSave(){
        finPri.style.color = "rgb(39, 206, 100)";
        orderStageLeft.style.height = orderStageLeftHeight + "px";
 
-       checkoutMessageLinkContainter.style.display = "visible";
+       checkoutMessageLinkContainter.style.display = "block";
      }
   }
 };
