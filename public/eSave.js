@@ -38,12 +38,9 @@ function eSave(){
        //window.location.replace("/search");
        //console.log(req.responseText);
        console.log(queryString);
-       if(queryString === "/search?"){
-         console.log("In here!");
-         req.responseText = [[]];
-         console.log(req.responseText);
+       if(queryString !== "/search?"){
+         sleepFor(1500, req, qts);
        }
-      sleepFor(1500, req, qts);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
