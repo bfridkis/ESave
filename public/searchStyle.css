@@ -117,6 +117,7 @@ body {
   border-color: purple;
 	padding: 25px;
 	display: table;
+	width: 500px;
 }
 
 .button-stage-wrapper {
@@ -140,7 +141,6 @@ body {
 
 #order-stage-right {
   float: left;
-  padding-left: 50px;
   display: table;
   text-align: center;
   font-size: 1.5rem;
