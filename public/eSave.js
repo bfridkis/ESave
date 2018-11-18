@@ -72,7 +72,7 @@ function eSave(){
         totDiscHeader.style.textDecoration = "underline";
         let totDiscRow = stageTable.appendChild(document.createElement("tr"));
         let totDisc = totDiscRow.appendChild(document.createElement("td"));
-        totDisc.textContent = "-" + results[0]["TOTAL_DISCOUNT"] "$";
+        totDisc.textContent = "-" + results[0]["TOTAL_DISCOUNT"] + "$";
         let shipPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let shipPriHeader = shipPriHeaderRow.appendChild(document.createElement("th"));
         shipPriHeader.textContent = "RETAILER";
