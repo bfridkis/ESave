@@ -62,7 +62,7 @@ function eSave(){
     let checkoutMessageLinkContainter =
        document.querySelector("#inner-checkout-message-link-container");
     checkoutMessageLinkContainter.style.display = "none";
-    let retailerLink = document.queryString("#retailer-link");
+    let retailerLink = document.querySelector("#retailer-link");
     retailerLink.setAttribute("href", "");
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
