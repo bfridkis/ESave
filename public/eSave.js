@@ -98,9 +98,9 @@ function eSave(){
         shipPri.style.paddingBottom = "20px";
         let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
-        finPriHeader.textContent = "** ESAVE BEST PRICE **";
-        finPriHeader.style.textDecoration = "underline";
-        finPriHeader.style.color = "purplse";
+        finPriHeader.innerHTML = "** <span textDecoration='underline'>ESAVE BEST PRICE</span> **";
+        //finPriHeader.style.textDecoration = "underline";
+        finPriHeader.style.color = "purple";
         let finPriRow = stageTable.appendChild(document.createElement("tr"));
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
