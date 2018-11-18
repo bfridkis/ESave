@@ -182,6 +182,7 @@ function eSave(){
 // * https://www.thesitewizard.com/html-tutorial/open-links-in-new-window-or-tab.shtml
 // * https://stackoverflow.com/questions/5515310/is-there-a-standard-function-to-check-for-null-undefined-or-blank-variables-in/5515349
 // * http://api.jquery.com/text/
+// * https://stackoverflow.com/questions/17147126/how-to-force-an-html-link-to-be-absolute
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
