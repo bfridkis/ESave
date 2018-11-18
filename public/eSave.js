@@ -36,6 +36,7 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
+       console.log(req.responseText);
       sleepFor(1500, req, qts);
       }
       else{
@@ -66,7 +67,7 @@ function eSave(){
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
-    console.log(req.responseText);
+    //console.log(req.responseText);
     let results = JSON.parse(req.responseText);
      console.log(results);
      let orderStageRightText = document.querySelector("#order-stage-right-text");
