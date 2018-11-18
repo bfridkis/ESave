@@ -118,16 +118,13 @@ function eSave(){
         checkoutMessage.style.textAlign = "center";
         checkoutMessage.style.paddingBottom = "50px";
 
-        //shoppingCart = document.querySelector("#shopping-cart-inner");
-        // `element` is the element you want to wrap
-        //var parent = shoppingCart.parentNode;
+        //Code to insert a parent "wrapper" around the #shopping-cart-inner node.
+        //See https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
         var retailerLink = document.createElement("a");
         retailerLink.setAttribute("href", "www." + results[0]["RET_WEB_ADD"]);
         retailerLink.setAttribute("target", "_blank");
-        // set the wrapper as child (instead of the element)
         let wrapped = document.querySelector("#shopping-cart-inner")
         shoppingCart.replaceChild(retailerLink, wrapped);
-        // set element as child of wrapper
         retailerLink.appendChild(wrapped);
       }
       else{
@@ -173,6 +170,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 // * https://stackoverflow.com/questions/48647942/table-caption-goes-bottom-using-bootstrap
 // * https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
+// * https://www.thesitewizard.com/html-tutorial/open-links-in-new-window-or-tab.shtml
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
