@@ -79,8 +79,8 @@ $.fn.sparkleh = function( options ) {
       }
       //"mouseout blur" : function(e) {
       //  sparkle.out();
-    //  }
-    });*/
+      //  }
+    });
 
   });
 
