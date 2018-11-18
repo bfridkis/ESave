@@ -2,6 +2,20 @@
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
+    let prevOrderTable = document.querySelector(".order-table");
+    console.log(prevOrderTable);
+    if(prevOrderTable){
+      prevOrderTable.parentNode.removeChild(prevOrderTable);
+    }
+    let prevCheckOutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
+    if(prevCheckOutMessageLinkContainer){
+      prevCheckOutMessageLinkContainer.parentNode.removeChild(checkoutMessageLinkContainter);
+    }
+    let checkoutMessageLinkContainter =
+       document.querySelector("#inner-checkout-message-link-container");
+    checkoutMessageLinkContainter.style.display = "none";
+    let retailerLink = document.querySelector("#retailer-link");
+    retailerLink.setAttribute("href", "");
     let orderStageRightText = document.querySelector("#order-stage-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
     let items = document.getElementsByClassName("searchItem");
