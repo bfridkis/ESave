@@ -3,7 +3,6 @@ function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
     let prevOrderTable = document.querySelector(".order-table");
-    console.log(prevOrderTable);
     if(prevOrderTable){
       prevOrderTable.parentNode.removeChild(prevOrderTable);
     }
@@ -158,6 +157,7 @@ function eSave(){
        finPri.style.color = "rgb(39, 206, 100)";
        orderStageLeft.style.height = orderStageLeftHeight + "px";
 
+       let checkoutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
        checkoutMessageLinkContainter.style.display = "block";
        retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"]);
      }
