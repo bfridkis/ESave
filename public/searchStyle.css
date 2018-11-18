@@ -251,3 +251,7 @@ body {
 	text-decoration: italic;
 	display: none;
 }
+
+.disable_a_href{
+    pointer-events: none;
+}
