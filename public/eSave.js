@@ -46,7 +46,7 @@ function eSave(){
        }
        else{
          orderStageRightText.innerHTML =
-            'Add Products and click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>';
+            'Add products and click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>';
        }
       }
       else{
