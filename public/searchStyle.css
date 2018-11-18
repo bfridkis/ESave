@@ -235,11 +235,11 @@ body {
 	background-clip: text;
 }
 
-.retailer-link {
+#retailer-link {
 	color: black;
 }
 
-.retailer-link:hover {
+#retailer-link:hover {
 	text-decoration: none;
 	color: black;
 }
