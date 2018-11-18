@@ -122,7 +122,8 @@ function eSave(){
         // `element` is the element you want to wrap
         //var parent = shoppingCart.parentNode;
         var retailerLink = document.createElement("a");
-        retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"])
+        retailerLink.setAttribute("href", "www." + results[0]["RET_WEB_ADD"]);
+        retailerLink.setAttribute("target", "_blank");
         // set the wrapper as child (instead of the element)
         let wrapped = document.querySelector("#shopping-cart-inner")
         shoppingCart.replaceChild(retailerLink, wrapped);
