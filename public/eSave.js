@@ -56,6 +56,7 @@ function eSave(){
     console.log(orderStageLeftHeight);
     let results = JSON.parse(req.responseText);
      console.log(results);
+     let orderStageRightText = document.querySelector("#order-stage-right-text");
      if(!results[0]){
        orderStageRightText.innerHTML = "";
        orderStageRightText.innerText = "No results. Please modify your search and try again."
