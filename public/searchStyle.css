@@ -108,12 +108,13 @@ body {
   width: 500px;
 }
 
-#stage-wrapper {
+.stage-wrapper {
 	min-height: 300px;
 	border-style: solid;
   border-width: 3px;
   border-radius: 25px;
   border-color: purple;
+	padding: 25px;
 }
 
 .button-stage-wrapper {
