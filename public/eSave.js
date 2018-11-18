@@ -124,9 +124,10 @@ function eSave(){
         var retailerLink = document.createElement("a");
         retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"])
         // set the wrapper as child (instead of the element)
-        shoppingCart.replaceChild(retailerLink, document.querySelector("#shopping-cart-inner"));
+        let wrapped = document.querySelector("#shopping-cart-inner")
+        shoppingCart.replaceChild(retailerLink, wrapped);
         // set element as child of wrapper
-        retailerLink.appendChild(document.querySelector("#shopping-cart-inner"));
+        retailerLink.appendChild(wrapped);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
