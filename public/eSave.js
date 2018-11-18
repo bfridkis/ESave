@@ -81,11 +81,11 @@ function eSave(){
           let initPri = initPriRow.appendChild(document.createElement("td"));
           initPri.textContent = results[0]["INITIAL_PRICE"] + "$";
           let initPriBDS = initPri.appendChild(document.createElement("td"));
-          initPriBDS.style.fontSize = "1rem";
-          initPriBDS.style.textStyle = "italic";
+          initPriBDS.style.fontSize = "0.75rem";
+          initPriBDS.style.textDecoration = "italic";
           initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
           //initPriBDS.style.whiteSpace = "nowrap";
-          initPri.style.paddingBottom = "20px";
+          initPriBDS.style.paddingBottom = "20px";
           let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
           let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
           totDiscHeader.textContent = "TOTAL DISCOUNT";
