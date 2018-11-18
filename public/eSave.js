@@ -89,7 +89,7 @@ function eSave(){
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
 
-        let checkoutMessage = body.appendChild(document.createElement("div"));
+        let checkoutMessage = document.body.appendChild(document.createElement("div"));
         checkoutMessage.textContent = "Click here for checkout!";
         checkoutMessage.style.textStyle = "italic";
         checkoutMessage.style.margin = "auto";
