@@ -33,6 +33,9 @@ function eSave(){
         shoppingCart.style.paddingBottom = "0";
         orderStageRightText.innerHTML = "";
         let stageTable = document.createElement("table");
+        stageTableCap = stageTable.appendChild(document.createElement("caption"));
+        stageTableCap.innerText = "ESave's Best Offer";
+        stageTableCap.style.paddingBottom = "20px";
         stageTable.style.margin = "auto";
         orderStageRight.appendChild(stageTable);
         let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
@@ -42,6 +45,7 @@ function eSave(){
         let prodNameRow = stageTable.appendChild(document.createElement("tr"));
         let prodName = prodNameRow.appendChild(document.createElement("td"));
         prodName.textContent = results[0]["PROD_NAME"];
+        prodName.style.paddingBottom = "20px";
         let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let retNameHeader = retNameHeaderRow.appendChild(document.createElement("th"));
         retNameHeader.textContent = "RETAILER";
@@ -49,6 +53,7 @@ function eSave(){
         let retNameRow = stageTable.appendChild(document.createElement("tr"));
         let retName = retNameRow.appendChild(document.createElement("td"));
         retName.textContent = results[0]["RET_NAME"];
+        retName.style.paddingBottom = "20px";
         let ppuHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
         ppuHeader.textContent = "PRICE PER UNIT";
@@ -56,6 +61,7 @@ function eSave(){
         let ppuRow = stageTable.appendChild(document.createElement("tr"));
         let ppu = ppuRow.appendChild(document.createElement("td"));
         ppu.textContent = results[0]["PRICE_PER_UNIT"] + "$";
+        ppuName.style.paddingBottom = "20px";
         let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
         initPriHeader.textContent = "TOTAL BEFORE SHIPPING AND PROMOTIONS";
@@ -63,11 +69,12 @@ function eSave(){
         let initPriRow = stageTable.appendChild(document.createElement("tr"));
         let initPri = initPriRow.appendChild(document.createElement("td"));
         initPri.textContent = results[0]["INITIAL_PRICE"] + "$";
-        let initPriBDS = initPriRow.appendChild(document.createElement("td"));
+        let initPriBDS = initPri.appendChild(document.createElement("span"));
         initPriBDS.style.fontSize = "1rem";
         initPriBDS.style.textStyle = "italic";
         initPriBDS.textContent = "(qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
-        initPriBDS.style.whiteSpace = "nowrap";
+        //initPriBDS.style.whiteSpace = "nowrap";
+        initPri.style.paddingBottom = "20px";
         let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
         totDiscHeader.textContent = "TOTAL DISCOUNT";
@@ -75,13 +82,15 @@ function eSave(){
         let totDiscRow = stageTable.appendChild(document.createElement("tr"));
         let totDisc = totDiscRow.appendChild(document.createElement("td"));
         totDisc.textContent = "-" + results[0]["TOTAL_DISCOUNT"] + "$";
+        totDisc.style.paddingBottom = "20px";
         let shipPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let shipPriHeader = shipPriHeaderRow.appendChild(document.createElement("th"));
-        shipPriHeader.textContent = "RETAILER";
+        shipPriHeader.textContent = "SHIPPING COST";
         shipPriHeader.style.textDecoration = "underline";
         let shipPriRow = stageTable.appendChild(document.createElement("tr"));
         let shipPri = shipPriRow.appendChild(document.createElement("td"));
         shipPri.textContent = results[0]["SHIPPING_PRICE"] + "$";
+        shipPri.style.paddingBottom = "20px";
         let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
         finPriHeader.textContent = "ESAVE BEST PRICE";
@@ -89,12 +98,15 @@ function eSave(){
         let finPriRow = stageTable.appendChild(document.createElement("tr"));
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
+        finPri.style.paddingBottom = "20px";
 
         let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
         checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("div"));
         checkoutMessage.textContent = "Click here for checkout!";
         checkoutMessage.style.textStyle = "italic";
         checkoutMessage.style.margin = "auto";
+        checkoutMessage.style.textAlign = "center";
+        checkoutMessage.style.paddingBottom = "50px";
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
