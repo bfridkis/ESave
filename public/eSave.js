@@ -2,7 +2,7 @@
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
-    let orderStageRightText = document.querySelector("#order-stage-right-text");
+    let orderStageRightText = document.querySelector("#stage-wrapper-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
     let items = document.getElementsByClassName("searchItem");
     let qts = document.getElementsByClassName("qtSearchItem");
@@ -34,7 +34,7 @@ function eSave(){
           orderStageRightText.innerText = "No results. Please modify your search and try again."
         }
         else{
-       		let orderStageRight = document.querySelector("#order-stage-right");
+       		let orderStageRight = document.querySelector("#stage-wrapper-right");
           orderStageRight.style.borderColor = "rgb(39, 206, 100)";
           let shoppingCart = document.querySelector("#shopping-cart-outer");
           shoppingCart.style.paddingBottom = "0";
