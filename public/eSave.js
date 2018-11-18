@@ -65,7 +65,7 @@ function eSave(){
         let initPriBDS = initPriRow.appendChild(document.createElement("td"));
         initPriBDS.style.fontSize = "1rem";
         initPriBDS.style.textStyle = "italic";
-        initPriBDS.textContent = "( " + qts[0].textContent + "u x " + results[0]["PRICE_PER_UNIT"] + "$ )";
+        initPriBDS.textContent = "(qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
         initPriBDS.style.whiteSpace = "nowrap";
         let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
@@ -89,9 +89,10 @@ function eSave(){
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
 
-        let checkoutMessage = shoppingCart.appendChild(document.createElement("div"));
+        let checkoutMessage = body.appendChild(document.createElement("div"));
         checkoutMessage.textContent = "Click here for checkout!";
-        checkoutMessage.textStyle = "italic";
+        checkoutMessage.style.textStyle = "italic";
+        checkoutMessage.style.margin = "auto";
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
