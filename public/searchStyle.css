@@ -166,6 +166,11 @@ body {
   padding-left: 20px;
 }
 
+.fa-times-circle:hover {
+  transition: opacity .3s;
+	opacity: 0.75;
+}
+
 #esave-button:hover {
   transition: color .3s;
   color: purple;
