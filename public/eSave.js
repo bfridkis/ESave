@@ -66,6 +66,7 @@ function eSave(){
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
+    console.log(req.responseText);
     let results = JSON.parse(req.responseText);
      console.log(results);
      let orderStageRightText = document.querySelector("#order-stage-right-text");
