@@ -29,7 +29,7 @@ function eSave(){
        let results = JSON.parse(req.responseText);
         console.log(results);
         sleepFor(2000);
-        if(results[0] === NULL){
+        if(!results[0]){
           let orderStageLeftText = document.querySelector("#order-stage-left-text");
           orderStageLeftText.innerText = "No results. Please modify your search and try again."
         }
