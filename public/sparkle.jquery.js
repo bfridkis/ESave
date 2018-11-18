@@ -73,7 +73,7 @@ $.fn.sparkleh = function( options ) {
     var sparkle = new Sparkle( $this, settings );
 
     //sparkle.over();
-    $(this).on({
+    $("#esave-button"").on({
       "click" : function(e) {
         sparkle.over();
       }
