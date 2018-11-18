@@ -116,6 +116,7 @@ body {
   border-radius: 25px;
   border-color: purple;
 	padding: 25px;
+	display: table;
 }
 
 .button-stage-wrapper {
@@ -179,6 +180,10 @@ body {
 .fa-times-circle:hover {
   transition: opacity .1s;
 	opacity: 0.5;
+}
+
+#esave-button {
+  padding-left: 75px;
 }
 
 #esave-button:hover {
