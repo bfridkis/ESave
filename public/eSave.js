@@ -170,7 +170,7 @@ function eSave(){
        let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
        checkoutMessageLinkContainer.style.display = "block";
        let retailerLink = document.querySelector("#retailer-link");
-       retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"]);
+       retailerLink.setAttribute("href", "//" + results[0]["RET_WEB_ADD"]);
        retailerLink.classList.toggle("disable_a_href");
      }
   }
@@ -193,6 +193,7 @@ function eSave(){
 // * http://api.jquery.com/text/
 // * https://stackoverflow.com/questions/17147126/how-to-force-an-html-link-to-be-absolute
 // *https://stackoverflow.com/questions/5629684/how-to-check-if-element-exists-in-the-visible-dom
+// * https://stackoverflow.com/questions/7654900/how-do-you-make-an-anchor-link-non-clickable-or-disabled
 
 // ** Unused... **
 
