@@ -14,7 +14,7 @@ function eSave(){
        document.querySelector("#inner-checkout-message-link-container");
     checkoutMessageLinkContainter.style.display = "none";
     let retailerLink = document.querySelector("#retailer-link");
-    retailerLink.classList.toggle("disable_a_href");
+    retailerLink.classList.add("disable_a_href");
     //retailerLink.setAttribute("href", "");
     let orderStageRightText = document.querySelector("#order-stage-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
@@ -171,7 +171,7 @@ function eSave(){
        checkoutMessageLinkContainer.style.display = "block";
        let retailerLink = document.querySelector("#retailer-link");
        retailerLink.setAttribute("href", "//" + results[0]["RET_WEB_ADD"]);
-       retailerLink.classList.toggle("disable_a_href");
+       retailerLink.classList.remove("disable_a_href");
      }
   }
 };
