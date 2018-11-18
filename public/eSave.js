@@ -25,6 +25,7 @@ function eSave(){
        //window.location.replace("/search");
        let orderStageLeft = document.querySelector("#order-stage-left");
        let orderStageLeftHeight = orderStageLeft.getAttribute("height");
+       console.log(orderStageLeft);
        let results = JSON.parse(req.responseText);
         console.log(results);
         sleepFor(2000);
@@ -98,7 +99,7 @@ function eSave(){
         shipPri.style.paddingBottom = "20px";
         let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
-        finPriHeader.innerHTML = "** <span textDecoration='underline'>ESAVE BEST PRICE</span> **";
+        finPriHeader.innerHTML = "** <span style='text-decoration:underline'>ESAVE BEST PRICE</span> **";
         //finPriHeader.style.textDecoration = "underline";
         finPriHeader.style.color = "purple";
         let finPriRow = stageTable.appendChild(document.createElement("tr"));
@@ -106,8 +107,8 @@ function eSave(){
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
         finPri.style.paddingBottom = "20px";
         finPri.style.color = "rgb(39, 206, 100)";
-        orderStageLeft.setAttribute("height", orderStageLeftHeight);
-
+        orderStageLeft.setAttribute("height", orderStageLeftHeight + "px");
+        console.log(orderStageLeft.getAttribute("height"));
         let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
         checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("div"));
         checkoutMessage.textContent = "Click here for checkout!";
