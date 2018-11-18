@@ -23,120 +23,7 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-       let orderStageLeft = document.querySelector("#stage-wrapper-left");
-       let orderStageLeftHeight = orderStageLeft.offsetHeight;
-       console.log(orderStageLeftHeight);
-       let results = JSON.parse(req.responseText);
-        console.log(results);
-        sleepFor(2000);
-        if(!results[0]){
-          orderStageRightText.innerHTML = "";
-          orderStageRightText.innerText = "No results. Please modify your search and try again."
-        }
-        else{
-       		let orderStageRight = document.querySelector("#stage-wrapper-right");
-          orderStageRight.style.borderColor = "rgb(39, 206, 100)";
-          let shoppingCart = document.querySelector("#shopping-cart-outer");
-          shoppingCart.style.paddingBottom = "0";
-          orderStageRightText.innerHTML = "";
-          let stageTable = document.createElement("table");
-          stageTableCap = stageTable.appendChild(document.createElement("caption"));
-          stageTableCap.innerText = "ESave's Best Offer";
-          stageTableCap.style.paddingBottom = "20px";
-          stageTableCap.style.captionSide = "top";
-          stageTableCap.style.textAlign = "center";
-          stageTableCap.style.fontSize = "2.5rem";
-          stageTableCap.style.color = "purple";
-          stageTable.style.margin = "auto";
-          orderStageRight.appendChild(stageTable);
-          let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
-          let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
-          prodNameHeader.textContent = "PRODUCT";
-          prodNameHeader.style.textDecoration = "underline";
-          let prodNameRow = stageTable.appendChild(document.createElement("tr"));
-          let prodName = prodNameRow.appendChild(document.createElement("td"));
-          prodName.textContent = results[0]["PROD_NAME"];
-          prodName.style.paddingBottom = "20px";
-          let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
-          let retNameHeader = retNameHeaderRow.appendChild(document.createElement("th"));
-          retNameHeader.textContent = "RETAILER";
-          retNameHeader.style.textDecoration = "underline";
-          let retNameRow = stageTable.appendChild(document.createElement("tr"));
-          let retName = retNameRow.appendChild(document.createElement("td"));
-          retName.textContent = results[0]["RET_NAME"];
-          retName.style.paddingBottom = "20px";
-          let ppuHeaderRow = stageTable.appendChild(document.createElement("tr"));
-          let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
-          ppuHeader.textContent = "PRICE PER UNIT";
-          ppuHeader.style.textDecoration = "underline";
-          let ppuRow = stageTable.appendChild(document.createElement("tr"));
-          let ppu = ppuRow.appendChild(document.createElement("td"));
-          ppu.textContent = results[0]["PRICE_PER_UNIT"] + "$";
-          ppu.style.paddingBottom = "20px";
-          let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-          let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
-          initPriHeader.textContent = "TOTAL PRODUCT COST";
-          initPriHeader.style.textDecoration = "underline";
-          let initPriRow = stageTable.appendChild(document.createElement("tr"));
-          let initPri = initPriRow.appendChild(document.createElement("td"));
-          initPri.textContent = results[0]["INITIAL_PRICE"] + "$";
-          let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
-          let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
-          initPriBDS.style.fontSize = "0.9rem";
-          initPriBDS.style.textDecoration = "italic";
-          initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
-          //initPriBDS.style.whiteSpace = "nowrap";
-          initPriBDS.style.paddingBottom = "20px";
-          let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
-          let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
-          totDiscHeader.textContent = "TOTAL DISCOUNT";
-          totDiscHeader.style.textDecoration = "underline";
-          let totDiscRow = stageTable.appendChild(document.createElement("tr"));
-          let totDisc = totDiscRow.appendChild(document.createElement("td"));
-          totDisc.textContent = "-" + results[0]["TOTAL_DISCOUNT"] + "$";
-          totDisc.style.paddingBottom = "20px";
-          let shipPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-          let shipPriHeader = shipPriHeaderRow.appendChild(document.createElement("th"));
-          shipPriHeader.textContent = "SHIPPING COST";
-          shipPriHeader.style.textDecoration = "underline";
-          let shipPriRow = stageTable.appendChild(document.createElement("tr"));
-          let shipPri = shipPriRow.appendChild(document.createElement("td"));
-          shipPri.textContent = results[0]["SHIPPING_PRICE"] + "$";
-          shipPri.style.paddingBottom = "20px";
-          let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-          let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
-          finPriHeader.innerHTML = "<span style='color:rgb(39, 206, 100)'>$$</span> " +
-                                   "<span style='text-decoration:underline'>ESAVE BEST PRICE</span> " +
-                                   "<span style='color:rgb(39, 206, 100)'>$$</span>";
-          finPriHeader.style.color = "purple";
-          let finPriRow = stageTable.appendChild(document.createElement("tr"));
-          let finPri = finPriRow.appendChild(document.createElement("td"));
-          finPri.textContent = results[0]["FINAL_PRICE"] + "$";
-          finPri.style.paddingBottom = "20px";
-          finPri.style.color = "rgb(39, 206, 100)";
-          orderStageLeft.style.height = orderStageLeftHeight + "px";
-          console.log(orderStageLeft.getAttribute("height"));
-          let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
-          let checkoutMessageLink = checkoutMessageContainter.appendChild(document.createElement("a"));
-          checkoutMessageLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
-          checkoutMessageLink.setAttribute("target", "_blank");
-          checkoutMessageLink.classList.toggle("retailer-link");
-          let checkoutMessage = checkoutMessageLink.appendChild(document.createElement("div"));
-          checkoutMessage.textContent = "Click here for checkout!";
-          checkoutMessage.style.textStyle = "italic";
-          checkoutMessage.style.margin = "auto";
-          checkoutMessage.style.textAlign = "center";
-          checkoutMessage.style.paddingBottom = "50px";
-
-          //Code to insert a parent "wrapper" around the #shopping-cart-inner node.
-          //See https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
-          var retailerLink = document.createElement("a");
-          retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
-          retailerLink.setAttribute("target", "_blank");
-          let wrapped = document.querySelector("#shopping-cart-inner")
-          shoppingCart.replaceChild(retailerLink, wrapped);
-          retailerLink.appendChild(wrapped);
-        }
+      sleepFor(3000);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
@@ -163,9 +50,120 @@ function eSave(){
   }
 
   async function sleepFor(time_ms) {
-    console.log('Taking a break...');
-    await sleep(time_ms);
-    console.log('Two seconds later');
+    let orderStageLeft = document.querySelector("#stage-wrapper-left");
+    let orderStageLeftHeight = orderStageLeft.offsetHeight;
+    console.log(orderStageLeftHeight);
+    let results = JSON.parse(req.responseText);
+     console.log(results);
+     sleepFor(2000);
+     if(!results[0]){
+       orderStageRightText.innerHTML = "";
+       orderStageRightText.innerText = "No results. Please modify your search and try again."
+     }
+     else{
+       let orderStageRight = document.querySelector("#stage-wrapper-right");
+       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
+       let shoppingCart = document.querySelector("#shopping-cart-outer");
+       shoppingCart.style.paddingBottom = "0";
+       orderStageRightText.innerHTML = "";
+       let stageTable = document.createElement("table");
+       stageTableCap = stageTable.appendChild(document.createElement("caption"));
+       stageTableCap.innerText = "ESave's Best Offer";
+       stageTableCap.style.paddingBottom = "20px";
+       stageTableCap.style.captionSide = "top";
+       stageTableCap.style.textAlign = "center";
+       stageTableCap.style.fontSize = "2.5rem";
+       stageTableCap.style.color = "purple";
+       stageTable.style.margin = "auto";
+       orderStageRight.appendChild(stageTable);
+       let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
+       prodNameHeader.textContent = "PRODUCT";
+       prodNameHeader.style.textDecoration = "underline";
+       let prodNameRow = stageTable.appendChild(document.createElement("tr"));
+       let prodName = prodNameRow.appendChild(document.createElement("td"));
+       prodName.textContent = results[0]["PROD_NAME"];
+       prodName.style.paddingBottom = "20px";
+       let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let retNameHeader = retNameHeaderRow.appendChild(document.createElement("th"));
+       retNameHeader.textContent = "RETAILER";
+       retNameHeader.style.textDecoration = "underline";
+       let retNameRow = stageTable.appendChild(document.createElement("tr"));
+       let retName = retNameRow.appendChild(document.createElement("td"));
+       retName.textContent = results[0]["RET_NAME"];
+       retName.style.paddingBottom = "20px";
+       let ppuHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
+       ppuHeader.textContent = "PRICE PER UNIT";
+       ppuHeader.style.textDecoration = "underline";
+       let ppuRow = stageTable.appendChild(document.createElement("tr"));
+       let ppu = ppuRow.appendChild(document.createElement("td"));
+       ppu.textContent = results[0]["PRICE_PER_UNIT"] + "$";
+       ppu.style.paddingBottom = "20px";
+       let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
+       initPriHeader.textContent = "TOTAL PRODUCT COST";
+       initPriHeader.style.textDecoration = "underline";
+       let initPriRow = stageTable.appendChild(document.createElement("tr"));
+       let initPri = initPriRow.appendChild(document.createElement("td"));
+       initPri.textContent = results[0]["INITIAL_PRICE"] + "$";
+       let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
+       let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
+       initPriBDS.style.fontSize = "0.9rem";
+       initPriBDS.style.textDecoration = "italic";
+       initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
+       //initPriBDS.style.whiteSpace = "nowrap";
+       initPriBDS.style.paddingBottom = "20px";
+       let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
+       totDiscHeader.textContent = "TOTAL DISCOUNT";
+       totDiscHeader.style.textDecoration = "underline";
+       let totDiscRow = stageTable.appendChild(document.createElement("tr"));
+       let totDisc = totDiscRow.appendChild(document.createElement("td"));
+       totDisc.textContent = "-" + results[0]["TOTAL_DISCOUNT"] + "$";
+       totDisc.style.paddingBottom = "20px";
+       let shipPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let shipPriHeader = shipPriHeaderRow.appendChild(document.createElement("th"));
+       shipPriHeader.textContent = "SHIPPING COST";
+       shipPriHeader.style.textDecoration = "underline";
+       let shipPriRow = stageTable.appendChild(document.createElement("tr"));
+       let shipPri = shipPriRow.appendChild(document.createElement("td"));
+       shipPri.textContent = results[0]["SHIPPING_PRICE"] + "$";
+       shipPri.style.paddingBottom = "20px";
+       let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
+       finPriHeader.innerHTML = "<span style='color:rgb(39, 206, 100)'>$$</span> " +
+                                "<span style='text-decoration:underline'>ESAVE BEST PRICE</span> " +
+                                "<span style='color:rgb(39, 206, 100)'>$$</span>";
+       finPriHeader.style.color = "purple";
+       let finPriRow = stageTable.appendChild(document.createElement("tr"));
+       let finPri = finPriRow.appendChild(document.createElement("td"));
+       finPri.textContent = results[0]["FINAL_PRICE"] + "$";
+       finPri.style.paddingBottom = "20px";
+       finPri.style.color = "rgb(39, 206, 100)";
+       orderStageLeft.style.height = orderStageLeftHeight + "px";
+       console.log(orderStageLeft.getAttribute("height"));
+       let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
+       let checkoutMessageLink = checkoutMessageContainter.appendChild(document.createElement("a"));
+       checkoutMessageLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
+       checkoutMessageLink.setAttribute("target", "_blank");
+       checkoutMessageLink.classList.toggle("retailer-link");
+       let checkoutMessage = checkoutMessageLink.appendChild(document.createElement("div"));
+       checkoutMessage.textContent = "Click here for checkout!";
+       checkoutMessage.style.textStyle = "italic";
+       checkoutMessage.style.margin = "auto";
+       checkoutMessage.style.textAlign = "center";
+       checkoutMessage.style.paddingBottom = "50px";
+
+       //Code to insert a parent "wrapper" around the #shopping-cart-inner node.
+       //See https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
+       var retailerLink = document.createElement("a");
+       retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
+       retailerLink.setAttribute("target", "_blank");
+       let wrapped = document.querySelector("#shopping-cart-inner")
+       shoppingCart.replaceChild(retailerLink, wrapped);
+       retailerLink.appendChild(wrapped);
+     }
   }
 };
 
