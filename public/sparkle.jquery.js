@@ -76,7 +76,7 @@ $.fn.sparkleh = function( options ) {
     $("#esave-button").click( e => {
       sparkle.over();
       console.log("Before Async running...")
-        let textCheck = $("order-stage-right-text").text()[0];
+        let textCheck = $("#order-stage-right-text").text()[0];
         sleepFor(1000, sparkle.out, textCheck);
     });
 
