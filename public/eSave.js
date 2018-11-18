@@ -37,6 +37,9 @@ function eSave(){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
        console.log(req.responseText);
+       if(queryString === "/search?"){
+         req.responseText = [NULL];
+       }
       sleepFor(1500, req, qts);
       }
       else{
