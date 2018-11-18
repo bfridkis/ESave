@@ -80,7 +80,8 @@ $.fn.sparkleh = function( options ) {
         if(textCheck[0] === "N"){
           sparkle.out();
         }
-        sleep(500);
+        sleepFor(500);
+      }
     });
 
     function sleep(ms) {
