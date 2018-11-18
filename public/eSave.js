@@ -126,7 +126,7 @@ function eSave(){
        let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
        initPriBDS.style.fontSize = "0.9rem";
        initPriBDS.style.textDecoration = "italic";
-       initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
+       initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$)";
        //initPriBDS.style.whiteSpace = "nowrap";
        initPriBDS.style.paddingBottom = "20px";
        let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
