@@ -72,15 +72,17 @@ $.fn.sparkleh = function( options ) {
 
     var sparkle = new Sparkle( $this, settings );
 
-    //sparkle.over();
-    $("#esave-button").on({
-      "click" : function(e) {
-        sparkle.over();
-      }
-      //"mouseout blur" : function(e) {
-      //  sparkle.out();
-      //  }
+    $("#esave-button").click( e => {
+      sparkle.over();
     });
+    /*$this.on({
+      "mouseover focus" : function(e) {
+        sparkle.over();
+      },
+      "mouseout blur" : function(e) {
+        sparkle.out();
+      }
+    });*/
 
   });
 
