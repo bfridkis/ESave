@@ -158,7 +158,7 @@ function eSave(){
        orderStageLeft.style.height = orderStageLeftHeight + "px";
 
        let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
-       checkoutMessageLinkContainter.style.display = "block";
+       checkoutMessageLinkContainer.style.display = "block";
        retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"]);
      }
   }
