@@ -62,10 +62,11 @@ function eSave(){
     let checkoutMessageLinkContainter =
        document.querySelector("#inner-checkout-message-link-container");
     checkoutMessageLinkContainter.style.display = "none";
+    let retailerLink = document.queryString("#retailer-link");
+    retailerLink.setAttribute("href", "");
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
-    console.log(orderStageLeftHeight);
     let results = JSON.parse(req.responseText);
      console.log(results);
      let orderStageRightText = document.querySelector("#order-stage-right-text");
@@ -158,6 +159,7 @@ function eSave(){
        orderStageLeft.style.height = orderStageLeftHeight + "px";
 
        checkoutMessageLinkContainter.style.display = "block";
+       retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"]);
      }
   }
 };
