@@ -82,7 +82,7 @@ $.fn.sparkleh = function( options ) {
 
     async function sleepFor(time_ms, func, charCheck) {
       await sleep(time_ms);
-      console.log("Async running...")
+      console.log("charCheck", charCheck);
       if(charCheck === "N"){
         func();
       }
