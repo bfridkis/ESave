@@ -156,19 +156,6 @@ function eSave(){
        finPri.style.paddingBottom = "20px";
        finPri.style.color = "rgb(39, 206, 100)";
        orderStageLeft.style.height = orderStageLeftHeight + "px";
-       console.log(orderStageLeft.getAttribute("height"));
-       let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
-       checkoutMessageContainter.classList.add("checkout-message-containter")
-       let checkoutMessageLink = checkoutMessageContainter.appendChild(document.createElement("a"));
-       checkoutMessageLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
-       checkoutMessageLink.setAttribute("target", "_blank");
-       checkoutMessageLink.classList.toggle("retailer-link");
-       let checkoutMessage = checkoutMessageLink.appendChild(document.createElement("div"));
-       checkoutMessage.textContent = "Click here for checkout!";
-       checkoutMessage.style.textStyle = "italic";
-       checkoutMessage.style.margin = "auto";
-       checkoutMessage.style.textAlign = "center";
-       checkoutMessage.style.paddingBottom = "50px";
 
        checkoutMessageLinkContainter.style.display = "visible";
      }
