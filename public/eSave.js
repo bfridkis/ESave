@@ -116,7 +116,9 @@ function eSave(){
           orderStageLeft.style.height = orderStageLeftHeight + "px";
           console.log(orderStageLeft.getAttribute("height"));
           let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
-          checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("div"));
+          checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("a"));
+          checkoutMessage.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
+          checkoutMessage.setAttribute("target", "_blank");
           checkoutMessage.textContent = "Click here for checkout!";
           checkoutMessage.style.textStyle = "italic";
           checkoutMessage.style.margin = "auto";
@@ -126,7 +128,7 @@ function eSave(){
           //Code to insert a parent "wrapper" around the #shopping-cart-inner node.
           //See https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
           var retailerLink = document.createElement("a");
-          retailerLink.setAttribute("href", "www." + results[0]["RET_WEB_ADD"]);
+          retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
           retailerLink.setAttribute("target", "_blank");
           let wrapped = document.querySelector("#shopping-cart-inner")
           shoppingCart.replaceChild(retailerLink, wrapped);
