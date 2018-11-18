@@ -120,6 +120,7 @@ function eSave(){
           let checkoutMessageLink = checkoutMessageContainter.appendChild(document.createElement("a"));
           checkoutMessageLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
           checkoutMessageLink.setAttribute("target", "_blank");
+          checkoutMessageLink.classList.toggle("retailer-link");
           let checkoutMessage = checkoutMessageLink.appendChild(document.createElement("div"));
           checkoutMessage.textContent = "Click here for checkout!";
           checkoutMessage.style.textStyle = "italic";
@@ -132,7 +133,6 @@ function eSave(){
           var retailerLink = document.createElement("a");
           retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
           retailerLink.setAttribute("target", "_blank");
-          retailerLink.setAttribute("class", "retailer-link");
           let wrapped = document.querySelector("#shopping-cart-inner")
           shoppingCart.replaceChild(retailerLink, wrapped);
           retailerLink.appendChild(wrapped);
