@@ -23,7 +23,7 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-      sleepFor(3000);
+      sleepFor(3000, req);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
@@ -50,7 +50,7 @@ function eSave(){
   }
 
   async function sleepFor(time_ms) {
-    await sleep(time_ms);
+    await sleep(time_ms, req);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
     console.log(orderStageLeftHeight);
