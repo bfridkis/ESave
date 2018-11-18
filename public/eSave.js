@@ -55,8 +55,8 @@ function eSave(){
         let ppuRow = stageTable.appendChild(document.createElement("tr"));
         let ppu = ppuRow.appendChild(document.createElement("td"));
         ppu.textContent = results[0]["PRICE_PER_UNIT"];
-        let initBDSPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-        let initBDSPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
+        let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+        let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
         initPriHeader.textContent = "TOTAL BEFORE SHIPPING AND PROMOTIONS";
         initPriHeader.style.textDecoration = "underline";
         let initPriRow = stageTable.appendChild(document.createElement("tr"));
