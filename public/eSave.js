@@ -61,7 +61,7 @@ function eSave(){
     }
     let checkoutMessageLinkContainter =
        document.querySelector("#inner-checkout-message-link-container");
-    checkoutMessageLinkContainter.style.display = "hidden";
+    checkoutMessageLinkContainter.style.display = "none";
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;

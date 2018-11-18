@@ -214,6 +214,7 @@ body {
   width: 1000px;
   margin: auto;
   text-align: center;
+  padding-bottom: 50px;
   width: 100px;
 }
 
@@ -247,5 +248,5 @@ body {
 	margin: auto;
 	text-align: center;
 	padding-bottom: 50px;
-	display: hidden;
+	display: none;
 }
