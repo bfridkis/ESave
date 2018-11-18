@@ -80,8 +80,8 @@ function eSave(){
           let initPriRow = stageTable.appendChild(document.createElement("tr"));
           let initPri = initPriRow.appendChild(document.createElement("td"));
           initPri.textContent = results[0]["INITIAL_PRICE"] + "$";
-          let initPriBDS = initPri.appendChild(document.createElement("td"));
-          initPriBDS.style.fontSize = "0.75rem";
+          let initPriBDS = initPriRow.appendChild(document.createElement("td"));
+          initPriBDS.style.fontSize = "0.9rem";
           initPriBDS.style.textDecoration = "italic";
           initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$ )";
           //initPriBDS.style.whiteSpace = "nowrap";
