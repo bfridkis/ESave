@@ -43,8 +43,8 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 		      qtKey = "q" + key.substring(1);
 					console.log("QT", req.query[qtKey]);//**********************************
 		      mysql.pool.query("select product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
-														"FORMAT(retailer_product.price * '" + req.query[qtKey] + "' AS INITIAL_PRICE, " +
-														"retailer_product.price, 2) AS PRICE_PER_UNIT, " +
+														"FORMAT(retailer_product.price * '" + req.query[qtKey] + "', 2) AS INITIAL_PRICE, " +
+														"FORMAT(retailer_product.price, 2) AS PRICE_PER_UNIT, " +
 														"case " +
 														"    when sum(promotion.discount) IS NULL then FORMAT(retailer_product.price * " +
 														"         '" + req.query[qtKey] + "' - retailer.shipping_price, 2) " +
