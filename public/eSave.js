@@ -119,7 +119,7 @@ function eSave(){
           let checkoutMessageLink = checkoutMessageContainter.appendChild(document.createElement("a"));
           checkoutMessageLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
           checkoutMessageLink.setAttribute("target", "_blank");
-          let checkoutMessage = document.body.appendChild(document.createElement("div"));
+          let checkoutMessage = checkoutMessageLink.appendChild(document.createElement("div"));
           checkoutMessage.textContent = "Click here for checkout!";
           checkoutMessage.style.textStyle = "italic";
           checkoutMessage.style.margin = "auto";
