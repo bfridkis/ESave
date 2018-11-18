@@ -52,7 +52,7 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 														"         retailer.shipping_price - sum(promotion.discount, 2) end AS FINAL_PRICE, " +
 														"FORMAT(retailer.shipping_price, 2) AS SHIPPING_PRICE, " +
 														"case  " +
-														"     when sum(promotion.discount) IS NULL then FORMAT(0, 2) " +
+														"     when sum(promotion.discount) IS NULL then 0.00 " +
 														"     else FORMAT(sum(promotion.discount), 2) " +
 														"     end AS TOTAL_DISCOUNT " +
 														"from product join retailer_product ON product.id = retailer_product.product AND " +
