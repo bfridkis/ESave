@@ -48,7 +48,7 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 														"case " +
 														"    when sum(promotion.discount) IS NULL then FORMAT(retailer_product.price * " +
 														"         '" + req.query[qtKey] + "' - retailer.shipping_price, 2) " +
-														"    else FOMRAT(retailer_product.price * '" + req.query[qtKey] + "' + " +
+														"    else FORMAT(retailer_product.price * '" + req.query[qtKey] + "' + " +
 														"         retailer.shipping_price - sum(promotion.discount), 2) end AS FINAL_PRICE, " +
 														"FORMAT(retailer.shipping_price, 2) AS SHIPPING_PRICE, " +
 														"case  " +
