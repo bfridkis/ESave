@@ -157,7 +157,7 @@ function eSave(){
        finPri.style.color = "rgb(39, 206, 100)";
        orderStageLeft.style.height = orderStageLeftHeight + "px";
 
-       let checkoutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
+       let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
        checkoutMessageLinkContainter.style.display = "block";
        retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"]);
      }
