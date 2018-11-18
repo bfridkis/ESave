@@ -23,6 +23,8 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
+       let orderStageLeft = document.querySelector("#order-stage-left");
+       let orderStageLeftHeight = orderStageLeft.getAttribute("height");
        let results = JSON.parse(req.responseText);
         console.log(results);
         sleepFor(2000);
@@ -104,6 +106,7 @@ function eSave(){
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
         finPri.style.paddingBottom = "20px";
         finPri.style.color = "rgb(39, 206, 100)";
+        orderStageLeft.setAttribute("height", orderStageLeftHeight);
 
         let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
         checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("div"));
