@@ -59,6 +59,9 @@ function eSave(){
     if(prevCheckOutMessageLinkContainer){
       prevCheckOutMessageLinkContainer.parentNode.removeChild(checkoutMessageLinkContainter);
     }
+    let checkoutMessageLinkContainter =
+       document.querySelector("#inner-checkout-message-link-container");
+    checkoutMessageLinkContainter.style.display = "hidden";
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
@@ -167,14 +170,7 @@ function eSave(){
        checkoutMessage.style.textAlign = "center";
        checkoutMessage.style.paddingBottom = "50px";
 
-       //Code to insert a parent "wrapper" around the #shopping-cart-inner node.
-       //See https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
-       var retailerLink = document.createElement("a");
-       retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
-       retailerLink.setAttribute("target", "_blank");
-       let wrapped = document.querySelector("#shopping-cart-inner")
-       shoppingCart.replaceChild(retailerLink, wrapped);
-       retailerLink.appendChild(wrapped);
+       checkoutMessageLinkContainter.style.display = "visible";
      }
   }
 };
@@ -197,5 +193,15 @@ function eSave(){
 // * https://stackoverflow.com/questions/17147126/how-to-force-an-html-link-to-be-absolute
 // *https://stackoverflow.com/questions/5629684/how-to-check-if-element-exists-in-the-visible-dom
 
-//We can type at the same time! Just like google Docs...
-//Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
+// ** Unused... **
+
+//Code to insert a parent "wrapper" around the #shopping-cart-inner node.
+//See https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
+/*
+var retailerLink = document.createElement("a");
+retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
+retailerLink.setAttribute("target", "_blank");
+let wrapped = document.querySelector("#shopping-cart-inner")
+shoppingCart.replaceChild(retailerLink, wrapped);
+retailerLink.appendChild(wrapped);
+*/

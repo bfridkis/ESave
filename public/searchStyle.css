@@ -243,3 +243,10 @@ body {
 	text-decoration: none;
 	color: black;
 }
+
+#inner-checkout-message-link-container {
+	margin: auto;
+	text-align: center;
+	padding-bottom: 50px;
+	display: hidden;
+}
