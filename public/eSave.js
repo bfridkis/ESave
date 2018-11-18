@@ -66,6 +66,7 @@ function eSave(){
         initPriBDS.style.fontSize = "1rem";
         initPriBDS.style.textStyle = "italic";
         initPriBDS.textContent = "( " + qts[0].textContent + "u x " + results[0]["PRICE_PER_UNIT"] + "$ )";
+        initPriBDS.style.whiteSpace = "nowrap";
         let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
         totDiscHeader.textContent = "TOTAL DISCOUNT";
@@ -88,8 +89,9 @@ function eSave(){
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
 
-        shoppingCart.textContent = "Click here for checkout!";
-        shoppingCart.textStyle = "italic";
+        let checkoutMessage = shoppingCart.appendChild(document.createElement("div"));
+        checkoutMessage.textContent = "Click here for checkout!";
+        checkoutMessage.textStyle = "italic";
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
