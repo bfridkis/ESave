@@ -31,7 +31,7 @@ function eSave(){
         sleepFor(2000);
         if(!results[0]){
           orderStageRightText.innerHTML = "";
-          orderStageLeftText.innerText = "No results. Please modify your search and try again."
+          orderStageRightText.innerText = "No results. Please modify your search and try again."
         }
         else{
        		let orderStageRight = document.querySelector("#order-stage-right");
