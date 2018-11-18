@@ -77,7 +77,7 @@ $.fn.sparkleh = function( options ) {
       sparkle.over();
       console.log("Before Async running...")
         let textCheck = document.querySelector("#order-stage-right-text").textContent[0];
-        console.log("textCheck: ", textCheck)
+        console.log("textCheck: ", document.querySelector("#order-stage-right-text").textContent[0])
         sleepFor(10000, sparkle.out, textCheck);
     });
 
