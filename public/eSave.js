@@ -2,7 +2,7 @@
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
-    let orderStageRightText = document.querySelector("#stage-wrapper-right-text");
+    let orderStageRightText = document.querySelector("#order-stage-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
     let items = document.getElementsByClassName("searchItem");
     let qts = document.getElementsByClassName("qtSearchItem");
@@ -23,7 +23,7 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-       let orderStageLeft = document.querySelector("#order-stage-left");
+       let orderStageLeft = document.querySelector("#stage-wrapper-left");
        let orderStageLeftHeight = orderStageLeft.offsetHeight;
        console.log(orderStageLeftHeight);
        let results = JSON.parse(req.responseText);
