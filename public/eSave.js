@@ -41,6 +41,7 @@ function eSave(){
        if(queryString === "/search?"){
          console.log("In here!");
          req.responseText = [[]];
+         console.log(req.responseText);
        }
       sleepFor(1500, req, qts);
       }
