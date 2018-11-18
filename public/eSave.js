@@ -50,6 +50,10 @@ function eSave(){
   }
 
   async function sleepFor(time_ms, req, qts) {
+    let prevOrderTable = document.querySelector("order-table");
+    if(prevOrderTable){
+      prevOrderTable.parentNode.removeChild(prevOrderTable);
+    }
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
@@ -77,6 +81,7 @@ function eSave(){
        stageTableCap.style.color = "purple";
        stageTable.style.margin = "auto";
        orderStageRight.appendChild(stageTable);
+       orderStageRight.classList.add("order-table");
        let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
        prodNameHeader.textContent = "PRODUCT";
@@ -184,6 +189,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/5515310/is-there-a-standard-function-to-check-for-null-undefined-or-blank-variables-in/5515349
 // * http://api.jquery.com/text/
 // * https://stackoverflow.com/questions/17147126/how-to-force-an-html-link-to-be-absolute
+// *https://stackoverflow.com/questions/5629684/how-to-check-if-element-exists-in-the-visible-dom
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
