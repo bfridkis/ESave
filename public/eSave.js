@@ -5,7 +5,7 @@ function eSave(){
     let orderStageRightText = document.querySelector("#order-stage-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
     let items = document.getElementsByClassName("searchItem");
-    var qts = document.getElementsByClassName("qtSearchItem");
+    let qts = document.getElementsByClassName("qtSearchItem");
     items = [...items];
     qts = [...qts];
     let queryString = "/search?";
