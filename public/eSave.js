@@ -77,6 +77,7 @@ function eSave(){
        shoppingCart.style.paddingBottom = "0";
        orderStageRightText.innerHTML = "";
        let stageTable = document.createElement("table");
+       stageTable.classList.add("order-table");
        stageTableCap = stageTable.appendChild(document.createElement("caption"));
        stageTableCap.innerText = "ESave's Best Offer";
        stageTableCap.style.paddingBottom = "20px";
@@ -86,7 +87,6 @@ function eSave(){
        stageTableCap.style.color = "purple";
        stageTable.style.margin = "auto";
        orderStageRight.appendChild(stageTable);
-       orderStageRight.classList.add("order-table");
        let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
        prodNameHeader.textContent = "PRODUCT";
