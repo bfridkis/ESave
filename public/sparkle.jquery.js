@@ -73,7 +73,7 @@ $.fn.sparkleh = function( options ) {
     var sparkle = new Sparkle( $this, settings );
 
     //sparkle.over();
-    $fa-shopping-cart-inner.on({
+    $"fa-shopping-cart-inner".on({
       "click" : function(e) {
         sparkle.over();
       }
