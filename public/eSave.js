@@ -30,6 +30,7 @@ function eSave(){
         orderStageRight.style.borderColor = "rgb(39, 206, 100)";
         let shoppingCart = document.querySelector("#shopping-cart-inner");
         //shoppingCart.classList.toggle("sparkley");
+        shoppingCart.style.paddingBottom = "0";
         orderStageRightText.innerHTML = "";
         let stageTable = document.createElement("table");
         stageTable.style.margin = "auto";
@@ -89,7 +90,8 @@ function eSave(){
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
 
-        let checkoutMessage = document.body.appendChild(document.createElement("div"));
+        let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
+        checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("div"));
         checkoutMessage.textContent = "Click here for checkout!";
         checkoutMessage.style.textStyle = "italic";
         checkoutMessage.style.margin = "auto";

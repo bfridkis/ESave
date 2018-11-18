@@ -43,17 +43,17 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 		      qtKey = "q" + key.substring(1);
 					console.log("QT", req.query[qtKey]);//**********************************
 		      mysql.pool.query("select product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
-														"retailer_product.price * '" + req.query[qtKey] + "' AS INITIAL_PRICE, " +
-														"retailer_product.price AS PRICE_PER_UNIT, " +
+														"FORMAT(retailer_product.price * '" + req.query[qtKey] + "' AS INITIAL_PRICE, " +
+														"retailer_product.price, 2) AS PRICE_PER_UNIT, " +
 														"case " +
-														"    when sum(promotion.discount) IS NULL then retailer_product.price * " +
-														"         '" + req.query[qtKey] + "' - retailer.shipping_price " +
-														"    else retailer_product.price * '" + req.query[qtKey] + "' + " +
-														"         retailer.shipping_price - sum(promotion.discount) end AS FINAL_PRICE, " +
-														"retailer.shipping_price AS SHIPPING_PRICE, " +
+														"    when sum(promotion.discount) IS NULL then FORMAT(retailer_product.price * " +
+														"         '" + req.query[qtKey] + "' - retailer.shipping_price, 2) " +
+														"    else FOMRAT(retailer_product.price * '" + req.query[qtKey] + "' + " +
+														"         retailer.shipping_price - sum(promotion.discount, 2) end AS FINAL_PRICE, " +
+														"FORMAT(retailer.shipping_price, 2) AS SHIPPING_PRICE, " +
 														"case  " +
-														"     when sum(promotion.discount) IS NULL then 0 " +
-														"     else sum(promotion.discount) " +
+														"     when sum(promotion.discount) IS NULL then FORMAT(0, 2) " +
+														"     else FORMAT(sum(promotion.discount), 2) " +
 														"     end AS TOTAL_DISCOUNT " +
 														"from product join retailer_product ON product.id = retailer_product.product AND " +
 														"(product.name LIKE '%" + req.query[key] + "%' OR " +
@@ -103,3 +103,5 @@ GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1*/
 // References
 // * https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
 // * https://stackoverflow.com/questions/5223/length-of-a-javascript-object
+// * https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_truncate
+// * https://www.w3resource.com/mysql/string-functions/mysql-format-function.php
