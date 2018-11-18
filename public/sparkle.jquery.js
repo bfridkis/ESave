@@ -76,17 +76,17 @@ $.fn.sparkleh = function( options ) {
     $("#esave-button").click( e => {
       sparkle.over();
       console.log("Before Async running...")
-      async function sleepFor(time_ms) {
-        await sleep(time_ms);
-        let textCheck = $("order-stage-right-text").text();
-        console.log("Async running...")
-        if(textCheck[0] === "N"){
-          sparkle.out();
-        }
-        sleepFor(1000);
+        let textCheck = $("order-stage-right-text").text()[0];
+        sleepFor(1000, sparkle.out, textCheck);
       }
     });
 
+    async function sleepFor(time_ms, func, charCheck) {
+      await sleep(time_ms);
+      console.log("Async running...")
+      if(charCheck === "N"){
+        func();
+      }
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
