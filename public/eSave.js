@@ -50,6 +50,7 @@ function eSave(){
   }
 
   async function sleepFor(time_ms) {
+    await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
     console.log(orderStageLeftHeight);
