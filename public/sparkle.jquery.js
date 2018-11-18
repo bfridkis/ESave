@@ -1,9 +1,9 @@
-/******************************************************************************
+/********************************************************************************
 This code is taken directly from https://codepen.io/simeydotme/pen/jgcvi with
-only a few minor modifications made thereto.
+only a few minor modifications made thereto. (Lines 75-93 have been customized.)
 It is distributed under the MIT license. For more details,
 see https://opensource.org/licenses/MIT
-*******************************************************************************/
+*********************************************************************************/
 
 $(function() {
 
@@ -357,3 +357,6 @@ $.fn.imagesLoaded = function(callback){
 
   return this;
 };
+
+// Additional References
+/// * https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
