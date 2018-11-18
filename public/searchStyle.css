@@ -109,7 +109,8 @@ body {
   width: 500px;
 }
 
-.stage-wrapper {
+#stage-wrapper-left,
+#stage-wrapper-right {
 	min-height: 300px;
 	border-style: solid;
   border-width: 3px;
