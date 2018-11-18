@@ -159,6 +159,7 @@ function eSave(){
 
        let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
        checkoutMessageLinkContainer.style.display = "block";
+       let retailerLink = document.querySelector("#retailer-link");
        retailerLink.setAttribute("href", results[0]["RET_WEB_ADD"]);
      }
   }
