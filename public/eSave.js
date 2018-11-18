@@ -177,6 +177,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/48647942/table-caption-goes-bottom-using-bootstrap
 // * https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
 // * https://www.thesitewizard.com/html-tutorial/open-links-in-new-window-or-tab.shtml
+// * https://stackoverflow.com/questions/5515310/is-there-a-standard-function-to-check-for-null-undefined-or-blank-variables-in/5515349
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...

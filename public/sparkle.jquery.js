@@ -74,7 +74,26 @@ $.fn.sparkleh = function( options ) {
 
     $("#esave-button").click( e => {
       sparkle.over();
+      async function sleepFor(time_ms) {
+        await sleep(time_ms);
+        let textCheck = $("order-stage-right-text").text();
+        if(textCheck[0] === "N"){
+          sparkle.out();
+        }
+        sleep(500);
     });
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    /*
+    async function sleepFor(time_ms) {
+      console.log('Taking a break...');
+      await sleep(time_ms);
+      console.log('Two seconds later');
+      */
+
     /*$this.on({
       "mouseover focus" : function(e) {
         sparkle.over();
