@@ -17,7 +17,7 @@ function eSave(){
       }
     });
     console.log(queryString);
-    let req = new XMLHttpRequest();
+    var req = new XMLHttpRequest();
     req.open("GET", queryString, true);
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
@@ -56,7 +56,6 @@ function eSave(){
     console.log(orderStageLeftHeight);
     let results = JSON.parse(req.responseText);
      console.log(results);
-     sleepFor(2000);
      if(!results[0]){
        orderStageRightText.innerHTML = "";
        orderStageRightText.innerText = "No results. Please modify your search and try again."
