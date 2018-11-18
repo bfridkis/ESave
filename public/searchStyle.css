@@ -234,3 +234,11 @@ body {
 	-webkit-background-clip: text;
 	background-clip: text;
 }
+
+.retailer-link {
+	color: black;
+}
+
+.retailer-link:hover {
+	text-decoration: none;
+}

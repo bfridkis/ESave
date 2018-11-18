@@ -132,6 +132,7 @@ function eSave(){
           var retailerLink = document.createElement("a");
           retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
           retailerLink.setAttribute("target", "_blank");
+          retailerLink.classList.toggle("retailer-link");
           let wrapped = document.querySelector("#shopping-cart-inner")
           shoppingCart.replaceChild(retailerLink, wrapped);
           retailerLink.appendChild(wrapped);
