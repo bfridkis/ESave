@@ -24,8 +24,8 @@ function eSave(){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
        let orderStageLeft = document.querySelector("#order-stage-left");
-       let orderStageLeftHeight = orderStageLeft.getAttribute("height");
-       console.log(orderStageLeft);
+       let orderStageLeftHeight = orderStageLeft.offsetHeight;
+       console.log(orderStageLeftHeight);
        let results = JSON.parse(req.responseText);
         console.log(results);
         sleepFor(2000);
@@ -99,8 +99,9 @@ function eSave(){
         shipPri.style.paddingBottom = "20px";
         let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
-        finPriHeader.innerHTML = "** <span style='text-decoration:underline'>ESAVE BEST PRICE</span> **";
-        //finPriHeader.style.textDecoration = "underline";
+        finPriHeader.innerHTML = "<span style='color:rgb(39, 206, 100)'>$$</span> " +
+                                  "<span style='text-decoration:underline'>ESAVE BEST PRICE</span> " +
+                                  "<span style='color:rgb(39, 206, 100)'>$$</span>";
         finPriHeader.style.color = "purple";
         let finPriRow = stageTable.appendChild(document.createElement("tr"));
         let finPri = finPriRow.appendChild(document.createElement("td"));
