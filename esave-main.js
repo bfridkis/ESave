@@ -17,6 +17,7 @@ app.use(express.static('public'));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+
 app.set('port', process.env.PORT || 5000);
 app.set('mysql', mysql);
 
@@ -63,7 +64,7 @@ app.get('/', (req, res, next) => {
 	if(req.query){
 
 	}
-		res.render('login/login', context)
+		res.redirect('/login');
 });
 
 //Note there is not yet a "home.handlebars" in the views directory,
