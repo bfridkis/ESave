@@ -61,7 +61,7 @@ function eSave(){
         let ppuRow = stageTable.appendChild(document.createElement("tr"));
         let ppu = ppuRow.appendChild(document.createElement("td"));
         ppu.textContent = results[0]["PRICE_PER_UNIT"] + "$";
-        ppuName.style.paddingBottom = "20px";
+        ppu.style.paddingBottom = "20px";
         let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
         initPriHeader.textContent = "TOTAL BEFORE SHIPPING AND PROMOTIONS";
