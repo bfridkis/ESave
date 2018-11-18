@@ -41,6 +41,10 @@ function eSave(){
        if(queryString !== "/search?"){
          sleepFor(1500, req, qts);
        }
+       else{
+         orderStageRightText.innerHTML =
+            'Click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>'';
+       }
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
