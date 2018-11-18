@@ -29,7 +29,7 @@ function eSave(){
      		let orderStageRight = document.querySelector("#order-stage-right");
         orderStageRight.style.borderColor = "rgb(39, 206, 100)";
         let shoppingCart = document.querySelector("#shopping-cart-inner");
-        shoppingCart.classList.toggle("sparkley");
+        //shoppingCart.classList.toggle("sparkley");
         orderStageRightText.innerHTML = "";
         let stageTable = document.createElement("table");
         stageTable.style.margin = "auto";
