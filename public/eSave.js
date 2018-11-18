@@ -5,7 +5,7 @@ function eSave(){
     let orderStageRightText = document.querySelector("#order-stage-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
     let items = document.getElementsByClassName("searchItem");
-    let qts = document.getElementsByClassName("qtSearchItem");
+    var qts = document.getElementsByClassName("qtSearchItem");
     items = [...items];
     qts = [...qts];
     let queryString = "/search?";
@@ -23,7 +23,7 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-      sleepFor(1500, req);
+      sleepFor(1500, req, qts);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
@@ -49,7 +49,7 @@ function eSave(){
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async function sleepFor(time_ms, req) {
+  async function sleepFor(time_ms, req, qts) {
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
