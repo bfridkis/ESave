@@ -116,9 +116,10 @@ function eSave(){
           orderStageLeft.style.height = orderStageLeftHeight + "px";
           console.log(orderStageLeft.getAttribute("height"));
           let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
-          checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("a"));
-          checkoutMessage.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
-          checkoutMessage.setAttribute("target", "_blank");
+          let checkoutMessageLink = checkoutMessageContainter.appendChild(document.createElement("a"));
+          checkoutMessageLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
+          checkoutMessageLink.setAttribute("target", "_blank");
+          let checkoutMessage = document.body.appendChild(document.createElement("div"));
           checkoutMessage.textContent = "Click here for checkout!";
           checkoutMessage.style.textStyle = "italic";
           checkoutMessage.style.margin = "auto";
