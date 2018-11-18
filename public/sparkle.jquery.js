@@ -72,14 +72,14 @@ $.fn.sparkleh = function( options ) {
 
     var sparkle = new Sparkle( $this, settings );
 
-    sparkle.over();
-    /*$this.on({
-      "mouseover focus" : function(e) {
+    //sparkle.over();
+    $fa-shopping-cart.on({
+      "click" : function(e) {
         sparkle.over();
-      },
-      "mouseout blur" : function(e) {
-        sparkle.out();
       }
+      //"mouseout blur" : function(e) {
+      //  sparkle.out();
+    //  }
     });*/
 
   });

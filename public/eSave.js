@@ -80,13 +80,13 @@ function eSave(){
         let shipPriRow = stageTable.appendChild(document.createElement("tr"));
         let shipPri = shipPriRow.appendChild(document.createElement("td"));
         shipPri.textContent = results[0]["SHIPPING_PRICE"];
-        let totPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-        let totPriHeader = totPriHeaderRow.appendChild(document.createElement("th"));
-        totPriHeader.textContent = "RETAILER";
-        totPriHeader.style.textDecoration = "underline";
-        let totPriRow = stageTable.appendChild(document.createElement("tr"));
-        let totPri = totPriRow.appendChild(document.createElement("td"));
-        totPri.textContent = results[0]["TOTAL_PRICE"];
+        let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+        let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
+        finPriHeader.textContent = "ESAVE BEST PRICE";
+        finPriHeader.style.textDecoration = "underline";
+        let finPriRow = stageTable.appendChild(document.createElement("tr"));
+        let finPri = finPriRow.appendChild(document.createElement("td"));
+        finPri.textContent = results[0]["FINAL_PRICE"];
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
