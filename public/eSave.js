@@ -28,14 +28,17 @@ function eSave(){
         sleepFor(2000);
      		let orderStageRight = document.querySelector("#order-stage-right");
         orderStageRight.style.borderColor = "rgb(39, 206, 100)";
-        let shoppingCart = document.querySelector("#shopping-cart-inner");
-        //shoppingCart.classList.toggle("sparkley");
+        let shoppingCart = document.querySelector("#shopping-cart-outer");
         shoppingCart.style.paddingBottom = "0";
         orderStageRightText.innerHTML = "";
         let stageTable = document.createElement("table");
         stageTableCap = stageTable.appendChild(document.createElement("caption"));
         stageTableCap.innerText = "ESave's Best Offer";
         stageTableCap.style.paddingBottom = "20px";
+        stageTableCap.style.captionSide = "top";
+        stageTableCap.style.textAlign = "center";
+        stageTableCap.style.fontSize = "2.5rem";
+        stageTableCap.style.color = "purple";
         stageTable.style.margin = "auto";
         orderStageRight.appendChild(stageTable);
         let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
@@ -93,12 +96,14 @@ function eSave(){
         shipPri.style.paddingBottom = "20px";
         let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
         let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
-        finPriHeader.textContent = "ESAVE BEST PRICE";
+        finPriHeader.textContent = "** ESAVE BEST PRICE **";
         finPriHeader.style.textDecoration = "underline";
+        finPriHeader.style.color = "purplse";
         let finPriRow = stageTable.appendChild(document.createElement("tr"));
         let finPri = finPriRow.appendChild(document.createElement("td"));
         finPri.textContent = results[0]["FINAL_PRICE"] + "$";
         finPri.style.paddingBottom = "20px";
+        finPri.style.color = "rgb(39, 206, 100)";
 
         let checkoutMessageContainter = document.body.appendChild(document.createElement("div"));
         checkoutMessage = checkoutMessageContainter.appendChild(document.createElement("div"));
@@ -149,6 +154,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/24775725/loop-through-childnodes
 // * https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 // * https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+// * https://stackoverflow.com/questions/48647942/table-caption-goes-bottom-using-bootstrap
 
 //We can type at the same time! Just like google Docs...
 //Anyway, I'm just trying to get my http request to the server, and I'm not sure it's making it...
