@@ -86,7 +86,7 @@ $.fn.sparkleh = function( options ) {
       if(charCheck === "N"){
         func();
       }
-    });
+    }
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
