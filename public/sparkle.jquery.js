@@ -76,7 +76,7 @@ $.fn.sparkleh = function( options ) {
     $("#esave-button").click( e => {
       sparkle.over();
       console.log("Before Async running...")
-        sleepFor(2000, sparkle, "#order-stage-right-text");
+        sleepFor(250, sparkle, "#order-stage-right-text");
     });
 
     async function sleepFor(time_ms, sparkle, nodeQS) {
