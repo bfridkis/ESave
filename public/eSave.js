@@ -64,20 +64,6 @@ function eSave(){
   }
 
   async function sleepFor(time_ms, req, qts) {
-    let prevOrderTable = document.querySelector(".order-table");
-    console.log(prevOrderTable);
-    if(prevOrderTable){
-      prevOrderTable.parentNode.removeChild(prevOrderTable);
-    }
-    let prevCheckOutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
-    if(prevCheckOutMessageLinkContainer){
-      prevCheckOutMessageLinkContainer.parentNode.removeChild(checkoutMessageLinkContainter);
-    }
-    let checkoutMessageLinkContainter =
-       document.querySelector("#inner-checkout-message-link-container");
-    checkoutMessageLinkContainter.style.display = "none";
-    let retailerLink = document.querySelector("#retailer-link");
-    retailerLink.setAttribute("href", "");
     await sleep(time_ms);
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
