@@ -23,7 +23,7 @@ function eSave(){
       if(req.status >= 200 && req.status < 400){
         console.log(req.status + " " + req.statusText);
        //window.location.replace("/search");
-      sleepFor(3000, req);
+      sleepFor(1500, req);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
