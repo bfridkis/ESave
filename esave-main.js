@@ -7,13 +7,34 @@
 *******************************************************************/
 var express = require('express');
 var app = express();
+var session  = require('express-session');
+var cookieParser = require('cookie-parser');
+var morgan = require('morgan');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 var mysql = require('./dbcon.js');
+var passport = require('passport');
+var flash    = require('connect-flash');
 //var path = require('path');
 
+require('passport.js')(passport);
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
+
+app.use(session({
+	secret: 'vidyapathaisalwaysrunning',
+	resave: true,
+	saveUninitialized: true
+ } )); // session secret
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+// routes ======================================================================
+require('loginroutes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -42,16 +63,13 @@ app.get('/dev1', (req, res, next) => {
 });*/
 app.use('/search', require('./searchRoute.js')());
 
+app.use('login', require('loginroutes.js'));
 app.get('/login', (req, res, next) => {
 	context = {};
-	context.jsscriptsLoginPage = ["login.js"];
 	context.css = ["loginStyle.css"];
 	context.mainLogo = ["images/logo-medium.jpg"];
 	console.log(req.query);
-	if(req.query){
-
-	}
-		res.render('login/login', context)
+	res.render('login/login', context)
 });
 
 //also leads to login page to prompt user to sign in when they first use the app
@@ -119,4 +137,5 @@ app.listen(app.get('port'), () => {
 ** https://devcenter.heroku.com/articles/git
 ** https://devcenter.heroku.com/articles/cleardb
 ** https://stackoverflow.com/questions/15463199/how-to-set-custom-favicon-in-express
+** https://github.com/manjeshpv/node-express-passport-mysql
 *******************************************************************************************************************/
