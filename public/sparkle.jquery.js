@@ -1,5 +1,6 @@
 /******************************************************************************
-This code is taken directly from https://codepen.io/simeydotme/pen/jgcvi.
+This code is taken directly from https://codepen.io/simeydotme/pen/jgcvi with
+only a few minor modifications made thereto.
 It is distributed under the MIT license. For more details,
 see https://opensource.org/licenses/MIT
 *******************************************************************************/
@@ -77,10 +78,11 @@ $.fn.sparkleh = function( options ) {
       async function sleepFor(time_ms) {
         await sleep(time_ms);
         let textCheck = $("order-stage-right-text").text();
+        console.log("Async running...")
         if(textCheck[0] === "N"){
           sparkle.out();
         }
-        sleepFor(500);
+        sleepFor(1000);
       }
     });
 
