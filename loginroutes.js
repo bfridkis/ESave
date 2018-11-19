@@ -12,13 +12,6 @@ module.exports = function(app, passport) {
 	// =====================================
 	// show the login form
 	app.get('/login', function(req, res) {
-
-		// context = {};
-		// context.css = ["loginStyle.css"];
-		// context.mainLogo = ["images/logo-medium.jpg"];
-		// console.log(req.query);
-		// res.render('login/login', context);
-
 		// render the page and pass in any flash data if it exists
 		res.render('login/login', { message: req.flash('loginMessage') });
 	});
@@ -31,7 +24,6 @@ module.exports = function(app, passport) {
 		}),
         function(req, res) {
             console.log("hello");
-
             if (req.body.remember) {
               req.session.cookie.maxAge = 1000 * 60 * 3;
             } else {
@@ -83,11 +75,11 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	// if they aren't redirect them to the home page
+	// if they aren't redirect them to the login page
 	res.redirect('/');
 }
 
 /*
 References:https://github.com/manjeshpv/node-express-passport-mysql
-
+https://stackoverflow.com/questions/14049294/change-cookie-expiration-in-express
 */
