@@ -54,12 +54,14 @@ module.exports = function(passport) {
                     var newUserMysql = {
                         username: username,
                         password: bcrypt.hashSync(password, null, null), // use the generateHash function in our user model
-                        email: req.body.email
+                        email: req.body.email,
+                        firstname: req.body.firstname,
+                        lastname: req.body.lastname
                     };
 
-                    var insertQuery = "INSERT INTO user ( username, password, email ) values (?,?,?)";
+                    var insertQuery = "INSERT INTO user ( username, password, email, first_name, last_name ) values (?,?,?)";
 
-                    mysql.pool.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.email],function(err, rows) {
+                    mysql.pool.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.email, newUserMysql.firstname, newUserMysql.lastname],function(err, rows) {
                         newUserMysql.id = rows.insertId;
 
                         return done(null, newUserMysql);
