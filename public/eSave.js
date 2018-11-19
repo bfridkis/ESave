@@ -21,6 +21,8 @@ function eSave(){
     let retailerLink = document.querySelector("#retailer-link");
     retailerLink.classList.add("disable_a_href");
     //retailerLink.setAttribute("href", "");
+    let shoppingCartInner = document.querySelector("#shopping-cart-inner");
+    shoppingCartInner.removeChild(document.querySelector(".tooltiptext"));
     let shoppingCartOuter = document.querySelector("#shopping-cart-outer");
     shoppingCartOuter.style.paddingBottom = "25px";
     let orderStageRight = document.querySelector("#stage-wrapper-right");
