@@ -2,23 +2,22 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="loginStyle.css" type="text/css">
-
 </head>
+
 <body>
-
-
 	<div class="main-logo-outer-container">
 		<div class="main-logo-inner-container">
 			<!-- <img src="logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span> -->
 			<img src="images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>
 		</div>
 	</div>
+
 	<br />
 
 	<!-- show any messages that come back with authentication -->
-  {{#if message}}
-    <div class="alert alert-danger">{{message}}</div>
-  {{/if}}
+	{{#if message}}
+		<div class="alert alert-danger">{{message}}</div>
+	{{/if}}
 
 	<!-- LOGIN FORM -->
 	<form action="/signup" method="post">
@@ -29,29 +28,25 @@
 			<label>Username</label>
 			<input type="text" name="username">
 
-
 			<label>Password</label>
 			<input type="password" name="password">
-
-
 
 			<label>Email</label>
 			<input type="text" name="email">
 
+			<button type="submit">Signup</button>
 
-		<button type="submit">Signup</button>
-
-
-
-	</div>
-	<div class="container" style="background-color:#f1f1f1">
-		<p align="center">Already have an account? <a href="/login">Login</a></p>
-	</div>
+		</div>
+		<div class="container" style="background-color:#f1f1f1">
+			<p align="center">Already have an account? <a href="/login">Login</a></p>
+		</div>
 	</form>
 
-
-
-
+	<div id="button-container" align="center">
+		<i class="fab fa-facebook social-button"></i>
+		<i class="fab fa-twitter-square social-button"></i>
+		<i class="fas fa-envelope social-button"></i>
+	</div>
 
 </body>
 
