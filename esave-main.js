@@ -7,13 +7,36 @@
 *******************************************************************/
 var express = require('express');
 var app = express();
+var session  = require('express-session');
+var cookieParser = require('cookie-parser');
+var morgan = require('morgan');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 var mysql = require('./dbcon.js');
+var passport = require('passport');
+var flash    = require('connect-flash');
 //var path = require('path');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+require('./passport.js')(passport);
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+app.use(bodyParser.json());
+
+app.use(session({
+	secret: 'XHsjsjhAUSGhajajhsUIahshT',
+	resave: true,
+	saveUninitialized: true
+ } )); // session secret
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+// routes ======================================================================
+require('./loginroutes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -42,39 +65,21 @@ app.get('/dev1', (req, res, next) => {
 });*/
 app.use('/search', require('./searchRoute.js')());
 
-app.get('/login', (req, res, next) => {
-	context = {};
-	context.jsscriptsLoginPage = ["login.js"];
-	context.css = ["loginStyle.css"];
-	context.mainLogo = ["images/logo-medium.jpg"];
-	console.log(req.query);
-	if(req.query){
-
-	}
-		res.render('login/login', context)
-});
+app.use('/login', require('./loginroutes.js'));
 
 //also leads to login page to prompt user to sign in when they first use the app
 app.get('/', (req, res, next) => {
-	context = {};
-	context.jsscriptsLoginPage = ["login.js"];
-	context.css = ["loginStyle.css"];
-	context.mainLogo = ["images/logo-medium.jpg"];
-	console.log(req.query);
-	if(req.query){
-
-	}
-		res.redirect('/login');
+	res.redirect('/login');
 });
 
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
-app.get('/home', (req,res,next) => {
-	context = {};
-	context.jsscriptsHomePage = ['tableSelectFE.js'];
-	context.css = ["style.css", "homePageStyle.css"];
-	res.render('home', context)
-});
+// app.get('/home', (req,res,next) => {
+// 	context = {};
+// 	context.jsscriptsHomePage = ['tableSelectFE.js'];
+// 	context.css = ["style.css", "homePageStyle.css"];
+// 	res.render('home', context)
+// });
 
 //Table select routers ("middleware")
 app.use('/userTable', require('./tableSelectBE.js')("user"));
@@ -119,4 +124,5 @@ app.listen(app.get('port'), () => {
 ** https://devcenter.heroku.com/articles/git
 ** https://devcenter.heroku.com/articles/cleardb
 ** https://stackoverflow.com/questions/15463199/how-to-set-custom-favicon-in-express
+** https://github.com/manjeshpv/node-express-passport-mysql/blob/master/views/signup.ejs
 *******************************************************************************************************************/

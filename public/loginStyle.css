@@ -22,6 +22,7 @@ form {
     margin-bottom: 50px;
     outline: 3px solid #000000;
     outline-offset: 5px;
+		font-family: 'Righteous', cursive;
 }
 
 /* inputs */

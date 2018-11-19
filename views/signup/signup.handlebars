@@ -1,0 +1,61 @@
+<head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="loginStyle.css" type="text/css">
+
+</head>
+<body>
+
+
+	<div class="main-logo-outer-container">
+		<div class="main-logo-inner-container">
+			<!-- <img src="logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span> -->
+			<img src="images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>
+		</div>
+	</div>
+	<br />
+
+	<!-- show any messages that come back with authentication -->
+  {{#if message}}
+    <div class="alert alert-danger">{{message}}</div>
+  {{/if}}
+
+	<!-- LOGIN FORM -->
+	<form action="/signup" method="post">
+		<br />
+		<h2 align="center"><span class="fa fa-sign-in"></span> Signup</h2>
+
+		<div class="container">
+			<label>Username</label>
+			<input type="text" name="username">
+
+
+			<label>Password</label>
+			<input type="password" name="password">
+
+
+
+			<label>Email</label>
+			<input type="text" name="email">
+
+
+		<button type="submit">Signup</button>
+
+
+
+	</div>
+	<div class="container" style="background-color:#f1f1f1">
+		<p align="center">Already have an account? <a href="/login">Login</a></p>
+	</div>
+	</form>
+
+
+
+
+
+</body>
+
+<!--
+References
+https://github.com/manjeshpv/node-express-passport-mysql
+ -->

@@ -1,10 +1,11 @@
-<html>
+
 
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="../../public/loginStyle.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="loginStyle.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -12,22 +13,27 @@
   <div class="main-logo-outer-container">
     <div class="main-logo-inner-container">
       <!-- <img src="logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span> -->
-      <img src="{{mainLogo}}" class="main-logo"><span id="save-text">$ave</span>
+      <img src="images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>
     </div>
   </div>
   <br />
 
+  <!-- show any messages that come back with authentication -->
+  {{#if message}}
+    <div class="alert alert-danger">{{message}}</div>
+  {{/if}}
+
   <form id="login-page" action="/login" method="post">
 
     <br />
-    <h2 align="center">User Login</h2>
+    <h2 align="center"><span class="fa fa-user"></span> User Login</h2>
 
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
       <br />
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
 
       <button type="submit">Login</button>
       <label>
@@ -36,16 +42,15 @@
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Register</button>
+      <button type="button" class="cancelbtn"><a href="/signup">Register</a></button>
       <span class="psw"><a href="#">Forgot password?</a></span>
     </div>
   </form>
 </body>
 
-</html>
 
 <!--
 References
 https://www.w3schools.com/howto/howto_css_login_form.asp
-
+https://github.com/manjeshpv/node-express-passport-mysql
  -->
