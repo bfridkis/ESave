@@ -26,7 +26,9 @@ module.exports = function(app, passport) {
         function(req, res) {
             console.log("hello");
             if (req.body.remember) {
-              req.session.cookie.maxAge = 2592000;
+							var hour = 3600000;
+							req.session.cookie.expires = new Date(Date.now() + hour);
+							req.session.cookie.maxAge = hour;
             } else {
               req.session.cookie.expires = false;
             }
