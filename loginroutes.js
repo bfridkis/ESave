@@ -25,11 +25,11 @@ module.exports = function(app, passport) {
 		}),
         function(req, res) {
             console.log("hello");
-            if (req.body.remember) {
-              req.session.cookie.maxAge = 2592000;
-            } else {
-              req.session.cookie.expires = false;
-            }
+            // if (req.body.remember) {
+							req.session.cookie.maxAge = 3600000;
+            // } else {
+            //   req.session.cookie.expires = false;
+            // }
         res.redirect('/home');
     });
 
