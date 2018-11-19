@@ -21,8 +21,6 @@ function eSave(){
     let retailerLink = document.querySelector("#retailer-link");
     retailerLink.classList.add("disable_a_href");
     //retailerLink.setAttribute("href", "");
-    let shoppingCartInner = document.querySelector("#shopping-cart-inner");
-    shoppingCartInner.removeChild(document.querySelector(".tooltiptext"));
     let shoppingCartOuter = document.querySelector("#shopping-cart-outer");
     shoppingCartOuter.style.paddingBottom = "25px";
     let orderStageRight = document.querySelector("#stage-wrapper-right");
@@ -183,9 +181,6 @@ function eSave(){
        let retailerLink = document.querySelector("#retailer-link");
        retailerLink.setAttribute("href", "//" + results[0]["RET_WEB_ADD"]);
        retailerLink.classList.remove("disable_a_href");
-       let shoppingCartInner = document.querySelector("#shopping-cart-inner");
-       shoppingCartInner.innerHTML = shoppingCartInner.innerHTML +
-          "<span class='tooltiptext'>" + results[0]["RET_WEB_ADD"].substring(2) + "</span>";
      }
   }
 };
