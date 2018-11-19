@@ -46,10 +46,11 @@ module.exports = function(passport) {
             mysql.pool.query("SELECT * FROM user WHERE username = ?",[username], function(err, rows) {
                 if (err)
                     return done(err);
+                    //check username
                 if (rows.length) {
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
-                    // if there is no user with that username
+                    // if there is no user with that username or email
                     // create the user
                     var newUserMysql = {
                         username: username,
