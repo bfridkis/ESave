@@ -124,9 +124,8 @@ function eSave(){
     let results = JSON.parse(req.responseText);
      //console.log(results);
 
-    //If the results are NULL, print message on right stage accordingly. else {
+    //If the results are NULL, print message on right stage accordingly. Else
     //render results.
-    }
     let orderStageRightText = document.querySelector("#order-stage-right-text");
     if(!results[0]){
        orderStageRightText.innerHTML = "";
