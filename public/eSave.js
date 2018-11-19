@@ -1,11 +1,16 @@
-
+//Function to establish the event listener for the "ESave" (product search) button.
+//Uses an HTTP GET request using Javascript's "XMLHttpRequest" module to query
+//ESave database.
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
   eSaveButton.addEventListener("click", () => {
+
+    //If previous order was staged, clear it
     let prevOrderTable = document.querySelector(".order-table");
     if(prevOrderTable){
       prevOrderTable.parentNode.removeChild(prevOrderTable);
     }
+    //Remove the checkout link message also, if necessary
     let prevCheckOutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
     if(prevCheckOutMessageLinkContainer){
       prevCheckOutMessageLinkContainer.parentNode.removeChild(checkoutMessageLinkContainter);
@@ -176,6 +181,9 @@ function eSave(){
        let retailerLink = document.querySelector("#retailer-link");
        retailerLink.setAttribute("href", "//" + results[0]["RET_WEB_ADD"]);
        retailerLink.classList.remove("disable_a_href");
+       let shoppingCartInner = document.querySelector("#shopping-cart-inner");
+       shoppingCartInner.innerHTML = shoppingCartInner.innerHTML +
+          "<span class='tooltiptext'>" + results[0]["RET_WEB_ADD"].substring(2) + "</span>";
      }
   }
 };
