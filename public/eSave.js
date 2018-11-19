@@ -18,6 +18,8 @@ function eSave(){
     //retailerLink.setAttribute("href", "");
     let shoppingCartOuter = document.querySelector("#shopping-cart-outer");
     shoppingCartOuter.style.paddingBottom = "25px";
+    let orderStageRight = document.querySelector("#stage-wrapper-right");
+    orderStageRight.style.borderColor = "purple";
     let orderStageRightText = document.querySelector("#order-stage-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
     let items = document.getElementsByClassName("searchItem");
