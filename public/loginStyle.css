@@ -105,3 +105,14 @@ span.psw {
   color: purple;
   margin: auto;
 }
+
+.social-button {
+  padding-right: 25px;
+  padding-left: 25px;
+  color: purple;
+}
+
+.social-button:hover {
+  transition: color .1s;
+  color: rgb(39, 206, 100);
+}
