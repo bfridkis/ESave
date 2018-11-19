@@ -56,10 +56,6 @@ app.use('/search', require('./searchRoute.js')(app));
 
 app.use('/login', require('./loginroutes.js'));
 
-//also leads to login page to prompt user to sign in when they first use the app
-app.get('/', (req, res, next) => {
-	res.redirect('/login');
-});
 
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."

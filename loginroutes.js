@@ -3,9 +3,10 @@ module.exports = function(app, passport) {
 	// =====================================
 	// HOME PAGE ========
 	// =====================================
-	// app.get('/home', function(req, res) {
-	// 	res.render('home/home');
-	// });
+	//leads to the login page if the user is not logged in, and to the home page if they are
+	app.get('/', (req, res, next) => {
+		res.redirect('/home');
+	});
 
 	// =====================================
 	// LOGIN ===============================
@@ -76,7 +77,7 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	// if they aren't redirect them to the login page
-	res.redirect('/');
+	res.redirect('/login');
 }
 
 /*
