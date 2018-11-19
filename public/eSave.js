@@ -10,7 +10,7 @@ function eSave(){
     if(prevOrderTable){
       prevOrderTable.parentNode.removeChild(prevOrderTable);
     }
-    //Remove the checkout link message also, if necessary
+    //Remove the checkout link message also, and disable the checkout link if necessary
     let prevCheckOutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
     if(prevCheckOutMessageLinkContainer){
       prevCheckOutMessageLinkContainer.parentNode.removeChild(checkoutMessageLinkContainter);
@@ -21,17 +21,33 @@ function eSave(){
     let retailerLink = document.querySelector("#retailer-link");
     retailerLink.classList.add("disable_a_href");
     //retailerLink.setAttribute("href", "");
+
+    //Re-pad bottom of page if necessary
     let shoppingCartOuter = document.querySelector("#shopping-cart-outer");
     shoppingCartOuter.style.paddingBottom = "25px";
+
+    //Set border color back to purple if necessary
     let orderStageRight = document.querySelector("#stage-wrapper-right");
     orderStageRight.style.borderColor = "purple";
+
+    //Load stage right with "loading" icon
     let orderStageRightText = document.querySelector("#order-stage-right-text");
 		orderStageRightText.innerHTML = '<i class="fas fa-sync fa-spin"></i></i>';
+
+    //Get user inputs for products and quantities
     let items = document.getElementsByClassName("searchItem");
     let qts = document.getElementsByClassName("qtSearchItem");
+
+    //Convert node collections to iterable object using "spread syntax"
+    //See: https://stackoverflow.com/questions/921789/how-to-loop-through-a-plain-javascript-object-with-the-objects-as-members
+    //   : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
     items = [...items];
     qts = [...qts];
+
+    //Establish initial query string
     let queryString = "/search?";
+
+    //Load query string with user inputs
     items.forEach((item, i) => {
       queryString += "p" + (i + 1) + "=" + item.textContent + "&"
                     + "q" + (i + 1) + "=" + qts[i].textContent;
@@ -39,18 +55,31 @@ function eSave(){
         queryString += "&";
       }
     });
-    console.log(queryString);
+
+    //console.log(queryString);
+
+    //Setup new XMLHttpRequest request
     var req = new XMLHttpRequest();
+    //Open GET request, using queryString
     req.open("GET", queryString, true);
+
+    //Event listener for completed GET request
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
-        console.log(req.status + " " + req.statusText);
-       //window.location.replace("/search");
+       //Testing logs...
+       //console.log(req.status + " " + req.statusText);
        //console.log(req.responseText);
-       console.log(queryString);
+       //console.log(queryString);
+
+       //If parameters were sent (i.e. user did not engage ESave button with empty stage),
+       //Wait present loading icon for a minimum of 1.5 seconds, to simulate loading process.
+       //See processESave for remaining logic for processing ESave search request.
+       //(This delay is artifical and can be removed in production by setting the first parameter
+       //of processESave to 0.)
        if(queryString !== "/search?"){
-         sleepFor(1500, req, qts);
+         processESave(1500, req, qts);
        }
+       //If no products were staged, print message on right stage accordingly.
        else{
          orderStageRightText.innerHTML =
             'Add products and click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>';
@@ -63,6 +92,7 @@ function eSave(){
     req.send(null);
   });
 
+  //Event listener to clear product (left) stage when user clicks the "X" button
   let clearButton = document.querySelector("#clear-button");
   clearButton.addEventListener("click", () => {
     let rows = document.getElementsByClassName("searchItemRow");
@@ -74,30 +104,49 @@ function eSave(){
     });
   });
 
-  //The following two functions provide a mechanism to "sleep"
-  //They are taken directly from here: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+  //Sleep provides a way to simulate the loading process. It can be removed in
+  //production by setting the first parameter of processESave to 0.
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async function sleepFor(time_ms, req, qts) {
+  async function processESave(time_ms, req, qts) {
+    //Simulate loading time
     await sleep(time_ms);
+
+    //This is used to maintain the size/height of the product input (left) stage
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
+
     //console.log(req.responseText);
+
+    //Parse the results and save in results array
     let results = JSON.parse(req.responseText);
-     console.log(results);
-     let orderStageRightText = document.querySelector("#order-stage-right-text");
-     if(!results[0]){
+     //console.log(results);
+
+    //If the results are NULL, print message on right stage accordingly. else {
+    //render results.
+    }
+    let orderStageRightText = document.querySelector("#order-stage-right-text");
+    if(!results[0]){
        orderStageRightText.innerHTML = "";
        orderStageRightText.innerText = "No results. Please modify your search and try again."
      }
      else{
+       //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
        let orderStageRight = document.querySelector("#stage-wrapper-right");
        orderStageRight.style.borderColor = "rgb(39, 206, 100)";
+
+       //Remove padding from bottom of shopping cart (because a checkout message will
+       //be added underneath it shortly...
        let shoppingCart = document.querySelector("#shopping-cart-outer");
        shoppingCart.style.paddingBottom = "0";
+
+       //Clear right stage's previous content.
        orderStageRightText.innerHTML = "";
+
+       //Create and format a table for the right stage. This will hold product results.
+       //Append the table to the right stage.
        let stageTable = document.createElement("table");
        stageTable.classList.add("order-table");
        stageTableCap = stageTable.appendChild(document.createElement("caption"));
@@ -109,6 +158,8 @@ function eSave(){
        stageTableCap.style.color = "purple";
        stageTable.style.margin = "auto";
        orderStageRight.appendChild(stageTable);
+
+       //Add product name header and product name to result table.
        let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
        prodNameHeader.textContent = "PRODUCT";
@@ -117,6 +168,8 @@ function eSave(){
        let prodName = prodNameRow.appendChild(document.createElement("td"));
        prodName.textContent = results[0]["PROD_NAME"];
        prodName.style.paddingBottom = "20px";
+
+       //Add retailer name header and retailer name to result table.
        let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let retNameHeader = retNameHeaderRow.appendChild(document.createElement("th"));
        retNameHeader.textContent = "RETAILER";
@@ -125,6 +178,8 @@ function eSave(){
        let retName = retNameRow.appendChild(document.createElement("td"));
        retName.textContent = results[0]["RET_NAME"];
        retName.style.paddingBottom = "20px";
+
+       //Add price per unit header and price per unit to result table.
        let ppuHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
        ppuHeader.textContent = "PRICE PER UNIT";
@@ -133,6 +188,9 @@ function eSave(){
        let ppu = ppuRow.appendChild(document.createElement("td"));
        ppu.textContent = results[0]["PRICE_PER_UNIT"] + "$";
        ppu.style.paddingBottom = "20px";
+
+       //Add initial price (price before shipping and promotions are applied) header
+       //and initial price to results table.
        let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
        initPriHeader.textContent = "TOTAL PRODUCT COST";
@@ -147,6 +205,8 @@ function eSave(){
        initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$)";
        //initPriBDS.style.whiteSpace = "nowrap";
        initPriBDS.style.paddingBottom = "20px";
+
+       //Add total discount header and total discount to results table.
        let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
        totDiscHeader.textContent = "TOTAL DISCOUNT";
@@ -155,6 +215,8 @@ function eSave(){
        let totDisc = totDiscRow.appendChild(document.createElement("td"));
        totDisc.textContent = "-" + results[0]["TOTAL_DISCOUNT"] + "$";
        totDisc.style.paddingBottom = "20px";
+
+       //Add shipping price header and shipping price to results table.
        let shipPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let shipPriHeader = shipPriHeaderRow.appendChild(document.createElement("th"));
        shipPriHeader.textContent = "SHIPPING COST";
@@ -163,6 +225,9 @@ function eSave(){
        let shipPri = shipPriRow.appendChild(document.createElement("td"));
        shipPri.textContent = results[0]["SHIPPING_PRICE"] + "$";
        shipPri.style.paddingBottom = "20px";
+
+       //Add final price (price after shipping and promotions have been applied) header
+       //and final price to result table.
        let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
        finPriHeader.innerHTML = "<span style='color:rgb(39, 206, 100)'>$$</span> " +
@@ -176,6 +241,9 @@ function eSave(){
        finPri.style.color = "rgb(39, 206, 100)";
        orderStageLeft.style.height = orderStageLeftHeight + "px";
 
+       //Add checkout message to bottom of ESave shopping cart at bottom of page.
+       //Set the shopping cart and checkout message to link to the retailer for
+       //ESave result.
        let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
        checkoutMessageLinkContainer.style.display = "block";
        let retailerLink = document.querySelector("#retailer-link");
