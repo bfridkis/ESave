@@ -27,7 +27,8 @@ app.use(bodyParser.json());
 app.use(session({
 	secret: 'XHsjsjhAUSGhajajhsUIahshT',
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true,
+	cookie: { maxAge: 1000 * 3600 * 24 * 30 * 2 }
  } )); // session secret
 
 app.use(passport.initialize());
