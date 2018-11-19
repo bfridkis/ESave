@@ -56,22 +56,31 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
               } else {
                 // if there is no user with that username or email
-                // create the user
-                var newUserMysql = {
-                  username: username,
-                  password: bcrypt.hashSync(password, null, null), // use the generateHash function in our user model
-                  email: req.body.email,
-                  firstname: req.body.firstname,
-                  lastname: req.body.lastname
-                };
 
-                var insertQuery = "INSERT INTO user ( username, password, email, first_name, last_name ) values (?,?,?,?,?)";
+                //we check if the two password fields match
+                if (password != req.body.passwordrepeat)
+                {
+                  return done(null, false, req.flash('signupMessage', 'Passwords do not match. Please try again.'));
+                }
 
-                mysql.pool.query(insertQuery, [newUserMysql.username, newUserMysql.password, newUserMysql.email, newUserMysql.firstname, newUserMysql.lastname], function(err, rows) {
-                  newUserMysql.id = rows.insertId;
+                else {
+                  // otherwise, create the user
+                  var newUserMysql = {
+                    username: username,
+                    password: bcrypt.hashSync(password, null, null), // use the generateHash function in our user model
+                    email: req.body.email,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname
+                  };
 
-                  return done(null, newUserMysql);
-                });
+                  var insertQuery = "INSERT INTO user ( username, password, email, first_name, last_name ) values (?,?,?,?,?)";
+
+                  mysql.pool.query(insertQuery, [newUserMysql.username, newUserMysql.password, newUserMysql.email, newUserMysql.firstname, newUserMysql.lastname], function(err, rows) {
+                    newUserMysql.id = rows.insertId;
+
+                    return done(null, newUserMysql);
+                  });  
+                }
               }
             });
           }

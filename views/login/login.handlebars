@@ -1,27 +1,27 @@
 
-
-<head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="loginStyle.css" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-</head>
-
 <body>
-
+<link rel="stylesheet" type="text/css" href="loginStyle.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <div class="main-logo-outer-container">
     <div class="main-logo-inner-container">
-      <!-- <img src="logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span> -->
       <img src="images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>
     </div>
   </div>
   <br />
 
   <!-- show any messages that come back with authentication -->
-  {{#if message}}
-    <div class="alert alert-danger">{{message}}</div>
-  {{/if}}
+{{#if message}}
+  <!-- <div class="alert alert-danger">{{message}}</div> -->
+  <div class="alert-container">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+{{/if}}
 
   <form id="login-page" action="/login" method="post">
 
