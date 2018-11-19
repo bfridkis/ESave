@@ -59,7 +59,7 @@ module.exports = function(passport) {
                         lastname: req.body.lastname
                     };
 
-                    var insertQuery = "INSERT INTO user ( username, password, email, first_name, last_name ) values (?,?,?)";
+                    var insertQuery = "INSERT INTO user ( username, password, email, first_name, last_name ) values (?,?,?,?,?)";
 
                     mysql.pool.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.email, newUserMysql.firstname, newUserMysql.lastname],function(err, rows) {
                         newUserMysql.id = rows.insertId;
