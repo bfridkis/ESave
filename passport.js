@@ -54,12 +54,14 @@ module.exports = function(passport) {
                     var newUserMysql = {
                         username: username,
                         password: bcrypt.hashSync(password, null, null), // use the generateHash function in our user model
-                        email: req.body.email
+                        email: req.body.email,
+                        firstname: req.body.firstname,
+                        lastname: req.body.lastname
                     };
 
-                    var insertQuery = "INSERT INTO user ( username, password, email ) values (?,?,?)";
+                    var insertQuery = "INSERT INTO user ( username, password, email, first_name, last_name ) values (?,?,?,?,?)";
 
-                    mysql.pool.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.email],function(err, rows) {
+                    mysql.pool.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.email, newUserMysql.firstname, newUserMysql.lastname],function(err, rows) {
                         newUserMysql.id = rows.insertId;
 
                         return done(null, newUserMysql);
@@ -78,12 +80,11 @@ module.exports = function(passport) {
     passport.use(
         'local-login',
         new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
             usernameField : 'username',
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) { // callback with email and password from our form
+        function(req, username, password, done) { // callback with username and password from our form
             mysql.pool.query("SELECT * FROM user WHERE username = ?",[username], function(err, rows){
                 if (err)
                     return done(err);
