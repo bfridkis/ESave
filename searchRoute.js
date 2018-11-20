@@ -8,7 +8,7 @@ module.exports = (app) => {
 		var callbackCount = 0;
 		var eSaveResults = [];
 		context = {};
-		context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
+		context.jsscripts = ["sparkle.jquery.js", "search.js", "eSave.js"];
 		context.css = ["sparkle.css", "searchStyle.css"];
 		context.navbarLogo = ["images/logo.jpg"];
 		context.mainLogo = ["images/logo-medium.jpg"];
