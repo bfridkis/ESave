@@ -17,6 +17,18 @@ module.exports = function(app, passport) {
 		res.render('login/login', { message: req.flash('loginMessage') });
 	});
 
+
+	app.use( function (req, res, next) {
+    if ( req.method == 'POST' && req.url == '/login' ) {
+      if ( req.body.remember ) {
+        req.session.cookie.maxAge = 30*24*60*60*1000; // Rememeber 'me' for 30 days
+      } else {
+        req.session.cookie.expires = false;
+      }
+    }
+    next();
+});
+
 	// process the login form
 	app.post('/login', passport.authenticate('local-login', {
             successRedirect : '/', // redirect to the secure home section
@@ -25,14 +37,16 @@ module.exports = function(app, passport) {
 		}),
         function(req, res) {
             console.log("hello");
-
-            if (req.body.remember) {
-              req.session.cookie.maxAge = 1000 * 3600 * 24 * 30 * 2 ;
-            } else {
-              req.session.cookie.expires = false;
-            }
+						//
+            // if (req.body.remember) {
+            //   req.session.cookie.maxAge = 1000 * 3600 * 24 * 30 * 2 ;
+            // } else {
+            //   req.session.cookie.expires = false;
+            // }
         res.redirect('/');
     });
+
+
 
 	// =====================================
 	// SIGNUP ==============================
