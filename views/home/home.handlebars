@@ -1,5 +1,37 @@
-<body>
-  <h1>WELCOME TO ESAVE, {{user.username}}</h1>
-</body>
+<head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="homePageStyle.css" type="text/css">
+</head>
 
-<a href="/logout">Logout</a>
+<body>
+    <div class="main-logo-outer-container">
+        <div class="main-logo-inner-container">
+            <img src="images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>
+        </div>
+    </div>
+    <br />
+    <div id=profile-wrapper>
+        <br />
+        <div class="container">
+            <ul style="list-style-type:none">
+                <li><i class="fas fa-user"></i>{{user.first_name}} {{user.last_name}}</li>
+                <a href ='/search'><li>PRODUCT SEARCH</li></a>
+                <a href ='#'><li>HISTORY</li></a>
+                <a href ='#'><li>FAVORITES</li></a>
+                <a href ='#'><li>MESSAGES</li></a>
+                <a href ='#'><li>PROFILE SETTINGS</li></a>
+                <a href ='#'><li>RECOMMENDED FOR YOU</li></a>
+                <a href ='#'><li>WISH LIST</li></a>
+            </ul>
+        </div>
+        <div class="container" style="background-color:purple">
+        </div>
+    </div>
+    <a href="/logout"><button>Logout</button></a>
+    <div id="button-container" align="center">
+        <i class="fab fa-facebook social-button"></i>
+        <i class="fab fa-twitter-square social-button"></i>
+        <i class="fas fa-envelope social-button"></i>
+    </div>
+</body>
