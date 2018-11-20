@@ -52,7 +52,7 @@ app.get('/dev1', (req, res, next) => {
 });
 
 
-app.use('/search', require('./searchRoute.js'));
+app.use('/search', require('./searchRoute.js')(app));
 
 app.use('/login', require('./loginroutes.js'));
 

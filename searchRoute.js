@@ -1,7 +1,7 @@
-module.exports = () => {
+module.exports = (app) => {
 	var express = require('express');
 	var router = express.Router();
-	var app = express();
+	//var app = express();
 
 	router.get('/', isLoggedIn, (req, res, next) => {
 		//var searchRouteEsave = req.app.get('./searchRouteEsave');
