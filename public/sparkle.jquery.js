@@ -75,14 +75,13 @@ $.fn.sparkleh = function( options ) {
 
     $("#esave-button").click( e => {
       sparkle.over();
-      console.log("Before Async running...")
         sleepFor(2000, sparkle, "#order-stage-right-text");
     });
 
     async function sleepFor(time_ms, sparkle, nodeQS) {
       await sleep(time_ms);
       let charCheck = document.querySelector(nodeQS).textContent[0];
-      console.log("charCheck", charCheck);
+      //console.log("charCheck", charCheck);
       if(charCheck === "N" || charCheck === "A"){
         sparkle.out();
       }

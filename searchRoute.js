@@ -1,9 +1,9 @@
-module.exports = () => {
+module.exports = (app) => {
 	var express = require('express');
 	var router = express.Router();
-	var app = express();
+	//var app = express();
 
-	router.get('/', (req, res, next) => {
+	router.get('/', isLoggedIn, (req, res, next) => {
 		//var searchRouteEsave = req.app.get('./searchRouteEsave');
 		var callbackCount = 0;
 		var eSaveResults = [];
@@ -43,7 +43,7 @@ module.exports = () => {
 														"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' "+
 														"OR promotion.min_spend IS NULL) AND " +
 														"(promotion.qt_required <= '" + req.query[qtKey] + "' OR promotion.qt_required IS NULL) " +
-														"GROUP BY product.id ORDER BY FINAL_PRICE ASC LIMIT 1",
+														"GROUP BY retailer.id, product.id ORDER BY FINAL_PRICE ASC LIMIT 1",
 		      (err, rows, fields) => {
 		        if(err){
 		          res.write(JSON.stringify(err));
@@ -61,6 +61,7 @@ module.exports = () => {
 		}
 
 		else{
+			context.user = req.user.username;
 			res.render('search/search', context)
 		}
 
@@ -76,6 +77,16 @@ module.exports = () => {
 
 };
 
+// route middleware to make sure
+function isLoggedIn(req, res, next) {
+
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to the login page
+	res.redirect('/');
+}
 
 
 // References

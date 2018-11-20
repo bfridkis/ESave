@@ -3,9 +3,10 @@ module.exports = function(app, passport) {
 	// =====================================
 	// HOME PAGE ========
 	// =====================================
-	// app.get('/home', function(req, res) {
-	// 	res.render('home/home');
-	// });
+	//leads to the login page if the user is not logged in, and to the home page if they are
+	app.get('/', (req, res, next) => {
+		res.redirect('/home');
+	});
 
 	// =====================================
 	// LOGIN ===============================
@@ -16,21 +17,31 @@ module.exports = function(app, passport) {
 		res.render('login/login', { message: req.flash('loginMessage') });
 	});
 
+
+	// set user cookies based on if remember me checkbox is checked or not
+	app.use( function (req, res, next) {
+    if ( req.method == 'POST' && req.url == '/login' ) {
+      if ( req.body.remember ) {
+        req.session.cookie.maxAge = 30*24*60*60*1000; // Rememeber 'me' for 30 days
+      } else {
+        req.session.cookie.expires = false;
+      }
+    }
+    next();
+});
+
 	// process the login form
 	app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/home', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            successRedirect : '/', // redirect to the secure home section
+            failureRedirect : '/login', // redirect back to the login page if there is an error
             failureFlash : true // allow flash messages
 		}),
         function(req, res) {
             console.log("hello");
-            if (req.body.remember) {
-              req.session.cookie.maxAge = 1000 * 60 * 3;
-            } else {
-              req.session.cookie.expires = false;
-            }
-        res.redirect('/home');
+        res.redirect('/');
     });
+
+
 
 	// =====================================
 	// SIGNUP ==============================
@@ -76,10 +87,10 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	// if they aren't redirect them to the login page
-	res.redirect('/');
+	res.redirect('/login');
 }
 
 /*
 References:https://github.com/manjeshpv/node-express-passport-mysql
-https://stackoverflow.com/questions/14049294/change-cookie-expiration-in-express
+https://stackoverflow.com/questions/15504950/set-individual-maxage-for-sessions-when-using-cookiesession-in-connect-express
 */

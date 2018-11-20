@@ -51,26 +51,11 @@ app.get('/dev1', (req, res, next) => {
 	res.render('dev1', context)
 });
 
-/*app.get('/search', (req, res, next) => {
-	context = {};
-	context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
-	context.css = ["sparkle.css", "searchStyle.css"];
-	context.navbarLogo = ["images/logo.jpg"];
-	context.mainLogo = ["images/logo-medium.jpg"];
-	console.log(req.query); //*************************
-	if(req.query){
 
-	}
-		res.render('search/search', context)
-});*/
-app.use('/search', require('./searchRoute.js')());
+app.use('/search', require('./searchRoute.js')(app));
 
-app.use('/login', require('./loginroutes.js'));
+//app.use('/login', require('./loginroutes.js'));
 
-//also leads to login page to prompt user to sign in when they first use the app
-app.get('/', (req, res, next) => {
-	res.redirect('/login');
-});
 
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
