@@ -59,11 +59,11 @@ app.use('/search', require('./searchRoute.js')(app));
 
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
-// app.get('/home', (req,res,next) => {
-// 	context = {};
-// 	context.jsscriptsHomePage = ['tableSelectFE.js'];
-// 	context.css = ["style.css", "homePageStyle.css"];
-// 	res.render('home', context)
+//app.get('/home', (req,res,next) => {
+ //	context = {};
+ //	context.jsscriptsHomePage = ['tableSelectFE.js'];
+ //	context.css = ["style.css", "homePageStyle.css"];
+ //	res.render('home', context)
 // });
 
 //Table select routers ("middleware")
