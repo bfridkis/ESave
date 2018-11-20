@@ -8,10 +8,6 @@ body {
   color: rgb(255, 254, 244);
 }
 
-.fa-user {
-  padding-right: 20px;
-}
-
 .navbar-button:hover {
   opacity: 0.9;
   color: rgb(39, 206, 100);
