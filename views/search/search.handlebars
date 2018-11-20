@@ -14,106 +14,106 @@
   </head>
 -->
 
-  <body>
-    <nav class="navbar fixed-top navbar-expand navbar-light bg-light">
-      <!--<a class="navbar-brand" href="#"><img src="../../public/images/logo.jpg" class="banner-logo"></a>-->
-      <a class="navbar-brand" href="/"><img src="{{navbarLogo}}" class="banner-logo"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li id="logged-in-message" class="nav-item">
-            (Logged in as {{user}})
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/" data-toggle="tooltip" data-placement="top" title="Home">
-              <i class="fas fa-user navbar-button"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
-              <i class="fas fa-cog navbar-button"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout" data-toggle="tooltip" data-placement="top" title="Logout">
-              <i class="fas fa-door-closed navbar-button"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <div class="main-logo-outer-container">
-      <div class="main-logo-inner-container">
-        <!--<img src="../../public/images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>-->
-        <img src="{{mainLogo}}" class="main-logo"><span id="save-text">$ave</span>
-      </div>
+  <nav class="navbar fixed-top navbar-expand navbar-light bg-light">
+    <!--<a class="navbar-brand" href="#"><img src="../../public/images/logo.jpg" class="banner-logo"></a>-->
+    <a class="navbar-brand" href="/"><img src="{{navbarLogo}}" class="banner-logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li id="logged-in-message" class="nav-item">
+          (Logged in as {{user}})
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/" data-toggle="tooltip" data-placement="top" title="Home">
+            <i class="fas fa-user navbar-button"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
+            <i class="fas fa-cog navbar-button"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" data-toggle="tooltip" data-placement="top" title="Logout">
+            <i class="fas fa-door-closed navbar-button"></i>
+          </a>
+        </li>
+      </ul>
     </div>
+  </nav>
 
-    <div class="quantity-label">Quantity</div>
-    <div class="input-group mb-3">
-      <input type="number" label="Quantity" id="quantity" class="form-control" min="1" value="1">
-      <input type="text" class="form-control" placeholder="Enter product name, model, upc, or description..."
-       aria-describedby="basic-addon2" id="prodInput">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">+</button>
-      </div>
+  <div class="main-logo-outer-container">
+    <div class="main-logo-inner-container">
+      <!--<img src="../../public/images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>-->
+      <img src="{{mainLogo}}" class="main-logo"><span id="save-text">$ave</span>
     </div>
+  </div>
 
-    <div id="order-stage">
-      <div id="order-stage-left">
-        <div id="stage-wrapper-left">
-          <table id="order-stage-table">
-            <thead>
-              <tr>
-                <th class="order-stage-table-headings" scope="col">Searching For</th>
-                <th class="order-stage-table-headings quantity-heading" scope="col">Quantity</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-        <div class="button-stage-wrapper">
-          <div id="button-stage-left">
-            <i id="esave-button" class="fas fa-check-square" data-toggle="tooltip"
-                data-placement="top" title="Click to ESave!"></i>
-            <i id="clear-button" class="fas fa-times-circle" data-toggle="tooltip"
-                data-placement="top" title="Clear"></i>
-          </div>
-        </div>
+  <div class="quantity-label">Quantity</div>
+  <div class="input-group mb-3">
+    <input type="number" label="Quantity" id="quantity" class="form-control" min="1" value="1">
+    <input type="text" class="form-control" placeholder="Enter product name, model, upc, or description..."
+     aria-describedby="basic-addon2" id="prodInput">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button">+</button>
+    </div>
+  </div>
+
+  <div id="order-stage">
+    <div id="order-stage-left">
+      <div id="stage-wrapper-left">
+        <table id="order-stage-table">
+          <thead>
+            <tr>
+              <th class="order-stage-table-headings" scope="col">Searching For</th>
+              <th class="order-stage-table-headings quantity-heading" scope="col">Quantity</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
-      <div id="order-stage-right">
-        <div id="stage-wrapper-right">
-          <span id="order-stage-right-text">
-            Click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>
-        </div>
-        <div class="button-stage-wrapper">
-          <div id="button-stage-right">
-            <i class="fab fa-facebook button-stage-right-button"></i>
-            <i class="fab fa-twitter-square button-stage-right-button"></i>
-            <i class="fas fa-envelope button-stage-right-button"></i>
-          </div>
+      <div class="button-stage-wrapper">
+        <div id="button-stage-left">
+          <i id="esave-button" class="fas fa-check-square" data-toggle="tooltip"
+              data-placement="top" title="Click to ESave!"></i>
+          <i id="clear-button" class="fas fa-times-circle" data-toggle="tooltip"
+              data-placement="top" title="Clear"></i>
         </div>
       </div>
     </div>
+    <div id="order-stage-right">
+      <div id="stage-wrapper-right">
+        <span id="order-stage-right-text">
+          Click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>
+      </div>
+      <div class="button-stage-wrapper">
+        <div id="button-stage-right">
+          <i class="fab fa-facebook button-stage-right-button"></i>
+          <i class="fab fa-twitter-square button-stage-right-button"></i>
+          <i class="fas fa-envelope button-stage-right-button"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <a href="" target="_blank" id="retailer-link" class="disable_a_href">
-      <div id="shopping-cart-outer">
-        <div id="shopping-cart-inner" class="sparkley">
-          <i class="fas fa-shopping-cart"></i>
-        </div>
+  <a href="" target="_blank" id="retailer-link" class="disable_a_href">
+    <div id="shopping-cart-outer">
+      <div id="shopping-cart-inner" class="sparkley">
+        <i class="fas fa-shopping-cart"></i>
       </div>
-      <div>
-        <div id="inner-checkout-message-link-container">
-          Click here for checkout!
-        </div>
+    </div>
+    <div>
+      <div id="inner-checkout-message-link-container">
+        Click here for checkout!
       </div>
-    </a>
+    </div>
+  </a>
 
   <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -143,8 +143,6 @@
     * https://stackoverflow.com/questions/37831837/gradient-text-color
     * https://www.w3schools.com/cssref/pr_text_text-decoration.asp
     -->
-  </body>
-
   <!--<script src="../../public/sparkle.jquery.js"></script>
   <script src="../../public/search.js"></script>
   <script src="../../public/eSave.js"></script>
