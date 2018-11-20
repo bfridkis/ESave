@@ -65,6 +65,11 @@ button:hover {
     padding: 16px;
 }
 
+/* Add padding to containers */
+.inputContainer {
+    padding: 10px;
+}
+
 /* The "Forgot password" text */
 span.psw {
     float: right;
