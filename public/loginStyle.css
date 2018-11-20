@@ -44,7 +44,7 @@ input[type=text], input[type=password] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-family: 'Righteous', cursive;
+    font-family: 'FontAwesome', cursive;
 }
 
 /* Add a hover effect for buttons */
