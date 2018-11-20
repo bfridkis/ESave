@@ -54,7 +54,7 @@ app.get('/dev1', (req, res, next) => {
 
 app.use('/search', require('./searchRoute.js')(app));
 
-app.use('/login', require('./loginroutes.js'));
+//app.use('/login', require('./loginroutes.js'));
 
 
 //Note there is not yet a "home.handlebars" in the views directory,
