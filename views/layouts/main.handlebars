@@ -13,10 +13,12 @@
 	{{/each}}
 
 </head>
-{{#each jsscripts}}
-	<script src="{{this}}" defer></script>
-{{/each}}
 <body>
 	{{{body}}}
 </body>
+<!-- Not working as intended
+{{#each jsscripts}}
+	<script src="{{this}}" defer></script>
+{{/each}}
+-->
 </html>
