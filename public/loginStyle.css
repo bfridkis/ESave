@@ -38,7 +38,8 @@ form button {
 
 /* inputs */
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 95%;
+		margin-left: auto;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -63,12 +64,6 @@ button:hover {
 /* Add padding to containers */
 .container {
     padding: 16px;
-}
-
-/* Add padding to containers */
-.inputContainer {
-    padding: 10px;
-		margin-left: auto;
 }
 
 /* The "Forgot password" text */
