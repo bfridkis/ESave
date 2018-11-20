@@ -11,10 +11,11 @@
 	{{#each css}}
 		<link rel="stylesheet" type="text/css" href="{{this}}"></script>
 	{{/each}}
-	{{#each jsscripts}}
-		<script src="{{this}}" defer></script>
-	{{/each}}
+
 </head>
+{{#each jsscripts}}
+	<script src="{{this}}" defer></script>
+{{/each}}
 <body>
 	{{{body}}}
 </body>
