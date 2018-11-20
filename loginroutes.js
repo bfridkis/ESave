@@ -18,6 +18,7 @@ module.exports = function(app, passport) {
 	});
 
 
+	// set user cookies based on if remember me checkbox is checked or not
 	app.use( function (req, res, next) {
     if ( req.method == 'POST' && req.url == '/login' ) {
       if ( req.body.remember ) {
@@ -37,12 +38,6 @@ module.exports = function(app, passport) {
 		}),
         function(req, res) {
             console.log("hello");
-						//
-            // if (req.body.remember) {
-            //   req.session.cookie.maxAge = 1000 * 3600 * 24 * 30 * 2 ;
-            // } else {
-            //   req.session.cookie.expires = false;
-            // }
         res.redirect('/');
     });
 
@@ -97,5 +92,5 @@ function isLoggedIn(req, res, next) {
 
 /*
 References:https://github.com/manjeshpv/node-express-passport-mysql
-https://stackoverflow.com/questions/14049294/change-cookie-expiration-in-express
+https://stackoverflow.com/questions/15504950/set-individual-maxage-for-sessions-when-using-cookiesession-in-connect-express
 */
