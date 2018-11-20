@@ -9,14 +9,13 @@
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 	{{#each css}}
-		<link rel="stylesheet" type="text/css" href="{{this}}" defer></script>
+		<link rel="stylesheet" type="text/css" href="{{this}}"></script>
 	{{/each}}
-
+	{{#each jsscripts}}
+		<script src="{{this}}" defer></script>
+	{{/each}}
 </head>
 <body>
 	{{{body}}}
-	{{#each jsscripts}}
-		<script src="{{this}}"></script>
-	{{/each}}
 </body>
 </html>
