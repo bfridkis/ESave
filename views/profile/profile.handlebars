@@ -1,0 +1,62 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="profilePageStyle.css" type="text/css">
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-expand navbar-light bg-light">
+    <a class="navbar-brand" href="/"><img src="{{navbarLogo}}" class="banner-logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li id="logged-in-message" class="nav-item">
+          (Logged in as {{userdata.username}})
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/" data-toggle="tooltip" data-placement="top" title="Home">
+            <i class="fas fa-user navbar-button"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
+            <i class="fas fa-cog navbar-button"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" data-toggle="tooltip" data-placement="top" title="Logout">
+            <i class="fas fa-door-closed navbar-button"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+    <div class="main-logo-outer-container">
+        <div class="main-logo-inner-container">
+            <img src="images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>
+        </div>
+    </div>
+    <br />
+    <div id=profile-wrapper>
+        <br />
+        <div class="container">
+            <ul style="list-style-type:none">
+
+              <li>username: {{userdata.username}}</li>
+              <li>first name: {{userdata.first_name}}</li>
+              <li>last name: {{userdata.last_name}}</li>
+              <li>email: {{userdata.email}}</li>
+            </ul>
+        </div>
+        <div class="container" style="background-color:purple">
+        </div>
+    </div>
+</body>
+
+
+<!--{{#each jsscriptsDevHomePage}}
+        <script src="{{this}}"></script>
+{{/each}}-->

@@ -1,0 +1,104 @@
+body {
+    background-color: rgb(255, 254, 244);
+    font-family: 'Righteous', cursive;
+    color: white;
+}
+
+#profile-wrapper {
+    border: 3px dashed white;
+    max-width: 400px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    outline: 3px solid #000000;
+    outline-offset: 5px;
+    font-family: 'Righteous', cursive;
+    background-color: purple;
+
+}
+
+.bg-light {
+   background-color: purple !important;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: white;
+}
+
+i {
+    font-size: 50px;
+    margin-right: 30px;
+}
+
+li {
+    margin: 0 0 10px 0;
+    font-size: 25px;
+}
+
+button {
+    background-color: rgb(39, 206, 100);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40% font-family: 'Righteous', cursive;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    transition: color .3s;
+    background-color: purple;
+}
+
+.container {
+    padding: 16px;
+}
+
+
+.main-logo-outer-container {
+    display: flex;
+    padding-top: 85px;
+}
+
+.main-logo-inner-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-logo {
+    border-radius: 5px;
+    margin: auto;
+    vertical-align: bottom;
+}
+
+#save-text {
+    font-size: 6rem;
+    color: purple;
+    margin: auto;
+}
+
+
+.navbar-button {
+  font-size: 40px;
+  color: rgb(255, 254, 244);
+}
+
+.navbar-button:hover {
+  opacity: 0.9;
+  color: rgb(39, 206, 100);
+}
+
+
+.navbar-nav {
+  margin-left: auto;
+  margin-right: 15px;
+  color: purple;
+}

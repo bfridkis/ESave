@@ -54,17 +54,18 @@ app.get('/dev1', (req, res, next) => {
 
 app.use('/search', require('./searchRoute.js')(app));
 
-//app.use('/login', require('./loginroutes.js'));
+app.use('/profile', require('./profileRoute.js')(app));
 
 
 //Note there is not yet a "home.handlebars" in the views directory,
 //so this currently leads nowhere..."
-//app.get('/home', (req,res,next) => {
- //	context = {};
- //	context.jsscriptsHomePage = ['tableSelectFE.js'];
- //	context.css = ["style.css", "homePageStyle.css"];
- //	res.render('home', context)
-// });
+/*app.get('/profile', (req,res,next) => {
+	context = {};
+	context.jsscriptsHomePage = ['profileroutes.js'];
+	//context.css = ["style.css", "homePageStyle.css"];
+	context.user = req.user.username;
+	res.render('profile', context);	
+});*/
 
 //Table select routers ("middleware")
 app.use('/userTable', require('./tableSelectBE.js')("user"));
