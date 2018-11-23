@@ -43,20 +43,33 @@
     <div id=profile-wrapper>
         <br />
         <div class="container">
-            <ul style="list-style-type:none">
-
-              <li>username: {{userdata.username}}</li>
-              <li>first name: {{userdata.first_name}}</li>
-              <li>last name: {{userdata.last_name}}</li>
-              <li>email: {{userdata.email}}</li>
-            </ul>
+          <!--<form class="" name = "form" method="post" action="/profile" enctype="x-www-form-urlencoded">
+            <fieldset>
+              <input type="text" id="username_input" name="username" value='{{userdata.username}}'> </input>
+              <input type="text" id="firstname_input" name="firstname" value='{{userdata.first_name}}'> </input>
+              <input type="text" id="lastname_input" name="lastname" value='{{userdata.last_name}}'> </input>
+              <input type="text" id="email_input" name="email" value='{{userdata.email}}'> </input>
+              <input type='submit' id = "saveBtn" name='saveBtn' value='save'> </input>
+              </fieldset>
+          </form>-->
+      <form name="profile_form" action="/profile" method="post">
+      <fieldset>
+          <legend>PROFILE</legend>
+            <label>Username:
+              <input type="text" id='username_input' name="username" value='{{user.username}}'/> </label><br><br>
+            <label>First Name:
+              <input type="text" id='firstname_input' name="firstname" value='{{user.first_name}}'/> </label><br><br>
+            <label>Last Name:
+              <input type="text" id = 'lastname_input'name="lastname" value='{{user.last_name}}'/> </label> <br><br>
+           <label>Email:
+                <input type="text" id = 'email_input' name="email" value='{{user.email}}'/> </label> <br><br>
+          <input type="submit" id= 'saveBtn' name="saveBtn" value="Save" style="display:none;"/>
+      </fieldset>
+  </form>
+          <input type ='submit' id = "editBtn" name='editBtn' value='Edit'> </input>
         </div>
         <div class="container" style="background-color:purple">
         </div>
     </div>
+    <script src='profile.js'></script>
 </body>
-
-
-<!--{{#each jsscriptsDevHomePage}}
-        <script src="{{this}}"></script>
-{{/each}}-->
