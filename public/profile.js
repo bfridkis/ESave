@@ -11,4 +11,5 @@ input.addEventListener("click", () => {
   document.getElementById('lastname_input').removeAttribute("disabled");
   document.getElementById('email_input').removeAttribute("disabled");
   document.getElementById("saveBtn").style.display = "block";
+  document.getElementById("editBtn").style.display = "none";
 });

@@ -26,6 +26,7 @@ module.exports = (app) => {
 			//console.log(context.userdata.id);
 			context.jsscriptsProfilePage = "profile.js";
 			context.user = req.user;
+			context.navbarLogo = ["images/logo.jpg"];
 			//for (var x in req.user) { console.log(x); }
 			//console.log(context);
 			res.render('profile/profile', context);
@@ -122,6 +123,7 @@ router.post('/', jsonParser, (req, res, next) => {
 			}
 
 			context.user = req.user;
+			context.navbarLogo = ["images/logo.jpg"];
 			res.render('profile/profile', context);
 });
 

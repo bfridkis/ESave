@@ -19,43 +19,7 @@ body {
 }
 
 .bg-light {
-   background-color: purple !important;
-}
-
-a {
-    color: white;
-}
-
-a:hover {
-    color: white;
-}
-
-i {
-    font-size: 50px;
-    margin-right: 30px;
-}
-
-li {
-    margin: 0 0 10px 0;
-    font-size: 25px;
-}
-
-button {
-    background-color: rgb(39, 206, 100);
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 20%;
-    margin-left: 40%;
-    margin-right: 40% font-family: 'Righteous', cursive;
-}
-
-/* Add a hover effect for buttons */
-button:hover {
-    transition: color .3s;
-    background-color: purple;
+    background-color: purple !important;
 }
 
 .container {
@@ -87,18 +51,50 @@ button:hover {
 
 
 .navbar-button {
-  font-size: 40px;
-  color: rgb(255, 254, 244);
+    font-size: 40px;
+    color: rgb(255, 254, 244);
 }
 
 .navbar-button:hover {
-  opacity: 0.9;
-  color: rgb(39, 206, 100);
+    opacity: 0.9;
+    color: rgb(39, 206, 100);
 }
 
 
 .navbar-nav {
-  margin-left: auto;
-  margin-right: 15px;
-  color: purple;
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.banner-logo {
+    height: 15%;
+    width: 15%;
+    border-radius: 5px;
+}
+
+#logged-in-message {
+    color: rgb(255, 254, 244);
+    font-size: 0.9rem;
+    margin-top: 32px;
+    margin-right: 10px;
+}
+
+#editBtn,
+#saveBtn {
+
+    background-color: rgb(39, 206, 100);
+    color: white;
+    font-family: 'Righteous', cursive;
+    border: none;
+    cursor: pointer;
+
+}
+
+#editBtn:hover,
+#saveBtn:hover {
+
+    transition: color .3s;
+    background-color: white;
+    color: purple;
+
 }
