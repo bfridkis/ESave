@@ -3,19 +3,19 @@
 
 -- PRODUCT INSERTIONS --
 
-INSERT INTO product values (2, 'Playstation 4', 785947295512, NULL),
-				(3, 'Echo Dot', 738902715693, NULL),
-				(4, 'Ink Pens', 783027454531, NULL),
-				(5, 'Pajamas', 712457809012, NULL),
-				(6, 'Bose Headphones', 785409257212, NULL),
-				(7, 'Friskies Adult Cat food', 771122334492, NULL);
+INSERT INTO product values (2, 'Playstation 4', '785947295512', NULL),
+				(3, 'Echo Dot', '738902715693', NULL),
+				(4, 'Ink Pens', '783027454531', NULL),
+				(5, 'Pajamas', '712457809012', NULL),
+				(6, 'Bose Headphones', '785409257212', NULL),
+				(7, 'Friskies Adult Cat food', '771122334492', NULL);
 -- RETAILER INSERTIONS --
 
 INSERT INTO retailer values (5, 'Wal-mart', 'walmart.com', NULL, 2.99);
 
---PROMOTIONS INSERTIONS --
+-- PROMOTIONS INSERTIONS --
 INSERT INTO promotion values (2, 25, 2, '$25 OFF coupon celebrating the PS4s 9th Birthday', 'ps40x9', NULL, NULL, NULL, NULL),
-				(3, 3.99, 3, 'Ink Pens BOGO while supplies last, 'nk39x9, NULL, NULL, NULL, 3.99);
+				(3, 3.99, 3, 'Ink Pens BOGO while supplies last', nk39x9, NULL, NULL, NULL, 3.99);
 
 -- RETAILER PRODUCT INSERTIONS --
 

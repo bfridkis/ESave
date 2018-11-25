@@ -87,7 +87,7 @@ CREATE TABLE `retailer` (
 CREATE TABLE `product` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
   `name` varchar(255) NOT NULL,
-  `upc` int(12),
+  `upc` varchar(255),
   `model_number` varchar(255),
   PRIMARY KEY (`id`),
   CONSTRAINT `unique_upc` UNIQUE (`upc`)
