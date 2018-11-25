@@ -89,7 +89,8 @@ CREATE TABLE `product` (
   `name` varchar(255) NOT NULL,
   `upc` int(12),
   `model_number` varchar(255),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT `unique_upc` UNIQUE (`upc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
