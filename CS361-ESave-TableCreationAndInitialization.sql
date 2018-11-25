@@ -291,7 +291,7 @@ CREATE TABLE `retailer_rating` (
 -- ************************************ INSERTIONS **************************************
 
 -- USER TABLE INSERTIONS --
---INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
+-- INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
 --						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
 
 -- RETAILER TABLE INSERTIONS --
