@@ -98,3 +98,27 @@ body {
     color: purple;
 
 }
+
+label {
+  display: inline-block;
+  width: 140px;
+}​
+
+#button-container {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.social-button {
+    padding-right: 25px;
+    padding-left: 25px;
+    color: purple;
+    font-size: 50px;
+    margin-right: 30px;
+}
+
+.social-button:hover {
+    transition: color .1s;
+    color: rgb(39, 206, 100);
+}
