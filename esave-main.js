@@ -48,7 +48,7 @@ app.set('mysql', mysql);
 app.get('/dev1', (req, res, next) => {
 	context = {};
 	context.jsscriptsDevHomePage = ["tableSelectFE.js"];
-	context.css = ["style.css", "homePageStyle.css"];
+	context.css = ["style.css"];
 	res.render('dev1', context)
 });
 
