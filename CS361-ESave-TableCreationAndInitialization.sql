@@ -87,9 +87,10 @@ CREATE TABLE `retailer` (
 CREATE TABLE `product` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
   `name` varchar(255) NOT NULL,
-  `upc` int(12),
+  `upc` varchar(255),
   `model_number` varchar(255),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT `unique_upc` UNIQUE (`upc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -290,8 +291,8 @@ CREATE TABLE `retailer_rating` (
 -- ************************************ INSERTIONS **************************************
 
 -- USER TABLE INSERTIONS --
---INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
---						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
+ INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
+						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
 
 -- RETAILER TABLE INSERTIONS --
 INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL, 5.99),
