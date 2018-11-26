@@ -155,9 +155,8 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- HISTORY TABLE --
--- order - an auto incrementing integer which is the primary key
+-- order - a foreign key reference (for an order id)
 -- purchased - a boolean, cannot be null
--- user - an int corresponding to a user (foreign key)
 -- timestamp - timestamp indicating search datetime
 
 CREATE TABLE `history` (
