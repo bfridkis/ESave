@@ -245,8 +245,10 @@ function eSave(){
        let buttonRow = buttonTable.appendChild(document.createElement("tr"));
        let favButton = buttonRow.appendChild(document.createElement("td"));
        favButton.innerHTML = "<i class='fas fa-heart list-add'></i>";
+       favButton.style.paddingRight = "10px";
        let wishlistButton = buttonRow.appendChild(document.createElement("td"));
        wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
+       favButton.style.paddingLeft = "10px";
        let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        favButtonDescription.textContent = "(add to favorites)";
@@ -256,7 +258,7 @@ function eSave(){
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.textContent = "(add to wishlist)";
        wishlistButtonDescription.style.fontStyle = "italic";
-       wishlistButtonDescription.style.paddingRight = "10px";
+       wishlistButtonDescription.style.paddingLeft = "10px";
        wishlistButtonDescription.style.fontSize = "0.8rem";
 
        //Reset stage left height to height before ESave operation
