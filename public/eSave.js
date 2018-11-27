@@ -10,6 +10,11 @@ function eSave(){
     if(prevOrderTable){
       prevOrderTable.parentNode.removeChild(prevOrderTable);
     }
+    let prevButtonTable = document.querySelector(".button-table");
+    if(prevButtonTable){
+      prevButtonTable.parentNode.removeChild(prevOrderTable);
+    }
+    
     //Remove the checkout link message also, and disable the checkout link if necessary
     let prevCheckOutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
     if(prevCheckOutMessageLinkContainer){
@@ -237,6 +242,7 @@ function eSave(){
 
        //Add "add to favorites" and "add to wish list" buttons for ESaved order
        let buttonTable = orderStageRight.appendChild(document.createElement("table"));
+       buttonTable.classList.add("button-table");
        buttonTable.style.margin = "auto";
        let buttonRow = buttonTable.appendChild(document.createElement("tr"));
        let favButton = buttonRow.appendChild(document.createElement("td"));
