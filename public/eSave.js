@@ -249,11 +249,11 @@ function eSave(){
        wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
        let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
-       favButtonDescription.innerHTML = "<span style='font-size:0.9rem;text-decoration:italic'>" +
-                             "(add to wishlist)</span>" ;
+       favButtonDescription.innerHTML = "<span style='font-size:0.9rem;font-style:italic;" +
+                                        "padding-right:10px'>(add to favorites)</span>" ;
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
-       wishlistButtonDescription.innerHTML = "<span style='font-size:0.9rem;text-decoration:italic'>" +
-                                  "(add to wishlist)</span>" ;
+       wishlistButtonDescription.innerHTML = "<span style='font-size:0.9rem;font-style:italic;" +
+                                             "padding-left:10px'>(add to wish list)</span>" ;
 
        //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
@@ -288,6 +288,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/17147126/how-to-force-an-html-link-to-be-absolute
 // *https://stackoverflow.com/questions/5629684/how-to-check-if-element-exists-in-the-visible-dom
 // * https://stackoverflow.com/questions/7654900/how-do-you-make-an-anchor-link-non-clickable-or-disabled
+// * https://stackoverflow.com/questions/2108318/css-html-what-is-the-correct-way-to-make-text-italic
 
 // ** Unused... **
 

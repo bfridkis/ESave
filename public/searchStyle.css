@@ -260,10 +260,10 @@ body {
 }
 
 .list-add {
-	color: rgb(39, 206, 100);
+	color: purple;
 }
 
 .list-add:hover {
   transition: color .25s;
-  color: purple;
+  color: rgb(39, 206, 100);
 }
