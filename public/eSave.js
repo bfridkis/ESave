@@ -242,9 +242,9 @@ function eSave(){
        //Add "add to favorites" and "add to wish list" buttons for ESaved order
        let buttonRow = stageTable.appendChild(document.createElement("tr"));
        let favButton = buttonRow.appendChild(document.createElement("td"));
-       favButton.innerHTML = "<i class="fas fa-heart list-add"></i>";
+       favButton.innerHTML = "<i class='fas fa-heart list-add'></i>";
        let wishlistButton = buttonRow.appendChild(document.createElement("td"));
-       wishlistButton.innerHTML = "<i class="fas fa-clipboard-check list-add"></i>";
+       wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
        let buttonDescriptionRow = stageTable.appendChild(document.createElement("tr"));
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        favButton.innerHTML = "<span style='font-size:0.9rem;text-decoration:italic'>" +
