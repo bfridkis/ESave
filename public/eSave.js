@@ -281,7 +281,7 @@ function eSave(){
       data["product" + i] = row["PROD_ID"];
     });
   }
-});
+}
 
 // References
 // * https://en.wikipedia.org/wiki/Query_string
