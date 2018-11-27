@@ -249,11 +249,15 @@ function eSave(){
        wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
        let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
-       favButtonDescription.innerHTML = "<span style='font-size:0.9rem;font-style:italic;" +
-                                        "padding-right:10px'>(add to favorites)</span>" ;
+       favButtonDescription.textContent = "(add to favorites)";
+       favButtonDescription.style.fontStyle = "italic";
+       favButtonDescription.style.paddingRight = "10px";
+       favButtonDescription.style.fontSize = "0.8rem";
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
-       wishlistButtonDescription.innerHTML = "<span style='font-size:0.9rem;font-style:italic;" +
-                                             "padding-left:10px'>(add to wish list)</span>" ;
+       wishlistButtonDescription.textContent = "(add to wishlist)";
+       wishlistButtonDescription.style.fontStyle = "italic";
+       wishlistButtonDescription.style.paddingRight = "10px";
+       wishlistButtonDescription.style.fontSize = "0.8rem";
 
        //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
