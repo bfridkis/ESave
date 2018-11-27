@@ -258,3 +258,12 @@ body {
 .disable_a_href{
     pointer-events: none;
 }
+
+.list-add {
+	color: rgb(39, 206, 100);
+}
+
+.list-add:hover {
+  transition: color .25s;
+  color: purple;
+}

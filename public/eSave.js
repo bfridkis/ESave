@@ -238,6 +238,22 @@ function eSave(){
        finPri.textContent = results[0]["FINAL_PRICE"] + "$";
        finPri.style.paddingBottom = "20px";
        finPri.style.color = "rgb(39, 206, 100)";
+
+       //Add "add to favorites" and "add to wish list" buttons for ESaved order
+       let buttonRow = stageTable.appendChild(document.createElement("tr"));
+       let favButton = buttonRow.appendChild(document.createElement("td"));
+       favButton.innerHTML = "<i class="fas fa-heart list-add"></i>";
+       let wishlistButton = buttonRow.appendChild(document.createElement("td"));
+       wishlistButton.innerHTML = "<i class="fas fa-clipboard-check list-add"></i>";
+       let buttonDescriptionRow = stageTable.appendChild(document.createElement("tr"));
+       let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
+       favButton.innerHTML = "<span style='font-size:0.9rem;text-decoration:italic'>" +
+                             "(add to favorites)</span>" ;
+       let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
+       wishlistButton.innerHTML = "<span style='font-size:0.9rem;text-decoration:italic'>" +
+                                  "(add to favorites)</span>" ;
+
+       //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
 
        //Add checkout message to bottom of ESave shopping cart at bottom of page.
