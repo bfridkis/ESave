@@ -12,9 +12,9 @@ function eSave(){
     }
     let prevButtonTable = document.querySelector(".button-table");
     if(prevButtonTable){
-      prevButtonTable.parentNode.removeChild(prevOrderTable);
+      prevButtonTable.parentNode.removeChild(prevButtonTable);
     }
-    
+
     //Remove the checkout link message also, and disable the checkout link if necessary
     let prevCheckOutMessageLinkContainer = document.querySelector(".checkoutMessageLinkContainter");
     if(prevCheckOutMessageLinkContainer){
