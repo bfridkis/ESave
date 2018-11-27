@@ -240,7 +240,7 @@ function eSave(){
        finPri.style.color = "rgb(39, 206, 100)";
 
        //Add "add to favorites" and "add to wish list" buttons for ESaved order
-       let buttonTable = orderStageRight.appendChild("table");
+       let buttonTable = orderStageRight.appendChild(document.createElement("table"));
        let buttonRow = buttonTable.appendChild(document.createElement("tr"));
        let favButton = buttonRow.appendChild(document.createElement("td"));
        favButton.innerHTML = "<i class='fas fa-heart list-add'></i>";
