@@ -278,11 +278,10 @@ function eSave(){
     req.open("PUT", "/listAdd", true);
     let data = {list: list};
     orderData.forEach((row, i) => {
-      data["product" + i] = row
-    }
-
+      data["product" + i] = row["PROD_ID"];
+    });
   }
-};
+});
 
 // References
 // * https://en.wikipedia.org/wiki/Query_string
