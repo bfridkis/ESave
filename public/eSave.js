@@ -240,18 +240,19 @@ function eSave(){
        finPri.style.color = "rgb(39, 206, 100)";
 
        //Add "add to favorites" and "add to wish list" buttons for ESaved order
-       let buttonRow = stageTable.appendChild(document.createElement("tr"));
+       let buttonTable = orderStageRight.appendChild("table");
+       let buttonRow = buttonTable.appendChild(document.createElement("tr"));
        let favButton = buttonRow.appendChild(document.createElement("td"));
        favButton.innerHTML = "<i class='fas fa-heart list-add'></i>";
        let wishlistButton = buttonRow.appendChild(document.createElement("td"));
        wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
-       let buttonDescriptionRow = stageTable.appendChild(document.createElement("tr"));
+       let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        favButton.innerHTML = "<span style='font-size:0.9rem;text-decoration:italic'>" +
-                             "(add to favorites)</span>" ;
+                             "(add to wishlist)</span>" ;
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButton.innerHTML = "<span style='font-size:0.9rem;text-decoration:italic'>" +
-                                  "(add to favorites)</span>" ;
+                                  "(add to wishlist)</span>" ;
 
        //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
