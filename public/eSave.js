@@ -66,10 +66,6 @@ function eSave(){
     //Event listener for completed GET request
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
-       //Testing logs...
-       //console.log(req.status + " " + req.statusText);
-       //console.log(req.responseText);
-       //console.log(queryString);
 
        //If parameters were sent (i.e. user did not engage ESave button with empty stage),
        //Wait present loading icon for a minimum of 1.5 seconds, to simulate loading process.
@@ -122,7 +118,7 @@ function eSave(){
 
     //Parse the results and save in results array
     let results = JSON.parse(req.responseText);
-     //console.log(results);
+     console.log(results);
 
     //If the results are NULL, print message on right stage accordingly. Else
     //render results.
@@ -273,6 +269,18 @@ function eSave(){
        retailerLink.setAttribute("href", "//" + results[0]["RET_WEB_ADD"]);
        retailerLink.classList.remove("disable_a_href");
      }
+  }
+
+  function listAdder(list, orderData){
+    //Setup new XMLHttpRequest request
+    let req = new XMLHttpRequest();
+    //Open GET request, using queryString
+    req.open("PUT", "/listAdd", true);
+    let data = {list: list};
+    orderData.forEach((row, i) => {
+      data["product" + i] = row
+    }
+
   }
 };
 
