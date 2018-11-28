@@ -123,7 +123,7 @@ function eSave(){
 
     //Parse the results and save in results array
     let results = JSON.parse(req.responseText);
-     console.log(results);
+    //console.log(results);
 
     //If the results are NULL, print message on right stage accordingly. Else
     //render results.
@@ -317,7 +317,7 @@ function eSave(){
           }
         }
         else{
-          if(event.target.classList.indexOf("fa-heart")){
+          if(this.classList.indexOf("fa-heart")){
               favButtonDescription.textContent = "(error)";
           }
           else{
