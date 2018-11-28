@@ -313,7 +313,7 @@ function eSave(){
           }
           else{
             wishlistButtonDescription = document.querySelector("#wl-button-desc");
-            wishlistButtonDescription.textContent = "(added to favorites!)";
+            wishlistButtonDescription.textContent = "(added to wishlist!)";
             wishlistButtonDescription.style.color = "purple";
             this.style.color = "rgb(39, 206, 100)";
           }
