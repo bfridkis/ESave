@@ -264,6 +264,6 @@ body {
 }
 
 .list-add:hover {
-  transition: color .25s;
+  transition: color .15s;
   color: rgb(39, 206, 100);
 }
