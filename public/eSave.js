@@ -253,15 +253,19 @@ function eSave(){
        favButton.style.paddingLeft = "10px";
        let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
+       favButtonDescription.setAttribute("id", "fav-button-desc");
        favButtonDescription.textContent = "(add to favorites)";
        favButtonDescription.style.fontStyle = "italic";
        favButtonDescription.style.paddingRight = "10px";
        favButtonDescription.style.fontSize = "0.8rem";
+       favButton.addEventListener("click", listAdder.bind(null, "favorites", results));
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
+       wishlistButtonDescription.setAttribute("id", "wl-button-desc");
        wishlistButtonDescription.textContent = "(add to wishlist)";
        wishlistButtonDescription.style.fontStyle = "italic";
        wishlistButtonDescription.style.paddingLeft = "10px";
        wishlistButtonDescription.style.fontSize = "0.8rem";
+       favButton.addEventListener("click", listAdder.bind(null, "wish list", results));
 
        //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
@@ -278,16 +282,52 @@ function eSave(){
   }
 
   function listAdder(list, orderData){
-    //Setup new XMLHttpRequest request
-    let req = new XMLHttpRequest();
-    //Open GET request, using queryString
-    req.open("PUT", "/listAdd", true);
-    let data = {list: list};
-    orderData.forEach((row, i) => {
-      data["product" + i] = row["PROD_ID"];
-    });
+    if(!event.target.getAttribute("added")){
+      //Setup new XMLHttpRequest request
+      let req = new XMLHttpRequest();
+      //Open GET request, using queryString
+      req.open("PUT", "/listAdd", true);
+      let data = {list: list,
+                  products: [],
+                  retailer: orderData[0]["RET_NAME"]};
+      orderData.forEach((row, i) => {
+        data.products.push({ product_id : row["PROD_ID"],
+                             quantity: row["QT"]
+                           });
+      });
+      let orderFinalPrice = 0, orderInitialPrice = 0;
+      orderData.forEach((row, i) => {
+        orderFinalPrice += row["FINAL_PRICE"];
+        orderInitialPrice += row["INITIAL_PRICE"];
+      });
+      data["current_price"] = orderFinalPrice;
+      data["initial_price"] = orderInitialPrice;
+      req.addEventListener('load', () => {
+        if(req.status >= 200 && req.status < 400){
+          event.target.setAttribute("added", "yes");
+          if(event.target.classList.indexOf("fa-heart")){
+              favButtonDescription.textContent = "(added to favorites!)";
+              favButtonDescription.style.color = "purple";
+              favButton.style.color = "rgb(39, 206, 100)";
+          }
+          else{
+            wishlistButtonDescription.textContent = "(added to favorites!)";
+            wishlistButtonDescription.style.color = "purple";
+            wishlistButton.style.color = "rgb(39, 206, 100)";
+          }
+        }
+        else{
+          if(event.target.classList.indexOf("fa-heart")){
+              favButtonDescription.textContent = "(error)";
+          }
+          else{
+            wishlistButtonDescription.textContent = "(error)";
+          }
+		    }
+      }
+      req.send(JSON.stringify(data));
+    }
   }
-}
 
 // References
 // * https://en.wikipedia.org/wiki/Query_string
@@ -308,6 +348,7 @@ function eSave(){
 // *https://stackoverflow.com/questions/5629684/how-to-check-if-element-exists-in-the-visible-dom
 // * https://stackoverflow.com/questions/7654900/how-do-you-make-an-anchor-link-non-clickable-or-disabled
 // * https://stackoverflow.com/questions/2108318/css-html-what-is-the-correct-way-to-make-text-italic
+// * https://stackoverflow.com/questions/2430000/determine-if-string-is-in-list-in-javascript
 
 // ** Unused... **
 
