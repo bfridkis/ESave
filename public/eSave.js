@@ -287,6 +287,7 @@ function eSave(){
       let req = new XMLHttpRequest();
       //Open GET request, using queryString
       req.open("PUT", "/listAdd", true);
+      req.setRequestHeader('Content-Type', 'application/json');
       let data = {list: list,
                   products: [],
                   retailer: orderData[0]["RET_NAME"]};
