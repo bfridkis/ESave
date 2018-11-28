@@ -15,85 +15,85 @@ module.exports = (app) => {
               res.end();
             }
 						else {
-              var orderID = [rows[0]["id"]
-                let insertQuery = "Insert into order_product values (?, ?, ?)";
-                req.body.products.forEach((product, i) => {
-                  mysql.pool.query(insertQuery, [orderID, req.body.products[i].product_id,
-                      req.body.products[i].quantity],
-                    (err, rows, fields) => {
-                      if (err) {
-                        res.write(JSON.stringify(err));
-                        res.end();
-                      }
-											else {
-                        callbackCount++;
-                        if (callbackCount === req.body.products.length) {
-                          callbackCount = 0;
-                          req.body.products.forEach((product, i) + => {
-                            let selectQuery;
-                            if (i === 0) {
-                              //Only yield non-product specific promotions on the first query to the promotion
-                              //table (i.e. only when querying promotions for the first product).
-                              selectQuery = `Select id from promotion where retailer = '${req.body.retailer}' AND` +
-                                `(product = ${product.product_id} OR product IS NULL) AND` +
-                                `(qt_required = ${product.quantity} OR qt_required IS NULL) AND` +
-                                `(min_spend <= ${req.body.initial_price} OR min_spend IS NULL)`;
-                            }
-														else {
-                              selectQuery = `Select id from promotion where retailer = '${req.body.retailer}' AND` +
-                                `product = ${product.product_id} AND` +
-                                `(qt_required = ${product.quantity} OR qt_required IS NULL) AND` +
-                                `(min_spend <= ${req.body.initial_price} OR min_spend IS NULL)`;
-                            }
-                            mysql.pool.query(selectQuery,
-                              (err, rows, fields) => {
-                                if (err) {
-                                  res.write(JSON.stringify(err));
-                                  res.end();
-                                }
-																else {
-                                  callbackCount++;
-                                  let opInsertCallBackCount = 0;
-                                  rows.forEach((row, i) => {
-                                    insertQuery = "Insert into order_promotion values (?, ?)"
-                                    mysql.pool.query(insertQuery, [orderID, row["id"]],
-                                      (err, rows, fields) => {
-                                        if (err) {
-                                          res.write(JSON.stringify(err));
-                                          res.end();
-                                        }
-																				else {
-                                          qtInsertCallbackCount++;
-                                          if (qtInsertCallbackCount === rows.length &&
-                                            callbackCount === req.body.products.length) {
-																							if(req.body.list === "favorites"){
-																								insertQuery = "Insert into favorites_order values (?, ?)";
-																							}
-																							else{
-																								insertQuery = "Insert into wish_list values (?, ?)";
-																							}
-						                                  mysql.pool.query(insertQuery, [req.user.id, orderID],
-																								(err, rows, fields) => {
-					                                        if (err) {
-					                                          res.write(JSON.stringify(err));
-					                                          res.end();
-					                                        }
-																									else {
-																										res.status(202).end();
-																									}
-																							});
-																						}
-																					}
-                                        });
-                                      });
-                                    }
-                                });
-															});
-                            }
+              var orderID = rows[0]["id"];
+              let insertQuery = "Insert into order_product values (?, ?, ?)";
+              req.body.products.forEach((product, i) => {
+                mysql.pool.query(insertQuery, [orderID, req.body.products[i].product_id,
+                    req.body.products[i].quantity],
+                  (err, rows, fields) => {
+                    if (err) {
+                      res.write(JSON.stringify(err));
+                      res.end();
+                    }
+										else {
+                      callbackCount++;
+                      if (callbackCount === req.body.products.length) {
+                        callbackCount = 0;
+                        req.body.products.forEach((product, i) + => {
+                          let selectQuery;
+                          if (i === 0) {
+                            //Only yield non-product specific promotions on the first query to the promotion
+                            //table (i.e. only when querying promotions for the first product).
+                            selectQuery = `Select id from promotion where retailer = '${req.body.retailer}' AND` +
+                              `(product = ${product.product_id} OR product IS NULL) AND` +
+                              `(qt_required = ${product.quantity} OR qt_required IS NULL) AND` +
+                              `(min_spend <= ${req.body.initial_price} OR min_spend IS NULL)`;
                           }
-                        });
+													else {
+                            selectQuery = `Select id from promotion where retailer = '${req.body.retailer}' AND` +
+                              `product = ${product.product_id} AND` +
+                              `(qt_required = ${product.quantity} OR qt_required IS NULL) AND` +
+                              `(min_spend <= ${req.body.initial_price} OR min_spend IS NULL)`;
+                          }
+                          mysql.pool.query(selectQuery,
+                            (err, rows, fields) => {
+                              if (err) {
+                                res.write(JSON.stringify(err));
+                                res.end();
+                              }
+															else {
+                                callbackCount++;
+                                let opInsertCallBackCount = 0;
+                                rows.forEach((row, i) => {
+                                  insertQuery = "Insert into order_promotion values (?, ?)"
+                                  mysql.pool.query(insertQuery, [orderID, row["id"]],
+                                    (err, rows, fields) => {
+                                      if (err) {
+                                        res.write(JSON.stringify(err));
+                                        res.end();
+                                      }
+																			else {
+                                        qtInsertCallbackCount++;
+                                        if (qtInsertCallbackCount === rows.length &&
+                                          callbackCount === req.body.products.length) {
+																						if(req.body.list === "favorites"){
+																							insertQuery = "Insert into favorites_order values (?, ?)";
+																						}
+																						else{
+																							insertQuery = "Insert into wish_list values (?, ?)";
+																						}
+					                                  mysql.pool.query(insertQuery, [req.user.id, orderID],
+																							(err, rows, fields) => {
+				                                        if (err) {
+				                                          res.write(JSON.stringify(err));
+				                                          res.end();
+				                                        }
+																								else {
+																									res.status(202).end();
+																								}
+																						});
+																					}
+																				}
+                                      });
+                                    });
+                                  }
+                              });
+														});
+                          }
+                        }
                       });
-                  	}
+                    });
+                  }
                 });
             });
       return router;
