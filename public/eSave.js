@@ -104,7 +104,7 @@ function eSave(){
       }
     });
   });
-
+}
   //Sleep provides a way to simulate the loading process. It can be removed in
   //production by setting the first parameter of processESave to 0.
   function sleep(ms) {
