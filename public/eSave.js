@@ -309,13 +309,13 @@ function eSave(){
               let favButtonDescription = document.querySelector("#fav-button-desc");
               favButtonDescription.textContent = "(added to favorites!)";
               favButtonDescription.style.color = "purple";
-              favButton.style.color = "rgb(39, 206, 100)";
+              this.style.color = "rgb(39, 206, 100)";
           }
           else{
             wishlistButtonDescription = document.querySelector("#wl-button-desc");
             wishlistButtonDescription.textContent = "(added to favorites!)";
             wishlistButtonDescription.style.color = "purple";
-            wishlistButton.style.color = "rgb(39, 206, 100)";
+            this.style.color = "rgb(39, 206, 100)";
           }
         }
         else{
