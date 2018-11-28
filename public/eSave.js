@@ -318,6 +318,7 @@ function eSave(){
         }
         else{
           console.log("Error: " + req.status + " " + req.statusText);
+          console.log(this.classList);//*********************
           if(this.classList.contains("fa-heart")){
               favButtonDescription.textContent = "(error)";
           }
