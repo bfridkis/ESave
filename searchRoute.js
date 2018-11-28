@@ -33,7 +33,7 @@ module.exports = (app) => {
 														"     when sum(promotion.discount) IS NULL then 0.00 " +
 														"     else FORMAT(sum(promotion.discount), 2) " +
 														"     end AS TOTAL_DISCOUNT, " +
-														req.query[qtKey] + " AS QT" + 
+														req.query[qtKey] + " AS QT " + 
 														"from product join retailer_product ON product.id = retailer_product.product AND " +
 														"(product.name LIKE '%" + req.query[key] + "%' OR " +
 														"'" + req.query[key] + "' = product.upc OR '" + req.query[key] +
