@@ -320,10 +320,10 @@ function eSave(){
           console.log("Error: " + req.status + " " + req.statusText);
           console.log(this);//*********************
           if(this.classList.contains("fa-heart")){
-              favButtonDescription.textContent = "(error)";
+              document.querySelector("#fav-button-desc").textContent = "(error)";
           }
           else{
-            wishlistButtonDescription.textContent = "(error)";
+            document.querySelector("#wl-button-desc").textContent = "(error)";
           }
 		    }
       });
