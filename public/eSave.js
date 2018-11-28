@@ -331,6 +331,7 @@ function eSave(){
           }
 		    }
       });
+      console.log(JSON.stringify(data));
       req.send(JSON.stringify(data));
     }
   }
