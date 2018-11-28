@@ -250,7 +250,7 @@ function eSave(){
        favButton.style.paddingRight = "10px";
        let wishlistButton = buttonRow.appendChild(document.createElement("td"));
        wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
-       favButton.style.paddingLeft = "10px";
+       wishlistButton.style.paddingLeft = "10px";
        let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        favButtonDescription.setAttribute("id", "fav-button-desc");
@@ -258,14 +258,14 @@ function eSave(){
        favButtonDescription.style.fontStyle = "italic";
        favButtonDescription.style.paddingRight = "10px";
        favButtonDescription.style.fontSize = "0.8rem";
-       favButton.addEventListener("click", listAdder.bind(favButton, "favorites", results));
+       favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results));
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.setAttribute("id", "wl-button-desc");
        wishlistButtonDescription.textContent = "(add to wishlist)";
        wishlistButtonDescription.style.fontStyle = "italic";
        wishlistButtonDescription.style.paddingLeft = "10px";
        wishlistButtonDescription.style.fontSize = "0.8rem";
-       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton, "wish list", results));
+       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results));
 
        //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
