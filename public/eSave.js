@@ -317,7 +317,8 @@ function eSave(){
           }
         }
         else{
-          if(this.classList.indexOf("fa-heart")){
+          console.log("Error: " + req.status + " " + req.statusText);
+          if(this.classList.contains("fa-heart")){
               favButtonDescription.textContent = "(error)";
           }
           else{
@@ -349,6 +350,7 @@ function eSave(){
 // * https://stackoverflow.com/questions/7654900/how-do-you-make-an-anchor-link-non-clickable-or-disabled
 // * https://stackoverflow.com/questions/2108318/css-html-what-is-the-correct-way-to-make-text-italic
 // * https://stackoverflow.com/questions/2430000/determine-if-string-is-in-list-in-javascript
+// * https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 
 // ** Unused... **
 
