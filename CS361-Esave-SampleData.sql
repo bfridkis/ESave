@@ -23,6 +23,6 @@ INSERT INTO retailer_product values (2, 2, 299.99, 'The most advanced playstatio
 					(3, 2, 290.99, 'The newest Playstation on the market. Designed to play currently trending PS4 games and blu-ray Movies. Game On!', '2018-09-22 5:15:54'),
 					(3, 4, 3.99, 'Whether it is back to school or back to work, these Ink Pens are guaranteed  to last.', '2018-22-09 5:11:59'),
 					(4, 5, 29.99, 'These Fleece pajamas will guarantee your warmth and comfort throughout the Fall and Winter. With many different designs and colors there are pajamas for the whole family.', '2018-09-22 4:32:12'),
-					(5, 3, 99.99, 'A smaller more compact Amazon Echo, for those on a budget. Invite Alexa into your home, have her give you daily reminders or tell you a joke. The amazon Echo can play music from any streaming music application!', '2018-09-22 3:20:12', NULL),
+					(5, 3, 99.99, 'A smaller more compact Amazon Echo, for those on a budget. Invite Alexa into your home, have her give you daily reminders or tell you a joke. The amazon Echo can play music from any streaming music application!', '2018-09-22 3:20:12'),
 					(2, 6, 139.99, 'Surround sound in a pair of wireless Bose Headphones. These state of the art Headphones deliver clear and crisp audio, whether they are connected to your TV, MP3 Player, or Computer.', '2018-09-22 5:43:34'),
 					(3, 7, 26.99, 'Adult cat food frome Friskies. Contains all the nutrients your adult cat needs for staying healthy. Made from Fish, Grains, and root vegetables.', '2018-09-22 6:43:12');
