@@ -306,11 +306,13 @@ function eSave(){
         if(req.status >= 200 && req.status < 400){
           this.setAttribute("added", "yes");
           if(this.classList.contains("fa-heart")){
+              let favButtonDescription = document.querySelector("#fav-button-desc");
               favButtonDescription.textContent = "(added to favorites!)";
               favButtonDescription.style.color = "purple";
               favButton.style.color = "rgb(39, 206, 100)";
           }
           else{
+            wishlistButtonDescription = document.querySelector("#wl-button-desc");
             wishlistButtonDescription.textContent = "(added to favorites!)";
             wishlistButtonDescription.style.color = "purple";
             wishlistButton.style.color = "rgb(39, 206, 100)";
@@ -320,10 +322,10 @@ function eSave(){
           console.log("Error: " + req.status + " " + req.statusText);
           this.style.color = "red";
           if(this.classList.contains("fa-heart")){
-              document.querySelector("#fav-button-desc").textContent = "(error)";
+             favButtonDescription.textContent = "(error)";
           }
           else{
-            document.querySelector("#wl-button-desc").textContent = "(error)";
+            wishlistButtonDescription.textContent = "(error)";
           }
 		    }
       });

@@ -11,13 +11,11 @@ module.exports = (app) => {
 		context.css = ["sparkle.css", "searchStyle.css"];
 		context.navbarLogo = ["images/logo.jpg"];
 		context.mainLogo = ["images/logo-medium.jpg"];
-		console.log(req.query); //*************************
 		if(Object.keys(req.query).length !== 0){
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p"){
 		      qtKey = "q" + key.substring(1);
-					console.log("QT", req.query[qtKey]);//**********************************
 		      mysql.pool.query("select product.id AS PROD_ID, product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
 														"retailer.web_address AS RET_WEB_ADD, " +
 														"FORMAT(retailer_product.price * '" + req.query[qtKey] + "', 2) AS INITIAL_PRICE, " +
@@ -33,7 +31,7 @@ module.exports = (app) => {
 														"     when sum(promotion.discount) IS NULL then 0.00 " +
 														"     else FORMAT(sum(promotion.discount), 2) " +
 														"     end AS TOTAL_DISCOUNT, " +
-														req.query[qtKey] + " AS QT " + 
+														req.query[qtKey] + " AS QT " +
 														"from product join retailer_product ON product.id = retailer_product.product AND " +
 														"(product.name LIKE '%" + req.query[key] + "%' OR " +
 														"'" + req.query[key] + "' = product.upc OR '" + req.query[key] +
