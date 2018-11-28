@@ -125,11 +125,15 @@ CREATE TABLE `promotion` (
 -- id - an auto incrementing integer which is the primary key
 -- user - an int corresponding to a user id
 -- retailer - an int corresponding to a retailer entry (foreign key)
+-- current_price - decimal value for last updated final price
+-- last_updated - timestamp for current_price last update
 
 CREATE TABLE `order` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
   `user` int(15) NOT NULL,
   `retailer` int(15) NOT NULL,
+  `current_price` decimal(9,2),
+  `last_updated` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_order_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_order_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -304,7 +308,7 @@ INSERT INTO promotion values (1, 20, 1,
 	'bd20x3', NULL, NULL, NULL, 49.00);
 
 -- ORDER TABLE INSERTIONS --
-INSERT INTO `order` values (1, 1, 1);
+INSERT INTO `order` values (1, 1, 1, 49.99, '2018-11-09 10:49:21');
 
 -- REVIEW TABLE INSERTIONS --
 INSERT INTO review values (1, 5, 'Excellent products! Loved the $20 off promotion!');
