@@ -324,7 +324,7 @@ function eSave(){
             wishlistButtonDescription.textContent = "(error)";
           }
 		    }
-      }
+      });
       req.send(JSON.stringify(data));
     }
   }
