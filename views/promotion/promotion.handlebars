@@ -1,0 +1,65 @@
+<!--<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head> -->
+  <body>
+    <nav class="navbar fixed-top navbar-expand navbar-light bg-light">
+    <a class="navbar-brand" href="/"><img src="{{navbarLogo}}" class="banner-logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li id="logged-in-message" class="nav-item">
+          (Logged in as {{user.username}})
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/" data-toggle="tooltip" data-placement="top" title="Home">
+            <i class="fas fa-user navbar-button"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
+            <i class="fas fa-cog navbar-button"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" data-toggle="tooltip" data-placement="top" title="Logout">
+            <i class="fas fa-door-closed navbar-button"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="main-logo-outer-container">
+        <div class="main-logo-inner-container">
+            <img src="images/logo-medium.jpg" class="main-logo"><span id="save-text">$ave</span>
+        </div>
+    </div>
+    <br />
+    {{#each promotions}}
+    <ul style="list-style-type:none" class = "promotions">
+        <li>{{description}}</li>
+        <li>Retailer: {{name}}</li>
+        <li>Discount: ${{discount}}</li>
+        <li>Ecoupon: {{ecoupon}}</li>
+    <br>
+  </ul>
+    {{/each}}
+    <input type="submit" id = 'back-home' name="back-home" value='Home Page'/>
+
+    <footer>
+      <div id="button-container" align="center">
+  <ul>
+          <i class="fab fa-facebook social-button"></i>
+          <i class="fab fa-twitter-square social-button"></i>
+          <i class="fas fa-envelope social-button"></i>
+  </ul>
+      </div>
+    </footer>
+    <script src='promotion.js'></script> <!--can put filename in context so not hard coded-->
+  </body>
+</html>
