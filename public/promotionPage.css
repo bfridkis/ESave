@@ -1,0 +1,82 @@
+body {
+    background-color: rgb(255, 254, 244);
+    font-family: 'Righteous', cursive;
+    color: white;
+}
+.promotions {
+  color: black;
+}
+.bg-light {
+    background-color: purple !important;
+}
+
+.main-logo-outer-container {
+    display: flex;
+    padding-top: 140px;
+}
+
+.main-logo-inner-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-logo {
+    border-radius: 5px;
+    margin: auto;
+    vertical-align: bottom;
+}
+
+#save-text {
+    font-size: 6rem;
+    color: purple;
+    margin: auto;
+}
+
+
+.navbar-button {
+    font-size: 40px;
+    color: rgb(255, 254, 244);
+}
+
+.navbar-button:hover {
+    opacity: 0.9;
+    color: rgb(39, 206, 100);
+}
+
+
+.navbar-nav {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.banner-logo {
+    height: 15%;
+    width: 15%;
+    border-radius: 5px;
+}
+
+#logged-in-message {
+    color: rgb(255, 254, 244);
+    font-size: 0.9rem;
+    margin-top: 32px;
+    margin-right: 10px;
+}
+
+#button-container {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.social-button {
+    padding-right: 25px;
+    padding-left: 25px;
+    color: purple;
+    font-size: 50px;
+    margin-right: 30px;
+}
+
+.social-button:hover {
+    transition: color .1s;
+    color: rgb(39, 206, 100);
+}
