@@ -3,7 +3,7 @@ module.exports = (app) => {
     var router = express.Router();
     //var app = express();
 
-    router.put('/listAdd', isLoggedIn, (req, res, next) => {
+    router.put('/', isLoggedIn, (req, res, next) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
@@ -96,6 +96,7 @@ module.exports = (app) => {
                   }
                 });
             });
+
       return router;
 };
 
