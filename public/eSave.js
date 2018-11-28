@@ -322,11 +322,11 @@ function eSave(){
           console.log("Error: " + req.status + " " + req.statusText);
           this.style.color = "red";
           if(this.classList.contains("fa-heart")){
-            document.querySelector("#fav-button-desc").textContent =
+            document.querySelector("#fav-button-desc").innerHTML =
               "&nbsp&nbsp&nbsp&nbsp&nbsp(error)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
           }
           else{
-            document.querySelector("#wl-button-desc").textContent =
+            document.querySelector("#wl-button-desc").innerHTML =
               "&nbsp&nbsp&nbsp&nbsp&nbsp(error)&nbsp&nbsp&nbsp&nbsp&nbsp";
           }
 		    }
