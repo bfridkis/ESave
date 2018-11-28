@@ -254,8 +254,7 @@ CREATE TABLE `retailer_product` (
   `last_updated` timestamp,
   PRIMARY KEY (`retailer`, `product`),
   CONSTRAINT `fk_retailer_product_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_retailer_product_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_retailer_product_promotion` FOREIGN KEY (`promotion`) REFERENCES `promotion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_retailer_product_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- FAVORITES_RETAILER TABLE --
