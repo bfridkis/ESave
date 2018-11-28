@@ -304,7 +304,7 @@ INSERT INTO promotion values (1, 20, 1,
 	'bd20x3', NULL, NULL, NULL, 49.00);
 
 -- ORDER TABLE INSERTIONS --
-INSERT INTO `order` values (1, 1, 31.96, 5.99, 1);
+INSERT INTO `order` values (1, 1, 1);
 
 -- REVIEW TABLE INSERTIONS --
 INSERT INTO review values (1, 5, 'Excellent products! Loved the $20 off promotion!');
