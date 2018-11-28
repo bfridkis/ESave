@@ -245,8 +245,6 @@ CREATE TABLE `order_promotion` (
 -- last_updated - timestamp used for conditional GET request, to only
 --				  ensure data is only serviced by 3rd party sites if changed
 --				  since it was last serviced.
--- promotion - an int corresponding to a promotion id, for retailer-product
---			   specific promotions.
 
 CREATE TABLE `retailer_product` (
   `retailer` int(15) NOT NULL,
@@ -254,7 +252,6 @@ CREATE TABLE `retailer_product` (
   `price` decimal(9,2) NOT NULL,
   `description` text,
   `last_updated` timestamp,
-  `promotion` int(15),
   PRIMARY KEY (`retailer`, `product`),
   CONSTRAINT `fk_retailer_product_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_retailer_product_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -338,7 +335,7 @@ INSERT INTO retailer_product values (1, 1, 12.99,
 	"Really Raw Unstrained Honey takes honey straight from the hive to the jar. It's not heated and cooled,
 	nor does Really Raw filter out the honeycomb or pollen like most conventional brands do. Raw honey is great
 	to use as a natural sweetener since it has fewer carbs than sugar, and is less likely to cause blood sugar
-	spikes or sugar crashes.", '2018-11-10 08:38:22', NULL);
+	spikes or sugar crashes.", '2018-11-10 08:38:22');
 
 -- FAVORITES_RETAILER TABLE INSERTIONS --
 INSERT INTO favorites_retailer values (1, 1);
