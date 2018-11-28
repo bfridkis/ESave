@@ -29,7 +29,7 @@ module.exports = (app) => {
                       callbackCount++;
                       if (callbackCount === req.body.products.length) {
                         callbackCount = 0;
-                        req.body.products.forEach((product, i) + => {
+                        req.body.products.forEach((product, i) => {
                           let selectQuery;
                           if (i === 0) {
                             //Only yield non-product specific promotions on the first query to the promotion
