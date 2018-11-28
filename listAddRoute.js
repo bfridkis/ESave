@@ -14,7 +14,7 @@ module.exports = (app) => {
               res.write(JSON.stringify(err));
               res.end();
             }
-						else {
+						else { console.log(rows); //***************************
               var orderID = rows[0]["id"];
               insertQuery = "Insert into order_product values (?, ?, ?)";
               req.body.products.forEach((product, i) => {
