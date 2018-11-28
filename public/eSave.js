@@ -322,10 +322,12 @@ function eSave(){
           console.log("Error: " + req.status + " " + req.statusText);
           this.style.color = "red";
           if(this.classList.contains("fa-heart")){
-            document.querySelector("#fav-button-desc").textContent = "     (error)      ";
+            document.querySelector("#fav-button-desc").textContent =
+              "&nbsp&nbsp&nbsp&nbsp&nbsp(error)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
           }
           else{
-            document.querySelector("#wl-button-desc").textContent = "     (error)     ";
+            document.querySelector("#wl-button-desc").textContent =
+              "&nbsp&nbsp&nbsp&nbsp&nbsp(error)&nbsp&nbsp&nbsp&nbsp&nbsp";
           }
 		    }
       });
