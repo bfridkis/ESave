@@ -282,7 +282,7 @@ function eSave(){
   }
 
   function listAdder(list, orderData){
-    if(!event.target.getAttribute("added")){
+    if(!this.getAttribute("added")){
       //Setup new XMLHttpRequest request
       let req = new XMLHttpRequest();
       //Open GET request, using queryString
@@ -304,8 +304,8 @@ function eSave(){
       data["initial_price"] = orderInitialPrice;
       req.addEventListener('load', () => {
         if(req.status >= 200 && req.status < 400){
-          event.target.setAttribute("added", "yes");
-          if(event.target.classList.indexOf("fa-heart")){
+          this.setAttribute("added", "yes");
+          if(this.classList.contains("fa-heart")){
               favButtonDescription.textContent = "(added to favorites!)";
               favButtonDescription.style.color = "purple";
               favButton.style.color = "rgb(39, 206, 100)";
