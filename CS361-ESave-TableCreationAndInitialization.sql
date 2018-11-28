@@ -124,15 +124,11 @@ CREATE TABLE `promotion` (
 -- ORDER TABLE --
 -- id - an auto incrementing integer which is the primary key
 -- user - an int corresponding to a user id
--- price - a decimal value, cannot be null
--- shipping_price - a decimal value
 -- retailer - an int corresponding to a retailer entry (foreign key)
 
 CREATE TABLE `order` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
   `user` int(15) NOT NULL,
-  `price` decimal(9,2) NOT NULL,
-  `shipping_price` decimal(6,2),
   `retailer` int(15) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_order_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
