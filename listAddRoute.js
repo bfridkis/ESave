@@ -16,7 +16,7 @@ module.exports = (app) => {
             }
 						else {
               var orderID = rows[0]["id"];
-              let insertQuery = "Insert into order_product values (?, ?, ?)";
+              insertQuery = "Insert into order_product values (?, ?, ?)";
               req.body.products.forEach((product, i) => {
                 mysql.pool.query(insertQuery, [orderID, req.body.products[i].product_id,
                     req.body.products[i].quantity],
@@ -63,8 +63,8 @@ module.exports = (app) => {
                                         res.end();
                                       }
 																			else {
-                                        qtInsertCallbackCount++;
-                                        if (qtInsertCallbackCount === rows.length &&
+                                        opInsertCallbackCount++;
+                                        if (opInsertCallbackCount === rows.length &&
                                           callbackCount === req.body.products.length) {
 																						if(req.body.list === "favorites"){
 																							insertQuery = "Insert into favorites_order values (?, ?)";
