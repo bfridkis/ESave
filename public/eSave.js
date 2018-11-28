@@ -258,14 +258,14 @@ function eSave(){
        favButtonDescription.style.fontStyle = "italic";
        favButtonDescription.style.paddingRight = "10px";
        favButtonDescription.style.fontSize = "0.8rem";
-       favButton.addEventListener("click", listAdder.bind(null, "favorites", results));
+       favButton.addEventListener("click", listAdder.bind(favButton, "favorites", results));
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.setAttribute("id", "wl-button-desc");
        wishlistButtonDescription.textContent = "(add to wishlist)";
        wishlistButtonDescription.style.fontStyle = "italic";
        wishlistButtonDescription.style.paddingLeft = "10px";
        wishlistButtonDescription.style.fontSize = "0.8rem";
-       favButton.addEventListener("click", listAdder.bind(null, "wish list", results));
+       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton, "wish list", results));
 
        //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
