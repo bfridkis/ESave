@@ -119,14 +119,17 @@ body {
 }
 
 #button-container {
-	font-size: 2rem;
-	margin-bottom: 50px;
+  font-size: 2rem;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .social-button {
   padding-right: 25px;
   padding-left: 25px;
   color: purple;
+  font-size: 50px;
+  margin-right: 30px;
 }
 
 .social-button:hover {
