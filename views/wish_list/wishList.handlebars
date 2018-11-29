@@ -47,6 +47,7 @@
           <th>Retailer</th>
           <th>Quantity</th>
           <th>Current Price</th>
+          <th>Promotion</th>
       </thead>
       <tbody>
           {{#each list}}
@@ -55,6 +56,12 @@
               <td>{{retailer}}</td>
               <td>{{quantity}}</td>
               <td>{{current_price}}</td>
+              {{#if promotion}}
+              <td>{{promotion}}</td>
+
+              {{else}}
+              <td>None Available</td>
+              {{/if}}
           </tr>
           {{/each}}
       </tbody>
