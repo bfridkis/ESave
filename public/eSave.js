@@ -268,7 +268,7 @@ function eSave(){
        wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results));
        let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
        let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
-       orderNameInputCell.setattribute("colspan", "2");
+       orderNameInputCell.setAttribute("colspan", "2");
        let orderNameInput = orderNameInputCell.appendChild(document.createElement("input"));
        orderNameInput.setAttribute("type", "text");
        orderNameInput.classList.add("list-add-input");
