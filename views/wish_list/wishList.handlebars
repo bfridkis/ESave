@@ -51,9 +51,12 @@
       <tbody>
           {{#each list}}
           <tr>
-              <td rowspan="6">
-                {{row_number}}
-              </td>
+            <td colspan="6">
+              {{row_number}}
+            </td>
+  </tr>
+          <tr>
+
               <td>{{product}}</td>
               <td>{{retailer}}</td>
               <td>{{quantity}}</td>
