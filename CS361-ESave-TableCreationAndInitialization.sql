@@ -312,7 +312,8 @@ INSERT INTO promotion values (1, 20, 1,
 
 -- ORDER TABLE INSERTIONS --
 INSERT INTO `order` values (1, 1, 1, 49.99, '2018-11-09 10:49:21');
-INSERT INTO `order` values (2, 2, 2, 299.99, '2018-11-09 10:49:21');
+INSERT INTO `order` values (2, 2, 2, 299.99, '2018-11-29 15:14:47','2018-11-09 10:49:21', NULL);
+INSERT INTO `order` values (3, 2, 1, 49.99, '2018-11-29 15:14:47','2018-11-09 10:49:21', NULL);
 
 -- REVIEW TABLE INSERTIONS --
 INSERT INTO review values (1, 5, 'Excellent products! Loved the $20 off promotion!');
@@ -326,6 +327,7 @@ INSERT INTO favorites_order values (1, 1);
 -- WISH_LIST TABLE INSERTIONS --
 INSERT INTO wish_list values (1, 1);
 INSERT INTO wish_list values (2, 2);
+INSERT INTO wish_list values (2, 3);
 
 -- MESSAGE TABLE INSERTIONS --
 INSERT INTO message values (1, 'Why would I send a message to myself? Because there are no other users!
@@ -335,10 +337,11 @@ INSERT INTO message values (1, 'Why would I send a message to myself? Because th
 -- ORDER_PRODUCT TABLE INSERTIONS --
 INSERT INTO order_product values (1, 1, 4);
 INSERT INTO order_product values (2, 2, 1);
+INSERT INTO order_product values (3, 1, 4);
 
 -- ORDER_PROMOTION TABLE INSERTIONS --
 INSERT INTO order_promotion values (1, 1);
-
+INSERT INTO order_promotion values (3, 1);
 -- RETAILER_PRODUCT TABLE INSERTIONS --
 INSERT INTO retailer_product values (1, 1, 12.99,
 	"Really Raw Unstrained Honey takes honey straight from the hive to the jar. It's not heated and cooled,
