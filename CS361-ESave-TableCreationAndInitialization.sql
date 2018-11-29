@@ -286,8 +286,11 @@ CREATE TABLE `retailer_rating` (
 -- ************************************ INSERTIONS **************************************
 
 -- USER TABLE INSERTIONS --
- INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
+ INSERT INTO user values (1, 'fridkisb', '$2a$10$tenRWwWRtkudlmla7KNBS./EAmZT8Q0HKHjVHB85JWNM/MtKIhNUe', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
 						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
+
+ INSERT INTO user values (2, 'emistock', '$2a$10$YvNjZTMuSv19hyWCHpL.Ve59JfCUEo3c3U21IC2KKNz7g5/vpK1he', 'Emily',
+  'Stockenbojer', 'stockene@oregonstate.edu', NULL, NULL, TRUE, TRUE, TRUE);
 
 -- RETAILER TABLE INSERTIONS --
 INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL, 5.99),
