@@ -12,6 +12,7 @@ module.exports = (app) => {
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, req.body.current_price],
           (err, rows, fields) => {
             if (err) {
+							console.log("Here's error: ", err) //***********************************
               res.write(JSON.stringify(err));
               res.end();
             }
