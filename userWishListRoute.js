@@ -15,7 +15,7 @@ module.exports = (app) => {
               res.end();
           }
           context.list  = rows;
-					content.logs(rows);//*********************************
+					console.logs(rows);//*********************************
       });
   }
 
