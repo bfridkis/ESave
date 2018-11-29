@@ -30,7 +30,7 @@ module.exports = (app) => {
     getWishList(res, mysql, context, req.user.id, complete);
     function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 1){
                 res.render('wish_list/wishList', context);
             }
 
