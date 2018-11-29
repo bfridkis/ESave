@@ -83,7 +83,7 @@ module.exports = (app) => {
 																							else {
 																								console.log("Here's inserting promos: ", rows) //**********************
 																								console.log("callbackCount and opInsertCallBackCount: ",
-																																	callbackCount, ++opInsertCallBackCount) //**********************
+																																	callbackCount, opInsertCallBackCount) //**********************
 																								console.log("rows.length and req.body.products.length: ",
 																																	numPromos, req.body.products.length) //**********************
 				                                        if (++opInsertCallBackCount === numPromos &&
