@@ -81,6 +81,8 @@ module.exports = (app) => {
 				                                      }
 																							else {
 																								console.log("Here's inserting promos: ", rows) //**********************
+																								console.log("callbackCount and opInsertCallBackCount: ",
+																																	callbackCount, opInsertCallBackCount) //**********************
 				                                        if (++opInsertCallBackCount === rows.length &&
 				                                          callbackCount === req.body.products.length) {
 																										if(req.body.list === "favorites"){
