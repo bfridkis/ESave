@@ -318,6 +318,7 @@ function eSave(){
             wishlistButtonDescription.style.color = "purple";
             this.style.color = "rgb(39, 206, 100)";
           }
+          console.log("Error: " + req.status + " " + req.statusText); //**********************
         }
         else{
           console.log("Error: " + req.status + " " + req.statusText);
