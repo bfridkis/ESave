@@ -70,7 +70,8 @@ module.exports = (app) => {
 																			console.log("Here's selecting promos: ", rows)//****************************
 			                                callbackCount++;
 			                                let opInsertCallBackCount = 0;
-																			if(rows.length > 0){
+																			let numPromos = rows.length;
+																			if(numPromos > 0){
 																				rows.forEach((row, i) => {
 				                                  insertQuery = "Insert into order_promotion values (?, ?)"
 				                                  mysql.pool.query(insertQuery, [orderID, row["id"]],
@@ -84,8 +85,8 @@ module.exports = (app) => {
 																								console.log("callbackCount and opInsertCallBackCount: ",
 																																	callbackCount, ++opInsertCallBackCount) //**********************
 																								console.log("rows.length and req.body.products.length: ",
-																																	rows.length, req.body.products.length) //**********************
-				                                        if (opInsertCallBackCount === rows.length &&
+																																	numPromos, req.body.products.length) //**********************
+				                                        if (++opInsertCallBackCount === numPromos &&
 				                                          callbackCount === req.body.products.length) {
 																										if(req.body.list === "favorites"){
 																											insertQuery = "Insert into favorites_order values (?, ?)";
