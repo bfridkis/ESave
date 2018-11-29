@@ -261,7 +261,7 @@ function eSave(){
        favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results));
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.setAttribute("id", "wl-button-desc");
-       wishlistButtonDescription.textContent = "(add to wishlist)";
+       wishlistButtonDescription.innerHTML = "&nbsp&nbsp(add to wishlist)";
        wishlistButtonDescription.style.fontStyle = "italic";
        wishlistButtonDescription.style.paddingLeft = "10px";
        wishlistButtonDescription.style.fontSize = "0.8rem";
