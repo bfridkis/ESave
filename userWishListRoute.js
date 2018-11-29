@@ -33,7 +33,7 @@ module.exports = (app) => {
 
 return router;
 
-}();
+};
 
 // route middleware to make sure
 function isLoggedIn(req, res, next) {
