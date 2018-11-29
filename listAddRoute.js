@@ -70,39 +70,60 @@ module.exports = (app) => {
 																			console.log("Here's selecting promos: ", rows)//****************************
 			                                callbackCount++;
 			                                let opInsertCallBackCount = 0;
-			                                rows.forEach((row, i) => {
-			                                  insertQuery = "Insert into order_promotion values (?, ?)"
-			                                  mysql.pool.query(insertQuery, [orderID, row["id"]],
-			                                    (err, rows, fields) => {
-			                                      if (err) {
-			                                        res.write(JSON.stringify(err));
-			                                        res.end();
-			                                      }
-																						else {
-																							console.log("Here's inserting promos: ", rows) //**********************
-			                                        if (++opInsertCallbackCount === rows.length &&
-			                                          callbackCount === req.body.products.length) {
-																									if(req.body.list === "favorites"){
-																										insertQuery = "Insert into favorites_order values (?, ?)";
+																			if(rows.length > 0){
+																				rows.forEach((row, i) => {
+				                                  insertQuery = "Insert into order_promotion values (?, ?)"
+				                                  mysql.pool.query(insertQuery, [orderID, row["id"]],
+				                                    (err, rows, fields) => {
+				                                      if (err) {
+				                                        res.write(JSON.stringify(err));
+				                                        res.end();
+				                                      }
+																							else {
+																								console.log("Here's inserting promos: ", rows) //**********************
+				                                        if (++opInsertCallbackCount === rows.length &&
+				                                          callbackCount === req.body.products.length) {
+																										if(req.body.list === "favorites"){
+																											insertQuery = "Insert into favorites_order values (?, ?)";
+																										}
+																										else{
+																											insertQuery = "Insert into wish_list values (?, ?)";
+																										}
+									                                  mysql.pool.query(insertQuery, [req.user.id, orderID],
+																											(err, row, fields) => {
+								                                        if (err) {
+								                                          res.write(JSON.stringify(err));
+								                                          res.end();
+								                                        }
+																												else {
+																													console.log("Here's inserting into list: ", row) //**********************
+																													res.status(202).end();
+																												}
+																										});
 																									}
-																									else{
-																										insertQuery = "Insert into wish_list values (?, ?)";
-																									}
-								                                  mysql.pool.query(insertQuery, [req.user.id, orderID],
-																										(err, row, fields) => {
-							                                        if (err) {
-							                                          res.write(JSON.stringify(err));
-							                                          res.end();
-							                                        }
-																											else {
-																												console.log("Here's inserting into list: ", row) //**********************
-																												res.status(202).end();
-																											}
-																									});
 																								}
-																							}
-			                                      });
-			                                    });
+				                                      });
+				                                    });
+																					}
+																					else{
+																						if(req.body.list === "favorites"){
+																							insertQuery = "Insert into favorites_order values (?, ?)";
+																						}
+																						else{
+																							insertQuery = "Insert into wish_list values (?, ?)";
+																						}
+																						mysql.pool.query(insertQuery, [req.user.id, orderID],
+																							(err, row, fields) => {
+																								if (err) {
+																									res.write(JSON.stringify(err));
+																									res.end();
+																								}
+																								else {
+																									console.log("Here's inserting into list: ", row) //**********************
+																									res.status(202).end();
+																								}
+																						});
+																					}
 			                                  }
 			                              });
 																	});
