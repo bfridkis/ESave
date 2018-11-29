@@ -127,6 +127,8 @@ CREATE TABLE `promotion` (
 -- retailer - an int corresponding to a retailer entry (foreign key)
 -- current_price - decimal value for last updated final price
 -- last_updated - timestamp for current_price last update
+-- created_on - timestamp for order creation
+-- name - varchar as optional name for order
 
 CREATE TABLE `order` (
   `id` int(15) AUTO_INCREMENT NOT NULL,
@@ -134,6 +136,8 @@ CREATE TABLE `order` (
   `retailer` int(15) NOT NULL,
   `current_price` decimal(9,2),
   `last_updated` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+  `created_on` timestamp,
+  `name` varchar(255),
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_order_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_order_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
