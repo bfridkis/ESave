@@ -21,7 +21,7 @@ module.exports = (app) => {
 	router.get('/', isLoggedIn, (req, res, next) => {
     let mysql = req.app.get('mysql');
 		context = {};
-		context.css = ["userWishList.css"];
+		//context.css = ["userWishList.css"];
 		context.navbarLogo = ["images/logo.jpg"];
 		context.mainLogo = ["images/logo-medium.jpg"];
     context.user = req.user;
