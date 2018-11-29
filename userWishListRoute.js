@@ -4,15 +4,20 @@ module.exports = (app) => {
   var mysql = require('./dbcon.js');
 	//var app = express();
 
+
   function getWishList(res, mysql, context, userid){
 
-      mysql.pool.query("SELECT order.current_price, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
-      "INNER JOIN `order` ON wish_list.order = order.id " +
-      "INNER JOIN order_product ON order.id = order_product.order " +
-      "INNER JOIN product ON order_product.product = product.id " +
-      "LEFT JOIN order_promotion ON order.id = order_promotion.order " +
-      "LEFT JOIN promotion ON order_promotion.promotion = promotion.id " +
-      "INNER JOIN retailer ON order.retailer = retailer.id WHERE wish_list.user = ?", userid, function(err, rows){
+      mysql.pool.query("SELECT (@rownum := @rownum + 1) AS row_number, z.* " +
+          "FROM (SELECT order.current_price, order.created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
+          "INNER JOIN `order` ON wish_list.order = order.id " +
+          "INNER JOIN order_product ON order.id = order_product.order " +
+          "INNER JOIN product ON order_product.product = product.id " +
+          "LEFT JOIN order_promotion ON order.id = order_promotion.order " +
+          "LEFT JOIN promotion ON order_promotion.promotion = promotion.id " +
+          "INNER JOIN retailer ON order.retailer = retailer.id " +
+          "WHERE wish_list.user = ? " +
+          "ORDER BY order.created_on)z," +
+         "(SELECT @rownum := 0)y", userid, function(err, rows){
           if(err){
               res.write(JSON.stringify(err));
               res.end();
@@ -23,7 +28,6 @@ module.exports = (app) => {
   }
 
 	router.get('/', isLoggedIn, (req, res, next) => {
-    var callbackCount = 0;
 		context = {};
 		context.css = ["userWishList.css"];
 		context.navbarLogo = ["images/logo.jpg"];
@@ -47,3 +51,6 @@ function isLoggedIn(req, res, next) {
 	// if they aren't redirect them to the login page
 	res.redirect('/');
 }
+
+/* reference:
+https://stackoverflow.com/questions/2520357/mysql-get-row-number-on-select */
