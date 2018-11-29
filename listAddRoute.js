@@ -7,12 +7,12 @@ module.exports = (app) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
-        let insertQuery = "Insert into order ( user, retailer, current_price ) values (?,?,?)";
+        let insertQuery = "Insert into `order` ( user, retailer, current_price ) values (?,?,?)";
 				console.log(req.body, req.user.id); //***************************
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price)],
           (err, row, fields) => {
             if (err) {
-							console.log("Here's error: ", "err") //***********************************
+							console.log("Here's error: ", err) //***********************************
 							res.write(JSON.stringify(err));
 							res.status(400);
 							res.end();
