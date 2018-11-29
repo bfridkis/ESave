@@ -9,7 +9,7 @@ module.exports = (app) => {
         let mysql = req.app.get('mysql');
         let insertQuery = "Insert into order ( user, retailer, current_price ) values (?,?,?)";
 				console.log(req.body, req.user.id); //***************************
-        mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, req.body.current_price],
+        mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price],
           (err, rows, fields) => {
             if (err) {
 							console.log("Here's error: ", err) //***********************************
