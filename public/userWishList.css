@@ -79,8 +79,6 @@ body {
 }
 
 
-
-
 #esave-button {
   padding-left: 75px;
 }
@@ -89,3 +87,27 @@ body {
   transition: color .3s;
   color: purple;
 }
+
+#wishlist {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#wishlist td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#wishlist tr:nth-child(even){background-color: #f2f2f2;}
+
+#wishlist tr:hover {background-color: #ddd;}
+
+#wishlist th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(39, 206, 100);
+    color: white;
+}
+
+/* reference https://www.w3schools.com/css/css_table.asp */
