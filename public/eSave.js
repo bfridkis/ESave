@@ -119,11 +119,8 @@ function eSave(){
     let orderStageLeft = document.querySelector("#stage-wrapper-left");
     let orderStageLeftHeight = orderStageLeft.offsetHeight;
 
-    //console.log(req.responseText);
-
     //Parse the results and save in results array
     let results = JSON.parse(req.responseText);
-    //console.log(results);
 
     //If the results are NULL, print message on right stage accordingly. Else
     //render results.
@@ -327,7 +324,6 @@ function eSave(){
             wishlistButtonDescription.style.color = "purple";
             this.style.color = "rgb(39, 206, 100)";
           }
-          console.log("Error: " + req.status + " " + req.statusText); //**********************
         }
         else{
           console.log("Error: " + req.status + " " + req.statusText);
@@ -342,7 +338,6 @@ function eSave(){
           }
 		    }
       });
-      console.log(JSON.stringify(data));
       req.send(JSON.stringify(data));
     }
   }
