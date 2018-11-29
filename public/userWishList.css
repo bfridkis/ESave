@@ -91,6 +91,7 @@ body {
 #wishlist {
     border-collapse: collapse;
     width: 100%;
+    text-align: left;
 }
 
 #wishlist td, #wishlist th {
@@ -106,7 +107,7 @@ body {
 #wishlist th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: rgb(39, 206, 100);
     color: white;
 }
