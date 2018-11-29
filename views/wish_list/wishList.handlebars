@@ -1,0 +1,19 @@
+
+  <table>
+      <thead>
+          <th>Product</th>
+          <th>Retailer</th>
+          <th>Quantity</th>
+          <th>Current Price</th>
+      </thead>
+      <tbody>
+          {{#each list}}
+          <tr>
+              <td>{{product}}</td>
+              <td>{{retailer}}</td>
+              <td>{{quantity}}</td>
+              <td>{{current_price}}</td>
+          </tr>
+          {{/each}}
+      </tbody>
+  </table>

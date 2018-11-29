@@ -57,6 +57,7 @@ app.use('/search', require('./searchRoute.js')(app));
 app.use('/listAdd', require('./listAddRoute.js')(app));
 app.use('/profile', require('./profileRoute.js')(app));
 app.use('/promotion', require('./promotionRoute.js')(app));
+app.use('/wishList', require('./userWishListRoute.js')(app));
 
 
 

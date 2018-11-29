@@ -58,12 +58,9 @@ module.exports = function(passport) {
                 // if there is no user with that username or email
 
                 //we check if the two password fields match
-                if (password != req.body.passwordrepeat)
-                {
+                if (password != req.body.passwordrepeat) {
                   return done(null, false, req.flash('signupMessage', 'Passwords do not match. Please try again.'));
-                }
-
-                else {
+                } else {
                   // otherwise, create the user
                   var newUserMysql = {
                     username: username,
