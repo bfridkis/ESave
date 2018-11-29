@@ -3,7 +3,7 @@ module.exports = (app) => {
     var router = express.Router();
     //var app = express();
 
-    router.put('/', isLoggedIn, (req, res, next) => {
+    router.put('/', (req, res, next) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
@@ -15,7 +15,7 @@ module.exports = (app) => {
               res.write(JSON.stringify(err));
               res.end();
             }
-						else { console.log(rows); //***************************
+						else { console.log("Here's rows inserted: ", rows); //***************************
               var orderID = rows[0]["id"];
               insertQuery = "Insert into order_product values (?, ?, ?)";
               req.body.products.forEach((product, i) => {
