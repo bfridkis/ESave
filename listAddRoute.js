@@ -13,7 +13,7 @@ module.exports = (app) => {
           (err, rows, fields) => {
             if (err) {
 							console.log("Here's error: ", err) //***********************************
-							res.write(JSON.stringify(error));
+							res.write(JSON.stringify(err));
 							res.status(400);
 							res.end();
             }
