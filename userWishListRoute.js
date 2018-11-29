@@ -9,7 +9,7 @@ module.exports = (app) => {
       "INNER JOIN `order` ON wish_list.order = order.id " +
       "INNER JOIN order_product ON order.id = order_product.order " +
       "INNER JOIN product ON order_product.product = product.id " +
-      "INNER JOIN retailer ON order.retailer = retailer.id WHERE wish_list.user =" + userid, function(err, rows){
+      `INNER JOIN retailer ON order.retailer = retailer.id WHERE wish_list.user =${userid}`, function(err, rows){
           if(err){
               res.write(JSON.stringify(err));
               res.end();
