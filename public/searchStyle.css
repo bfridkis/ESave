@@ -267,3 +267,9 @@ body {
   transition: color .15s;
   color: rgb(39, 206, 100);
 }
+
+.list-add-input {
+    font-size: 1rem;
+    border-radius: 5px;
+		border-color: purple;
+}
