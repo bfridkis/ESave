@@ -137,3 +137,4 @@ module.exports = (app) => {
     // * https://stackoverflow.com/questions/26732123/turn-properties-of-object-into-a-comma-separated-list
     // * https://www.w3schools.com/jsref/jsref_join.asp
     // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+		// * https://stackoverflow.com/questions/1262786/mysql-update-query-based-on-select-query

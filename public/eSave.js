@@ -271,7 +271,7 @@ function eSave(){
        orderNameInputCell.setAttribute("colspan", "2");
        let orderNameInput = orderNameInputCell.appendChild(document.createElement("input"));
        orderNameInput.setAttribute("type", "text");
-       orderNameInput.classList.add("list-add-input");
+       orderNameInput.classList.add("list-add-input", "form-control");
        orderNameInput.setAttribute("placeholder", "Enter Order Name (Optional)");
 
        //Reset stage left height to height before ESave operation
