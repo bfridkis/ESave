@@ -267,9 +267,11 @@ function eSave(){
        wishlistButtonDescription.style.fontSize = "0.8rem";
        wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results));
        let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
-       orderNameInputRow.style.colspan = "2";
-       let orderNameInput = orderNameInputRow.appendChild(document.createElement("input"));
+       let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
+       orderNameInputCell.setattribute("colspan", "2");
+       let orderNameInput = orderNameInputCell.appendChild(document.createElement("input"));
        orderNameInput.setAttribute("type", "text");
+       orderNameInput.classList.add("list-add-input");
        orderNameInput.setAttribute("placeholder", "Enter Order Name (Optional)");
 
        //Reset stage left height to height before ESave operation
