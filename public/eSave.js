@@ -61,8 +61,6 @@ function eSave(){
       }
     });
 
-    //console.log(queryString);
-
     //Setup new XMLHttpRequest request
     var req = new XMLHttpRequest();
     //Open GET request, using queryString
