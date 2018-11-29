@@ -8,7 +8,7 @@ module.exports = (app) => {
   function getWishList(res, mysql, context, userid){
 
       mysql.pool.query("SELECT (@rownum := @rownum + 1) AS row_number, z.* " +
-          "FROM (SELECT order.current_price, order.created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
+          "FROM (SELECT order.current_price, DATE_FORMAT(order.created_on, "%W, %M %e %Y, %I:%i %p"), order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
           "INNER JOIN `order` ON wish_list.order = order.id " +
           "INNER JOIN order_product ON order.id = order_product.order " +
           "INNER JOIN product ON order_product.product = product.id " +
@@ -53,4 +53,5 @@ function isLoggedIn(req, res, next) {
 }
 
 /* reference:
-https://stackoverflow.com/questions/2520357/mysql-get-row-number-on-select */
+https://stackoverflow.com/questions/2520357/mysql-get-row-number-on-select
+https://www.w3schools.com/sql/func_mysql_date_format.asp*/
