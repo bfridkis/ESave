@@ -7,7 +7,7 @@ module.exports = (app) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
-        let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?, ?)";
+        let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?,?)";
 				console.log("Before anything :", req.body, req.user.id); //***************************
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price),
 																			 req.body.order_name],
@@ -67,6 +67,7 @@ module.exports = (app) => {
 			                                res.end();
 			                              }
 																		else {
+																			console.log("Here's selecting promos: ", rows)//****************************
 			                                callbackCount++;
 			                                let opInsertCallBackCount = 0;
 			                                rows.forEach((row, i) => {
@@ -78,6 +79,7 @@ module.exports = (app) => {
 			                                        res.end();
 			                                      }
 																						else {
+																							console.log("Here's inserting promos: ", rows) //**********************
 			                                        if (++opInsertCallbackCount === rows.length &&
 			                                          callbackCount === req.body.products.length) {
 																									if(req.body.list === "favorites"){
@@ -87,12 +89,13 @@ module.exports = (app) => {
 																										insertQuery = "Insert into wish_list values (?, ?)";
 																									}
 								                                  mysql.pool.query(insertQuery, [req.user.id, orderID],
-																										(err, rows, fields) => {
+																										(err, row, fields) => {
 							                                        if (err) {
 							                                          res.write(JSON.stringify(err));
 							                                          res.end();
 							                                        }
 																											else {
+																												console.log("Here's inserting into list: ", row) //**********************
 																												res.status(202).end();
 																											}
 																									});
