@@ -290,7 +290,7 @@ function eSave(){
       req.setRequestHeader('Content-Type', 'application/json');
       let data = {list: list,
                   products: [],
-                  retailer: orderData[0]["RET_NAME"]};
+                  retailer: orderData[0]["RET_ID"]};
       orderData.forEach((row, i) => {
         data.products.push({ product_id : row["PROD_ID"],
                              quantity: row["QT"]
