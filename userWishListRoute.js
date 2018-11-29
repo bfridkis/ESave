@@ -15,7 +15,6 @@ module.exports = (app) => {
               res.end();
           }
           context.list  = rows;
-					console.log(rows);//*********************************
       });
   }
 
@@ -27,7 +26,7 @@ module.exports = (app) => {
     context.user = req.user;
 
     getWishList(res, mysql, context, req.user.id);
-
+		console.log(context.list);//*********************************
 
     res.render('wish_list/wishList', context);
 });
