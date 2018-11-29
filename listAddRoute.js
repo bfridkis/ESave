@@ -8,12 +8,10 @@ module.exports = (app) => {
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
         let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?,?)";
-				console.log("Before anything :", req.body, req.user.id); //***************************
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price),
 																			 req.body.order_name],
           (err, row, fields) => {
             if (err) {
-							console.log("Here's error: ", err) //***********************************
 							res.write(JSON.stringify(err));
 							res.status(400);
 							res.end();
@@ -24,7 +22,6 @@ module.exports = (app) => {
 																`SET b.created_on = a.last_updated where a.id = ${orderID}`,
 			          (err, row, fields) => {
 			            if (err) {
-										console.log("Here's error: ", err) //***********************************
 										res.write(JSON.stringify(err));
 										res.status(400);
 										res.end();
@@ -40,8 +37,6 @@ module.exports = (app) => {
 			                      res.end();
 			                    }
 													else {
-														console.log(`Here's order_prod row ${i} updated: `, row); //***************************
-														console.log("req.body.products.length", req.body.products.length); //******************
 			                      if (++callbackCount === req.body.products.length) {
 			                        callbackCount = 0;
 			                        req.body.products.forEach((product, i) => {
@@ -67,7 +62,6 @@ module.exports = (app) => {
 			                                res.end();
 			                              }
 																		else {
-																			console.log("Here's selecting promos: ", rows)//****************************
 			                                callbackCount++;
 			                                let opInsertCallBackCount = 0;
 																			let numPromos = rows.length;
@@ -81,11 +75,6 @@ module.exports = (app) => {
 				                                        res.end();
 				                                      }
 																							else {
-																								console.log("Here's inserting promos: ", rows) //**********************
-																								console.log("callbackCount and opInsertCallBackCount: ",
-																																	callbackCount, opInsertCallBackCount) //**********************
-																								console.log("rows.length and req.body.products.length: ",
-																																	numPromos, req.body.products.length) //**********************
 				                                        if (++opInsertCallBackCount === numPromos &&
 				                                          callbackCount === req.body.products.length) {
 																										if(req.body.list === "favorites"){
@@ -101,7 +90,6 @@ module.exports = (app) => {
 								                                          res.end();
 								                                        }
 																												else {
-																													console.log("Here's inserting into list: ", row) //**********************
 																													res.status(202).end();
 																												}
 																										});
@@ -124,7 +112,6 @@ module.exports = (app) => {
 																									res.end();
 																								}
 																								else {
-																									console.log("Here's inserting into list: ", row) //**********************
 																									res.status(202).end();
 																								}
 																						});
