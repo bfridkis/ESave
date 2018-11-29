@@ -3,7 +3,7 @@ module.exports = (app) => {
 	var router = express.Router();
 	//var app = express();
 
-	router.get('/', (req, res, next) => {
+	router.get('/', isLoggedIn, (req, res, next) => {
 		var callbackCount = 0;
 		var eSaveResults = [];
 		context = {};
