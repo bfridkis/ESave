@@ -3,7 +3,7 @@ module.exports = (app) => {
 	var router = express.Router();
 	//var app = express();
 
-  function getWishList(res, mysql, context, complete, userid){
+  function getWishList(res, mysql, context, userid){
 
       mysql.pool.query(`SELECT order.current_price, order_product.quantity, product.name AS product, retailer.name AS retailer FROM wish_list
       INNER JOIN order ON wish_list.order = order.id
@@ -15,7 +15,6 @@ module.exports = (app) => {
               res.end();
           }
           context.list  = results;
-          complete();
       });
   }
 
@@ -26,7 +25,7 @@ module.exports = (app) => {
 		context.mainLogo = ["images/logo-medium.jpg"];
     context.user = req.user;
 
-    getWishList(res, mysql, context, complete);
+    getWishList(res, mysql, context, req.user.id);
 
 
     res.render('wish_list/wishList', context);
