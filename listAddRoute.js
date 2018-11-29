@@ -14,7 +14,7 @@ module.exports = (app) => {
             if (err) {
 							console.log("Here's error: ", err) //***********************************
 							res.write(JSON.stringify(err));
-							res.status(400);
+							res.status(500);
 							res.end();
             }
 						else { console.log("Here's rows inserted: ", rows); //***************************
