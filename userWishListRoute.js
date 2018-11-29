@@ -30,8 +30,9 @@ module.exports = (app) => {
 
 
     res.render('wish_list/wishList', context);
-	  return router;
-};
+});
+
+return router;
 
 }();
 
