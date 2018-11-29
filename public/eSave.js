@@ -266,6 +266,11 @@ function eSave(){
        wishlistButtonDescription.style.paddingLeft = "10px";
        wishlistButtonDescription.style.fontSize = "0.8rem";
        wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results));
+       let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
+       orderNameInputRow.style.colspan = "2";
+       let orderNameInput = orderNameInputRow.appendChild(document.createElement("input"));
+       orderNameInput.setAttribute("type", "text");
+       orderNameInput.setAttribute("placeholder", "Enter Order Name (Optional)");
 
        //Reset stage left height to height before ESave operation
        orderStageLeft.style.height = orderStageLeftHeight + "px";
@@ -303,6 +308,7 @@ function eSave(){
       });
       data["current_price"] = orderFinalPrice;
       data["initial_price"] = orderInitialPrice;
+      data["order_name"] = orderNameInput.value;
       req.addEventListener('load', () => {
         if(req.status >= 200 && req.status < 400){
           this.setAttribute("added", "yes");
@@ -359,6 +365,8 @@ function eSave(){
 // * https://stackoverflow.com/questions/2108318/css-html-what-is-the-correct-way-to-make-text-italic
 // * https://stackoverflow.com/questions/2430000/determine-if-string-is-in-list-in-javascript
 // * https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+// * https://www.w3schools.com/sql/sql_alter.asp
+// * https://stackoverflow.com/questions/267658/having-both-a-created-and-last-updated-timestamp-columns-in-mysql-4-0
 
 // ** Unused... **
 
