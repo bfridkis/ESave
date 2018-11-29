@@ -311,7 +311,7 @@ function eSave(){
       });
       data["current_price"] = orderFinalPrice;
       data["initial_price"] = orderInitialPrice;
-      data["order_name"] = orderNameInput.value;
+      data["order_name"] = document.querySelector(".list-add-inpt").value;
       req.addEventListener('load', () => {
         if(req.status >= 200 && req.status < 400){
           this.setAttribute("added", "yes");
