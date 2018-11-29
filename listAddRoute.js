@@ -7,9 +7,10 @@ module.exports = (app) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
-        let insertQuery = "Insert into `order` ( user, retailer, current_price ) values (?,?,?)";
-				console.log(req.body, req.user.id); //***************************
-        mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price)],
+        let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?, ?)";
+				console.log("Before anything :", req.body, req.user.id); //***************************
+        mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price),
+																			 req.body.order_name],
           (err, row, fields) => {
             if (err) {
 							console.log("Here's error: ", err) //***********************************
@@ -18,7 +19,6 @@ module.exports = (app) => {
 							res.end();
             }
 						else {
-							console.log("Here's rows inserted: ", row); //***************************
 							var orderID = row.insertId;
 							mysql.pool.query("update `order` a INNER JOIN `order` b ON a.id = b.id " +
 																`SET b.created_on = a.last_updated where a.id = ${orderID}`,
@@ -30,8 +30,7 @@ module.exports = (app) => {
 										res.end();
 			            }
 									else {
-										console.log("Here's rows updated: ", row); //***************************
-			              insertQuery = "Insert into order_product values (?, ?, ?)";
+										insertQuery = "Insert into order_product values (?, ?, ?)";
 			              req.body.products.forEach((product, i) => {
 			                mysql.pool.query(insertQuery, [orderID, req.body.products[i].product_id,
 			                    req.body.products[i].quantity],
@@ -41,8 +40,9 @@ module.exports = (app) => {
 			                      res.end();
 			                    }
 													else {
-			                      callbackCount++;
-			                      if (callbackCount === req.body.products.length) {
+														console.log(`Here's order_prod row ${i} updated: `, row); //***************************
+														console.log("req.body.products.length", req.body.products.length); //******************
+			                      if (++callbackCount === req.body.products.length) {
 			                        callbackCount = 0;
 			                        req.body.products.forEach((product, i) => {
 			                          let selectQuery;
