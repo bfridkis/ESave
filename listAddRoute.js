@@ -7,7 +7,7 @@ module.exports = (app) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
-        let insertQuery = "Insert into `order_product`  values (1, 2, 4), (1, 3, 4)"; //( user, retailer, current_price ) values (?,?,?), (11, 5, 13)";
+        let insertQuery = "Insert into `order` ( user, retailer, current_price ) values (?,?,?)";
 				console.log(req.body, req.user.id); //***************************
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price)],
           (err, row, fields) => {
