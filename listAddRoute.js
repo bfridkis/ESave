@@ -78,8 +78,7 @@ module.exports = (app) => {
 			                                        res.end();
 			                                      }
 																						else {
-			                                        opInsertCallbackCount++;
-			                                        if (opInsertCallbackCount === rows.length &&
+			                                        if (++opInsertCallbackCount === rows.length &&
 			                                          callbackCount === req.body.products.length) {
 																									if(req.body.list === "favorites"){
 																										insertQuery = "Insert into favorites_order values (?, ?)";
