@@ -1,6 +1,7 @@
 module.exports = (app) => {
 	var express = require('express');
 	var router = express.Router();
+  var mysql = require('./dbcon.js');
 	//var app = express();
 
   function getWishList(req, res, mysql, context, userid){
@@ -15,7 +16,6 @@ module.exports = (app) => {
   }
 
 	router.get('/', isLoggedIn, (req, res, next) => {
-    let mysql = req.app.get('mysql');
 		context = {};
 		//context.css = ["userWishList.css"];
 		context.navbarLogo = ["images/logo.jpg"];
