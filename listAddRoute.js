@@ -82,8 +82,10 @@ module.exports = (app) => {
 																							else {
 																								console.log("Here's inserting promos: ", rows) //**********************
 																								console.log("callbackCount and opInsertCallBackCount: ",
-																																	callbackCount, opInsertCallBackCount) //**********************
-				                                        if (++opInsertCallBackCount === rows.length &&
+																																	callbackCount, ++opInsertCallBackCount) //**********************
+																								console.log("rows.length and req.body.products.length: ",
+																																	rows.length, req.body.products.length) //**********************
+				                                        if (opInsertCallBackCount === rows.length &&
 				                                          callbackCount === req.body.products.length) {
 																										if(req.body.list === "favorites"){
 																											insertQuery = "Insert into favorites_order values (?, ?)";
