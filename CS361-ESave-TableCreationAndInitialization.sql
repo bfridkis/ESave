@@ -290,8 +290,11 @@ CREATE TABLE `retailer_rating` (
 -- ************************************ INSERTIONS **************************************
 
 -- USER TABLE INSERTIONS --
- INSERT INTO user values (1, 'fridkisb', 'ESaveRules', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
+ INSERT INTO user values (1, 'fridkisb', '$2a$10$tenRWwWRtkudlmla7KNBS./EAmZT8Q0HKHjVHB85JWNM/MtKIhNUe', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
 						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
+
+ INSERT INTO user values (2, 'emistock', '$2a$10$YvNjZTMuSv19hyWCHpL.Ve59JfCUEo3c3U21IC2KKNz7g5/vpK1he', 'Emily',
+  'Stockenbojer', 'stockene@oregonstate.edu', NULL, NULL, TRUE, TRUE, TRUE);
 
 -- RETAILER TABLE INSERTIONS --
 INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL, 5.99),
@@ -309,6 +312,7 @@ INSERT INTO promotion values (1, 20, 1,
 
 -- ORDER TABLE INSERTIONS --
 INSERT INTO `order` values (1, 1, 1, 49.99, '2018-11-09 10:49:21');
+INSERT INTO `order` values (2, 2, 2, 299.99, '2018-11-09 10:49:21');
 
 -- REVIEW TABLE INSERTIONS --
 INSERT INTO review values (1, 5, 'Excellent products! Loved the $20 off promotion!');
@@ -321,6 +325,7 @@ INSERT INTO favorites_order values (1, 1);
 
 -- WISH_LIST TABLE INSERTIONS --
 INSERT INTO wish_list values (1, 1);
+INSERT INTO wish_list values (2, 2);
 
 -- MESSAGE TABLE INSERTIONS --
 INSERT INTO message values (1, 'Why would I send a message to myself? Because there are no other users!
@@ -329,6 +334,7 @@ INSERT INTO message values (1, 'Why would I send a message to myself? Because th
 
 -- ORDER_PRODUCT TABLE INSERTIONS --
 INSERT INTO order_product values (1, 1, 4);
+INSERT INTO order_product values (2, 2, 1);
 
 -- ORDER_PROMOTION TABLE INSERTIONS --
 INSERT INTO order_promotion values (1, 1);

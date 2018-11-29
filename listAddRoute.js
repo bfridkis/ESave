@@ -7,18 +7,18 @@ module.exports = (app) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
-        let insertQuery = "Insert into order ( user, retailer, current_price ) values (?,?,?)";
+        let insertQuery = "Insert into `order` ( user, retailer, current_price ) values (?,?,?)";
 				console.log(req.body, req.user.id); //***************************
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price)],
-          (err, rows, fields) => {
+          (err, row, fields) => {
             if (err) {
 							console.log("Here's error: ", err) //***********************************
 							res.write(JSON.stringify(err));
 							res.status(400);
 							res.end();
             }
-						else { console.log("Here's rows inserted: ", rows); //***************************
-              var orderID = rows[0]["id"];
+						else { console.log("Here's rows inserted: ", row); //***************************
+              var orderID = row.insertId;
               insertQuery = "Insert into order_product values (?, ?, ?)";
               req.body.products.forEach((product, i) => {
                 mysql.pool.query(insertQuery, [orderID, req.body.products[i].product_id,
