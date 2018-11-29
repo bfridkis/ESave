@@ -3,7 +3,7 @@ module.exports = (app) => {
 	var router = express.Router();
 	//var app = express();
 
-  function getWishList(res, mysql, context, userid){
+  function getWishList(req, res, mysql, context, userid){
 
       mysql.pool.query("SELECT order.current_price, order_product.quantity, product.name AS product, retailer.name AS retailer FROM wish_list INNER JOIN order ON wish_list.order = order.id INNER JOIN order_product ON order.id = order_product.order INNER JOIN product ON order_product.product = product.id INNER JOIN retailer ON order.retailer = retailer.id WHERE wish_list.user = ?", req.user.id, function(error, results, fields){
           if(error){
