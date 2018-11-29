@@ -46,10 +46,14 @@
           <th>Quantity</th>
           <th>Price</th>
           <th>Promotion</th>
+          <th>Created On</th>
       </thead>
       <tbody>
           {{#each list}}
           <tr>
+              <td colspan="6">
+                {{row_number}}
+              </td>
               <td>{{product}}</td>
               <td>{{retailer}}</td>
               <td>{{quantity}}</td>
@@ -60,6 +64,7 @@
               {{else}}
               <td>None Available</td>
               {{/if}}
+              <td>{{created_on}}</td>
           </tr>
           {{/each}}
       </tbody>
