@@ -269,6 +269,7 @@ function eSave(){
        let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
        let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
        orderNameInputCell.setAttribute("colspan", "2");
+       orderNameInputCell.style.paddingTop = "10px";
        let orderNameInput = orderNameInputCell.appendChild(document.createElement("input"));
        orderNameInput.setAttribute("type", "text");
        orderNameInput.classList.add("list-add-input", "form-control");
