@@ -162,6 +162,10 @@ body {
   vertical-align: middle;
 }
 
+.order-table {
+	margin: auto;
+}
+
 .stage-table-cap {
 	padding-bottom: : 20px;
 	caption-side: top;
