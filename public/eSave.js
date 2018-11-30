@@ -81,7 +81,7 @@ function eSave(){
        //If no products were staged, print message on right stage accordingly.
        else{
          orderStageRightText.innerHTML =
-            'Add products and click "<i class="fas fa-check-square"></i>" to ESave staged order...</span>';
+            'Add products and click "<i class="fas fa-check-square"></i>" to ESave staged order...';
        }
       }
       else{
