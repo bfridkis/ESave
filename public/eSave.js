@@ -145,7 +145,13 @@ function eSave(){
        let stageTable = document.createElement("table");
        stageTable.classList.add("order-table");
        stageTableCap = stageTable.appendChild(document.createElement("caption"));
-       stageTableCap.classList.add("stage-table-cap");
+       stageTableCap.innerText = "ESave's Best Offer";
+       stageTableCap.style.paddingBottom = "20px";
+       stageTableCap.style.captionSide = "top";
+       stageTableCap.style.textAlign = "center";
+       stageTableCap.style.fontSize = "2.5rem";
+       stageTableCap.style.color = "purple";
+       stageTable.style.margin = "auto";
        orderStageRight.appendChild(stageTable);
 
        //Add product name header and product name to result table.
@@ -244,12 +250,16 @@ function eSave(){
        let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        favButtonDescription.setAttribute("id", "fav-button-desc");
        favButtonDescription.textContent = "(add to favorites)";
-       favButtonDescription.classList.add("list-button-description");
+       favButtonDescription.style.fontStyle = "italic";
+       favButtonDescription.style.paddingRight = "10px";
+       favButtonDescription.style.fontSize = "0.8rem";
        favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results));
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.setAttribute("id", "wl-button-desc");
        wishlistButtonDescription.innerHTML = "&nbsp&nbsp(add to wishlist)";
-       wishlistButtonDescription.classList.add("list-button-description");
+       wishlistButtonDescription.style.fontStyle = "italic";
+       wishlistButtonDescription.style.paddingLeft = "10px";
+       wishlistButtonDescription.style.fontSize = "0.8rem";
        wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results));
        let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
        let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
