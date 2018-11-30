@@ -162,6 +162,15 @@ body {
   vertical-align: middle;
 }
 
+.stage-table-cap {
+	padding-bottom: : 20px;
+	caption-side: top;
+	text-align: center;
+	font-size: 2.5rem;
+	color: purple;
+	margin: auto;
+}
+
 #button-stage {
   padding-top: 20px;
 }
@@ -273,4 +282,10 @@ body {
     border-radius: 5px;
 		border-color: purple;
 		width: 242px;
+}
+
+.list-button-description {
+	font-style: italic;
+	padding-right: 10px;
+	font-size: 0.8rem;
 }
