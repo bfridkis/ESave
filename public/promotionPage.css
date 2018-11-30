@@ -80,3 +80,34 @@ body {
     transition: color .1s;
     color: rgb(39, 206, 100);
 }
+
+.data-outer-container {
+	text-align: center:
+}
+
+
+.data-inner-container {
+	border:1px solid black;
+	margin: 0 auto;
+	float: none;
+	border-spacing: 15px;
+}
+
+#data {
+	text-align: center;
+	width: 50%;
+	margin: 0 auto;
+	float: none;
+	border-spacing: 15px;
+}
+
+#legend {
+	
+    color: purple;
+}
+
+#submit {
+	align: center;
+}
+
+
