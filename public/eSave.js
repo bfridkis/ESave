@@ -250,7 +250,7 @@ function eSave(){
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.setAttribute("id", "wl-button-desc");
        wishlistButtonDescription.innerHTML = "&nbsp&nbsp(add to wishlist)";
-       wishlistButtonDescription.style.classList.add("list-button-description");
+       wishlistButtonDescription.classList.add("list-button-description");
        wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results));
        let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
        let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
