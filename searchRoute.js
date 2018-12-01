@@ -58,7 +58,6 @@ module.exports = (app) => {
 		        else{
 							//console.log(rows);
 		          eSaveResults.push(rows[0]);
-							console.log(eSaveResults);
 							complete();
 		        }
 		      });
@@ -74,6 +73,7 @@ module.exports = (app) => {
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= (Object.keys(req.query).length / 2) - 1){
+				console.log(eSaveResults);
 				res.send(JSON.stringify(eSaveResults));
 			}
 		}
