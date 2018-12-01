@@ -87,10 +87,14 @@ body {
 
 
 .data-inner-container {
-	border:1px solid black;
-	margin: 0 auto;
-	float: none;
-	border-spacing: 15px;
+  border: 3px dashed purple;
+  max-width: 700px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  outline: 3px solid #000000;
+  outline-offset: 5px;
 }
 
 #data {
@@ -102,12 +106,10 @@ body {
 }
 
 #legend {
-	
+
     color: purple;
 }
 
 #submit {
 	align: center;
 }
-
-
