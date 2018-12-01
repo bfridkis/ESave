@@ -56,13 +56,13 @@
 		    <li id = "ecoupon">Ecoupon: {{ecoupon}}</li>
         <br>
         {{#if product}}
-        <li id = "wish-list" class="promo_{{id}}_li"><i onclick="addWishList('wish-list', '{{product_name}}',
+        <li id = "wish-list" class="promo_{{id}}_li_wl"><i onclick="addWishList('wish-list', '{{product_name}}',
                                                                   '{{qt_required}}',
                                                                   '{{retailer_name}}',
                                                                   '{{product}}',
                                                                   'promo_{{id}}')"
             class='fas fa-clipboard-check promo_{{id}}'></i>&nbsp&nbsp Add to your wishlist!</li>
-        <li id = "favorites" class="promo_{{id}}_li"><i onclick="addWishList('favorites', '{{product_name}}',
+        <li id = "favorites" class="promo_{{id}}_li_fv"><i onclick="addWishList('favorites', '{{product_name}}',
                                                                   '{{qt_required}}',
                                                                   '{{retailer_name}}',
                                                                   '{{product}}',
