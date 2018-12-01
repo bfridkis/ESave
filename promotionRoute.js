@@ -33,7 +33,6 @@ module.exports = (app) => {
 
  });
  return router;
-<<<<<<< Updated upstream
 };
 
 // route middleware to make sure
@@ -45,7 +44,4 @@ function isLoggedIn(req, res, next) {
 
 	// if they aren't redirect them to the login page
 	res.redirect('/login');
-=======
-
->>>>>>> Stashed changes
 }
