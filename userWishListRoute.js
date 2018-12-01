@@ -39,7 +39,7 @@ module.exports = (app) => {
 
 router.delete('/:order_id', function(req, res){
     var mysql = req.app.get('mysql');
-    var sql = "DELETE FROM wish_list WHERE order = ?";
+    var sql = "DELETE FROM wish_list WHERE wish_list.order = ?";
     var inserts = [req.params.order_id];
     sql = mysql.pool.query(sql, inserts, function(error, results, fields){
         if(error){
