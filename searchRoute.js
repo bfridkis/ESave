@@ -58,7 +58,7 @@ module.exports = (app) => {
 		        else{
 							//console.log(rows);
 		          eSaveResults.push(rows[0]);
-							//console.log(eSaveResults);
+							console.log(eSaveResults);
 							complete();
 		        }
 		      });
