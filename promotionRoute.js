@@ -13,21 +13,27 @@ module.exports = (app) => {
     //context.jsGreatDeals = "promotion.js"
     let mysql = req.app.get('mysql');
 
-    mysql.pool.query(`SELECT retailer.name, promotion.discount, promotion.description, promotion.ecoupon FROM promotion INNER JOIN retailer on retailer.id=promotion.retailer`, function(error, results, fields){
+    mysql.pool.query("SELECT product.name AS product_name, promotion.product, retailer.name AS retailer_name, " +
+										 "promotion.discount, promotion.description, promotion.ecoupon, promotion.qt_required, promotion.id " +
+                    "FROM promotion " +
+                    "INNER JOIN retailer on retailer.id=promotion.retailer " +
+                    "INNER JOIN product on promotion.product=product.id", function(error, results, fields){
 	  	if(error){
 	    		res.write(JSON.stringify(error));
 	    		res.end();
 	  	}
       context.promotions = results;
       context.navbarLogo = ["images/logo.jpg"];
-      context.css = ["promotionPage.css"]
+      context.css = ["promotionPage.css"];
       context.user = req.user;
+      context.js = ["promotion.js"];
       res.render('promotion/promotion',context);
 			//res.render('/', context);
 	 });
 
  });
  return router;
+<<<<<<< Updated upstream
 };
 
 // route middleware to make sure
@@ -39,4 +45,7 @@ function isLoggedIn(req, res, next) {
 
 	// if they aren't redirect them to the login page
 	res.redirect('/login');
+=======
+
+>>>>>>> Stashed changes
 }
