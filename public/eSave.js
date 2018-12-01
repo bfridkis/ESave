@@ -274,7 +274,7 @@ function eSave(){
      }
   }
 
-  function listAdder(list, orderData){
+  function listAdder(list, orderData, promo_id){
     if(!this.getAttribute("added")){
       //Setup new XMLHttpRequest request
       let req = new XMLHttpRequest();
@@ -304,13 +304,23 @@ function eSave(){
               let favButtonDescription = document.querySelector("#fav-button-desc");
               favButtonDescription.textContent = "(added to favorites!)";
               favButtonDescription.style.color = "purple";
-              this.style.color = "rgb(39, 206, 100)";
+              if(promo_id){
+                document.querySelector(`.${promo_id}`).style.color = "rgb(39, 206, 100)";
+              }
+              else{
+                this.style.color = "rgb(39, 206, 100)";
+              }
           }
           else{
             wishlistButtonDescription = document.querySelector("#wl-button-desc");
             wishlistButtonDescription.textContent = "(added to wishlist!)";
             wishlistButtonDescription.style.color = "purple";
-            this.style.color = "rgb(39, 206, 100)";
+            if(promo_id){
+              document.querySelector(`.${promo_id}`).style.color = "rgb(39, 206, 100)";
+            }
+            else{
+              this.style.color = "rgb(39, 206, 100)";
+            }
           }
         }
         else{
