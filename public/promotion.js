@@ -51,7 +51,7 @@ function listAdder(list, orderData, promo_id){
             //favButtonDescription.textContent = "(added to favorites!)";
             //favButtonDescription.style.color = "purple";
             promo.style.color = "rgb(39, 206, 100)";
-            document.querySelector("#favorites").innerText =
+            document.querySelector("#favorites").innerHTML =
               "<i class='fas fa-heart promo_{{id}}'></i>&nbsp&nbsp Added!";
         }
         else{
@@ -59,7 +59,7 @@ function listAdder(list, orderData, promo_id){
           //wishlistButtonDescription.textContent = "(added to wishlist!)";
           //wishlistButtonDescription.style.color = "purple";
           promo.style.color = "rgb(39, 206, 100)";
-          document.querySelector("#wish-list").innerText =
+          document.querySelector("#wish-list").innerHTML=
             "<i class='fas fa-clipboard-check promo_{{id}}'></i>&nbsp&nbsp Added!";
         }
       }
