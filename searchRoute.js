@@ -73,7 +73,7 @@ module.exports = (app) => {
 
 		function complete(){
 			callbackCount++;
-			if(callbackCount >= Object.keys(req.query).length / 2){
+			if(callbackCount >= (Object.keys(req.query).length / 2) - 1){
 				res.send(JSON.stringify(eSaveResults));
 			}
 		}
