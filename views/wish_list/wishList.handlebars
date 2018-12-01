@@ -1,6 +1,6 @@
-<script>function deleteWishListItem(order){
+<script>function deleteWishListItem(order_id){
     $.ajax({
-        url: '/wishList/' + order,
+        url: '/wishList/' + order_id,
         type: 'DELETE',
         success: function(result){
           window.location.reload(true);
@@ -79,7 +79,7 @@
               <td>None Available</td>
               {{/if}}
               <td>{{created_on}}</td>
-              <td><button onclick="deleteWishListItem({{order}})">DELETE</button></td>
+              <td><button onclick="deleteWishListItem({{order_id}})">DELETE</button></td>
           </tr>
           {{/each}}
       </tbody>
