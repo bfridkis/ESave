@@ -51,12 +51,14 @@ function listAdder(list, orderData, promo_id){
             //favButtonDescription.textContent = "(added to favorites!)";
             //favButtonDescription.style.color = "purple";
             promo.style.color = "rgb(39, 206, 100)";
+            document.querySelector("#favorites").innerText = "&nbsp&nbsp Added!";
         }
         else{
           //wishlistButtonDescription = document.querySelector("#wl-button-desc");
           //wishlistButtonDescription.textContent = "(added to wishlist!)";
           //wishlistButtonDescription.style.color = "purple";
           promo.style.color = "rgb(39, 206, 100)";
+          document.querySelector("#wish-list").innerText = "&nbsp&nbsp Added!";
         }
       }
       else{
