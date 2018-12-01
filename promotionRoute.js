@@ -13,7 +13,7 @@ module.exports = (app) => {
     //context.jsGreatDeals = "promotion.js"
     let mysql = req.app.get('mysql');
 
-    mysql.pool.query("SELECT product.name AS product_name, promotion.product, retailer.name AS retailer_name, promotion.min_spend " +
+    mysql.pool.query("SELECT product.name AS product_name, promotion.product, retailer.name AS retailer_name, promotion.min_spend, " +
 										 "promotion.discount, promotion.description, promotion.ecoupon, promotion.qt_required, promotion.id, " +
 										 "retailer.id AS RET_ID " +
                      "FROM promotion " +
