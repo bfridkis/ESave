@@ -1,3 +1,13 @@
+<script>function deleteWishListItem(order){
+    $.ajax({
+        url: '/wishList/' + order,
+        type: 'DELETE',
+        success: function(result){
+          window.location.reload(true);
+        }
+    })
+};</script>
+
 <nav class="navbar fixed-top navbar-expand navbar-light bg-light">
   <!--<a class="navbar-brand" href="#"><img src="../../public/images/logo.jpg" class="banner-logo"></a>-->
   <a class="navbar-brand" href="/"><img src="{{navbarLogo}}" class="banner-logo"></a>
@@ -47,6 +57,7 @@
           <th>Price</th>
           <th>Promotion</th>
           <th>Created On</th>
+          <th>Delete</th>
       </thead>
       <tbody>
           {{#each list}}
@@ -68,6 +79,7 @@
               <td>None Available</td>
               {{/if}}
               <td>{{created_on}}</td>
+              <td><button onclick="deleteWishListItem({{order}})"><span class="glyphicon glyphicon-minus"></span></button></td>
           </tr>
           {{/each}}
       </tbody>
