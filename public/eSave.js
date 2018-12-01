@@ -56,9 +56,9 @@ function eSave(){
     items.forEach((item, i) => {
       queryString += "p" + (i + 1) + "=" + item.textContent + "&"
                     + "q" + (i + 1) + "=" + qts[i].textContent + "&";
-      }
-      queryString += "ret=NULL"
-    });
+      });
+    queryString += "ret=NULL"
+
 
     //Setup new XMLHttpRequest request
     var req = new XMLHttpRequest();
