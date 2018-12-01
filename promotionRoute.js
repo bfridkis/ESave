@@ -26,7 +26,7 @@ module.exports = (app) => {
       context.navbarLogo = ["images/logo.jpg"];
       context.css = ["promotionPage.css"];
       context.user = req.user;
-      context.js = ["promotion.js"];
+      //context.js = ["promotion.js"];
       res.render('promotion/promotion',context);
 			//res.render('/', context);
 	 });
