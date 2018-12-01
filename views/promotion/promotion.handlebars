@@ -43,12 +43,12 @@
     <div class="data-outer-container">
 	<form id='data' action="/home">
 	  <legend id="legend">Great Deals for {{user.first_name}}!!</legend>
-	   <div class="data-inner-container">
+	   <div class="data-inner-container" style="padding-top:50px">
 	    <fieldset>
 		{{#each promotions}}
 		<ul class = "promos" style="list-style-type:none" class = "promotions">
 		    <li id = "productID" hidden>{{product}}</li>
-        <li id = "description" style="padding-right:30px;padding-top:50px">{{description}}</li>
+        <li id = "description" style="padding-right:30px">{{description}}</li>
 		    <li id = "retailer" style="padding-right:30px">Retailer: {{retailer_name}}</li>
 		    <li id = "discount" style="padding-right:30px">Discount: ${{discount}}</li>
 		    <li id = "ecoupon" style="padding-right:30px">Ecoupon: {{ecoupon}}</li>
@@ -92,4 +92,5 @@
 
 <!-- * References
 * https://github.com/wycats/handlebars.js/issues/1300
+* https://stackoverflow.com/questions/11884960/how-to-get-index-in-handlebars-each-helper
 -->
