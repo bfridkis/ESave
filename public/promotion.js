@@ -1,4 +1,4 @@
-function addWishList(list, promo)
+function promotion(list, promo)
 {
  let req = new XMLHttpRequest();
 
