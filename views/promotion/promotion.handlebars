@@ -48,12 +48,12 @@
 		{{#each promotions}}
 		<ul class = "promos" style="list-style-type:none" class = "promotions">
 		    <li id = "productID" hidden>{{product}}</li>
-        <li id = "product">{{product_name}}</li>
-        <li id = "quantity">{{qt_required}}</li>
-        <li id = "description">{{description}}</li>
-		    <li id = "retailer">Retailer: {{name}}</li>
-		    <li id = "discount">Discount: ${{discount}}</li>
-		    <li id = "ecoupon">Ecoupon: {{ecoupon}}</li>
+        <li id = "product" style="padding-right:10px;padding-top:10px">{{product_name}}</li>
+        <li id = "quantity" style="padding-right:10px;padding-top:10px">{{qt_required}}</li>
+        <li id = "description" style="padding-right:10px;padding-top:10px">{{description}}</li>
+		    <li id = "retailer" style="padding-right:10px;padding-top:10px">Retailer: {{name}}</li>
+		    <li id = "discount" style="padding-right:10px;padding-top:10px">Discount: ${{discount}}</li>
+		    <li id = "ecoupon" style="padding-right:10px;padding-top:10px">Ecoupon: {{ecoupon}}</li>
         <br>
         {{#if product}}
         <li id = "wish-list" class="promo_{{id}}_wl_li"><i onclick="addWishList('wish-list', '{{product_name}}',
