@@ -8,7 +8,7 @@ module.exports = (app) => {
 	app.use(bodyParser.urlencoded({ extended: true }))
 
   //get route - if someone goes to /promotion
-  router.get('/', function(req, res, next) {
+  router.get('/', isLoggedIn, (req, res, next) => {
     var context = {};
     //context.jsGreatDeals = "promotion.js"
     let mysql = req.app.get('mysql');
@@ -29,3 +29,14 @@ module.exports = (app) => {
  });
  return router;
 };
+
+// route middleware to make sure
+function isLoggedIn(req, res, next) {
+
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to the login page
+	res.redirect('/login');
+}
