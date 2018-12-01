@@ -6,7 +6,7 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
 
  let queryString = `/search?p1=${product_name}&q1=${quantity}&ret=${retailer_name}`;
 	 req.open("GET", queryString, true);
-	 req.setRequestHeader('Content-Type', 'application/json');
+	 //req.setRequestHeader('Content-Type', 'application/json');  <-- Not needed for get request
 
 	 if(req.status >= 200 && req.status < 400)
  {
@@ -16,5 +16,5 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
  }
 	 else
  console.log("Error: " + req.statusText);
-req.send();
+req.send(null);
 }
