@@ -245,12 +245,12 @@ function eSave(){
        favButtonDescription.setAttribute("id", "fav-button-desc");
        favButtonDescription.textContent = "(add to favorites)";
        favButtonDescription.classList.add("list-button-description");
-       favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results));
+       favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results, null));
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.setAttribute("id", "wl-button-desc");
        wishlistButtonDescription.innerHTML = "&nbsp&nbsp(add to wishlist)";
        wishlistButtonDescription.classList.add("list-button-description");
-       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results));
+       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results, null));
        let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
        let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
        orderNameInputCell.setAttribute("colspan", "2");
