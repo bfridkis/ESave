@@ -305,7 +305,7 @@ function eSave(){
               favButtonDescription.textContent = "(added to favorites!)";
               favButtonDescription.style.color = "purple";
               if(promo_id){
-                document.querySelector(`.${promo_id}`).style.color = "rgb(39, 206, 100)";
+                document.querySelector(". " + promo_id).style.color = "rgb(39, 206, 100)";
               }
               else{
                 this.style.color = "rgb(39, 206, 100)";
@@ -316,7 +316,7 @@ function eSave(){
             wishlistButtonDescription.textContent = "(added to wishlist!)";
             wishlistButtonDescription.style.color = "purple";
             if(promo_id){
-              document.querySelector(`.${promo_id}`).style.color = "rgb(39, 206, 100)";
+              document.querySelector(". " + promo_id).style.color = "rgb(39, 206, 100)";
             }
             else{
               this.style.color = "rgb(39, 206, 100)";
