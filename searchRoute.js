@@ -37,8 +37,11 @@ module.exports = (app) => {
 												"(product.name LIKE '%" + req.query[key] + "%' OR " +
 												"'" + req.query[key] + "' = product.upc OR '" + req.query[key] +
 												"' = product.model_number OR retailer_product.description LIKE '%" + req.query[key] + "%') " +
-												"JOIN retailer ON (retailer_product.retailer = retailer.id  OR " +
-												"retailer.id = '" + req.query.ret + "' OR retailer.name = '" + req.query.ret + "') " +
+												"JOIN retailer ON retailer_product.retailer = retailer.id  ";
+					if(req.query.ret !== "NULL"){
+						queryString+= "AND (retailer.id = '" + req.query.ret + "' OR retailer.name = '" + req.query.ret + "') ";
+					}
+					queryString += "(retailer.id = '" + req.query.ret + "' OR retailer.name = '" + req.query.ret + "') " +
 												"LEFT JOIN promotion ON promotion.retailer = retailer.id AND " +
 												"(promotion.product = product.id OR promotion.product IS NULL) AND " +
 												"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' "+
