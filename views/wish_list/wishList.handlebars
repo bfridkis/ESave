@@ -81,7 +81,9 @@
               <td>None Available</td>
               {{/if}}
               <td>{{created_on}}</td>
-              <td><button onclick="deleteWishListItem({{order_id}})">DELETE</button></td>
+              <td><button onclick="deleteWishListItem({{order_id}})">
+                <i class='fas fa-minus-circle' style='font-size:36px;color:red'>
+                </button></td>
           </tr>
           {{/each}}
       </tbody>
