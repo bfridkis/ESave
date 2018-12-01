@@ -56,7 +56,8 @@
 		    <li id = "ecoupon">Ecoupon: {{ecoupon}}</li>
         <br>
         {{#if product}}
-        <li id = "wish-list"><i onclick="addWishList()" class='fas fa-clipboard-check promo_{{id}}'></i>&nbsp&nbsp Add to your wishlist!</li>
+        <li id = "wish-list"><i onclick="addWishList('wish-list')"
+            class='fas fa-clipboard-check promo_{{id}}'></i>&nbsp&nbsp Add to your wishlist!</li>
         {{/if}}
 		<br>
 		</ul>
@@ -74,6 +75,6 @@
   </ul>
       </div>
     </footer>
-    <script src="promotion.js"></script> <!--can put filename in context so not hard coded-->
+    <script src='promotion.js'></script> <!--can put filename in context so not hard coded-->
   </body>
 </html>
