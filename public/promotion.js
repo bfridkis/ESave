@@ -43,7 +43,7 @@ function listAdder(list, orderData, promo_id){
     });
     data["current_price"] = orderFinalPrice;
     data["initial_price"] = orderInitialPrice;
-    data["order_name"] = document.querySelector(".list-add-input").value;
+    //data["order_name"] = document.querySelector(".list-add-input").value;
     req.addEventListener('load', () => {
       if(req.status >= 200 && req.status < 400){
         promo.setAttribute("added", "yes");
