@@ -57,12 +57,12 @@
           <th>Price</th>
           <th>Promotion</th>
           <th>Created On</th>
-          <th>Delete</th>
+          <th></th>
       </thead>
       <tbody>
           {{#each list}}
           <tr>
-            <td colspan="6">
+            <td colspan="7">
               Order #{{row_number}}
             </td>
   </tr>
@@ -79,7 +79,7 @@
               <td>None Available</td>
               {{/if}}
               <td>{{created_on}}</td>
-              <td><button onclick="deleteWishListItem({{order}})"><span class="glyphicon glyphicon-minus"></span></button></td>
+              <td><button onclick="deleteWishListItem({{order}})">DELETE</button></td>
           </tr>
           {{/each}}
       </tbody>
