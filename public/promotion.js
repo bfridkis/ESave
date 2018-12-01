@@ -20,6 +20,7 @@ req.send(null);
 }
 
 function listAdder(list, orderData, promo_id){
+    //Setup new XMLHttpRequest request
     let req = new XMLHttpRequest();
     //Open GET request, using queryString
     req.open("PUT", "/listAdd", true);
@@ -73,5 +74,4 @@ function listAdder(list, orderData, promo_id){
       }
     });
     req.send(JSON.stringify(data));
-  }
 }
