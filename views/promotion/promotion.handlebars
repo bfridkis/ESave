@@ -41,19 +41,16 @@
     </div>
     <br />
 
-    <div class="data-outer-container">
-   <h2 align="center">Today's Great Deals!!</h2>
-	   <div class="data-inner-container">
+  <h2 align="center">Today's Great Deals!!</h2>
+	<div class="data-inner-container">
 		{{#each promotions}}
 		<ul style="list-style-type:none" class = "promotions">
 		    <li>{{description}}</li>
 		    <li>Retailer: {{name}}</li>
 		    <li>Discount: ${{discount}}</li>
 		    <li>Ecoupon: {{ecoupon}}</li>
-		<br>
 		</ul>
 		{{/each}}
-	   </div>
     </div>
     <footer>
       <div id="button-container" align="center">
