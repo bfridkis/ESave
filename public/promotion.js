@@ -19,3 +19,69 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
  });
 req.send(null);
 }
+
+function listAdder(list, orderData, promo_id){
+  if(!this.getAttribute("added")){
+    //Setup new XMLHttpRequest request
+    let req = new XMLHttpRequest();
+    //Open GET request, using queryString
+    req.open("PUT", "/listAdd", true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    let data = {list: list,
+                products: [],
+                retailer: orderData[0]["RET_ID"]};
+    orderData.forEach((row, i) => {
+      data.products.push({ product_id : row["PROD_ID"],
+                           quantity: row["QT"]
+                         });
+    });
+    let orderFinalPrice = 0, orderInitialPrice = 0;
+    orderData.forEach((row, i) => {
+      orderFinalPrice += row["FINAL_PRICE"];
+      orderInitialPrice += row["INITIAL_PRICE"];
+    });
+    data["current_price"] = orderFinalPrice;
+    data["initial_price"] = orderInitialPrice;
+    data["order_name"] = document.querySelector(".list-add-input").value;
+    req.addEventListener('load', () => {
+      if(req.status >= 200 && req.status < 400){
+        this.setAttribute("added", "yes");
+        if(this.classList.contains("fa-heart")){
+            let favButtonDescription = document.querySelector("#fav-button-desc");
+            favButtonDescription.textContent = "(added to favorites!)";
+            favButtonDescription.style.color = "purple";
+            if(promo_id){
+              document.querySelector(". " + promo_id).style.color = "rgb(39, 206, 100)";
+            }
+            else{
+              this.style.color = "rgb(39, 206, 100)";
+            }
+        }
+        else{
+          wishlistButtonDescription = document.querySelector("#wl-button-desc");
+          wishlistButtonDescription.textContent = "(added to wishlist!)";
+          wishlistButtonDescription.style.color = "purple";
+          if(promo_id){
+            document.querySelector(". " + promo_id).style.color = "rgb(39, 206, 100)";
+          }
+          else{
+            this.style.color = "rgb(39, 206, 100)";
+          }
+        }
+      }
+      else{
+        console.log("Error: " + req.status + " " + req.statusText);
+        this.style.color = "red";
+        if(this.classList.contains("fa-heart")){
+          document.querySelector("#fav-button-desc").innerHTML =
+            "&nbsp&nbsp&nbsp&nbsp&nbsp(error)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+        }
+        else{
+          document.querySelector("#wl-button-desc").innerHTML =
+            "&nbsp&nbsp&nbsp&nbsp&nbsp(error)&nbsp&nbsp&nbsp&nbsp&nbsp";
+        }
+      }
+    });
+    req.send(JSON.stringify(data));
+  }
+}
