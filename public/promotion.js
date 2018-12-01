@@ -48,15 +48,15 @@ function listAdder(list, orderData, promo_id){
       if(req.status >= 200 && req.status < 400){
         promo.setAttribute("added", "yes");
         if(promo.classList.contains("fa-heart")){
-            let favButtonDescription = document.querySelector("#fav-button-desc");
-            favButtonDescription.textContent = "(added to favorites!)";
-            favButtonDescription.style.color = "purple";
+            //let favButtonDescription = document.querySelector("#fav-button-desc");
+            //favButtonDescription.textContent = "(added to favorites!)";
+            //favButtonDescription.style.color = "purple";
             promo.style.color = "rgb(39, 206, 100)";
         }
         else{
-          wishlistButtonDescription = document.querySelector("#wl-button-desc");
-          wishlistButtonDescription.textContent = "(added to wishlist!)";
-          wishlistButtonDescription.style.color = "purple";
+          //wishlistButtonDescription = document.querySelector("#wl-button-desc");
+          //wishlistButtonDescription.textContent = "(added to wishlist!)";
+          //wishlistButtonDescription.style.color = "purple";
           promo.style.color = "rgb(39, 206, 100)";
         }
       }
