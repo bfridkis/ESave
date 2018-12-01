@@ -8,7 +8,7 @@ module.exports = (app) => {
   function getWishList(res, mysql, context, userid){
 
       mysql.pool.query("SELECT (@rownum := @rownum + 1) AS row_number, z.* " +
-          "FROM (SELECT order.current_price, DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
+          "FROM (SELECT wish_list.order AS order_id, order.current_price, DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
           "INNER JOIN `order` ON wish_list.order = order.id " +
           "INNER JOIN order_product ON order.id = order_product.order " +
           "INNER JOIN product ON order_product.product = product.id " +
@@ -36,6 +36,21 @@ module.exports = (app) => {
 
     getWishList(res, mysql, context, req.user.id);
 });
+
+router.delete('/:order', function(req, res){
+    var mysql = req.app.get('mysql');
+    var sql = "DELETE FROM wish_list WHERE order = ?";
+    var inserts = [req.params.order_id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+        if(error){
+            res.write(JSON.stringify(error));
+            res.status(400);
+            res.end();
+        }else{
+            res.status(202).end();
+        }
+    })
+})
 
 return router;
 
