@@ -55,10 +55,9 @@ function eSave(){
     //Load query string with user inputs
     items.forEach((item, i) => {
       queryString += "p" + (i + 1) + "=" + item.textContent + "&"
-                    + "q" + (i + 1) + "=" + qts[i].textContent;
-      if(i < items.length - 1){
-        queryString += "&";
+                    + "q" + (i + 1) + "=" + qts[i].textContent + "&";
       }
+      queryString += "ret=NULL"
     });
 
     //Setup new XMLHttpRequest request
