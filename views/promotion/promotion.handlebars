@@ -52,7 +52,7 @@
 		    <li id = "retailer" style="padding-right:30px">Retailer: {{retailer_name}}</li>
 		    <li id = "discount" style="padding-right:30px">Discount: ${{discount}}</li>
 		    <li id = "ecoupon" style="padding-right:30px">Ecoupon: {{ecoupon}}</li>
-        {{#if product_name}}<li id = "product" style="padding-right:30px;padding-top:30px">For Product: {{product_name}}{{/if}}</li>{{/if}}
+        {{#if product_name}}<li id = "product" style="padding-right:30px;padding-top:30px">For Product: {{product_name}}</li>{{/if}}
         {{#if qt_required}}<li id = "quantity" style="padding-right:30px">Quantity Required: {{qt_required}}</li>{{/if}}
         {{#if min_spend}}<li id = "quantity" style="padding-right:30px">Minimum Purchase: ${{min_spend}}</li>{{/if}}
         <br>
@@ -89,3 +89,7 @@
     <script src='promotion.js'></script> <!--can put filename in context so not hard coded-->
   </body>
 </html>
+
+<!-- * References
+* https://github.com/wycats/handlebars.js/issues/1300
+-->
