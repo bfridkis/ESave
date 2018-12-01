@@ -11,7 +11,6 @@ module.exports = (app) => {
 		context.css = ["sparkle.css", "searchStyle.css"];
 		context.navbarLogo = ["images/logo.jpg"];
 		context.mainLogo = ["images/logo-medium.jpg"];
-		console.log("This is the query: ", req.query);//******************************
 		if(Object.keys(req.query).length !== 0){
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
