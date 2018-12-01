@@ -18,7 +18,7 @@ module.exports = (app) => {
 										 "retailer.id AS RET_ID " +
                      "FROM promotion " +
                      "INNER JOIN retailer on retailer.id=promotion.retailer " +
-                     "LEFT JOIN product on promotion.product=product.id ", (error, results, fields) => {
+                     "RIGHT JOIN product on promotion.product=product.id ", (error, results, fields) => {
 	  	if(error){
 	    		res.write(JSON.stringify(error));
 	    		res.end();
