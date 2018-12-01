@@ -11,7 +11,7 @@ module.exports = (app) => {
 	var jsonParser = bodyParser.json();
 	app.use(bodyParser.urlencoded({ extended: true }))
 
-	router.get('/', (req, res, next) => {
+	router.get('/', isLoggedIn, (req, res, next) => {
 		var callbackCount = 0;
 		context = {};
 		let mysql = req.app.get('mysql');
@@ -136,3 +136,14 @@ router.post('/', jsonParser, (req, res, next) => {
 	});
 	return router;
 };
+
+// route middleware to make sure
+function isLoggedIn(req, res, next) {
+
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to the login page
+	res.redirect('/login');
+}
