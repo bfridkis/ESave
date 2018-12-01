@@ -15,7 +15,6 @@ module.exports = (app) => {
 
     mysql.pool.query("SELECT product.name AS product_name, promotion.product, retailer.name AS retailer_name, " +
 										 "promotion.discount, promotion.description, promotion.ecoupon, promotion.qt_required, promotion.id, " +
-										 //"retailer.id AS RET_ID " +
                     "FROM promotion " +
                     "INNER JOIN retailer on retailer.id=promotion.retailer " +
                     "INNER JOIN product on promotion.product=product.id", function(error, results, fields){
