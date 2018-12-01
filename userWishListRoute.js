@@ -37,7 +37,7 @@ module.exports = (app) => {
     getWishList(res, mysql, context, req.user.id);
 });
 
-router.delete('/:order', function(req, res){
+router.delete('/:order_id', function(req, res){
     var mysql = req.app.get('mysql');
     var sql = "DELETE FROM wish_list WHERE order = ?";
     var inserts = [req.params.order_id];
