@@ -48,11 +48,11 @@
 		{{#each promotions}}
 		<ul class = "promos" style="list-style-type:none" class = "promotions">
 		    <li id = "productID" hidden>{{product}}</li>
-        <li id = "description" style="padding-right:30px">{{description}}</li>
+        <li id = "description" style="padding-right:30px;padding-top:30px">{{description}}</li>
 		    <li id = "retailer" style="padding-right:30px">Retailer: {{retailer_name}}</li>
 		    <li id = "discount" style="padding-right:30px">Discount: ${{discount}}</li>
 		    <li id = "ecoupon" style="padding-right:30px">Ecoupon: {{ecoupon}}</li>
-        {{#if product_name}}<li id = "product" style="padding-right:30px;padding-top:30px">For Product: {{product_name}}</li>{{/if}}
+        {{#if product_name}}<li id = "product" style="padding-right:30px">For Product: {{product_name}}</li>{{/if}}
         {{#if qt_required}}<li id = "quantity" style="padding-right:30px">Quantity Required: {{qt_required}}</li>{{/if}}
         {{#if min_spend}}<li id = "quantity" style="padding-right:30px">Minimum Purchase: ${{min_spend}}</li>{{/if}}
         <br>
