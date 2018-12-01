@@ -4,7 +4,7 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
 
 	 //Open GET request, using queryString
 
- let queryString = `/search?p1=${product_name}&q1=${quantity}&ret=${retailer_name}`;
+ let queryString = `/search?p1=${product_name}&q1=${quantity ? quantity : "1"}&ret=${retailer_name}`;
 	 req.open("GET", queryString, true);
 	 //req.setRequestHeader('Content-Type', 'application/json');  <-- Not needed for get request
    req.addEventListener("load", () => {
