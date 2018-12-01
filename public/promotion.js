@@ -20,9 +20,6 @@ req.send(null);
 }
 
 function listAdder(list, orderData, promo_id){
-  let promo = document.querySelector(`.${promo_id}`);
-  if(!promo.getAttribute("added")){
-    //Setup new XMLHttpRequest request
     let req = new XMLHttpRequest();
     //Open GET request, using queryString
     req.open("PUT", "/listAdd", true);
@@ -45,7 +42,6 @@ function listAdder(list, orderData, promo_id){
     //data["order_name"] = document.querySelector(".list-add-input").value;
     req.addEventListener('load', () => {
       if(req.status >= 200 && req.status < 400){
-        promo.setAttribute("added", "yes");
         if(promo.classList.contains("fa-heart")){
             //let favButtonDescription = document.querySelector("#fav-button-desc");
             //favButtonDescription.textContent = "(added to favorites!)";
