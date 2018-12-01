@@ -137,4 +137,9 @@ body {
   color: rgb(39, 206, 100);
 }
 
+.button{
+	background-color: Transparent;
+	outline:none;
+}
+
 /* reference https://www.w3schools.com/css/css_table.asp */
