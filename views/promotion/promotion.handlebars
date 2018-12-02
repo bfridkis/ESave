@@ -42,19 +42,24 @@
     <br />
     <div class="data-outer-container">
 	<form id='data' action="/home">
-	  <legend id="legend">Great Deals for {{user.first_name}}!!</legend>
-	   <div class="data-inner-container" style="padding-top:50px;padding-bottom:15px">
+	  <legend id="legend"><h1>Great Deals for {{user.first_name}}!!</h1></legend>
+    <br>
+	   <!-- <div class="data-inner-container" style="padding-top:50px;padding-bottom:15px"> -->
+      <div class = "container-fluid">
+        <div class = "d-flex flex-row flex-nowrap">
 	    <fieldset>
 		{{#each promotions}}
-		<ul class = "promos" style="list-style-type:none;margin:auto" class = "promotions">
+<!--     <div class = "card card body">
+ -->		<ul class = "promos" style="list-style-type:none" class = "promotions">
+        <br>
 		    <li id = "productID" hidden>{{product}}</li>
-        <li id = "description" style="padding-right:30px">{{description}}</li>
-		    <li id = "retailer" style="padding-right:30px">Retailer: {{retailer_name}}</li>
-		    <li id = "discount" style="padding-right:30px">Discount: ${{discount}}</li>
-		    <li id = "ecoupon" style="padding-right:30px">Ecoupon: {{ecoupon}}</li>
-        {{#if product_name}}<li id = "product" style="padding-right:30px">For Product: {{product_name}}</li>{{/if}}
-        {{#if qt_required}}<li id = "quantity" style="padding-right:30px">Quantity Required: {{qt_required}}</li>{{/if}}
-        {{#if min_spend}}<li id = "quantity" style="padding-right:30px">Minimum Purchase: ${{min_spend}}</li>{{/if}}
+        <li id = "description" style="padding-right:30px"><h3>{{description}}</h3></li>
+		    <li class="col-xs-6 flex-xs-middle" id = "retailer" style="padding-right:30px"><span class = "title">Retailer:</span> {{retailer_name}}</li>
+		    <li class="col-xs-6 flex-xs-middle" id = "discount" style="padding-right:30px"><span class = "title">Discount:</span> ${{discount}}</li>
+		    <li id = "ecoupon" style="padding-right:30px"><span class = "title">Ecoupon:</span> {{ecoupon}}</li>
+        {{#if product_name}}<li id = "product" style="padding-right:30px"><span class = "title">For Product:</span> {{product_name}}</li>{{/if}}
+        {{#if qt_required}}<li id = "quantity" style="padding-right:30px"><span class = "title">Quantity Required:</span> {{qt_required}}</li>{{/if}}
+        {{#if min_spend}}<li id = "quantity" style="padding-right:30px"><span class = "title">Minimum Purchase:</span> ${{min_spend}}</li>{{/if}}
         <br>
         {{#if product}}
         <li id = "wish-list" class="promo_{{id}}_wl_li"><i onclick="addWishList('wish-list', '{{product_name}}',
@@ -73,8 +78,9 @@
 		<br>
 		</ul>
 		{{/each}}
+  </div>
 	   </fieldset>
-	   </div>
+   </div>
 	</form>
     </div>
     <footer>

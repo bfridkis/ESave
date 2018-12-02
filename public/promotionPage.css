@@ -88,20 +88,17 @@ body {
 }
 
 
-.data-inner-container {
-	border: 3px dashed purple;
-        max-width: 700px;
-        margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
-    outline: 3px solid #000000;
-    outline-offset: 5px;
+.promos {
+        
         font-family: 'Righteous', cursive;
+            border: 3px dashed purple;
+
     }
 
-.promos {
-    color: purple;
+.promos:nth-child(even) {
+    color: white;
+    background-color: purple;
+    border: 3px dashed white;
 }
 
 #data {
@@ -120,3 +117,13 @@ body {
 #submit {
 	align: center;
 }
+
+.title {
+    color: rgb(39, 206, 100);
+}
+
+li
+{
+    
+}
+
