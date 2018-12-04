@@ -12,11 +12,12 @@ To view table contents: https://esave.herokuapp.com/dev1
 
 Packages used include:
 *express
-*handlebars
+*express-handlebars
+*express-session
 *body-parser
+*cookie-parser
 *morgan
 *passport
-*express-session
 *flash
 *bcrypt
 
