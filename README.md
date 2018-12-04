@@ -13,6 +13,7 @@ To view table contents: https://esave.herokuapp.com/dev1
 Packages used include:
 *express
 *handlebars
+*body-parser
 *morgan
 *passport
 *express-session
