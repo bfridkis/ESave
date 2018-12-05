@@ -58,7 +58,6 @@ function eSave(){
                     + "q" + (i + 1) + "=" + qts[i].textContent + "&";
       });
     queryString += "ret=NULL";
-    console.log(queryString);//*************************************
 
     //Setup new XMLHttpRequest request
     var req = new XMLHttpRequest();
