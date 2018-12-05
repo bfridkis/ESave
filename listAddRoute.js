@@ -3,7 +3,7 @@ module.exports = (app) => {
     var router = express.Router();
     //var app = express();
 
-    router.put('/', isLoggedIn, (req, res, next) => {
+    router.post('/', isLoggedIn, (req, res, next) => {
         var callbackCount = 0;
         //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
