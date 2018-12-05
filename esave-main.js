@@ -26,7 +26,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.use(session({
-	secret: ' XHsjsjhAUSGhajajhsUIahshT',
+	secret: ' process.env.session_secret',
 	resave: true,
 	saveUninitialized: true
  } )); // session secret
