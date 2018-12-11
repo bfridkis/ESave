@@ -11,6 +11,7 @@ function loadFakerData(){
   });
 
   let submitButton = document.querySelector("button");
+  let resultCount = 0;
   submitButton.addEventListener("click", () => {
     let prods = values[0].value,
         rets = values[1].value,
@@ -37,13 +38,23 @@ function loadFakerData(){
     req.addEventListener('load', () => {
       if(req.status >= 200 && req.status < 400){
         let response = JSON.parse(req.responseText);
-        let results = document.querySelector("body").appendChild("p");
-        results.innerText = response.Response;
+        let results = document.querySelector("#results");
+        if(results.innerText === ""){
+          results.innerText = response;
+        }
+        else{
+          results.innerText = response + `(Request # ${resultCount})`;
+        }
       }
       else{
         let response = JSON.parse(req.statusText);
-        let results = document.querySelector("body").appendChild("p");
-        results.innerText = response;
+        let results = document.querySelector("#results");
+        if(results.innerText === ""){
+          results.innerText = response;
+        }
+        else{
+          results.innerText = response + `(Request # ${resultCount})`;
+        }
 			  console.log("Error: " + req.status + " " + req.statusText);
 		  }
     });
