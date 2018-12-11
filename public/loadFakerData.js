@@ -1,5 +1,5 @@
 function loadFakerData(){
-  let values = document.querySelector("input");
+  let values = document.querySelectorAll("input");
 
   let ret_prodsInput = values[2];
   ret_prodsInput.addEventListener("input", () => {
