@@ -1,14 +1,23 @@
-<h1>Load Sample Data</h1>
-<h2>Please enter quantities indicated and press submit</h2>
-<input type="numeric" name="numProds" label="Products" value="0" min="0"></input>
-<input type="numeric" name="numRets" label="Retailers" value="0" min="0"></input>
-<input type="numeric" name="numRetProds" label="Retailer_Products" value="0" min="0"></input>
-<input type="numeric" name="numPromos" label="Promotions" value="0" min="0"></input><br>
-<input type="text" name="password" label="Password"></input><br>
-<button>Submit</button>
-<form action="/dev1" method="get">
-	<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
-</form>
-{{#each jsscriptsFaker}}
-	<script src="{{this}}"></script>
-{{/each}}
+<div style"margin:auto">
+	<h1>Load Sample Data</h1>
+	<h2>Please Enter Quantities Indicated and Press Submit</h2>
+	<label for="products">Products</label>
+	<input type="number" name="numProds" id="products" value="0" min="0"
+		style="padding-top:50px;max-width:110px"></input>
+	<label for="products">Retailers</label>
+	<input type="number" name="numRets" id="Retailers" value="0" min="0" style="max-width:110px"></input>
+	<label for="products">Retailer_Products</label>
+	<input type="number" name="numRetProds" id="Retailer_Products" value="0" min="0" style="max-width:110px"></input>
+	<label for="products">Promotions</label>
+	<input type="number" name="numPromos" id="Promotions" value="0" min="0" style="max-width:110px"></input><br>
+	<label for="products">Password</label>
+	<input type="text" name="password" id="Password" style="padding-top:30px;padding-left:50px"></input><br>
+
+	<button id="submit" style="padding-top:10px;padding-left:10px">Submit</button>
+	<form action="/dev1" method="get">
+		<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
+	</form>
+	{{#each jsscriptsFaker}}
+		<script src="{{this}}"></script>
+	{{/each}}
+</div>
