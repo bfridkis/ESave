@@ -49,6 +49,7 @@ function loadFakerData(){
       }
       else{
         let response = JSON.parse(req.statusText).Response;
+        console.log(response); //*************************
         let results = document.querySelector("#results");
         if(results.innerText === ""){
           results.innerText = response;
