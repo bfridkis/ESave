@@ -7,7 +7,7 @@ module.exports = (app) => {
     router.get('/', (req, res, next) => {
       let context = {};
       context.css = ['style.css'];
-      context.jsscriptsSample = ['loadFakerData.js'];
+      context.jsscriptsFaker = ['loadFakerData.js'];
       res.render("load_faker/loadFakerData", context);
     });
 
