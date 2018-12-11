@@ -37,12 +37,12 @@ function loadFakerData(){
     req.addEventListener('load', () => {
       if(req.status >= 200 && req.status < 400){
         let response = JSON.parse(req.responseText);
-        let results = document.body.appendChild("p");
+        let results = document.querySelector("body").appendChild("p");
         results.innerText = response.Response;
       }
       else{
         let response = JSON.parse(req.statusText);
-        let results = document.body.appendChild("p");
+        let results = document.querySelector("body").appendChild("p");
         results.innerText = response;
 			  console.log("Error: " + req.status + " " + req.statusText);
 		  }
