@@ -8,7 +8,7 @@ function loadFakerData(){
     if(this.value > prods && this.value > rets){
       this.value = math.max(prods, rets);
     }
-  })
+  });
 
   let submitButton = document.querySelector("button");
   submitButton.addEventListener("click", () => {
@@ -48,4 +48,4 @@ function loadFakerData(){
 		  }
     });
     req.send(JSON.stringify(data));
-}
+});
