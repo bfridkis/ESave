@@ -38,7 +38,7 @@ function loadFakerData(){
     req.addEventListener('load', () => {
       resultCount++;
       if(req.status >= 200 && req.status < 400){
-        let response = JSON.parse(req.responseText); console.log(response);//*************
+        let response = JSON.parse(req.responseText).Response;
         let results = document.querySelector("#results");
         if(results.innerText === ""){
           results.innerText = response;
@@ -48,7 +48,7 @@ function loadFakerData(){
         }
       }
       else{
-        let response = JSON.parse(req.statusText);
+        let response = JSON.parse(req.statusText).Response;
         let results = document.querySelector("#results");
         if(results.innerText === ""){
           results.innerText = response;
