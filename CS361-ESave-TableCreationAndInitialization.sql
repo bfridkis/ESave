@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `user`;
 -- billing_address - text
 -- recommendations - a boolean flag to indicate if user can be sent recommendations
 -- price_drop_email - a boolean flag to indicate if user can be sent emails when saved
---					  orders (i.e. those on wish list or favories) see a lowest price
+--					  orders (i.e. those on wish list or favorites) see a lowest price
 --					  drop
 -- message_email - a boolean flag to indicate if user can be sent email notifications
 --				   when new ESave messages are received
@@ -113,12 +113,13 @@ CREATE TABLE `promotion` (
   `retailer` int(15) NOT NULL,
   `description` text,
   `ecoupon` varchar(255),
-  `expiration_date` datetime,
+  `expiration_date` date,
   `product` int(15),
   `qt_required` int(10),
   `min_spend` decimal(9,2),
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_promotion_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_promotion_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_promotion_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ORDER TABLE --
@@ -255,7 +256,7 @@ CREATE TABLE `retailer_product` (
   `product` int(15) NOT NULL,
   `price` decimal(9,2) NOT NULL,
   `description` text,
-  `last_updated` timestamp,
+  `last_updated` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
   PRIMARY KEY (`retailer`, `product`),
   CONSTRAINT `fk_retailer_product_retailer` FOREIGN KEY (`retailer`) REFERENCES `retailer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_retailer_product_product` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -290,11 +291,15 @@ CREATE TABLE `retailer_rating` (
 -- ************************************ INSERTIONS **************************************
 
 -- USER TABLE INSERTIONS --
- INSERT INTO user values (1, 'fridkisb', '$2a$10$tenRWwWRtkudlmla7KNBS./EAmZT8Q0HKHjVHB85JWNM/MtKIhNUe', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
-						'1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE);
+ INSERT INTO user values (1, 'frid', '$2a$10$Fv7bn4WPHjqCZPNwcEkKDuxvoFnwFGHg5fqENc27NMSOrIy5Fuk6.', 'Benjamin', 'Fridkis', 'fridkisb@oregonstate.edu',
+						 '1234 Lone Star, TX, 77042', '1234 Lone Star, TX, 77042', TRUE, TRUE, TRUE),
+						 (2, 'emistock', '$2a$10$YvNjZTMuSv19hyWCHpL.Ve59JfCUEo3c3U21IC2KKNz7g5/vpK1he', 'Emily',
+						 'Stockenbojer', 'stockene@oregonstate.edu', NULL, NULL, TRUE, TRUE, TRUE),
+						 (3, 'zach_earl', '$2a$10$f6BEHCKMHxvZ7N6TBjbU.uGkNMStfn0s6OSPldEpXxYnNhfywS4yy', 'zach',
+						 'earl', 'earlz@oregonstate.edu', NULL, NULL, TRUE, TRUE, TRUE),
+						 (4, 'Nono_nora', '$2a$10$cjPAhVUSUzgoAQVn7qwXuO9RvVEwjq0qXjuyTPZ/tGXSmzmqtImC6', 'Nancy',
+						 'Boespflug', 'nnc@gmail.com', NULL, NULL, TRUE, TRUE, TRUE);
 
- INSERT INTO user values (2, 'emistock', '$2a$10$YvNjZTMuSv19hyWCHpL.Ve59JfCUEo3c3U21IC2KKNz7g5/vpK1he', 'Emily',
-  'Stockenbojer', 'stockene@oregonstate.edu', NULL, NULL, TRUE, TRUE, TRUE);
 
 -- RETAILER TABLE INSERTIONS --
 INSERT INTO retailer values (1, 'Thrive Market', 'thrivemarket.com', NULL, 5.99),

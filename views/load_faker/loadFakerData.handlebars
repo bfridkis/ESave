@@ -1,0 +1,14 @@
+<h1>Load Sample Data</h1>
+<h2>Please enter quantities indicated and press submit</h2>
+<input type="numeric" name="numProds" label="Products" value="0" min="0"></input>
+<input type="numeric" name="numRets" label="Retailers" value="0" min="0"></input>
+<input type="numeric" name="numRetProds" label="Retailer_Products" value="0" min="0"></input>
+<input type="numeric" name="numPromos" label="Promotions" value="0" min="0"></input><br>
+<input type="text" name="password" label="Password"></input><br>
+<button>Submit</button>
+<form action="/dev1" method="get">
+	<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
+</form>
+{{#each jsscriptsFaker}}
+	<script src="{{this}}"></script>
+{{/each}}

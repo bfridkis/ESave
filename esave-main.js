@@ -59,7 +59,7 @@ app.use('/profile', require('./profileRoute.js')(app));
 app.use('/promotion', require('./promotionRoute.js')(app));
 app.use('/wishList', require('./userWishListRoute.js')(app));
 
-
+app.use('/loadFakerData', require('./loadFakerDataRoute.js')(app));
 
 
 
