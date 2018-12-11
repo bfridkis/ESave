@@ -132,31 +132,31 @@ module.exports = (app) => {
                                                                   complete("promotion");
                                                                   complete("retailer_product");
                                                                 }
-                                                              }
+                                                              });
                                                             }
                                                             else {
                                                               complete("retailer_product");
                                                             }
                                                           }
-                                                        }
+                                                        });
                                                       }
                                                       else {
                                                         i--;
                                                       }
                                                     }
-                                                  }
+                                                  });
                                                 }
-                                              }
+                                              });
                                             }
-                                          }
+                                          });
                                         }
                                       }
                                     }
-                                  }
+                                  });
                                 }
                               }
                             }
-                          }
+                          });
                         }
                       }
                       else {
