@@ -48,4 +48,5 @@ function loadFakerData(){
 		  }
     });
     req.send(JSON.stringify(data));
-});
+  });
+}
