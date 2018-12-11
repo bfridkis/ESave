@@ -16,7 +16,7 @@ module.exports = (app) => {
       if (req.body.password === "loadfakedata") {
         let callbackCountProduct = 0;
         if (!req.body.numProds) req.body.numProds = 0;
-        for (int i = 0; i < req.body.numProds; i++) {
+        for (let i = 0; i < req.body.numProds; i++) {
           name = faker.commerce.productName();
           upc = String(Math.floor(Math.random() * 900000) + 100000) +
             String(Math.floor(Math.random() * 900000) + 100000);
@@ -35,7 +35,7 @@ module.exports = (app) => {
                   if (callbackCountProduct === req.body.numProds) {
                     let callbackCountRetailer = 0;
                     if (!req.body.numRets) req.body.numRets = 0;
-                    for (int i = 0; i < req.body.numRets; i++) {
+                    for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
                       website = name + ".com";
                       address = `${faker.address.streetAddress()} ${faker.address.city()}, ` +
@@ -56,7 +56,7 @@ module.exports = (app) => {
                               if (!req.body.numRetProds) req.body.numRetProds = 0;
                               let callbackCountRetailerProduct = 0;
                               let callbackCountPromos = 0;
-                              for (int i = 0; i < req.body.numRetProds; i++) {
+                              for (let i = 0; i < req.body.numRetProds; i++) {
                                 let selectQuery = "SELECT id FROM retailer AS ret1 JOIN " +
                                   "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM retailer)) AS id) " +
                                   "AS ret2 " +
