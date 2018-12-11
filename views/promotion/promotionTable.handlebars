@@ -1,35 +1,37 @@
-<h1>{{title}}</h1>
-<table>
-	<thead>
-		<th>ID</th>
-		<th>Discount</th>
-		<th>Retailer</th>
-		<th>Description</th>
-		<th>ECoupon</th>
-		<th>Expiration_Date</th>
-		<th>Product</th>
-		<th>QT_Required</th>
-		<th>Min_Spend</th>
-	</thead>
-	<tbody>
-		{{#each promotion}}
-		<tr>
-			<td>{{id}}</td>
-			<td>{{discount}}</td>
-			<td>{{retailer}}</td>
-			<td>{{description}}</td>
-			<td>{{ecoupon}}</td>
-			<td>{{expiration_date}}</td>
-			<td>{{product}}</td>
-			<td>{{qt_required}}</td>
-			<td>{{min_spend}}</td>
-		</tr>
-		{{/each}}
-	</tbody>
-</table>
-<form action="/dev1" method="get">
-	<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
-</form>
-{{#each jsscriptsTableView}}
-	<script src="{{this}}"></script>
-{{/each}}
+<div>
+	<h1>{{title}}</h1>
+	<table>
+		<thead>
+			<th>ID</th>
+			<th>Discount</th>
+			<th>Retailer</th>
+			<th>Description</th>
+			<th>ECoupon</th>
+			<th>Expiration_Date</th>
+			<th>Product</th>
+			<th>QT_Required</th>
+			<th>Min_Spend</th>
+		</thead>
+		<tbody>
+			{{#each promotion}}
+			<tr>
+				<td>{{id}}</td>
+				<td>{{discount}}</td>
+				<td>{{retailer}}</td>
+				<td>{{description}}</td>
+				<td>{{ecoupon}}</td>
+				<td>{{expiration_date}}</td>
+				<td>{{product}}</td>
+				<td>{{qt_required}}</td>
+				<td>{{min_spend}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<form action="/dev1" method="get">
+		<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
+	</form>
+	{{#each jsscriptsTableView}}
+		<script src="{{this}}"></script>
+	{{/each}}
+</div>

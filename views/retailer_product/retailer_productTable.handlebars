@@ -1,27 +1,29 @@
-<h1>{{title}}</h1>
-<table>
-	<thead>
-		<th>Retailer</th>
-		<th>Product</th>
-		<th>Price</th>
-		<th>Description</th>
-		<th>Last_Updated</th>
-	</thead>
-	<tbody>
-		{{#each retailer_product}}
-		<tr>
-			<td>{{retailer}}</td>
-			<td>{{product}}</td>
-			<td>{{price}}</td>
-			<td>{{description}}</td>
-			<td>{{last_updated}}</td>
-		</tr>
-		{{/each}}
-	</tbody>
-</table>
-<form action="/dev1" method="get">
-	<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
-</form>
-{{#each jsscriptsTableView}}
-	<script src="{{this}}"></script>
-{{/each}}
+<div>
+	<h1>{{title}}</h1>
+	<table>
+		<thead>
+			<th>Retailer</th>
+			<th>Product</th>
+			<th>Price</th>
+			<th>Description</th>
+			<th>Last_Updated</th>
+		</thead>
+		<tbody>
+			{{#each retailer_product}}
+			<tr>
+				<td>{{retailer}}</td>
+				<td>{{product}}</td>
+				<td>{{price}}</td>
+				<td>{{description}}</td>
+				<td>{{last_updated}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<form action="/dev1" method="get">
+		<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
+	</form>
+	{{#each jsscriptsTableView}}
+		<script src="{{this}}"></script>
+	{{/each}}
+</div>

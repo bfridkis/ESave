@@ -1,25 +1,27 @@
-<h1>{{title}}</h1>
-<table>
-	<thead>
-		<th>ID</th>
-		<th>Name</th>
-		<th>UPC</th>
-		<th>Model_Number</th>
-	</thead>
-	<tbody>
-		{{#each product}}
-		<tr>
-			<td>{{id}}</td>
-			<td>{{name}}</td>
-			<td>{{upc}}</td>
-			<td>{{model_number}}</td>
-		</tr>
-		{{/each}}
-	</tbody>
-</table>
-<form action="/dev1" method="get">
-	<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
-</form>
-{{#each jsscriptsTableView}}
-	<script src="{{this}}"></script>
-{{/each}}
+<div>
+	<h1>{{title}}</h1>
+	<table>
+		<thead>
+			<th>ID</th>
+			<th>Name</th>
+			<th>UPC</th>
+			<th>Model_Number</th>
+		</thead>
+		<tbody>
+			{{#each product}}
+			<tr>
+				<td>{{id}}</td>
+				<td>{{name}}</td>
+				<td>{{upc}}</td>
+				<td>{{model_number}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<form action="/dev1" method="get">
+		<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
+	</form>
+	{{#each jsscriptsTableView}}
+		<script src="{{this}}"></script>
+	{{/each}}
+</div>
