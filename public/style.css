@@ -3,6 +3,17 @@ background-color : greenyellow;
 float: left;
 }
 
+div {
+	margin:auto;
+	height:300px;
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	text-align:center;
+}
+
 h1 {
 	text-align:center;
 }
@@ -55,7 +66,7 @@ padding-left: 7.5px;
 }
 
 .cancelButton {
-	
+
 }
 
 .formButton{
