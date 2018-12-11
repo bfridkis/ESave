@@ -44,7 +44,7 @@ function loadFakerData(){
           results.innerText = response;
         }
         else{
-          results.innerText = `${response}&nbsp(Request # ${resultCount})`;
+          results.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
         }
       }
       else{
@@ -54,7 +54,7 @@ function loadFakerData(){
           results.innerText = response;
         }
         else{
-          results.innerText = `${response}&nbsp(Request # ${resultCount})`;
+          results.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
         }
 			  console.log("Error: " + req.status + " " + req.statusText);
 		  }
