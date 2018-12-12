@@ -17,7 +17,7 @@ function loadFakerData(){
 
   function submit(e){
     console.log(e.keyCode, this);//*************
-    console.log(this === "null");//********
+    console.log(this === {"null"});//********
     if(e.keyCode === "13" || (this !== "null" && this.getAttribute("id") === "submit")){
       let prods = values[0].value,
           rets = values[1].value,
