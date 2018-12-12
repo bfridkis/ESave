@@ -14,7 +14,7 @@ module.exports = (app) => {
     router.post('/', (req, res, next) => {
       let mysql = req.app.get('mysql');
       if (req.body.password === "loadfakedata") {
-        var callbackCountProduct = 0;
+        let callbackCountProduct = 0;
         if (!req.body.numProds) req.body.numProds = 0;
         for (let i = 0; i < req.body.numProds; i++) {
           name = faker.commerce.productName();
@@ -36,7 +36,7 @@ module.exports = (app) => {
                 else {
                   complete("product");
                   if (callbackCountProduct === req.body.numProds) {
-                    var callbackCountRetailer = 0;
+                    let callbackCountRetailer = 0;
                     if (!req.body.numRets) req.body.numRets = 0;
                     for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
@@ -57,8 +57,8 @@ module.exports = (app) => {
                             complete("retailer");
                             if (callbackCountRetailer === req.body.numRets) {
                               if (!req.body.numRetProds) req.body.numRetProds = 0;
-                              var callbackCountRetailerProduct = 0;
-                              var callbackCountPromos = 0;
+                              let callbackCountRetailerProduct = 0;
+                              let callbackCountPromotion = 0;
                               for (let i = 0; i < req.body.numRetProds; i++) {
                                 let selectQuery = "SELECT id FROM retailer AS ret1 JOIN " +
                                   "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM retailer)) AS id) " +
@@ -113,7 +113,7 @@ module.exports = (app) => {
                                                           res.end();
                                                         }
                                                         else {
-                                                          if (callbackCountPromos < req.body.numPromos) {
+                                                          if (callbackCountPromotion < req.body.numPromos) {
                                                             discount = Math.random() * price;
                                                             promoDescription = faker.lorem.sentence();
                                                             ecoupon = faker.random.alphaNumeric();
@@ -170,21 +170,21 @@ module.exports = (app) => {
 
                       function complete(table) {
                         if (table === 'product') {
-                          callbackCountProducts++;
+                          callbackCountProduct++;
                         }
                         if (table === 'retailer') {
-                          callbackCountRetailers++;
+                          callbackCountRetailer++;
                         }
                         if (table === 'retailer_product') {
-                          callbackCountRetailerProducts++;
+                          callbackCountRetailerProduct++;
                         }
                         if (table === 'promotion') {
-                          callbackCountPromotions++;
+                          callbackCountPromotion++;
                         }
-                        if (callbackCountProducts === req.body.numProds &&
-                            callbackCountRetailers === req.body.numRets &&
-                            callbackCountRetailerProducts == req.body.numRetProds &&
-                            callbackCountPromos === req.body.numPromos) {
+                        if (callbackCountProduct === req.body.numProds &&
+                            callbackCountRetailer === req.body.numRets &&
+                            callbackCountRetailerProduct == req.body.numRetProds &&
+                            callbackCountPromotion === req.body.numPromos) {
                             res.send({
                               "Response": "Sample Data Added!"
                             });
