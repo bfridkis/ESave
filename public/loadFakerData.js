@@ -37,6 +37,7 @@ function loadFakerData(){
                 password: pw};
     req.addEventListener('load', () => {
       resultCount++;
+      console.log(req.responseText, req.statusText); //*****************
       if(req.status >= 200 && req.status < 400){
         let response = JSON.parse(req.responseText).Response;
         let results = document.querySelector("#results");
@@ -49,7 +50,6 @@ function loadFakerData(){
       }
       else{
         let response = JSON.parse(req.statusText).Response;
-        console.log(response); //*************************
         let results = document.querySelector("#results");
         if(results.innerText === ""){
           results.innerText = response;
