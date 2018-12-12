@@ -3,11 +3,22 @@ function loadFakerData(){
 
   let ret_prodsInput = values[2];
   ret_prodsInput.addEventListener("input", (e) => {
-    console.log(e.target.value);//**********************
     let prods = values[0].value;
     let rets = values[1].value;
     if(e.target.value > prods && e.target.value > rets){
-      this.value = math.max(prods, rets);
+      e.target.value = Math.max(prods, rets);
+      let results1 = document.querySelector("#results1");
+      results1.innerText = "Retailer_Products cannot exceed both Products and Retailers."
+    }
+  });
+
+  let promotionInput = values[3];
+  promotionInput.addEventListener("input", (e) => {
+    let ret_prods = values[2].value;
+    if(e.target.value > ret_prods){
+      e.target.value = ret_prods;
+      let results1 = document.querySelector("#results1");
+      results1.innerText = "Promotions cannot exceed both Retailer_Products."
     }
   });
 
