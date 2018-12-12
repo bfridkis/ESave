@@ -37,6 +37,7 @@ module.exports = (app) => {
                   complete("product");
                   if (callbackCountProduct === req.body.numProds) {
                     for (let i = 0; i < req.body.numRets; i++) {
+                      console.log("here??");//************
                       name = faker.company.companyName();
                       website = name + ".com";
                       address = `${faker.address.streetAddress()} ${faker.address.city()}, ` +
@@ -52,7 +53,6 @@ module.exports = (app) => {
                             res.end();
                           }
                           else {
-                            console.log("here??");//************
                             complete("retailer");
                             if (callbackCountRetailer === req.body.numRets) {
                               for (let i = 0; i < req.body.numRetProds; i++) {
