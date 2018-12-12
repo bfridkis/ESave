@@ -49,8 +49,6 @@ function loadFakerData(){
         }
       }
       else{
-        console.log(req.responseText);//*************************
-        console.log(req.responseText.includes("<html>"));//****************
         let response1, response2;
         if(!(req.responseText.includes("<html>"))){
           response1 = JSON.parse(req.responseText).sqlMessage;
