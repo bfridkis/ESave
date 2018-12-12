@@ -13,7 +13,7 @@ function loadFakerData(){
   let submitButton = document.querySelector("button");
   let resultCount = 0;
   submitButton.addEventListener("click", submit.bind(submitButton));
-  document.addEventListener("keypress", submit.bind("null"));
+  document.addEventListener("keypress", submit.bind(null));
 
   function submit(e){
     console.log(e.keyCode, this);//*************
