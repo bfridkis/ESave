@@ -36,7 +36,7 @@ module.exports = (app) => {
                 else {
                   complete("product");
                   console.log("CallBackCountProduct: ", callbackCountProduct, "numProds: ", req.body.numProds);//************
-                  if (callbackCountProduct === req.body.numProds) {
+                  if (callbackCountProduct === Number(req.body.numProds)) {
                     console.log("here??");//************
                     for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
@@ -55,7 +55,7 @@ module.exports = (app) => {
                           }
                           else {
                             complete("retailer");
-                            if (callbackCountRetailer === req.body.numRets) {
+                            if (callbackCountRetailer === Number(req.body.numRets)) {
                               for (let i = 0; i < req.body.numRetProds; i++) {
                                 let selectQuery = "SELECT id FROM retailer AS ret1 JOIN " +
                                   "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM retailer)) AS id) " +
