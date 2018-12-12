@@ -50,13 +50,13 @@ function loadFakerData(){
       }
       else{
         console.log(req.responseText);//*************************
-        console.log(req.responseText.includes("<html>"));//**************** 
+        console.log(req.responseText.includes("<html>"));//****************
         if(!(req.responseText.includes("<html>"))){
           let response1 = JSON.parse(req.responseText).sqlMessage,
               response2 = JSON.parse(req.responseText).sql;
         }
         else{
-          response1 = req.status + " " + req.statusText;
+          let response1 = req.status + " " + req.statusText;
         }
         let results1 = document.querySelector("#results1"),
             results2 = document.querySelector("#results2");
