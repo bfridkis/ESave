@@ -65,7 +65,7 @@ function loadFakerData(){
         else{
           results1.innerHTML = `SQL MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
         }
-        if(response2){
+        if(typeof(response2) !== "undefined"){
           results2.innerText = `SQL: ${response2}`;
         }
 			  console.log("Error: " + req.status + " " + req.statusText);
