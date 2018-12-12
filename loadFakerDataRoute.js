@@ -21,8 +21,10 @@ module.exports = (app) => {
           upc = String(Math.floor(Math.random() * 900000) + 100000) +
             String(Math.floor(Math.random() * 900000) + 100000);
             console.log("UPC: ", upc)//*************************
-          model_number = faker.random.alphaNumeric();
-          let insertQuery = "Insert into 'product' ( name, upc, model_number ) values " +
+          for let i = 0; i < 6; i++){
+              model_number += faker.random.alphaNumeric();
+          }
+          let insertQuery = "Insert into product ( name, upc, model_number ) values " +
                             `( '${name}', '${upc}', '${model_number}')`;
           mysql.pool.query(insertQuery,
               (err, row, fields) => {
