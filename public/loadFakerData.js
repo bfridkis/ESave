@@ -55,6 +55,7 @@ function loadFakerData(){
           results.innerText = response;
         }
         else{
+          console.log("testing"); //***********************
           results.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
         }
 			  console.log("Error: " + req.status + " " + req.statusText);
