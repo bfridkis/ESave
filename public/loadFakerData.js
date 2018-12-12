@@ -41,15 +41,17 @@ function loadFakerData(){
                   password: pw};
       req.addEventListener('load', () => {
         resultCount++;
+        let results1 = document.querySelector("#results1"),
+            results2 = document.querySelector("#results2");
         if(req.status >= 200 && req.status < 400 &&
             typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
           let response = JSON.parse(req.responseText).Response;
-          let results1 = document.querySelector("#results1");
           if(results1.innerText === ""){
             results1.innerText = response;
           }
           else{
             results1.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
+            results2.innerText = "";
           }
         }
         else{
@@ -61,8 +63,6 @@ function loadFakerData(){
           else{
             response1 = req.status + " " + req.statusText;
           }
-          let results1 = document.querySelector("#results1"),
-              results2 = document.querySelector("#results2");
           if(results1.innerText === ""){
             results1.innerText = `ERROR MESSAGE: ${response1}`;
           }

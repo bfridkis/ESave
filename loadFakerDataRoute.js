@@ -40,10 +40,10 @@ module.exports = (app) => {
                     console.log("here??");//************
                     for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
-                      website = name.replace(",", "").replace(" ", "") + ".com";
+                      website = name.replace("/,/g", "").replace("/ /g", "") + ".com";
                       address = `${faker.address.streetAddress()} ${faker.address.city()}, ` +
                                 `${faker.address.stateAbbr()} ${faker.address.zipCode()}`;
-                      shippingPrice = ((Math.random() * 7) + 2.99).toFixed(2);
+                      shippingPrice = Math.floor((Math.random() * 7) + 2.99).toFixed(2) + 0.99;
                       insertQuery = "Insert into retailer ( name, web_address, mailing_address, shipping_price ) values " +
                                     `( '${name}', '${website}', '${address}', '${shippingPrice}')`;
                       mysql.pool.query(insertQuery,
@@ -209,3 +209,4 @@ module.exports = (app) => {
 // * https://www.w3schools.com/sql/func_mysql_rand.asp
 // * https://www.w3schools.com/jsref/jsref_substring.asp
 // * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript
+//* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
