@@ -25,7 +25,7 @@ module.exports = (app) => {
               model_number += faker.random.alphaNumeric();
           }
           let insertQuery = "Insert into product ( name, upc, model_number ) values " +
-                            `( '${name}', '${upc}', '${model_number}')`;
+                            `( "${name}", "${upc}", "${model_number}")`;
           mysql.pool.query(insertQuery,
               (err, row, fields) => {
                 if (err) {
@@ -45,7 +45,7 @@ module.exports = (app) => {
                                 `${faker.address.stateAbbr()} ${faker.address.zipCode()}`;
                       shippingPrice = Math.floor((Math.random() * 7) + 2.99) + 0.99;
                       insertQuery = "Insert into retailer ( name, web_address, mailing_address, shipping_price ) values " +
-                                    `( '${name}', '${website}', '${address}', '${shippingPrice}')`;
+                                    `( "${name}", "${website}", "${address}", "${shippingPrice}")`;
                       mysql.pool.query(insertQuery,
                         (err, row, fields) => {
                           if (err) {
@@ -88,7 +88,7 @@ module.exports = (app) => {
                                           else {
                                             prod_id = row[0].id;
                                             selectQuery = "SELECT retailer FROM retailer_product " +
-                                              `WHERE retailer = '${ret_id}' AND product = '${prod_id}'`;
+                                              `WHERE retailer = "${ret_id}" AND product = "${prod_id}"`;
                                             mysql.pool.query(selectQuery,
                                               (err, row, fields) => {
                                                 if (err) {
@@ -101,7 +101,7 @@ module.exports = (app) => {
                                                     price = faker.commerce.price();
                                                     description = faker.lorem.sentences();
                                                     insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) " +
-                                                      `values ('${ret_id}', '${prod_id}', '${price}', '${description}')`;
+                                                      `values ("${ret_id}", "${prod_id}", "${price}", "${description}")`;
                                                     mysql.pool.query(insertQuery,
                                                       (err, row, fields) => {
                                                         if (err) {
@@ -119,8 +119,8 @@ module.exports = (app) => {
                                                             min_spend = getRandomInt(2) === 1 ? faker.commerce.price : 'NULL';
                                                             insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                               "ecoupon, expiration_date, product, qt_required, min_spend ) " +
-                                                              `values ('${discount}', '${ret_id}', '${promoDescription}', '${ecoupon}', ` +
-                                                              `'${expirationDate}', '${prod_id}', '${qt_required}', '${min_spend}')`;
+                                                              `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
+                                                              `"${expirationDate}", "${prod_id}", "${qt_required}", "${min_spend}")`;
                                                             mysql.pool.query(insertQuery,
                                                               (err, row, fields) => {
                                                                 if (err) {
