@@ -21,7 +21,7 @@ module.exports = (app) => {
           upc = String(Math.floor(Math.random() * 900000) + 100000) +
             String(Math.floor(Math.random() * 900000) + 100000);
             console.log("UPC: ", upc)//*************************
-          for (let i = 0; i < 6; i++){
+          for (let i = 0, model_number = ""; i < 6; i++){
               model_number += faker.random.alphaNumeric();
           }
           let insertQuery = "Insert into 'roduct' ( name, upc, model_number ) values " +
@@ -44,7 +44,7 @@ module.exports = (app) => {
                       address = `${faker.address.streetAddress()} ${faker.address.city()}, ` +
                                 `${faker.address.stateAbbr()} ${faker.address.zipCode()}`;
                       shippingPrice = ((Math.random() * 7) + 2.99).toFixed(2);
-                      insertQuery = "Insert into 'retailer' ( name, web_address, mailing_address, shipping_price ) values " +
+                      insertQuery = "Insert into retailer ( name, web_address, mailing_address, shipping_price ) values " +
                                     `( ${name}, ${website}, ${address}, ${shippingPrice})`;
                       mysql.pool.query(insertQuery,
                         (err, row, fields) => {
