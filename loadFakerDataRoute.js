@@ -185,7 +185,6 @@ module.exports = (app) => {
                             callbackCountRetailer === Number(req.body.numRets) &&
                             callbackCountRetailerProduct === Number(req.body.numRetProds) &&
                             callbackCountPromotion === Number(req.body.numPromos)) {
-                            console.log("HERE");//*************************'
                             res.send({
                               "Response": "Sample Data Added!"
                             });
