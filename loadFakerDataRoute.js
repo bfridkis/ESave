@@ -178,14 +178,16 @@ module.exports = (app) => {
                         if (table === 'promotion') {
                           callbackCountPromotion++;
                         }
+                        console.log(req.body);//*************************'
                         if (callbackCountProduct === req.body.numProds &&
                             callbackCountRetailer === req.body.numRets &&
                             callbackCountRetailerProduct === req.body.numRetProds &&
                             callbackCountPromotion === req.body.numPromos) {
+                            console.log("HERE");//*************************'
                             res.send({
                               "Response": "Sample Data Added!"
                             });
-                            res.end();
+                            res.status(202).end();
                         }
                       }
 
