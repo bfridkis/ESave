@@ -21,7 +21,7 @@ module.exports = (app) => {
           upc = String(Math.floor(Math.random() * 900000) + 100000) +
             String(Math.floor(Math.random() * 900000) + 100000);
             console.log("UPC: ", upc)//*************************
-          for let i = 0; i < 6; i++){
+          for (let i = 0; i < 6; i++){
               model_number += faker.random.alphaNumeric();
           }
           let insertQuery = "Insert into product ( name, upc, model_number ) values " +
