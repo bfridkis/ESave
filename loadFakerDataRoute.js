@@ -178,7 +178,11 @@ module.exports = (app) => {
                         if (table === 'promotion') {
                           callbackCountPromotion++;
                         }
-                        console.log("Body: ", req.body);//*************************'
+                        console.log("Body: ", req.body);//*************************
+                        console.log("cbcProduct: ", callbackCountProduct,
+                                    " cbcRet: ", callbackCountRetailer,
+                                    " cbcRetProds: ", callbackCountRetailerProduct,
+                                    " cbcPromo: ", callbackCountPromotion);//*************************'
                         if (callbackCountProduct === req.body.numProds &&
                             callbackCountRetailer === req.body.numRets &&
                             callbackCountRetailerProduct === req.body.numRetProds &&
