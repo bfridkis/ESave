@@ -35,6 +35,7 @@ module.exports = (app) => {
                 }
                 else {
                   complete("product");
+                  console.log("CallBackCountProduct: ", callbackCountProduct, "numProds: ", req.body.numProds);//************
                   if (callbackCountProduct === req.body.numProds) {
                     console.log("here??");//************
                     for (let i = 0; i < req.body.numRets; i++) {
