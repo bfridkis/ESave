@@ -50,13 +50,13 @@ function loadFakerData(){
         }
       }
       else{
-        let response = JSON.parse(req.responseText).sqlMessage || JSON.parse(req.statusText);
+        let response = JSON.parse(req.responseText).sqlMessage ||
+                          req.status + " " + req.statusText;
         let results = document.querySelector("#results");
         if(results.innerText === ""){
           results.innerText = response;
         }
         else{
-          console.log("testing"); //***********************
           results.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
         }
 			  console.log("Error: " + req.status + " " + req.statusText);
