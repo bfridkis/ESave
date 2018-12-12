@@ -12,11 +12,11 @@ function loadFakerData(){
 
   let submitButton = document.querySelector("button");
   let resultCount = 0;
-  submitButton.addEventListener("click", submit);
-  document.addEventListener("keypress", submit);
+  submitButton.addEventListener("click", submit.bind(submitButton, e));
+  document.addEventListener("keypress", submit.bind(null, e));
 
-  function submit(){
-    if(this.getAttribute("id") === "submit" || this.keyCode === "13"){
+  function submit(e){
+    if(e.keyCode === "13" || (this !== null && this.getAttribute("id") === "submit"){
       let prods = values[0].value,
           rets = values[1].value,
           ret_prods = values[2].value,
