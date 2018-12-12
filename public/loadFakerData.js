@@ -12,8 +12,8 @@ function loadFakerData(){
 
   let submitButton = document.querySelector("button");
   let resultCount = 0;
-  submitButton.addEventListener("click", submit.bind(submitButton, e));
-  document.addEventListener("keypress", submit.bind(null, e));
+  submitButton.addEventListener("click", submit.bind(submitButton));
+  document.addEventListener("keypress", submit.bind(null));
 
   function submit(e){
     if(e.keyCode === "13" || (this !== null && this.getAttribute("id") === "submit")){
@@ -84,3 +84,6 @@ function loadFakerData(){
 // * https://stackoverflow.com/questions/1789945/how-to-check-whether-a-string-contains-a-substring-in-javascript
 // * https://stackoverflow.com/questions/8796988/binding-multiple-events-to-a-listener-without-jquery
 // * https://stackoverflow.com/questions/14542062/eventlistener-enter-key
+// * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+// * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+// * https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which
