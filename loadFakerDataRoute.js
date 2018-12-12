@@ -181,10 +181,10 @@ module.exports = (app) => {
                                     " cbcRet: ", callbackCountRetailer,
                                     " cbcRetProds: ", callbackCountRetailerProduct,
                                     " cbcPromo: ", callbackCountPromotion);//*************************'
-                        if (callbackCountProduct === req.body.numProds &&
-                            callbackCountRetailer === req.body.numRets &&
-                            callbackCountRetailerProduct === req.body.numRetProds &&
-                            callbackCountPromotion === req.body.numPromos) {
+                        if (callbackCountProduct === Number(req.body.numProds) &&
+                            callbackCountRetailer === Number(req.body.numRets) &&
+                            callbackCountRetailerProduct === Number(req.body.numRetProds) &&
+                            callbackCountPromotion === Number(req.body.numPromos)) {
                             console.log("HERE");//*************************'
                             res.send({
                               "Response": "Sample Data Added!"
