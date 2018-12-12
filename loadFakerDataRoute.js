@@ -210,3 +210,4 @@ module.exports = (app) => {
 // * https://www.w3schools.com/jsref/jsref_substring.asp
 // * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript
 //* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+// * https://stackoverflow.com/questions/27769842/write-after-end-error-in-node-js-webserver
