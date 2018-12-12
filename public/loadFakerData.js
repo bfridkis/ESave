@@ -50,15 +50,18 @@ function loadFakerData(){
         }
       }
       else{
-        let response = JSON.parse(req.responseText).sqlMessage ||
+        let response1 = JSON.parse(req.responseText).sqlMessage ||
                           req.status + " " + req.statusText;
-        let results = document.querySelector("#results");
-        if(results.innerText === ""){
-          results.innerText = response;
+        let response2 = JSON.parse(req.responseText).sql || "";
+        let results1 = document.querySelector("#results1"),
+            results2 = document.querySelector("#results2");
+        if(results1.innerText === ""){
+          results1.innerText = `SQL MESSAGE: ${response1}`;
         }
         else{
-          results.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
+          results1.innerHTML = `SQL MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
         }
+        results2.innerText = `SQL: ${response2}`;
 			  console.log("Error: " + req.status + " " + req.statusText);
 		  }
     });
