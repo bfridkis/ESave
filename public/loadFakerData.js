@@ -50,9 +50,13 @@ function loadFakerData(){
         }
       }
       else{
-        let response1 = JSON.parse(req.responseText).sqlMessage ||
-                          req.status + " " + req.statusText;
-        let response2 = JSON.parse(req.responseText).sql || "";
+        if(req.responseText){
+          let response1 = JSON.parse(req.responseText).sqlMessage,
+              response2 = JSON.parse(req.responseText).sql;
+        }
+        else{
+          response1 = req.status + " " + req.statusText;
+        }
         let results1 = document.querySelector("#results1"),
             results2 = document.querySelector("#results2");
         if(results1.innerText === ""){
@@ -61,7 +65,7 @@ function loadFakerData(){
         else{
           results1.innerHTML = `SQL MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
         }
-        results2.innerText = `SQL: ${response2}`; 
+        results2.innerText = `SQL: ${response2}`;
 			  console.log("Error: " + req.status + " " + req.statusText);
 		  }
     });
