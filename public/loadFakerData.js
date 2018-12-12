@@ -3,6 +3,7 @@ function loadFakerData(){
 
   let ret_prodsInput = values[2];
   ret_prodsInput.addEventListener("input", () => {
+    console.log(this);//**********************
     let prods = values[0].value;
     let rets = values[1].value;
     if(this.value > prods && this.value > rets){
