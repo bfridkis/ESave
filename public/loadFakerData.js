@@ -41,11 +41,11 @@ function loadFakerData(){
           typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
         let response = JSON.parse(req.responseText).Response;
         let results1 = document.querySelector("#results1");
-        if(results.innerText === ""){
-          results.innerText = response;
+        if(results1.innerText === ""){
+          results1.innerText = response;
         }
         else{
-          results.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
+          results1.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
         }
       }
       else{
