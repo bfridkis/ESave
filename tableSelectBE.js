@@ -47,8 +47,24 @@ module.exports = tableName => {
 					context.title = tableName.charAt(0).toUpperCase() + tableName.slice(1)
 									+ ' Table';
 				}
-				context.jsscriptsTableView = [];
+				context.jsscriptsTableView = ["deleteRow.js"];
 				res.render(tableName + "/" + tableName + "Table", context);
+			}
+		});
+	});
+
+	router.delete('/:id', function(req, res){
+		var mysql = req.app.get('mysql');
+		var sql = `DELETE FROM ${tableName} WHERE id=?`;
+		var inserts = [req.params.id];
+		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+			if(error){
+				res.write(JSON.stringify(error));
+				res.status(400);
+				res.end();
+			}
+			else{
+				res.status(202).end();
 			}
 		});
 	});
