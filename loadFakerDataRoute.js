@@ -14,7 +14,7 @@ module.exports = (app) => {
     router.post('/', (req, res, next) => {
       let mysql = req.app.get('mysql');
       if (req.body.password === "loadfakedata") {
-        let callbackCountProduct = 0;
+        var callbackCountProduct = 0;
         if (!req.body.numProds) req.body.numProds = 0;
         for (let i = 0; i < req.body.numProds; i++) {
           name = faker.commerce.productName();
@@ -36,7 +36,7 @@ module.exports = (app) => {
                 else {
                   complete("product");
                   if (callbackCountProduct === req.body.numProds) {
-                    let callbackCountRetailer = 0;
+                    var callbackCountRetailer = 0;
                     if (!req.body.numRets) req.body.numRets = 0;
                     for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
@@ -57,8 +57,8 @@ module.exports = (app) => {
                             complete("retailer");
                             if (callbackCountRetailer === req.body.numRets) {
                               if (!req.body.numRetProds) req.body.numRetProds = 0;
-                              let callbackCountRetailerProduct = 0;
-                              let callbackCountPromos = 0;
+                              var callbackCountRetailerProduct = 0;
+                              var callbackCountPromos = 0;
                               for (let i = 0; i < req.body.numRetProds; i++) {
                                 let selectQuery = "SELECT id FROM retailer AS ret1 JOIN " +
                                   "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM retailer)) AS id) " +
