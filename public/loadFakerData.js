@@ -18,7 +18,7 @@ function loadFakerData(){
     if(e.target.value > ret_prods){
       e.target.value = ret_prods;
       let results1 = document.querySelector("#results1");
-      results1.innerText = "Promotions cannot exceed both Retailer_Products."
+      results1.innerText = "Promotions cannot exceed Retailer_Products."
     }
   });
 
