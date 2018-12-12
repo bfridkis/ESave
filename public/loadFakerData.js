@@ -40,7 +40,7 @@ function loadFakerData(){
       if(req.status >= 200 && req.status < 400 &&
           typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
         let response = JSON.parse(req.responseText).Response;
-        let results = document.querySelector("#results");
+        let results1 = document.querySelector("#results1");
         if(results.innerText === ""){
           results.innerText = response;
         }
