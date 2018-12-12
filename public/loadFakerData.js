@@ -3,10 +3,10 @@ function loadFakerData(){
 
   let ret_prodsInput = values[2];
   ret_prodsInput.addEventListener("input", (e) => {
-    console.log(e);//**********************
+    console.log(e.target.value);//**********************
     let prods = values[0].value;
     let rets = values[1].value;
-    if(this.value > prods && this.value > rets){
+    if(e.target.value > prods && e.target.value > rets){
       this.value = math.max(prods, rets);
     }
   });
