@@ -35,8 +35,8 @@ module.exports = (app) => {
                 }
                 else {
                   complete("product");
-                  console.log("here??");//************
                   if (callbackCountProduct === req.body.numProds) {
+                    console.log("here??");//************
                     for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
                       website = name + ".com";
