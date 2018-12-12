@@ -59,7 +59,7 @@ function loadFakerData(){
         let results1 = document.querySelector("#results1"),
             results2 = document.querySelector("#results2");
         if(results1.innerText === ""){
-          results1.innerText = `SQL MESSAGE: ${response1}`;
+          results1.innerText = `ERROR MESSAGE: ${response1}`;
         }
         else{
           results1.innerHTML = `SQL MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
