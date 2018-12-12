@@ -50,9 +50,7 @@ function loadFakerData(){
         }
       }
       else{
-        console.log(req.responseText); //******************
-        console.log(typeof(req.responseText)); //****************
-        if(req.responseText){
+        if(typeof(req.responseText) !== "string"){
           let response1 = JSON.parse(req.responseText).sqlMessage,
               response2 = JSON.parse(req.responseText).sql;
         }
