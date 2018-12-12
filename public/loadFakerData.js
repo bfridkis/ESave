@@ -38,7 +38,8 @@ function loadFakerData(){
     req.addEventListener('load', () => {
       resultCount++;
       console.log(req.responseText); //*****************
-      if(req.status >= 200 && req.status < 400){
+      if(req.status >= 200 && req.status < 400 &&
+          !(JSON.parse(req.responseText).sqlMessage.includes("error")) ){
         let response = JSON.parse(req.responseText).Response;
         let results = document.querySelector("#results");
         if(results.innerText === ""){
@@ -49,7 +50,7 @@ function loadFakerData(){
         }
       }
       else{
-        let response = JSON.parse(req.statusText).Response;
+        let response = JSON.parse(req.responseText).sqlMessage || JSON.parse(req.statusText);
         let results = document.querySelector("#results");
         if(results.innerText === ""){
           results.innerText = response;
@@ -64,3 +65,6 @@ function loadFakerData(){
     req.send(JSON.stringify(data));
   });
 }
+
+// * References
+// * https://stackoverflow.com/questions/1789945/how-to-check-whether-a-string-contains-a-substring-in-javascript
