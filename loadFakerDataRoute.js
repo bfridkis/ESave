@@ -52,6 +52,7 @@ module.exports = (app) => {
                             res.end();
                           }
                           else {
+                            console.log("here??");//************
                             complete("retailer");
                             if (callbackCountRetailer === req.body.numRets) {
                               for (let i = 0; i < req.body.numRetProds; i++) {

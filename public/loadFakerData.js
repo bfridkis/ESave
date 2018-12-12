@@ -16,8 +16,6 @@ function loadFakerData(){
   document.addEventListener("keypress", submit.bind("null"));
 
   function submit(e){
-    console.log(e.keyCode, this);//************
-    console.log(String(this) === "null");//********
     if(e.keyCode === 13 || (String(this) !== "null" && this.getAttribute("id") === "submit")){
       let prods = values[0].value,
           rets = values[1].value,
