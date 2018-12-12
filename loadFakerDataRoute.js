@@ -15,7 +15,6 @@ module.exports = (app) => {
       let mysql = req.app.get('mysql');
       if (req.body.password === "loadfakedata") {
         var callbackCountProduct = 0;
-        if (!req.body.numProds) req.body.numProds = 0;
         for (let i = 0; i < req.body.numProds; i++) {
           name = faker.commerce.productName();
           upc = String(Math.floor(Math.random() * 900000) + 100000) +
@@ -37,7 +36,6 @@ module.exports = (app) => {
                   complete("product");
                   if (callbackCountProduct === req.body.numProds) {
                     var callbackCountRetailer = 0;
-                    if (!req.body.numRets) req.body.numRets = 0;
                     for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
                       website = name + ".com";
@@ -56,7 +54,6 @@ module.exports = (app) => {
                           else {
                             complete("retailer");
                             if (callbackCountRetailer === req.body.numRets) {
-                              if (!req.body.numRetProds) req.body.numRetProds = 0;
                               var callbackCountRetailerProduct = 0;
                               var callbackCountPromotion = 0;
                               for (let i = 0; i < req.body.numRetProds; i++) {
@@ -183,11 +180,12 @@ module.exports = (app) => {
                         }
                         if (callbackCountProduct === req.body.numProds &&
                             callbackCountRetailer === req.body.numRets &&
-                            callbackCountRetailerProduct == req.body.numRetProds &&
+                            callbackCountRetailerProduct === req.body.numRetProds &&
                             callbackCountPromotion === req.body.numPromos) {
                             res.send({
                               "Response": "Sample Data Added!"
                             });
+                            res.end();
                         }
                       }
 
