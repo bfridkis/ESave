@@ -40,12 +40,12 @@ module.exports = (app) => {
                     console.log("here??");//************
                     for (let i = 0; i < req.body.numRets; i++) {
                       name = faker.company.companyName();
-                      website = name + ".com";
+                      website = name.replace(",", "").replace(" ", "") + ".com";
                       address = `${faker.address.streetAddress()} ${faker.address.city()}, ` +
                                 `${faker.address.stateAbbr()} ${faker.address.zipCode()}`;
                       shippingPrice = ((Math.random() * 7) + 2.99).toFixed(2);
                       insertQuery = "Insert into retailer ( name, web_address, mailing_address, shipping_price ) values " +
-                                    `( ${name}, ${website}, ${address}, ${shippingPrice})`;
+                                    `( '${name}', '${website}', '${address}', '${shippingPrice}')`;
                       mysql.pool.query(insertQuery,
                         (err, row, fields) => {
                           if (err) {
@@ -101,7 +101,7 @@ module.exports = (app) => {
                                                     price = faker.commerce.price();
                                                     description = faker.lorem.sentences();
                                                     insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) " +
-                                                      `values (${ret_id}, ${prod_id}, ${price}, ${description})`;
+                                                      `values ('${ret_id}', '${prod_id}', '${price}', '${description}')`;
                                                     mysql.pool.query(insertQuery,
                                                       (err, row, fields) => {
                                                         if (err) {
@@ -119,8 +119,8 @@ module.exports = (app) => {
                                                             min_spend = getRandomInt(2) === 1 ? faker.commerce.price : 'NULL';
                                                             insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                               "ecoupon, expiration_date, product, qt_required, min_spend ) " +
-                                                              `values (${discount},${ret_id},${promoDescription},${ecoupon},` +
-                                                              `${expirationDate},${prod_id},${qt_required},${min_spend})`;
+                                                              `values ('${discount}', '${ret_id}', '${promoDescription}', '${ecoupon}', ` +
+                                                              `'${expirationDate}', '${prod_id}', '${qt_required}', '${min_spend}')`;
                                                             mysql.pool.query(insertQuery,
                                                               (err, row, fields) => {
                                                                 if (err) {
@@ -208,3 +208,4 @@ module.exports = (app) => {
 // * https://stackoverflow.com/questions/4329396/mysql-select-10-random-rows-from-600k-rows-fast
 // * https://www.w3schools.com/sql/func_mysql_rand.asp
 // * https://www.w3schools.com/jsref/jsref_substring.asp
+// * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript
