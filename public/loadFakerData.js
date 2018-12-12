@@ -65,7 +65,9 @@ function loadFakerData(){
         else{
           results1.innerHTML = `SQL MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
         }
-        results2.innerText = `SQL: ${response2}`;
+        if(response2){
+          results2.innerText = `SQL: ${response2}`;
+        }
 			  console.log("Error: " + req.status + " " + req.statusText);
 		  }
     });
