@@ -98,7 +98,7 @@ module.exports = (app) => {
                                               }
                                               else {
                                                 console.log(row);//*****************************
-                                                if (typeof(row[0].retailer) !== "undefined") {
+                                                if (typeof(row[0]) !== "undefined") {
                                                   price = faker.commerce.price();
                                                   description = faker.lorem.sentences();
                                                   insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) " +
