@@ -124,7 +124,7 @@ module.exports = (app) => {
                                                           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                             "ecoupon, expiration_date, product, qt_required, min_spend ) " +
                                                             `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
-                                                            `"${expirationDate}", "${if(qt_required !== Null) ? prod_id : Null}", ` +
+                                                            `"${expirationDate}", "${qt_required !== Null ? prod_id : Null}", ` +
                                                             `"${qt_required}", "${min_spend}")`;
                                                           mysql.pool.query(insertQuery,
                                                             (err, row, fields) => {
