@@ -125,7 +125,7 @@ module.exports = (app) => {
                                                             "ecoupon, expiration_date, product, qt_required, min_spend ) " +
                                                             `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
                                                             `"${expirationDate}", ${qt_required !== null ? `"${prod_id}"` : null}, ` +
-                                                            `${qt_required !== null ? `"${qt_required_id}"` : null}, ` +
+                                                            `${qt_required !== null ? `"${qt_required}"` : null}, ` +
                                                             `${min_spend !== null ? `"${min_spend}"` : null})`;
                                                           mysql.pool.query(insertQuery,
                                                             (err, row, fields) => {
