@@ -80,7 +80,7 @@ module.exports = (app) => {
                                                     "(SELECT product, retailer from retailer_product) " +
                                                     `LIMIT ${randomRetProdPK + req.body.numRetProds > unusedRetProdPKCount ?
                                                              Math.abs(randomRetProdPK - req.body.numRetProds) : randomRetProdPK},
-                                                             ${numRetProds}`;
+                                                             ${req.body.numRetProds}`;
                                       mysql.pool.query(selectQuery,
                                         (err, rows, fields) => {
                                           if (err) {
