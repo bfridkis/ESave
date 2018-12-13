@@ -98,7 +98,7 @@ module.exports = (app) => {
                                               }
                                               else {
                                                 if (typeof(row[0]) === "undefined") {
-                                                  price = faker.commerce.price();
+                                                  price = Number(faker.commerce.price()) + 0.99;
                                                   description = faker.lorem.sentences();
                                                   insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) " +
                                                     `values ("${ret_id}", "${prod_id}", "${price}", "${description}")`;
