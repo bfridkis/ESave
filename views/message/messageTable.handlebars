@@ -18,7 +18,7 @@
 				<td>{{sender}}</td>
 				<td>{{timestamp}}</td>
 				<td>{{message_thread}}</td>
-				<td class="deleteButton"><button onclick="deleteRow({{id}}, 'message')">Delete</button></td>
+				<td class="deleteButton"><button onclick="deleteRow('id', {{id}}, 'message')">Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>
