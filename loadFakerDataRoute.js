@@ -116,7 +116,7 @@ module.exports = (app) => {
                                                           for (let i = 0; i < 6; i++){
                                                               ecoupon += faker.random.alphaNumeric();
                                                           }
-                                                          let expirationDate = String(faker.date.future());
+                                                          let expirationDate = new Date(faker.date.future());
                                                           expirationDate = expirationDate.substring(0, 10);
                                                           console.log(expirationDate);//*******************************
                                                           let qt_required = getRandomInt(2) === 1 ? faker.random.number() : null;
