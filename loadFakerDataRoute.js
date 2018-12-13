@@ -56,7 +56,7 @@ module.exports = (app) => {
                         }
                         else {
                           if (req.body.numRetProds > 0) {
-                            for (let i = 0; i < req.body.numRetProds; i++) {
+                            for (let i = 0; i < req.body.numRetProds; i++){
                               let selectQuery = "SELECT id FROM retailer AS ret1 JOIN " +
                                 "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM retailer)) AS id) " +
                                 "AS ret2 " +
@@ -165,8 +165,8 @@ module.exports = (app) => {
                                 });
                               }
                             }
-                          }
-                        });
+                          });
+                        }
                       });
                       else {
                         res.send({
