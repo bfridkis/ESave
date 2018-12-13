@@ -119,12 +119,12 @@ module.exports = (app) => {
                                                           let expirationDate = String(faker.date.future());
                                                           expirationDate = expirationDate.substring(0, 10);
                                                           console.log(expirationDate);//*******************************
-                                                          let qt_required = getRandomInt(2) === 1 ? faker.random.number() : Null;
-                                                          let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : Null;
+                                                          let qt_required = getRandomInt(2) === 1 ? faker.random.number() : null;
+                                                          let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
                                                           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                             "ecoupon, expiration_date, product, qt_required, min_spend ) " +
                                                             `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
-                                                            `"${expirationDate}", "${qt_required !== Null ? prod_id : Null}", ` +
+                                                            `"${expirationDate}", "${qt_required !== null ? prod_id : null}", ` +
                                                             `"${qt_required}", "${min_spend}")`;
                                                           mysql.pool.query(insertQuery,
                                                             (err, row, fields) => {
