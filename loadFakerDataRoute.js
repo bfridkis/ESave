@@ -168,12 +168,11 @@ module.exports = (app) => {
                             }
                           });
                         }
-						else {
+						         else {
                         res.send({
                           "Response": "Invalid Password"
                         });
                       }
-                    });
 
                       function complete(table) {
                         if (table === 'retailer_product') {
@@ -191,6 +190,7 @@ module.exports = (app) => {
                             res.status(202).end();
                         }
                       }
+                    });
 
                       function getRandomInt(max) {
                         return Math.floor(Math.random() * Math.floor(max));
