@@ -1,5 +1,5 @@
 //AJAX request to delete row via a "DELETE" request.
-function deleteRow(primaryKeys, primaryKeyValues entity){
+function deleteRow(primaryKeys, primaryKeyValues, entity){
 /*  --jQuery Version - Kept here for reference--
 
 	var pageRequest = '/' + entity + 'Table' + '/';
