@@ -112,15 +112,20 @@ module.exports = (app) => {
                                                         if (callbackCountPromotion < req.body.numPromos) {
                                                           let discount = Math.random() * price;
                                                           let promoDescription = faker.lorem.sentence();
-                                                          let ecoupon = faker.random.alphaNumeric();
+                                                          let ecoupon = "";
+                                                          for (let i = 0; i < 6; i++){
+                                                              ecoupon += faker.random.alphaNumeric();
+                                                          }
                                                           let expirationDate = String(faker.date.future());
                                                           expirationDate = expirationDate.substring(0, 10);
-                                                          let qt_required = getRandomInt(2) === 1 ? faker.random.number() : 'NULL';
-                                                          let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : 'NULL';
+                                                          console.log(expirationDate);//*******************************
+                                                          let qt_required = getRandomInt(2) === 1 ? faker.random.number() : Null;
+                                                          let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : Null;
                                                           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                             "ecoupon, expiration_date, product, qt_required, min_spend ) " +
                                                             `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
-                                                            `"${expirationDate}", "${prod_id}", "${qt_required}", "${min_spend}")`;
+                                                            `"${expirationDate}", "${if(qt_required !== Null) ? prod_id : Null}", ` +
+                                                            `"${qt_required}", "${min_spend}")`;
                                                           mysql.pool.query(insertQuery,
                                                             (err, row, fields) => {
                                                               if (err) {
