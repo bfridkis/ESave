@@ -110,7 +110,7 @@ module.exports = (app) => {
                                                       }
                                                       else {
                                                         if (callbackCountPromotion < req.body.numPromos) {
-                                                          let discount = Number(Math.random() * price).tofixed(2);
+                                                          let discount = Number(Math.random() * price).toFixed(2);
                                                           let promoDescription = faker.lorem.sentence();
                                                           let ecoupon = "";
                                                           for (let i = 0; i < 6; i++){
