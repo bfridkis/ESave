@@ -90,11 +90,13 @@ module.exports = (app) => {
                                           }
                                           else {
                                             insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) ";
+                                            let prices = [];
                                             rows.forEach( pk => {
                                               let ret_id = pk.RET,
                                                   prod_id = pk.PROD,
                                                   price = Number(faker.commerce.price()) + 0.99,
                                                   description = faker.lorem.sentences();
+                                              prices.push(price);
                                               insertQuery += `values ("${ret_id}", "${prod_id}", "${price}", "${description}"), `;
                                             });
                                             insertQuery = insertQuery.substring(0, insertQuery.length - 2);
@@ -110,7 +112,7 @@ module.exports = (app) => {
                                                     insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                                   "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
                                                     for(let i = 0; i < req.body.numPromos; i++){
-                                                      let discount = Number(Math.random() * price).toFixed(2);
+                                                      let discount = Number(Math.random() * prices[i]).toFixed(2);
                                                       let promoDescription = faker.lorem.sentence();
                                                       let ecoupon = "";
                                                       for (let i = 0; i < 6; i++){
