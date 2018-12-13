@@ -14,8 +14,7 @@ module.exports = (app) => {
     router.post('/', (req, res, next) => {
       let mysql = req.app.get('mysql');
       if (req.body.password === process.env.loadfakerpassword) {
-        var callbackCountProduct = 0, callbackCountRetailer = 0,
-            callbackCountRetailerProduct = 0, callbackCountPromotion = 0;
+        var callbackCountRetailerProduct = 0, callbackCountPromotion = 0;
         let insertQuery = "Insert into product ( name, upc, model_number ) values ";
         for (let i = 0; i < req.body.numProds; i++) {
           name = faker.commerce.productName();
@@ -114,9 +113,9 @@ module.exports = (app) => {
                                                           discount = Math.random() * price;
                                                           promoDescription = faker.lorem.sentence();
                                                           ecoupon = faker.random.alphaNumeric();
-                                                          expirationDate = faker.date.future().substring(0, 10);
-                                                          qt_required = getRandomInt(2) === 1 ? faker.number.random : 'NULL';
-                                                          min_spend = getRandomInt(2) === 1 ? faker.commerce.price : 'NULL';
+                                                          expirationDate = (faker.date.future()).substring(0, 10);
+                                                          qt_required = getRandomInt(2) === 1 ? faker.number.random() : 'NULL';
+                                                          min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : 'NULL';
                                                           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                             "ecoupon, expiration_date, product, qt_required, min_spend ) " +
                                                             `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
