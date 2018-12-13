@@ -89,7 +89,7 @@ module.exports = (app) => {
                                             res.end();
                                           }
                                           else {
-                                            insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) ";
+                                            insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) values ";
                                             let prices = [];
                                             rows.forEach( pk => {
                                               let ret_id = pk.RET,
@@ -97,7 +97,7 @@ module.exports = (app) => {
                                                   price = Number(faker.commerce.price()) + 0.99,
                                                   description = faker.lorem.sentences();
                                               prices.push(price);
-                                              insertQuery += `values ("${ret_id}", "${prod_id}", "${price}", "${description}"), `;
+                                              insertQuery += `("${ret_id}", "${prod_id}", "${price}", "${description}"), `;
                                             });
                                             insertQuery = insertQuery.substring(0, insertQuery.length - 2);
                                             mysql.pool.query(insertQuery,
