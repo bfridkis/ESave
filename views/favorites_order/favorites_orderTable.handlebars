@@ -10,7 +10,9 @@
 			<tr>
 				<td>{{user}}</td>
 				<td>{{order}}</td>
-				<td class="deleteButton"><button onclick="deleteRow({{id}}, 'favorites_order')">Delete</button></td>
+				<td class="deleteButton">
+					<button onclick="deleteRow('user-order', '{{user}}-{{order}}', 'favorites_order')">Delete</button>
+				</td>
 			</tr>
 			{{/each}}
 		</tbody>

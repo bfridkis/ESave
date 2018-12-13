@@ -16,7 +16,7 @@
 				<td>{{price}}</td>
 				<td>{{description}}</td>
 				<td>{{last_updated}}</td>
-				<td class="deleteButton"><button onclick="deleteRow({{id}}, 'retailer_product')">Delete</button></td>
+				<td class="deleteButton"><button onclick="deleteRow('retailer-product', '{{retailer}}-{{product}}', 'retailer_product')">Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>

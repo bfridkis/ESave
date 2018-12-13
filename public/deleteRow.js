@@ -1,5 +1,5 @@
 //AJAX request to delete row via a "DELETE" request.
-function deleteRow(primaryKey, entity){
+function deleteRow(primaryKeys, primaryKeyValues entity){
 /*  --jQuery Version - Kept here for reference--
 
 	var pageRequest = '/' + entity + 'Table' + '/';
@@ -12,9 +12,9 @@ function deleteRow(primaryKey, entity){
 	})
 */
 	var windowToReplace = '/' + entity + 'Table';
-	var pageRequest = '/' + entity + 'Table' + '/';
+	var pageRequest = `/${entity}Table/${primaryKeys}/${primaryKeyValues}`;
 	var req = new XMLHttpRequest();
-	req.open("DELETE", pageRequest + primaryKey, true);
+	req.open("DELETE", pageRequest, true);
 	req.addEventListener('load', function(){
 		if(req.status >= 200 && req.status < 400){
 			window.location.replace(windowToReplace);

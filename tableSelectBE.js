@@ -53,11 +53,16 @@ module.exports = tableName => {
 		});
 	});
 
-	router.delete('/:id', function(req, res){
+	router.delete('/:primarykey/:pk_values', function(req, res){
 		var mysql = req.app.get('mysql');
-		var sql = `DELETE FROM ${tableName} WHERE id=?`;
-		var inserts = [req.params.id];
-		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+    let pkFields = req.params.primarykey.split("-");
+    let pkValues = req.params.pk_values.split("-");
+		let sql = `DELETE FROM ${tableName} WHERE `${req.params.primarykey}`=?`;
+    pkFields.forEach(field => {
+      sql += `${field}=? AND `
+    })
+    sql = sql.substring(0, sql.length - 5);
+		sql = mysql.pool.query(sql, pkValues, function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
 				res.status(400);
