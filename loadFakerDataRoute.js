@@ -159,38 +159,44 @@ module.exports = (app) => {
                                   }
                                 });
                               }
+                              else{
+                                res.send({
+                                  "Response": "Sample Data Added!"
+                                });
+                              }
                             }
-                          });
+                          }
+                        });
+                      }
+                      else {
+                        res.send({
+                          "Response": "Invalid Password"
+                        });
+                      }
+
+                      function complete(table) {
+                        if (table === 'retailer_product') {
+                          callbackCountRetailerProduct++;
                         }
-                        else {
-                          res.send({
-                            "Response": "Invalid Password"
-                          });
+                        if (table === 'promotion') {
+                          callbackCountPromotion++;
                         }
 
-                        function complete(table) {
-                          if (table === 'retailer_product') {
-                            callbackCountRetailerProduct++;
-                          }
-                          if (table === 'promotion') {
-                            callbackCountPromotion++;
-                          }
-
-                          if (callbackCountRetailerProduct === Number(req.body.numRetProds) &&
-                              callbackCountPromotion === Number(req.body.numPromos)) {
-                              res.send({
-                                "Response": "Sample Data Added!"
-                              });
-                              res.status(202).end();
-                          }
+                        if (callbackCountRetailerProduct === Number(req.body.numRetProds) &&
+                            callbackCountPromotion === Number(req.body.numPromos)) {
+                            res.send({
+                              "Response": "Sample Data Added!"
+                            });
+                            res.status(202).end();
                         }
+                      }
 
-                        function getRandomInt(max) {
-                          return Math.floor(Math.random() * Math.floor(max));
-                        }
-                      });
-                      return router;
-                    }
+                      function getRandomInt(max) {
+                        return Math.floor(Math.random() * Math.floor(max));
+                      }
+                    });
+                    return router;
+                  }
 
 // * References
 // * https://stackoverflow.com/questions/2175512/javascript-expression-to-generate-a-5-digit-number-in-every-case
