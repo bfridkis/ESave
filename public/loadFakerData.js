@@ -4,16 +4,20 @@ function loadFakerData(){
   let retsInput = values[1];
   retsInput.addEventListener("input", e => {
     let ret_prods = values[2].value;
+    let results1 = document.querySelector("#results1");
+    let results2 = document.querySelector("#results2");
     if(e.target.value === 0 && ret_prods > 0){
       values[2].value = 0;
-      let results1 = document.querySelector("#results1");
       results1.innerText = "Must add at least 1 retailer to add retailer_products."
       let promos = values[3].value;
       if(promos > values[2].value){
         values[3].value = values[2].value;
-        let results2 = document.querySelector("#results2");
         results2.innerText = "Promotions cannot exceed Retailer_Products."
       }
+    }
+    else{
+      results1.innerText = "";
+      results2.innerText = "";
     }
   });
 
@@ -21,25 +25,30 @@ function loadFakerData(){
   ret_prodsInput.addEventListener("input", e => {
     let prods = values[0].value;
     let rets = values[1].value;
+    let results1 = document.querySelector("#results1");
     if(e.target.value > prods && e.target.value > rets){
       e.target.value = Math.max(prods, rets);
-      let results1 = document.querySelector("#results1");
       results1.innerText = "Retailer_Products cannot exceed both Products and Retailers."
     }
-    if(e.target.value > 0 && rets === 0){
+    else if(e.target.value > 0 && Number(rets) === 0){
       e.target.value = 0;
-      let results1 = document.querySelector("#results1");
       results1.innerText = "Must add at least 1 retailer to add retailer_product."
+    }
+    else{
+      results1.innerText = "";
     }
   });
 
   let promotionsInput = values[3];
   promotionsInput.addEventListener("input", e => {
     let ret_prods = values[2].value;
+    let results1 = document.querySelector("#results1");
     if(e.target.value > ret_prods){
       e.target.value = ret_prods;
-      let results1 = document.querySelector("#results1");
       results1.innerText = "Promotions cannot exceed Retailer_Products."
+    }
+    else{
+      results1.innerText = "";
     }
   });
 
