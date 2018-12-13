@@ -150,27 +150,26 @@ module.exports = (app) => {
                                                 });
                                               }
                                             });
-										  }
+										                      }
                                         }
                                       });
                                     }
-                                  }
-                                  else{
-                                    res.send({
-                                      "Response": "Sample Data Added!"
-                                    });
+									                  else{
+                                      res.send({
+                                        "Response": "Sample Data Added!"
+                                      });
+                                    }
                                   }
                                 });
                               }
-                            }
-                            else{
-                              res.send({
-                                "Response": "Sample Data Added!"
-                              });
+							                else{
+                                res.send({
+                                  "Response": "Sample Data Added!"
+                                });
+                              }
                             }
                           });
                         }
-                      
   					         else {
                         res.send({
                           "Response": "Invalid Password"
