@@ -109,7 +109,7 @@ function loadFakerData(){
             results1.innerText = `ERROR MESSAGE: ${response1}`;
           }
           else{
-            results1.innerHTML = `SQL MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
+            results1.innerHTML = `ERROR MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
           }
           if(typeof(response2) !== "undefined"){
             results2.innerText = `SQL: ${response2}`;
