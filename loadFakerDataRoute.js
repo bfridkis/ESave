@@ -152,25 +152,25 @@ module.exports = (app) => {
                                             });
 										  }
                                         }
-                                      }
-                                    });
+                                      });
+                                    }
                                   }
                                   else{
                                     res.send({
                                       "Response": "Sample Data Added!"
                                     });
                                   }
-                                }
-                              });
+                                });
+                              }
                             }
                             else{
                               res.send({
                                 "Response": "Sample Data Added!"
                               });
                             }
-                          }
-                        });
-                      }
+                          });
+                        }
+                      
   					         else {
                         res.send({
                           "Response": "Invalid Password"
@@ -198,8 +198,9 @@ module.exports = (app) => {
                     function getRandomInt(max) {
                       return Math.floor(Math.random() * Math.floor(max));
                     }
+				        }
                 return router;
-                }
+              }
 
 // * References
 // * https://stackoverflow.com/questions/2175512/javascript-expression-to-generate-a-5-digit-number-in-every-case
