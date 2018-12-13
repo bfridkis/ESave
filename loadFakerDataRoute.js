@@ -57,7 +57,7 @@ module.exports = (app) => {
                         else {
                           if (req.body.numRetProds > 0) {
                             for (let i = 0; i < req.body.numRetProds; i++){
-                              let selectQuery = "SELECT id FROM retailer AS ret1 JOIN " +
+                              let selectQuery = "SELECT ret1.id FROM retailer AS ret1 JOIN " +
                                 "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM retailer)) AS id) " +
                                 "AS ret2 " +
                                 "WHERE ret1.id >= ret2.id " +
@@ -72,7 +72,7 @@ module.exports = (app) => {
                                   }
                                   else {
                                     let ret_id = row[0].id;
-                                    selectQuery = "SELECT id FROM product AS prod1 JOIN " +
+                                    selectQuery = "SELECT prod1.id FROM product AS prod1 JOIN " +
                                       "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM product)) AS id) " +
                                       "AS prod2 " +
                                       "WHERE prod1.id >= prod2.id " +
