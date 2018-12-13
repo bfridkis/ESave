@@ -70,7 +70,7 @@ module.exports = (app) => {
                                     if(unusedRetProdPKCount < req.body.numRetProds){
                                       res.send({
                                         "Response": "Unable to add Retail_Products. Retail_Product request count exceeds " +
-                                                    "number of available primary keys."
+                                                    "number of available primary keys. (Products and Retailers may have been added.)"
                                       });
                                     }
                                     else{
@@ -78,8 +78,8 @@ module.exports = (app) => {
                                       selectQuery = "SELECT product.id AS PROD, retailer.id AS RET " +
                                                     "FROM product, retailer WHERE (product.id, retailer.id) NOT IN " +
                                                     "(SELECT product, retailer from retailer_product) " +
-                                                    `LIMIT ${randomRetProdPK + numRetProds > unusedRetProdPKCount ?
-                                                             Math.abs(randomRetProdPK - numRetProds) : randomRetProdPK},
+                                                    `LIMIT ${randomRetProdPK + req.body.numRetProds > unusedRetProdPKCount ?
+                                                             Math.abs(randomRetProdPK - req.body.numRetProds) : randomRetProdPK},
                                                              ${numRetProds}`;
                                       mysql.pool.query(selectQuery,
                                         (err, rows, fields) => {
