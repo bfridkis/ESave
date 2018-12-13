@@ -110,7 +110,7 @@ module.exports = (app) => {
                                                       }
                                                       else {
                                                         if (callbackCountPromotion < req.body.numPromos) {
-                                                          let discount = Math.random() * price;
+                                                          let discount = (Math.random() * price).tofixed(2);
                                                           let promoDescription = faker.lorem.sentence();
                                                           let ecoupon = "";
                                                           for (let i = 0; i < 6; i++){
@@ -124,8 +124,9 @@ module.exports = (app) => {
                                                           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                             "ecoupon, expiration_date, product, qt_required, min_spend ) " +
                                                             `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
-                                                            `"${expirationDate}", "${qt_required !== null ? prod_id : null}", ` +
-                                                            `"${qt_required}", "${min_spend}")`;
+                                                            `"${expirationDate}", ${qt_required !== null ? `"${prod_id}"` : null}, ` +
+                                                            `${qt_required !== null ? `"${qt_required_id}"` : null}, ` +
+                                                            `${min_spend !== null ? `"${min_spend}"` : null})`;
                                                           mysql.pool.query(insertQuery,
                                                             (err, row, fields) => {
                                                               if (err) {
