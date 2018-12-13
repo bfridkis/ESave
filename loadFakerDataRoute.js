@@ -167,12 +167,12 @@ module.exports = (app) => {
                             }
                           });
                         }
-                      });
-                      else {
+						else {
                         res.send({
                           "Response": "Invalid Password"
                         });
                       }
+                    });
 
                       function complete(table) {
                         if (table === 'retailer_product') {
