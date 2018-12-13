@@ -1,8 +1,24 @@
 function loadFakerData(){
   let values = document.querySelectorAll("input");
 
+  let retsInput = values[1];
+  retsInput.addEventListener("input", e => {
+    let ret_prods = values[2].value;
+    if(e.target.value === 0 && ret_prods > 0){
+      values[2].value = 0;
+      let results1 = document.querySelector("#results1");
+      results1.innerText = "Must add at least 1 retailer to add retailer_products."
+      let promos = values[3].value;
+      if(promos > values[2].value){
+        values[3].value = values[2].value;
+        let results2 = document.querySelector("#results2");
+        results2.innerText = "Promotions cannot exceed Retailer_Products."
+      }
+    }
+  });
+
   let ret_prodsInput = values[2];
-  ret_prodsInput.addEventListener("input", (e) => {
+  ret_prodsInput.addEventListener("input", e => {
     let prods = values[0].value;
     let rets = values[1].value;
     if(e.target.value > prods && e.target.value > rets){
@@ -10,10 +26,15 @@ function loadFakerData(){
       let results1 = document.querySelector("#results1");
       results1.innerText = "Retailer_Products cannot exceed both Products and Retailers."
     }
+    if(e.target.value > 0 && rets === 0){
+      e.target.value = 0;
+      let results1 = document.querySelector("#results1");
+      results1.innerText = "Must add at least 1 retailer to add retailer_product."
+    }
   });
 
-  let promotionInput = values[3];
-  promotionInput.addEventListener("input", (e) => {
+  let promotionsInput = values[3];
+  promotionsInput.addEventListener("input", e => {
     let ret_prods = values[2].value;
     if(e.target.value > ret_prods){
       e.target.value = ret_prods;
