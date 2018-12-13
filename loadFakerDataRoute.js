@@ -113,7 +113,8 @@ module.exports = (app) => {
                                                           let discount = Math.random() * price;
                                                           let promoDescription = faker.lorem.sentence();
                                                           let ecoupon = faker.random.alphaNumeric();
-                                                          let expirationDate = (faker.date.future()).substring(0, 10);
+                                                          let expirationDate = faker.date.future();
+                                                          expirationDate = expirationDate.substring(0, 10);
                                                           let qt_required = getRandomInt(2) === 1 ? faker.number.random() : 'NULL';
                                                           let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : 'NULL';
                                                           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
