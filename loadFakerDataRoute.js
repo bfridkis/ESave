@@ -97,7 +97,6 @@ module.exports = (app) => {
                                                 res.end();
                                               }
                                               else {
-                                                console.log(row);//*****************************
                                                 if (typeof(row[0]) === "undefined") {
                                                   price = faker.commerce.price();
                                                   description = faker.lorem.sentences();
