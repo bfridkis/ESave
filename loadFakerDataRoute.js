@@ -13,7 +13,7 @@ module.exports = (app) => {
 
     router.post('/', (req, res, next) => {
       let mysql = req.app.get('mysql');
-      if (req.body.password === process.env.loadfakerdata) {
+      if (req.body.password === process.env.loadfakerpassword) {
         var callbackCountProduct = 0, callbackCountRetailer = 0,
             callbackCountRetailerProduct = 0, callbackCountPromotion = 0;
         let insertQuery = "Insert into product ( name, upc, model_number ) values ";
