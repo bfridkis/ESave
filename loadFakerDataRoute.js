@@ -119,7 +119,7 @@ module.exports = (app) => {
                                                           ecoupon += faker.random.alphaNumeric();
                                                       }
                                                       let expirationDate = faker.date.future();
-                                                      expirationDate = expirationDate.substring(0, 10);
+                                                      expirationDate = String(expirationDate).substring(0, 10);
                                                       console.log(expirationDate);//*******************************
                                                       let qt_required = getRandomInt(2) === 1 ? faker.random.number() : null;
                                                       let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
