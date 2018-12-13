@@ -85,7 +85,7 @@ module.exports = (app) => {
                                           res.end();
                                         }
                                         else {
-                                          prod_id = row[0].id;
+                                          let prod_id = row[0].id;
                                           selectQuery = "SELECT retailer FROM retailer_product " +
                                             `WHERE retailer = "${ret_id}" AND product = "${prod_id}"`;
                                           mysql.pool.query(selectQuery,
@@ -97,8 +97,8 @@ module.exports = (app) => {
                                               }
                                               else {
                                                 if (typeof(row[0]) === "undefined") {
-                                                  price = Number(faker.commerce.price()) + 0.99;
-                                                  description = faker.lorem.sentences();
+                                                  let price = Number(faker.commerce.price()) + 0.99;
+                                                  let description = faker.lorem.sentences();
                                                   insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) " +
                                                     `values ("${ret_id}", "${prod_id}", "${price}", "${description}")`;
                                                   mysql.pool.query(insertQuery,
@@ -110,12 +110,12 @@ module.exports = (app) => {
                                                       }
                                                       else {
                                                         if (callbackCountPromotion < req.body.numPromos) {
-                                                          discount = Math.random() * price;
-                                                          promoDescription = faker.lorem.sentence();
-                                                          ecoupon = faker.random.alphaNumeric();
-                                                          expirationDate = (faker.date.future()).substring(0, 10);
-                                                          qt_required = getRandomInt(2) === 1 ? faker.number.random() : 'NULL';
-                                                          min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : 'NULL';
+                                                          let discount = Math.random() * price;
+                                                          let promoDescription = faker.lorem.sentence();
+                                                          let ecoupon = faker.random.alphaNumeric();
+                                                          let expirationDate = (faker.date.future()).substring(0, 10);
+                                                          let qt_required = getRandomInt(2) === 1 ? faker.number.random() : 'NULL';
+                                                          let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : 'NULL';
                                                           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                             "ecoupon, expiration_date, product, qt_required, min_spend ) " +
                                                             `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
