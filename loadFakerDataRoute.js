@@ -56,12 +56,9 @@ module.exports = (app) => {
                         else {
                           if (req.body.numRetProds > 0) {
                             for (let i = 0; i < req.body.numRetProds; i++){
-                              let selectQuery = "SELECT ret1.id FROM retailer AS ret1 JOIN " +
-                                "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM retailer)) AS id) " +
-                                "AS ret2 " +
-                                "WHERE ret1.id >= ret2.id " +
-                                "ORDER BY ret1.id ASC " +
-                                "LIMIT 1";
+                              let selectQuery = "SELECT SUM(1) AS COUNT FROM product, retailer " +
+                                                "WHERE (product.id, retailer.id) NOT IN " +
+                                                "(select product, retailer FROM retailer_product)";
                               mysql.pool.query(selectQuery,
                                 (err, row, fields) => {
                                   if (err) {
@@ -70,13 +67,12 @@ module.exports = (app) => {
                                     res.end();
                                   }
                                   else {
-                                    let ret_id = row[0].id;
-                                    selectQuery = "SELECT prod1.id FROM product AS prod1 JOIN " +
-                                      "(SELECT CEIL(RAND() * (SELECT MAX(id) FROM product)) AS id) " +
-                                      "AS prod2 " +
-                                      "WHERE prod1.id >= prod2.id " +
-                                      "ORDER BY prod1.id ASC " +
-                                      "LIMIT 1";
+                                    let unusedRetProdPKCount = row[0].COUNT;
+                                    let randomRetProdPK = Math.ceil(Math.random() * unusedRetProdPKCount);
+                                    selectQuery = "SELECT product.id AS PROD, retailer.id AS RET " +
+                                                  "FROM product, retailer WHERE (product.id, retailer.id) NOT IN " +
+                                                  "(SELECT product, retailer from retailer_product) " +
+                                                  `LIMIT ${randomRetProdPK}, 1`;
                                     mysql.pool.query(selectQuery,
                                       (err, row, fields) => {
                                         if (err) {
@@ -85,10 +81,13 @@ module.exports = (app) => {
                                           res.end();
                                         }
                                         else {
-                                          let prod_id = row[0].id;
-                                          selectQuery = "SELECT retailer FROM retailer_product " +
-                                            `WHERE retailer = "${ret_id}" AND product = "${prod_id}"`;
-                                          mysql.pool.query(selectQuery,
+                                          let ret_id = row[0].RET,
+                                              prod_id = row[0].PROD,
+                                              price = Number(faker.commerce.price()) + 0.99,
+                                              description = faker.lorem.sentences();
+                                          insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) " +
+                                            `values ("${ret_id}", "${prod_id}", "${price}", "${description}")`;
+                                          mysql.pool.query(insertQuery,
                                             (err, row, fields) => {
                                               if (err) {
                                                 res.write(JSON.stringify(err));
@@ -96,11 +95,24 @@ module.exports = (app) => {
                                                 res.end();
                                               }
                                               else {
-                                                if (typeof(row[0]) === "undefined") {
-                                                  let price = Number(faker.commerce.price()) + 0.99;
-                                                  let description = faker.lorem.sentences();
-                                                  insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) " +
-                                                    `values ("${ret_id}", "${prod_id}", "${price}", "${description}")`;
+                                                if (callbackCountPromotion < req.body.numPromos) {
+                                                  let discount = Number(Math.random() * price).toFixed(2);
+                                                  let promoDescription = faker.lorem.sentence();
+                                                  let ecoupon = "";
+                                                  for (let i = 0; i < 6; i++){
+                                                      ecoupon += faker.random.alphaNumeric();
+                                                  }
+                                                  let expirationDate = new Date(faker.date.future());
+                                                  expirationDate = expirationDate.substring(0, 10);
+                                                  console.log(expirationDate);//*******************************
+                                                  let qt_required = getRandomInt(2) === 1 ? faker.random.number() : null;
+                                                  let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
+                                                  insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
+                                                    "ecoupon, expiration_date, product, qt_required, min_spend ) " +
+                                                    `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
+                                                    `"${expirationDate}", ${qt_required !== null ? `"${prod_id}"` : null}, ` +
+                                                    `${qt_required !== null ? `"${qt_required}"` : null}, ` +
+                                                    `${min_spend !== null ? `"${min_spend}"` : null})`;
                                                   mysql.pool.query(insertQuery,
                                                     (err, row, fields) => {
                                                       if (err) {
@@ -109,99 +121,67 @@ module.exports = (app) => {
                                                         res.end();
                                                       }
                                                       else {
-                                                        if (callbackCountPromotion < req.body.numPromos) {
-                                                          let discount = Number(Math.random() * price).toFixed(2);
-                                                          let promoDescription = faker.lorem.sentence();
-                                                          let ecoupon = "";
-                                                          for (let i = 0; i < 6; i++){
-                                                              ecoupon += faker.random.alphaNumeric();
-                                                          }
-                                                          let expirationDate = new Date(faker.date.future());
-                                                          expirationDate = expirationDate.substring(0, 10);
-                                                          console.log(expirationDate);//*******************************
-                                                          let qt_required = getRandomInt(2) === 1 ? faker.random.number() : null;
-                                                          let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
-                                                          insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
-                                                            "ecoupon, expiration_date, product, qt_required, min_spend ) " +
-                                                            `values ("${discount}", "${ret_id}", "${promoDescription}", "${ecoupon}", ` +
-                                                            `"${expirationDate}", ${qt_required !== null ? `"${prod_id}"` : null}, ` +
-                                                            `${qt_required !== null ? `"${qt_required}"` : null}, ` +
-                                                            `${min_spend !== null ? `"${min_spend}"` : null})`;
-                                                          mysql.pool.query(insertQuery,
-                                                            (err, row, fields) => {
-                                                              if (err) {
-                                                                res.write(JSON.stringify(err));
-                                                                res.status(400);
-                                                                res.end();
-                                                              }
-                                                              else {
-                                                                complete("promotion");
-                                                                complete("retailer_product");
-                                                              }
-                                                            });
-                                                          }
-                                                          else {
-                                                            complete("retailer_product");
-                                                          }
-                                                        }
-                                                      });
-                                                    }
-                                                    else {
-                                                      i--;
-                                                    }
+                                                        complete("promotion");
+                                                        complete("retailer_product");
+                                                      }
+                                                    });
                                                   }
-                                                });
-                                              }
-                                            });
-                                          }
-                                        });
-                                      }
-                                    }
-                                    else{
-                                      res.send({
-                                        "Response": "Sample Data Added!"
+                                                  else {
+                                                    complete("retailer_product");
+                                                  }
+                                                }
+                                              });
+                                            }
+                                          });
+                                        }
                                       });
                                     }
                                   }
-                                });
-                              }
-                              else{
-                                res.send({
-                                  "Response": "Sample Data Added!"
-                                });
-                              }
+                                  else{
+                                    res.send({
+                                      "Response": "Sample Data Added!"
+                                    });
+                                  }
+                                }
+                              });
                             }
-                          });
-                        }
-						         else {
-                        res.send({
-                          "Response": "Invalid Password"
+                            else{
+                              res.send({
+                                "Response": "Sample Data Added!"
+                              });
+                            }
+                          }
                         });
                       }
+					         else {
+                      res.send({
+                        "Response": "Invalid Password"
+                      });
+                    }
 
-                      function complete(table) {
-                        if (table === 'retailer_product') {
-                          callbackCountRetailerProduct++;
-                        }
-                        if (table === 'promotion') {
-                          callbackCountPromotion++;
-                        }
-
-                        if (callbackCountRetailerProduct === Number(req.body.numRetProds) &&
-                            callbackCountPromotion === Number(req.body.numPromos)) {
-                            res.send({
-                              "Response": "Sample Data Added!"
-                            });
-                            res.status(202).end();
-                        }
+                    function complete(table) {
+                      if (table === 'retailer_product') {
+                        callbackCountRetailerProduct++;
                       }
-                    });
-
-                      function getRandomInt(max) {
-                        return Math.floor(Math.random() * Math.floor(max));
+                      if (table === 'promotion') {
+                        callbackCountPromotion++;
                       }
-                  return router;
-                  }
+
+                      if (callbackCountRetailerProduct === Number(req.body.numRetProds) &&
+                          callbackCountPromotion === Number(req.body.numPromos)) {
+                          res.send({
+                            "Response": "Sample Data Added!"
+                          });
+                          res.status(202).end();
+                      }
+                    }
+                  });
+
+                    function getRandomInt(max) {
+                      return Math.floor(Math.random() * Math.floor(max));
+                    }
+                return router;
+                }
 
 // * References
 // * https://stackoverflow.com/questions/2175512/javascript-expression-to-generate-a-5-digit-number-in-every-case
