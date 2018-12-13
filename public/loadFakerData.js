@@ -26,11 +26,7 @@ function loadFakerData(){
     let prods = values[0].value;
     let rets = values[1].value;
     let results1 = document.querySelector("#results1");
-    if(e.target.value > prods && e.target.value > rets){
-      e.target.value = Math.max(prods, rets);
-      results1.innerText = "Retailer_Products cannot exceed both Products and Retailers."
-    }
-    else if(e.target.value > 0 && Number(rets) === 0){
+    if(e.target.value > 0 && Number(rets) === 0){
       e.target.value = 0;
       results1.innerText = "Must add at least 1 retailer to add retailer_product."
     }
@@ -46,6 +42,9 @@ function loadFakerData(){
     if(e.target.value > ret_prods){
       e.target.value = ret_prods;
       results1.innerText = "Promotions cannot exceed Retailer_Products."
+    }
+    else if(Number(ret_prods) === 0 && e.target.value > 0){
+      results1.innerText = "Must add at least 1 retailer_product to add promotions."
     }
     else{
       results1.innerText = "";
