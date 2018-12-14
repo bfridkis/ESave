@@ -10,6 +10,8 @@ https://esave.herokuapp.com/
 
 To view table contents: https://esave.herokuapp.com/dev1
 
+To load sample data: https://esave.herokuapp.com/loadFakerData (password = loadfakedata)
+
 Packages used include:
 *express
 *express-handlebars
@@ -20,5 +22,6 @@ Packages used include:
 *passport
 *flash
 *bcrypt
+*faker
 
 Database Engine: MySQL (via Heroku's ClearDB Add-On)
