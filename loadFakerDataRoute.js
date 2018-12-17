@@ -129,8 +129,9 @@ module.exports = (app) => {
                                                       console.log(expirationDate);//*******************************
                                                       let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) + 1 : null;
                                                       let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
-                                                      insertQuery += `("${discount}", "${rows[j].RET}", "${promoDescription}", "${ecoupon}", ` +
-                                                                     `"${expirationDate}", ${qt_required !== null ? `"${rows[j].PROD}"` : null}, ` +
+                                                      let randomRow = getRandomInt(rows.length);
+                                                      insertQuery += `("${discount}", "${rows[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
+                                                                     `"${expirationDate}", ${qt_required !== null ? `"${rows[randomRow].PROD}"` : null}, ` +
                                                                      `${qt_required !== null ? `"${qt_required}"` : null}, ` +
                                                                      `${min_spend !== null ? `"${min_spend}"` : null}), `;
                                                     }
