@@ -119,7 +119,9 @@ module.exports = (app) => {
                                                           ecoupon += faker.random.alphaNumeric();
                                                       }
                                                       let expirationDate = faker.date.future().toString();
-                                                      //expirationDate = String(expirationDate).substring(0, 10);
+                                                      expirationDate = `${expirationDate.substring(11, 15)}-` +
+                                                                       `${getMonthFromString(expirationDate.substring(4, 7))}-` +
+                                                                        `${expirationDate.substring(8, 10)}`;
                                                       console.log(expirationDate);//*******************************
                                                       let qt_required = getRandomInt(2) === 1 ? faker.random.number() : null;
                                                       let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
@@ -196,9 +198,15 @@ module.exports = (app) => {
                   //   }
                   // });
 
+                    //Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
                     function getRandomInt(max) {
                       return Math.floor(Math.random() * Math.floor(max));
                     }
+
+                    //Taken from https://stackoverflow.com/questions/13566552/easiest-way-to-convert-month-name-to-month-number-in-js-jan-01
+                    function getMonthFromString(mon){
+                        return new Date(Date.parse(mon +" 1, 2018")).getMonth()+1
+}
 				        });
                 return router;
               }
@@ -211,5 +219,7 @@ module.exports = (app) => {
 // * https://www.w3schools.com/sql/func_mysql_rand.asp
 // * https://www.w3schools.com/jsref/jsref_substring.asp
 // * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript
-//* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+// * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 // * https://stackoverflow.com/questions/27769842/write-after-end-error-in-node-js-webserver
+// * https://stackoverflow.com/questions/13566552/easiest-way-to-convert-month-name-to-month-number-in-js-jan-01
+// * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
