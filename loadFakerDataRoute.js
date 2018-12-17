@@ -111,7 +111,7 @@ module.exports = (app) => {
                                                     `LIMIT ${unusedRetProdPKCount - 1000 > 0 ?
                                                             getRandomInt(unusedRetProdPKCount - 999) : 0}, 1000`;
                                       mysql.pool.query(selectQuery,
-                                        (err, rows, fields) => {
+                                        (err, retailer_products, fields) => {
                                           if (err) {
                                             res.write(JSON.stringify(err));
                                             res.status(400);
@@ -123,7 +123,7 @@ module.exports = (app) => {
                                             let prices = [];
                                             //Generate a fake price and description for each potential retailer_product.
                                             //(Save price in prices so fake discount [calculated below] will not exceed fake price.)
-                                            rows.forEach( pk => {
+                                            retailer_products.forEach( pk => {
                                               let ret_id = pk.RET,
                                                   prod_id = pk.PROD,
                                                   price = Number(faker.commerce.price()) + 0.99,
@@ -164,13 +164,17 @@ module.exports = (app) => {
                                                       let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) + 1 : null;
                                                       //min_spend is optional. Should be assigned null for ~50% of sample promos.
                                                       let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
-                                                      //randomRow is used to select a random row from
-                                                      let randomRow = getRandomInt(rows.length);
-                                                      insertQuery += `("${discount}", "${rows[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
-                                                                     `"${expirationDate}", ${qt_required !== null ? `"${rows[randomRow].PROD}"` : null}, ` +
+                                                      //randomRow is used to select a random row from retailer_products
+                                                      let randomRow = getRandomInt(retailer_products.length);
+                                                      insertQuery += `("${discount}", "${retailer_products[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
+                                                                     `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
                                                                      `${qt_required !== null ? `"${qt_required}"` : null}, ` +
                                                                      `${min_spend !== null ? `"${min_spend}"` : null}), `;
+                                                      //Delete entry at index randomRow in retailer_products so it is not used again
+                                                      //(as this would generate a unique constraint violation.)
+                                                      retailer_products = retailer_products.splice(randomRow, 1);
                                                     }
+                                                    //Remove trailing ", " from insert query, and run query.
                                                     insertQuery = insertQuery.substring(0, insertQuery.length - 2);
                                                     mysql.pool.query(insertQuery,
                                                       (err, row, fields) => {
@@ -222,11 +226,13 @@ module.exports = (app) => {
                       }
 
                     //Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+                    //Generates a random int in range 0 - (max - 1) [inclusive]
                     function getRandomInt(max) {
                       return Math.floor(Math.random() * Math.floor(max));
                     }
 
                     //Taken from https://stackoverflow.com/questions/13566552/easiest-way-to-convert-month-name-to-month-number-in-js-jan-01
+                    //Generates month as 2-digit number from month as 3-character string (specified in parameter 'mon')
                     function getMonthFromString(mon){
                         return new Date(Date.parse(mon +" 1, 2018")).getMonth()+1
 }
@@ -246,3 +252,4 @@ module.exports = (app) => {
 // * https://stackoverflow.com/questions/27769842/write-after-end-error-in-node-js-webserver
 // * https://stackoverflow.com/questions/13566552/easiest-way-to-convert-month-name-to-month-number-in-js-jan-01
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
