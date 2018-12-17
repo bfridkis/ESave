@@ -114,11 +114,11 @@ module.exports = (app) => {
                                                   if (req.body.numPromos > 0) {
                                                     insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                                   "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
-                                                    for(let j = 0; i < req.body.numPromos; j++){
+                                                    for(let j = 0; j < req.body.numPromos; j++){
                                                       let discount = Number(Math.random() * prices[j]).toFixed(2);
                                                       let promoDescription = faker.lorem.sentence();
                                                       let ecoupon = "";
-                                                      for (let k = 0; i < 6; k++){
+                                                      for (let k = 0; k < 6; k++){
                                                           ecoupon += faker.random.alphaNumeric();
                                                       }
                                                       let expirationDate = faker.date.future().toString();
