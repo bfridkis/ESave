@@ -125,7 +125,7 @@ module.exports = (app) => {
                                                       let expirationDate = faker.date.future().toString();
                                                       expirationDate = `${expirationDate.substring(11, 15)}-` +
                                                                        `${getMonthFromString(expirationDate.substring(4, 7))}-` +
-                                                                        `${expirationDate.substring(8, 10)}`;
+                                                                       `${expirationDate.substring(8, 10)}`;
                                                       console.log(expirationDate);//*******************************
                                                       let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) + 1 : null;
                                                       let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
