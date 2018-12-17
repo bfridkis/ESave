@@ -81,9 +81,9 @@ module.exports = (app) => {
                                       selectQuery = "SELECT DISTINCT product.id AS PROD, retailer.id AS RET " +
                                                     "FROM product, retailer WHERE (product.id, retailer.id) NOT IN " +
                                                     "(SELECT product, retailer from retailer_product) " +
-                                                    `LIMIT ${randomRetProdPK + req.body.numRetProds > unusedRetProdPKCount ?
-                                                             Math.abs(randomRetProdPK - req.body.numRetProds) : randomRetProdPK},
-                                                             ${req.body.numRetProds}`;
+                                                    `LIMIT ${unusedRetProdPKCount - 1000 > 1000 ? 
+                                                            (randomRetProdPK + 1000 > unusedRetProdPKCount ?
+                                                             Math.abs(randomRetProdPK - 1000) : randomRetProdPK) : 0}, 1000`;
                                       mysql.pool.query(selectQuery,
                                         (err, rows, fields) => {
                                           if (err) {
