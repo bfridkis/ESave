@@ -1,9 +1,12 @@
+//This module delivers a router that will load sample data to the db using the
+//"faker" package. See https://www.npmjs.com/package/faker
 module.exports = (app) => {
     var express = require('express');
     var router = express.Router();
     var faker = require('faker');
     //var app = express();
 
+    //Render interface for loading faker data
     router.get('/', (req, res, next) => {
       let context = {};
       context.css = ['style.css'];
@@ -11,10 +14,10 @@ module.exports = (app) => {
       res.render("load_faker/loadFakerData", context);
     });
 
+    //Handle HTTP POST request for loading faker data
     router.post('/', (req, res, next) => {
       let mysql = req.app.get('mysql');
       if (req.body.password === process.env.loadfakerpassword) {
-        var callbackCountRetailerProduct = 0, callbackCountPromotion = 0;
         let insertQuery = "Insert into product ( name, upc, model_number ) values ";
         for (let i = 0; i < req.body.numProds; i++) {
           name = faker.commerce.productName();
@@ -179,24 +182,6 @@ module.exports = (app) => {
                           "Response": "Invalid Password"
                         });
                       }
-
-                  //   function complete(table) {
-                  //     if (table === 'retailer_product') {
-                  //       callbackCountRetailerProduct++;
-                  //     }
-                  //     if (table === 'promotion') {
-                  //       callbackCountPromotion++;
-                  //     }
-                  //
-                  //     if (callbackCountRetailerProduct === Number(req.body.numRetProds) &&
-                  //         callbackCountPromotion === Number(req.body.numPromos)) {
-                  //         res.send({
-                  //           "Response": "Sample Data Added!"
-                  //         });
-                  //         res.status(202).end();
-                  //     }
-                  //   }
-                  // });
 
                     //Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
                     function getRandomInt(max) {
