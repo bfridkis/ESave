@@ -92,6 +92,7 @@ module.exports = (app) => {
                                             res.end();
                                           }
                                           else {
+                                            console.log(rows)//******************************
                                             insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) values ";
                                             let prices = [];
                                             rows.forEach( pk => {
@@ -111,6 +112,7 @@ module.exports = (app) => {
                                                   res.end();
                                                 }
                                                 else {
+                                                  console.log(rows)//******************************
                                                   if (req.body.numPromos > 0) {
                                                     insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                                   "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
@@ -126,7 +128,7 @@ module.exports = (app) => {
                                                                        `${getMonthFromString(expirationDate.substring(4, 7))}-` +
                                                                         `${expirationDate.substring(8, 10)}`;
                                                       console.log(expirationDate);//*******************************
-                                                      let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) : null;
+                                                      let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) + 1 : null;
                                                       let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
                                                       insertQuery += `("${discount}", "${rows[j].RET}", "${promoDescription}", "${ecoupon}", ` +
                                                                      `"${expirationDate}", ${qt_required !== null ? `"${rows[j].PROD}"` : null}, ` +
