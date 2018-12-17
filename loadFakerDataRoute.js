@@ -172,7 +172,7 @@ module.exports = (app) => {
                                                                      `${min_spend !== null ? `"${min_spend}"` : null}), `;
                                                       //Delete entry at index randomRow in retailer_products so it is not used again
                                                       //(as this would generate a unique constraint violation.)
-                                                      //retailer_products = retailer_products.splice(randomRow, 1);
+                                                      retailer_products.splice(randomRow, 1);
                                                     }
                                                     //Remove trailing ", " from insert query, and run query.
                                                     insertQuery = insertQuery.substring(0, insertQuery.length - 2);
