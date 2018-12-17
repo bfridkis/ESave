@@ -92,7 +92,6 @@ module.exports = (app) => {
                                             res.end();
                                           }
                                           else {
-                                            console.log(rows)//******************************
                                             insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) values ";
                                             let prices = [];
                                             rows.forEach( pk => {
