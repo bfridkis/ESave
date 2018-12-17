@@ -149,6 +149,7 @@ module.exports = (app) => {
                                                                   "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
                                                     //For each sample promotion, generate a fake discout, description, ecoupon code,
                                                     //expiration date, qt_required, & min_spend.
+                                                    console.log(retailer_products);//************************
                                                     for(let j = 0; j < req.body.numPromos; j++){
                                                       let discount = Number(Math.random() * prices[j]).toFixed(2);
                                                       let promoDescription = faker.lorem.sentence();
