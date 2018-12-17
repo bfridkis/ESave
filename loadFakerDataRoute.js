@@ -78,7 +78,7 @@ module.exports = (app) => {
                                     }
                                     else{
                                       let randomRetProdPK = Math.ceil(Math.random() * unusedRetProdPKCount);
-                                      selectQuery = "SELECT product.id AS PROD, retailer.id AS RET " +
+                                      selectQuery = "SELECT DISTINCT product.id AS PROD, retailer.id AS RET " +
                                                     "FROM product, retailer WHERE (product.id, retailer.id) NOT IN " +
                                                     "(SELECT product, retailer from retailer_product) " +
                                                     `LIMIT ${randomRetProdPK + req.body.numRetProds > unusedRetProdPKCount ?
