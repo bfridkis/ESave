@@ -114,11 +114,11 @@ module.exports = (app) => {
                                                   if (req.body.numPromos > 0) {
                                                     insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                                                                   "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
-                                                    for(let i = 0; i < req.body.numPromos; i++){
-                                                      let discount = Number(Math.random() * prices[i]).toFixed(2);
+                                                    for(let j = 0; i < req.body.numPromos; j++){
+                                                      let discount = Number(Math.random() * prices[j]).toFixed(2);
                                                       let promoDescription = faker.lorem.sentence();
                                                       let ecoupon = "";
-                                                      for (let i = 0; i < 6; i++){
+                                                      for (let k = 0; i < 6; k++){
                                                           ecoupon += faker.random.alphaNumeric();
                                                       }
                                                       let expirationDate = faker.date.future().toString();
@@ -126,10 +126,10 @@ module.exports = (app) => {
                                                                        `${getMonthFromString(expirationDate.substring(4, 7))}-` +
                                                                         `${expirationDate.substring(8, 10)}`;
                                                       console.log(expirationDate);//*******************************
-                                                      let qt_required = getRandomInt(2) === 1 ? faker.random.number() : null;
+                                                      let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) : null;
                                                       let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
-                                                      insertQuery += `("${discount}", "${rows[i].RET}", "${promoDescription}", "${ecoupon}", ` +
-                                                                     `"${expirationDate}", ${qt_required !== null ? `"${rows[i].PROD}"` : null}, ` +
+                                                      insertQuery += `("${discount}", "${rows[j].RET}", "${promoDescription}", "${ecoupon}", ` +
+                                                                     `"${expirationDate}", ${qt_required !== null ? `"${rows[j].PROD}"` : null}, ` +
                                                                      `${qt_required !== null ? `"${qt_required}"` : null}, ` +
                                                                      `${min_spend !== null ? `"${min_spend}"` : null}), `;
                                                     }
