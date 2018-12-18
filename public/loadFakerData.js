@@ -1,6 +1,17 @@
+//Front-End JavaScript for interface to load sample data into the ESave
+//database. (Server uses faker package to generate most sample data items.
+//See https://www.npmjs.com/package/faker for more details.)
 function loadFakerData(){
+  //Select all inputs
   let values = document.querySelectorAll("input");
 
+  //Server-side logic dictates that at least one retailer must be
+  //added in order to add a retailer_product. If user attempts to
+  //set the retailer input field to 0 when the retailer_product input
+  //field is greater than 0, set retailer_product and promotions to 0,
+  //and display a message to the user accordingly. (Promotions is set to 0
+  //because its value cannot exceed the value of the retailer_products input.
+  //See below.)
   let retsInput = values[1];
   retsInput.addEventListener("input", e => {
     let ret_prods = values[2].value;
@@ -21,6 +32,11 @@ function loadFakerData(){
     }
   });
 
+  //Server-side logic dictates that at least one retailer must be
+  //added in order to add a retailer_product. If user attempts to
+  //set the retailer_product input field to a value greater than 0 when
+  //the retailer input field equals 0, prevent input and display message
+  //accordingly.
   let ret_prodsInput = values[2];
   ret_prodsInput.addEventListener("input", e => {
     let prods = values[0].value;
@@ -35,6 +51,12 @@ function loadFakerData(){
     }
   });
 
+  //In order to ensure there are enough retailer_product primary keys available
+  //for each sample promotion requested, the promotions input field value must be
+  //less than or equal to the value of the retailer_products info. If the user
+  //attempts to set the value of the promotions field greater than that of the
+  //retailer_products field, disallow this input modification and display a
+  //message to the user accordingly.
   let promotionsInput = values[3];
   promotionsInput.addEventListener("input", e => {
     let ret_prods = values[2].value;
@@ -42,9 +64,6 @@ function loadFakerData(){
     if(e.target.value > ret_prods){
       e.target.value = ret_prods;
       results1.innerText = "Promotions cannot exceed Retailer_Products."
-    }
-    else if(Number(ret_prods) === 0 && e.target.value > 0){
-      results1.innerText = "Must add at least 1 retailer_product to add promotions."
     }
     else{
       results1.innerText = "";
@@ -56,67 +75,66 @@ function loadFakerData(){
   submitButton.addEventListener("click", submit.bind(submitButton));
   document.addEventListener("keypress", submit.bind("null"));
 
+  //Event listener for submitting request to load sample data...
   function submit(e){
-    if(e.keyCode === 13 || (String(this) !== "null" && this.getAttribute("id") === "submit")){
+    if(e.keyCode === 13 || this.getAttribute("id") === "submit"){
       let prods = values[0].value,
           rets = values[1].value,
           ret_prods = values[2].value,
           promos = values[3].value,
           pw = values[4].value;
       if(prods < ret_prods && rets < ret_prods){
-        alert("Either Products or Retailers (or both) must equal or exceed Retailer_Products.");
-        if(ret_prods < promos){
-          alert("Retailer_Products must equal or exceed Promotions.");
-        }
+        let results1 = document.querySelector("#results1");
+        results1.innerText = "Either Products or Retailers (or both) must equal or exceed Retailer_Products.";
+        values[2].value = Math.max(prods, rets);
       }
-      else if(ret_prods < promos){
-        alert("Retailer_Products must equal or exceed Promotions.");
+      else{
+        let req = new XMLHttpRequest;
+        req.open("POST", "/loadFakerData", true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        let data = {numProds: prods,
+                    numRets: rets,
+                    numRetProds: ret_prods,
+                    numPromos: promos,
+                    password: pw};
+        req.addEventListener('load', () => {
+          resultCount++;
+          let results1 = document.querySelector("#results1"),
+              results2 = document.querySelector("#results2");
+          if(req.status >= 200 && req.status < 400 &&
+              typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
+            let response = JSON.parse(req.responseText).Response;
+            if(results1.innerText === ""){
+              results1.innerText = response;
+            }
+            else{
+              results1.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
+              results2.innerText = "";
+            }
+          }
+          else{
+            let response1, response2;
+            if(!(req.responseText.includes("<html>"))){
+              response1 = JSON.parse(req.responseText).sqlMessage;
+              response2 = JSON.parse(req.responseText).sql;
+            }
+            else{
+              response1 = req.status + " " + req.statusText;
+            }
+            if(results1.innerText === ""){
+              results1.innerText = `ERROR MESSAGE: ${response1}`;
+            }
+            else{
+              results1.innerHTML = `ERROR MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
+            }
+            if(typeof(response2) !== "undefined"){
+              results2.innerText = `SQL: ${response2}`;
+            }
+    			  console.log("Error: " + req.status + " " + req.statusText);
+    		  }
+        });
+        req.send(JSON.stringify(data));
       }
-      let req = new XMLHttpRequest;
-      req.open("POST", "/loadFakerData", true);
-      req.setRequestHeader('Content-Type', 'application/json');
-      let data = {numProds: prods,
-                  numRets: rets,
-                  numRetProds: ret_prods,
-                  numPromos: promos,
-                  password: pw};
-      req.addEventListener('load', () => {
-        resultCount++;
-        let results1 = document.querySelector("#results1"),
-            results2 = document.querySelector("#results2");
-        if(req.status >= 200 && req.status < 400 &&
-            typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
-          let response = JSON.parse(req.responseText).Response;
-          if(results1.innerText === ""){
-            results1.innerText = response;
-          }
-          else{
-            results1.innerHTML = `${response}&nbsp(Request # ${resultCount})`;
-            results2.innerText = "";
-          }
-        }
-        else{
-          let response1, response2;
-          if(!(req.responseText.includes("<html>"))){
-            response1 = JSON.parse(req.responseText).sqlMessage;
-            response2 = JSON.parse(req.responseText).sql;
-          }
-          else{
-            response1 = req.status + " " + req.statusText;
-          }
-          if(results1.innerText === ""){
-            results1.innerText = `ERROR MESSAGE: ${response1}`;
-          }
-          else{
-            results1.innerHTML = `ERROR MESSAGE: ${response1}&nbsp(Request # ${resultCount})`;
-          }
-          if(typeof(response2) !== "undefined"){
-            results2.innerText = `SQL: ${response2}`;
-          }
-  			  console.log("Error: " + req.status + " " + req.statusText);
-  		  }
-      });
-      req.send(JSON.stringify(data));
     }
   }
 }
