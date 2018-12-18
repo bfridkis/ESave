@@ -78,8 +78,7 @@ function loadFakerData(){
   //Event listener for submitting request to load sample data...
   function submit(e){
     //User can press enter key or click submit button to sumbit request.
-    if(e.keyCode === 13 || (String(this) !== "null" &&
-      !this.getAttribute("id") === "submit"){
+    if(e.keyCode === 13 || (String(this) !== "null" && this.getAttribute("id") === "submit")){
       let prods = values[0].value,
           rets = values[1].value,
           ret_prods = values[2].value,
