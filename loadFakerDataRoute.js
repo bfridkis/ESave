@@ -123,8 +123,8 @@ module.exports = (app) => {
                                             let prices = [];
                                             //Generate a fake price and description for each potential retailer_product.
                                             //(Save price in prices so fake discount [calculated below] will not exceed fake price.)
-                                            for(let i = 0, randomRow; i < req.body.numRetProds; i++) {
-                                              let retailer_productsCopy = retailer_products.slice(0);
+                                            for(let i = 0, retailer_productsCopy = retailer_products.slice(0);
+                                                  i < req.body.numRetProds; i++) {
                                               randomRow = getRandomInt(retailer_productsCopy.length);
                                               let ret_id = retailer_productsCopy[randomRow].RET,
                                                   prod_id = retailer_productsCopy[randomRow].PROD,
