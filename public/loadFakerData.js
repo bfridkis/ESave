@@ -61,6 +61,7 @@ function loadFakerData(){
   promotionsInput.addEventListener("input", e => {
     let ret_prods = values[2].value;
     console.log(ret_prods);//*******************************
+    console.log("Target value: ", e.target.value);//******************
     let results1 = document.querySelector("#results1");
     if(e.target.value > ret_prods){
       e.target.value = ret_prods;
