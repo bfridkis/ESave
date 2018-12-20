@@ -53,7 +53,7 @@ module.exports = app => {
 		        }
 		        else{
 							//console.log(rows);
-							let minPrice = MAX_SAFE_INTEGER, minRowNumber = 0;
+							let minPrice = Number.MAX_SAFE_INTEGER, minRowNumber = 0;
 							rows.ForEach( (row, i) => {
 								if(row.FINAL_PRICE < minPrice){
 									minPrice = row.FINAL_PRICE;
