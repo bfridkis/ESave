@@ -52,7 +52,7 @@ module.exports = app => {
 		          res.end();
 		        }
 		        else{
-							//console.log(rows);
+							console.log(rows);
 							let minPrice = Number.MAX_SAFE_INTEGER, minRowNumber = 0;
 							rows.forEach( (row, i) => {
 								if(row.FINAL_PRICE < minPrice){
