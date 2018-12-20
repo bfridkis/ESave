@@ -103,3 +103,4 @@ function isLoggedIn(req, res, next) {
 // * https://stackoverflow.com/questions/5223/length-of-a-javascript-object
 // * https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_truncate
 // * https://www.w3resource.com/mysql/string-functions/mysql-format-function.php
+// * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
