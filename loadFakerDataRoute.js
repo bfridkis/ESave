@@ -126,8 +126,8 @@ module.exports = (app) => {
                                             for(let i = 0, randomRow; i < req.body.numRetProds; i++) {
                                               let retailer_productsCopy = retailer_products.slice(0);
                                               randomRow = getRandomInt(retailer_productsCopy.length);
-                                              let ret_id = retailer_productsCopy[j].RET,
-                                                  prod_id = retailer_productsCopy[j].PROD,
+                                              let ret_id = retailer_productsCopy[randomRow].RET,
+                                                  prod_id = retailer_productsCopy[randomRow].PROD,
                                                   price = Number(faker.commerce.price()) + 0.99,
                                                   description = faker.lorem.sentences();
                                               prices.push(price);
