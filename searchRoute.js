@@ -44,7 +44,7 @@ module.exports = app => {
 												"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' "+
 												"OR promotion.min_spend IS NULL) AND " +
 												"(promotion.qt_required <= '" + req.query[qtKey] + "' OR promotion.qt_required IS NULL) " +
-					 						  "GROUP BY retailer.id, product.id ORDER BY FINAL_PRICE ASC LIMIT 1";
+					 						  "GROUP BY retailer.id, product.id ORDER BY FINAL_PRICE ASC";
 		      mysql.pool.query(queryString,
 		      (err, rows, fields) => {
 		        if(err){
@@ -53,7 +53,14 @@ module.exports = app => {
 		        }
 		        else{
 							//console.log(rows);
-		          eSaveResults.push(rows[0]);
+							let minPrice = MAX_SAFE_INTEGER, minRowNumber;
+							rows.ForEach( (row, i) => {
+								if(row.FINAL_PRICE < minPrice){
+									minPrice = row.FINAL_PRICE;
+									minRowNumber = i;
+								}
+							})
+		          eSaveResults.push(rows[i]);
 							complete();
 		        }
 		      });
