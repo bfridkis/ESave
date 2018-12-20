@@ -58,6 +58,7 @@ module.exports = app => {
 								if(row.FINAL_PRICE < minPrice){
 									minPrice = row.FINAL_PRICE;
 									minRowNumber = i;
+									console.log(minPrice, minRowNumber, row.FINAL_PRICE);//************
 								}
 							})
 		          eSaveResults.push(rows[minRowNumber]);
