@@ -36,6 +36,8 @@ body {
 }
 
 .main-logo-outer-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding-top: 140px;
 }
@@ -98,7 +100,9 @@ body {
 
 #order-stage, #button-stage {
   padding-top: 40px;
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr; /* fraction*/
   max-width: 1250px;
   margin-left: auto;
@@ -195,6 +199,8 @@ body {
 }
 
 .fa-times-circle:hover {
+  -webkit-transition: opacity .1s;
+  -o-transition: opacity .1s;
   transition: opacity .1s;
 	opacity: 0.5;
 }
@@ -204,6 +210,8 @@ body {
 }
 
 #esave-button:hover {
+  -webkit-transition: color .3s;
+  -o-transition: color .3s;
   transition: color .3s;
   color: purple;
 }
@@ -221,6 +229,8 @@ body {
 }
 
 .button-stage-right-button:hover {
+  -webkit-transition: color .1s;
+  -o-transition: color .1s;
   transition: color .1s;
   color: rgb(39, 206, 100);
 }
@@ -264,7 +274,8 @@ body {
 	margin: auto;
 	text-align: center;
 	padding-bottom: 30px;
-	text-decoration: italic;
+	-webkit-text-decoration: italic;
+	        text-decoration: italic;
 	display: none;
 }
 
@@ -277,6 +288,8 @@ body {
 }
 
 .list-add:hover {
+  -webkit-transition: color .15s;
+  -o-transition: color .15s;
   transition: color .15s;
   color: rgb(39, 206, 100);
 }
