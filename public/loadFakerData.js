@@ -63,7 +63,7 @@ function loadFakerData(){
     console.log(ret_prods);//*******************************
     console.log("Target value: ", e.target.value);//******************
     let results1 = document.querySelector("#results1");
-    if(e.target.value > ret_prods){
+    if(Number(e.target.value) > Number(ret_prods)){
       e.target.value = ret_prods;
       results1.innerText = "Promotions cannot exceed Retailer_Products."
     }
