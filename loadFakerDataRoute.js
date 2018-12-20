@@ -123,15 +123,20 @@ module.exports = (app) => {
                                             let prices = [];
                                             //Generate a fake price and description for each potential retailer_product.
                                             //(Save price in prices so fake discount [calculated below] will not exceed fake price.)
-                                            retailer_products.forEach( pk => {
-                                              let ret_id = pk.RET,
-                                                  prod_id = pk.PROD,
+                                            for(let i = 0, randomRow; i < req.body.numRetProds; i++) {
+                                              let retailer_productsCopy = retailer_products.slice(0);
+                                              randomRow = getRandomInt(retailer_productsCopy.length);
+                                              let ret_id = retailer_productsCopy[j].RET,
+                                                  prod_id = retailer_productsCopy[j].PROD,
                                                   price = Number(faker.commerce.price()) + 0.99,
                                                   description = faker.lorem.sentences();
                                               prices.push(price);
                                               //Append fake retailer_product info to insert query.
                                               insertQuery += `("${ret_id}", "${prod_id}", "${price}", "${description}"), `;
-                                            });
+                                              //Delete entry at index randomRow in retailer_products so it is not used again
+                                              //(as this would generate a unique constraint violation.)
+                                              retailer_productsCopy.splice(randomRow, 1);
+                                            }
                                             //Trim trailing ", " from insert query, and run query.
                                             insertQuery = insertQuery.substring(0, insertQuery.length - 2);
                                             mysql.pool.query(insertQuery,
@@ -170,9 +175,6 @@ module.exports = (app) => {
                                                                      `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
                                                                      `${qt_required !== null ? `"${qt_required}"` : null}, ` +
                                                                      `${min_spend !== null ? `"${min_spend}"` : null}), `;
-                                                      //Delete entry at index randomRow in retailer_products so it is not used again
-                                                      //(as this would generate a unique constraint violation.)
-                                                      retailer_products.splice(randomRow, 1);
                                                     }
                                                     //Remove trailing ", " from insert query, and run query.
                                                     insertQuery = insertQuery.substring(0, insertQuery.length - 2);
@@ -253,3 +255,4 @@ module.exports = (app) => {
 // * https://stackoverflow.com/questions/13566552/easiest-way-to-convert-month-name-to-month-number-in-js-jan-01
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+// * https://davidwalsh.name/javascript-clone-array
