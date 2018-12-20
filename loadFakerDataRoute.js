@@ -133,7 +133,7 @@ module.exports = (app) => {
                                               prices.push(price);
                                               //Append fake retailer_product info to insert query.
                                               insertQuery += `("${ret_id}", "${prod_id}", "${price}", "${description}"), `;
-                                              //Delete entry at index randomRow in retailer_products so it is not used again
+                                              //Delete entry at index randomRow in retailer_productsCopy so it is not used again
                                               //(as this would generate a unique constraint violation.)
                                               retailer_productsCopy.splice(randomRow, 1);
                                             }
