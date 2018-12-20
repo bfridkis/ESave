@@ -55,11 +55,9 @@ module.exports = app => {
 							//console.log(rows);
 							let minPrice = Number.MAX_SAFE_INTEGER, minRowNumber = 0;
 							rows.forEach( (row, i) => {
-								console.log("Anything?");//***********************
 								if(Number(row["FINAL_PRICE"]) < minPrice){
 									minPrice = Number(row["FINAL_PRICE"]);
 									minRowNumber = i;
-									console.log(minPrice, minRowNumber, row["FINAL_PRICE"]);//************
 								}
 							})
 		          eSaveResults.push(rows[minRowNumber]);
