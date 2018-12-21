@@ -134,7 +134,7 @@ function eSave(){
         searchItems[result["prodNum"] - 1].style.color = "red";
       }
     });
-
+    console.log(unmatched);//************************************
     if(!(unmatched === [])){
        processUnmatched(orderStageRight, orderStageRightText,
                         unmatched, searchItems);
