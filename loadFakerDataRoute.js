@@ -168,13 +168,13 @@ module.exports = (app) => {
                                                       //qt_required is optional. Should be assigned null for ~50% of sample promos.
                                                       let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) + 1 : null;
                                                       //min_spend is optional. Should be assigned null for ~50% of sample promos.
-                                                      let min_spend = getRandomInt(2) === 1 ? faker.commerce.price() : null;
+                                                      let min_spend = getRandomInt(2) === 1 ? discount * 4 : discount * 2;
                                                       //randomRow is used to select a random row from retailer_products
                                                       let randomRow = getRandomInt(retailer_products.length);
                                                       insertQuery += `("${discount}", "${retailer_products[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
                                                                      `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
                                                                      `${qt_required !== null ? `"${qt_required}"` : null}, ` +
-                                                                     `${min_spend !== null ? `"${min_spend}"` : null}), `;
+                                                                     `"${min_spend}"), `;
                                                     }
                                                     //Remove trailing ", " from insert query, and run query.
                                                     insertQuery = insertQuery.substring(0, insertQuery.length - 2);
