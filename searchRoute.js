@@ -68,7 +68,7 @@ module.exports = app => {
 								queryString = "SELECT name FROM product WHERE name LIKE '" +
 															req.query[key] + "' OR description LIKE '" +
 															req.query[key] + "' LIMIT 10";
-								mysql.pool.query(queryString, suggested, fields) => {
+								mysql.pool.query(queryString, (err, suggested, fields) => {
 									if(err){
 					          res.write(JSON.stringify(err));
 					          res.end();
@@ -77,8 +77,7 @@ module.exports = app => {
 										eSaveResults.push({"suggested_" + key : suggested);
 										complete();
 								}
-							}
-
+							});
 		        }
 		      });
 		    }
