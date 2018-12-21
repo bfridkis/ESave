@@ -74,7 +74,7 @@ module.exports = app => {
 					          res.end();
 					        }
 					        else{
-										eSaveResults.push({"suggested_" + key : suggested);
+										eSaveResults.push({ ("suggested_" + key) : suggested);
 										complete();
 								}
 							});
