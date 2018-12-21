@@ -304,7 +304,8 @@ body {
 }
 
 .suggested-products.div {
-
+	transform: scale(1);
+	transition: transform 1s ease-in;
 }
 
 .suggested-products-div-hidden {
