@@ -310,7 +310,8 @@ body {
 
 .suggested-products-div-hidden {
 	transform: scale(0);
-	transition: transform 0.5s ease-in;
+	display: none
+	transition: transform 0.5s ease-in, display 0s .5s;
 }
 
 .suggested-products:hover {
