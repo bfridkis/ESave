@@ -126,7 +126,7 @@ function eSave(){
     //Check if all search parameters matched products. If not, convert
     //unmatched products to red text on stage left and present suggested
     //products for each on stage left.
-    let ummatched = [];
+    let unmatched = [];
     let searchItems = document.querySelectorAll(".searchItem");
     results.forEach((result, i) => {
       for(key in result){
