@@ -52,6 +52,7 @@ function stageProduct(e){
       deleteB.childNodes[0].addEventListener("click", () => {
         stageTable.removeChild(row);
       });
+      prodInput.value = "";
     }
   }
 }
