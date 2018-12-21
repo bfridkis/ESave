@@ -81,7 +81,7 @@ $.fn.sparkleh = function( options ) {
     async function sleepFor(time_ms, sparkle, resultCheckNode) {
       await sleep(time_ms);
       let resultCheck = document.querySelector(resultCheckNode);
-      //console.log("charCheck", charCheck);
+      console.log("resultCheck", resultCheck);
       if(resultCheck || resultCheck.textContent[0] !== "E"){
         sparkle.out();
       }
