@@ -75,14 +75,14 @@ $.fn.sparkleh = function( options ) {
 
     $("#esave-button").click( e => {
       sparkle.over();
-        sleepFor(2000, sparkle, "#order-stage-right-text");
+        sleepFor(2000, sparkle, ".stage-table-cap");
     });
 
-    async function sleepFor(time_ms, sparkle, nodeQS) {
+    async function sleepFor(time_ms, sparkle, resultCheck) {
       await sleep(time_ms);
-      let charCheck = document.querySelector(nodeQS).textContent[0];
-      console.log("charCheck", charCheck);
-      if(charCheck === "N" || charCheck === "A" || charCheck === "S"){
+      let sparkle = document.querySelector(resultCheck);
+      //console.log("charCheck", charCheck);
+      if(resultCheck || resultCheck.textContent[0] !== "E"){
         sparkle.out();
       }
     }
