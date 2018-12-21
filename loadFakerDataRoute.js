@@ -241,7 +241,6 @@ module.exports = (app) => {
 				        });
 
     router.delete('/', (req, res, next) => {
-      console.log(req.query.pw);//************************
       if (req.query.pw === process.env.clearfakerpassword) {
         let mysql = req.app.get('mysql');
         deleteQuery = "DELETE FROM promotion where id > '31';" +
