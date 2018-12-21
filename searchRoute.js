@@ -75,7 +75,7 @@ module.exports = app => {
 					        }
 					        else{
 										eSaveResults.push({ "suggested" : suggested,
-																				"prodNum" : Number(key.substring(1)});
+																				"prodNum" : Number(key.substring(1))});
 										complete();
 								}
 							});
