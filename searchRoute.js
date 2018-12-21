@@ -65,8 +65,8 @@ module.exports = app => {
 								complete();
 							}
 							else{
-								queryString = "SELECT name FROM product WHERE name LIKE '" +
-															req.query[key] + "' OR description LIKE '" +
+								queryString = "SELECT name FROM product WHERE name LIKE '%" +
+															req.query[key] + "%' OR description LIKE '" +
 															req.query[key] + "' LIMIT 10";
 								mysql.pool.query(queryString, (err, suggested, fields) => {
 									if(err){
