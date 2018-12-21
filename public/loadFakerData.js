@@ -143,8 +143,9 @@ function loadFakerData(){
   }
 
   function reset(e){
+    let pw = document.querySelectorAll("input")[4];
     let req = new XMLHttpRequest;
-    req.open("DELETE", "/loadFakerData", true);
+    req.open("DELETE", "/loadFakerData?pw=" + pw, true);
     req.addEventListener('load', () => {
       let results1 = document.querySelector("#results1"),
           results2 = document.querySelector("#results2");
