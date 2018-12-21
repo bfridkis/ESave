@@ -138,47 +138,7 @@ function eSave(){
     });
 
     if(unmatched){
-       orderStageRightText.innerHTML = "";
-       //Create and format a table for the right stage. This will hold product suggestions.
-       //Append the table to the right stage.
-       let stageTable = document.createElement("table");
-       stageTable.classList.add("order-table");
-       stageTableCap = stageTable.appendChild(document.createElement("caption"));
-       stageTableCap.classList.add("stage-table-cap");
-       stageTableCap.innerText = "Suggested Matches";
-       orderStageRight.appendChild(stageTable);
-
-       unmatched.forEach( suggestionList => {
-         //Add product name header and product name to result table.
-         let containerDiv = stageTable.appendChild(document.createElement("div"));
-         containerDiv.classList = "suggested-products-div";
-         let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
-         let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
-         prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
-                                      ", Did You Mean...";
-         prodNameHeader.style.color = "rgb(39, 206, 100)";
-         prodNameHeader.style.fontSize = "1.75rem";
-         suggestionList.suggested.forEach( (suggestion, i) => {
-           let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
-           let suggestionName = suggestionRow.appendChild(document.createElement("td"));
-           suggestionName.classList = "suggested-products";
-           suggestionName.textContent = suggestion["name"];
-           suggestionName.style.fontSize = "1.25rem";
-           if(i === suggestionList.suggested.length - 1){
-             suggestionName.style.paddingBottom = "20px";
-           }
-           suggestionName.addEventListener("click", e => {
-             searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
-             searchItems[suggestionList["prodNum"] - 1].style.color = "black";
-             containerDiv.classList = "suggested-products-div-hidden";
-             if(!document.querySelectorAll(".suggested-products-div").length){
-               orderStageRight.removeChild(orderStageRight.lastChild);
-               orderStageRightText.innerHTML =
-            'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
-             }
-           })
-         });
-       });
+       processUnmatched();
      }
      else{
        //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
@@ -325,6 +285,56 @@ function eSave(){
        retailerLink.setAttribute("href", "//" + results[0]["RET_WEB_ADD"]);
        retailerLink.classList.remove("disable_a_href");
      }
+  }
+
+  function processUnmatched(){
+    orderStageRightText.innerHTML = "";
+    //Create and format a table for the right stage. This will hold product suggestions.
+    //Append the table to the right stage.
+    let stageTable = document.createElement("table");
+    stageTable.classList.add("order-table");
+    stageTableCap = stageTable.appendChild(document.createElement("caption"));
+    stageTableCap.classList.add("stage-table-cap");
+    stageTableCap.innerText = "Suggested Matches";
+    orderStageRight.appendChild(stageTable);
+
+    unmatched.forEach( suggestionList => {
+      //Add product name header and product name to result table.
+      let containerDiv = stageTable.appendChild(document.createElement("div"));
+      containerDiv.classList = "suggested-products-div";
+      let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
+      let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
+      prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
+                                   ", Did You Mean...";
+      prodNameHeader.style.color = "rgb(39, 206, 100)";
+      prodNameHeader.style.fontSize = "1.75rem";
+      suggestionList.suggested.forEach( (suggestion, i) => {
+        let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
+        let suggestionName = suggestionRow.appendChild(document.createElement("td"));
+        suggestionName.classList = "suggested-products";
+        suggestionName.textContent = suggestion["name"];
+        suggestionName.style.fontSize = "1.25rem";
+        if(i === suggestionList.suggested.length - 1){
+          suggestionName.style.paddingBottom = "20px";
+        }
+        suggestionName.addEventListener("click", e => {
+          searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
+          searchItems[suggestionList["prodNum"] - 1].style.color = "black";
+          containerDiv.classList = "suggested-products-div-hidden";
+          removeSuggestedDiv();
+        })
+      });
+    });
+  }
+
+  async function removeSuggestedDiv(){
+    await sleep(500);
+    containerDiv.style.display = "none";
+    if(!document.querySelectorAll(".suggested-products-div").length){
+      orderStageRight.removeChild(orderStageRight.lastChild);
+      orderStageRightText.innerHTML =
+        'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
+    }
   }
 
   function listAdder(list, orderData, promo_id){
