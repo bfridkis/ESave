@@ -138,7 +138,8 @@ function eSave(){
     });
 
     if(unmatched){
-       processUnmatched(orderStageRight, orderStageRightText, unmatched);
+       processUnmatched(orderStageRight, orderStageRightText,
+                        unmatched, searchItems);
      }
      else{
        //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
@@ -287,7 +288,8 @@ function eSave(){
      }
   }
 
-  function processUnmatched(orderStageRight, orderStageRightText, unmatched){
+  function processUnmatched(orderStageRight, orderStageRightText,
+                            unmatched, searchItems){
     orderStageRightText.innerHTML = "";
     //Create and format a table for the right stage. This will hold product suggestions.
     //Append the table to the right stage.
