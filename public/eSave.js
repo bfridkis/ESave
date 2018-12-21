@@ -323,13 +323,13 @@ function eSave(){
           searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
           searchItems[suggestionList["prodNum"] - 1].style.color = "black";
           containerDiv.classList = "suggested-products-div-hidden";
-          removeSuggestedDiv();
+          removeSuggestedDiv(containerDiv);
         })
       });
     });
   }
 
-  async function removeSuggestedDiv(){
+  async function removeSuggestedDiv(containerDiv){
     await sleep(500);
     containerDiv.style.display = "none";
     if(!document.querySelectorAll(".suggested-products-div").length){
