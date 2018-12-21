@@ -149,25 +149,22 @@ function eSave(){
        stageTableCap.innerText = "Suggested Matches";
        orderStageRight.appendChild(stageTable);
 
-       unmatched.forEach( (suggestionList, i) => {
+       unmatched.forEach( suggestionList => {
          //Add product name header and product name to result table.
          let containerDiv = stageTable.appendChild(document.createElement("div"));
          let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
          let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
-         prodNameHeader.textContent = "By " +
-            `'${searchItems[Number(Object.keys(suggestionList)[0].substring(10)])}'` +
-            ", Did You Mean...";
+         prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"])}'` +
+                                      ", Did You Mean...";
          prodNameHeader.style.textDecoration = "underline";
-         suggestionList.forEach( (suggestion, j) => {
+         suggestionList.forEach( suggestion => {
            let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
            let suggestionName = suggestionRow.appendChild(document.createElement("td"));
            prodName.textContent = suggestion["name"];
            prodName.style.paddingBottom = "20px";
            prodName.addEventListener("click", e => {
-             searchItems[Number(Object.keys(suggestionList)[0].substring(10)]).
-              textContent = e.target.textContent;
-             searchItems[Number(Object.keys(suggestionList)[0].substring(10)]).
-               style.color = "black";
+             searchItems[suggestionList["prodNum"]]).textContent = e.target.textContent;
+             searchItems[suggestionList["prodNum"]]).style.color = "black";
              document.removeChild(containerDiv);
            })
          });
