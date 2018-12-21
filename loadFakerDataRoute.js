@@ -256,7 +256,7 @@ module.exports = (app) => {
               }
               else {
                 res.send({
-                  "Response" : "Sample Data Cleared"
+                  "Response" : "Faker Data Cleared"
                 });
               }
             });
