@@ -82,7 +82,7 @@ $.fn.sparkleh = function( options ) {
       await sleep(time_ms);
       let resultCheck = document.querySelector(resultCheckNode);
       console.log("resultCheck", resultCheck);
-      if(resultCheck || resultCheck.textContent[0] !== "E"){
+      if(!resultCheck || resultCheck.textContent[0] !== "E"){
         sparkle.out();
       }
     }
