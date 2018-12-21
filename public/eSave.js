@@ -118,16 +118,63 @@ function eSave(){
     //Parse the results and save in results array
     let results = JSON.parse(req.responseText);
 
-    //If the results are NULL, print message on right stage accordingly. Else
-    //render results.
+    //If some (or all) products cannot be matched, present user suggested matches.
+    //Else render results.
     let orderStageRightText = document.querySelector("#order-stage-right-text");
-    if(!results[0]){
+    let orderStageRight = document.querySelector("#stage-wrapper-right");
+
+    //Check if all search parameters matched products. If not, convert
+    //unmatched products to red text on stage left and present suggested
+    //products for each on stage left.
+    let ummatched = [];
+    let searchItems = document.querySelectorAll(".searchItem");
+    results.forEach((result, i) => {
+      for(key in result){
+        if(key.substring(0, 9) === "suggested"){
+          unmatched.push(result);
+          searchItems[Number(Object.keys(suggestionList)[0].substring(10)]).
+            style.color = "red";
+        }
+      }
+    });
+
+    if(unmatched){
        orderStageRightText.innerHTML = "";
-       orderStageRightText.innerText = "No results. Please modify your search and try again."
+       //Create and format a table for the right stage. This will hold product suggestions.
+       //Append the table to the right stage.
+       let stageTable = document.createElement("table");
+       stageTable.classList.add("order-table");
+       stageTableCap = stageTable.appendChild(document.createElement("caption"));
+       stageTableCap.classList.add("stage-table-cap");
+       stageTableCap.innerText = "Suggested Matches";
+       orderStageRight.appendChild(stageTable);
+
+       unmatched.forEach( (suggestionList, i) => {
+         //Add product name header and product name to result table.
+         let containerDiv = stageTable.appendChild(document.createElement("div"));
+         let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
+         let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
+         prodNameHeader.textContent = "By " +
+            `'${searchItems[Number(Object.keys(suggestionList)[0].substring(10)])}'` +
+            ", Did You Mean...";
+         prodNameHeader.style.textDecoration = "underline";
+         suggestionList.forEach( (suggestion, j) => {
+           let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
+           let suggestionName = suggestionRow.appendChild(document.createElement("td"));
+           prodName.textContent = suggestion["name"];
+           prodName.style.paddingBottom = "20px";
+           prodName.addEventListener("click", e => {
+             searchItems[Number(Object.keys(suggestionList)[0].substring(10)]).
+              textContent = e.target.textContent;
+             searchItems[Number(Object.keys(suggestionList)[0].substring(10)]).
+               style.color = "black";
+             document.removeChild(containerDiv);
+           })
+         });
+       });
      }
      else{
        //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
-       let orderStageRight = document.querySelector("#stage-wrapper-right");
        orderStageRight.style.borderColor = "rgb(39, 206, 100)";
 
        //Remove padding from bottom of shopping cart (because a checkout message will

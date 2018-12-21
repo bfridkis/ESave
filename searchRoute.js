@@ -34,7 +34,7 @@ module.exports = app => {
 												"     end AS TOTAL_DISCOUNT, " +
 												req.query[qtKey] + " AS QT " +
 												"from product join retailer_product ON product.id = retailer_product.product AND " +
-												"(product.name LIKE '%" + req.query[key] + "%' OR " +
+												"(product.name = '" + req.query[key] + "' OR " +
 												"'" + req.query[key] + "' = product.upc OR '" + req.query[key] +
 												"' = product.model_number OR retailer_product.description LIKE '%" + req.query[key] + "%') " +
 												"JOIN retailer ON (retailer_product.retailer = retailer.id  OR " +
@@ -59,9 +59,26 @@ module.exports = app => {
 									minPrice = Number(row["FINAL_PRICE"]);
 									minRowNumber = i;
 								}
-							})
-		          eSaveResults.push(rows[minRowNumber]);
-							complete();
+							});
+							if(rows[minRowNumber]){
+		          	eSaveResults.push(rows[minRowNumber]);
+								complete();
+							}
+							else{
+								queryString = "SELECT name FROM product WHERE name LIKE '" +
+															req.query[key] + "' OR description LIKE '" +
+															req.query[key] + "' LIMIT 10";
+								mysql.pool.query(queryString, suggested, fields) => {
+									if(err){
+					          res.write(JSON.stringify(err));
+					          res.end();
+					        }
+					        else{
+										eSaveResults.push({"suggested_" + key : suggested);
+										complete();
+								}
+							}
+
 		        }
 		      });
 		    }
