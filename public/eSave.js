@@ -137,7 +137,7 @@ function eSave(){
       }
     });
 
-    if(!unmatched === []){
+    if(!(unmatched === [])){
        processUnmatched(orderStageRight, orderStageRightText,
                         unmatched, searchItems);
      }
