@@ -156,7 +156,7 @@ function eSave(){
          prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
                                       ", Did You Mean...";
          prodNameHeader.style.textDecoration = "underline";
-         suggestionList.forEach( suggestion => {
+         suggestionList.suggested.forEach( suggestion => {
            let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
            let suggestionName = suggestionRow.appendChild(document.createElement("td"));
            prodName.textContent = suggestion["name"];
