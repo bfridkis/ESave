@@ -130,9 +130,9 @@ function eSave(){
     let searchItems = document.querySelectorAll(".searchItem");
     results.forEach((result, i) => {
       for(key in result){
-        if(key.substring(0, 9) === "suggested"){
+        if(key === "suggested"){
           unmatched.push(result);
-          searchItems[suggestionList["prodNum"]].style.color = "red";
+          searchItems[result["prodNum"]].style.color = "red";
         }
       }
     });
