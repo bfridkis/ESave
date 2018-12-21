@@ -162,8 +162,8 @@ function eSave(){
            prodName.textContent = suggestion["name"];
            prodName.style.paddingBottom = "20px";
            prodName.addEventListener("click", e => {
-             searchItems[suggestionList["prodNum"]]).textContent = e.target.textContent;
-             searchItems[suggestionList["prodNum"]]).style.color = "black";
+             searchItems[suggestionList["prodNum"]].textContent = e.target.textContent;
+             searchItems[suggestionList["prodNum"]].style.color = "black";
              document.removeChild(containerDiv);
            })
          });
