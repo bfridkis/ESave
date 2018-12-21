@@ -75,6 +75,9 @@ function loadFakerData(){
   submitButton.addEventListener("click", submit.bind(submitButton));
   document.addEventListener("keypress", submit.bind("null"));
 
+  let resetButton = document.querySelector("reset");
+  document.addEventListener("click", reset);
+
   //Event listener for submitting request to load sample data...
   function submit(e){
     //User can press enter key or click submit button to sumbit request.
@@ -137,6 +140,25 @@ function loadFakerData(){
         req.send(JSON.stringify(data));
       }
     }
+  }
+
+  function reset(e){
+    let req = new XMLHttpRequest;
+    req.open("DELETE", "/loadFakerData", true);
+    req.addEventListener('load', () => {
+      let results1 = document.querySelector("#results1"),
+          results2 = document.querySelector("#results2");
+      if(typeof(JSON.parse(req.responseText).Response !== "undefined")){
+        results1.innerText = JSON.parse(req.responseText).Response;
+        results2.innerText = "";
+      }
+      else{
+        response1 = req.status + " " + req.statusText;
+        results1.innerText = response1;
+        results2.innerText = "";
+      }
+    });
+    req.send(null);
   }
 }
 

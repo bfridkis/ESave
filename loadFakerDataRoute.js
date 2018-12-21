@@ -236,11 +236,31 @@ module.exports = (app) => {
                     //Taken from https://stackoverflow.com/questions/13566552/easiest-way-to-convert-month-name-to-month-number-in-js-jan-01
                     //Generates month as 2-digit number from month as 3-character string (specified in parameter 'mon')
                     function getMonthFromString(mon){
-                        return new Date(Date.parse(mon +" 1, 2018")).getMonth()+1
-}
+                        return new Date(Date.parse(mon +" 1, 2018")).getMonth()+1;
+                    }
 				        });
-                return router;
-              }
+
+    router.delete('/', (req, res, next) => {
+      let mysql = req.app.get('mysql');
+      deleteQuery = "DELETE FROM promotion where id > '31';" +
+                    "DELETE FROM retailer WHERE id > '51';" +
+                    "DELETE FROM product WHERE id > '71';";
+      mysql.pool.query(selectQuery,
+        (err, row, fields) => {
+            if (err) {
+              res.write(JSON.stringify(err));
+              res.status(400);
+              res.end();
+            }
+            else {
+              res.send({
+                "Response" : "Sample Data Cleared"
+              });
+            }
+    });
+    
+    return router;
+}
 
 // * References
 // * https://stackoverflow.com/questions/2175512/javascript-expression-to-generate-a-5-digit-number-in-every-case
