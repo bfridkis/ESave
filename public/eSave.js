@@ -153,7 +153,7 @@ function eSave(){
          let containerDiv = stageTable.appendChild(document.createElement("div"));
          let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
          let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
-         prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"]]}'` +
+         prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum" - 1]].textContent}'` +
                                       ", Did You Mean...";
          prodNameHeader.style.textDecoration = "underline";
          suggestionList.forEach( suggestion => {
@@ -162,8 +162,8 @@ function eSave(){
            prodName.textContent = suggestion["name"];
            prodName.style.paddingBottom = "20px";
            prodName.addEventListener("click", e => {
-             searchItems[suggestionList["prodNum"]].textContent = e.target.textContent;
-             searchItems[suggestionList["prodNum"]].style.color = "black";
+             searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
+             searchItems[suggestionList["prodNum"] - 1].style.color = "black";
              document.removeChild(containerDiv);
            })
          });
