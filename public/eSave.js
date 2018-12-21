@@ -151,6 +151,7 @@ function eSave(){
        unmatched.forEach( suggestionList => {
          //Add product name header and product name to result table.
          let containerDiv = stageTable.appendChild(document.createElement("div"));
+         containerDiv.classList = "suggested-products-div";
          let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
          let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
          prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
@@ -159,6 +160,7 @@ function eSave(){
          suggestionList.suggested.forEach( (suggestion, i) => {
            let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
            let suggestionName = suggestionRow.appendChild(document.createElement("td"));
+           suggestionName.classList = "suggested-products";
            suggestionName.textContent = suggestion["name"];
            if(i === suggestionList.suggested.length){
              suggestionName.style.paddingBottom = "20px";
@@ -166,7 +168,11 @@ function eSave(){
            suggestionName.addEventListener("click", e => {
              searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
              searchItems[suggestionList["prodNum"] - 1].style.color = "black";
-             document.removeChild(containerDiv);
+             containerDiv.classList = "suggested-products-div-hidden";
+             if(!document.querySelectorAll(".suggested-products-div")){
+               orderStageRightText.innerHTML =
+            'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
+             }
            })
          });
        });

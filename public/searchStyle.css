@@ -302,3 +302,13 @@ body {
 	padding-right: 10px;
 	font-size: 0.8rem;
 }
+
+.suggested-products-div-hidden {
+	transform: scale(0);
+	transition: scale 1s ease-in;
+}
+
+.suggested-products:hover {
+	cursor:pointer;
+	text-decoration: underline;
+}
