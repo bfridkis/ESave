@@ -162,7 +162,7 @@ function eSave(){
            let suggestionName = suggestionRow.appendChild(document.createElement("td"));
            suggestionName.classList = "suggested-products";
            suggestionName.textContent = suggestion["name"];
-           if(i === suggestionList.suggested.length){
+           if(i === suggestionList.suggested.length - 1){
              suggestionName.style.paddingBottom = "20px";
            }
            suggestionName.addEventListener("click", e => {
