@@ -36,7 +36,7 @@ module.exports = app => {
 												"from product join retailer_product ON product.id = retailer_product.product AND " +
 												"(product.name = '" + req.query[key] + "' OR " +
 												"'" + req.query[key] + "' = product.upc OR '" + req.query[key] +
-												"' = product.model_number OR retailer_product.description LIKE '%" + req.query[key] + "%') " +
+												"' = product.model_number) " +
 												"JOIN retailer ON (retailer_product.retailer = retailer.id  OR " +
 												"retailer.id = '" + req.query.ret + "' OR retailer.name = '" + req.query.ret + "') " +
 												"LEFT JOIN promotion ON promotion.retailer = retailer.id AND " +
