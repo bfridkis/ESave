@@ -169,7 +169,7 @@ function eSave(){
              searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
              searchItems[suggestionList["prodNum"] - 1].style.color = "black";
              containerDiv.classList = "suggested-products-div-hidden";
-             if(!document.querySelectorAll(".suggested-products-div")){
+             if(!document.querySelectorAll(".suggested-products-div").length){
                orderStageRightText.innerHTML =
             'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
              }
