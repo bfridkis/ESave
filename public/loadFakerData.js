@@ -149,6 +149,7 @@ function loadFakerData(){
     req.addEventListener('load', () => {
       let results1 = document.querySelector("#results1"),
           results2 = document.querySelector("#results2");
+      console.log(req);//************************************
       if(typeof(JSON.parse(req.responseText).Response !== "undefined")){
         results1.innerText = JSON.parse(req.responseText).Response;
         results2.innerText = "";

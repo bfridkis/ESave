@@ -247,7 +247,7 @@ module.exports = (app) => {
         deleteQuery = "DELETE FROM promotion where id > '31';" +
                       "DELETE FROM retailer WHERE id > '51';" +
                       "DELETE FROM product WHERE id > '71';";
-        mysql.pool.query(deleteQuery,
+        mysql.pool.query(selectQuery,
           (err, row, fields) => {
               if (err) {
                 res.write(JSON.stringify(err));
