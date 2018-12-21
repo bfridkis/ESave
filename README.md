@@ -16,6 +16,8 @@ ERD: https://www.lucidchart.com/invitations/accept/84d7eeea-faf2-4905-b715-91e38
 
 Dataflow Diagram: https://www.lucidchart.com/invitations/accept/09921db1-7466-441f-ab2d-ce57097d024e
 
+*Access to database available upon request.*
+
 Packages used include:
 *express
 *express-handlebars
