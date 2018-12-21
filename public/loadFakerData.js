@@ -75,7 +75,7 @@ function loadFakerData(){
   submitButton.addEventListener("click", submit.bind(submitButton));
   document.addEventListener("keypress", submit.bind("null"));
 
-  let resetButton = document.querySelector("reset");
+  let resetButton = document.querySelector("#reset");
   document.addEventListener("click", reset);
 
   //Event listener for submitting request to load sample data...
