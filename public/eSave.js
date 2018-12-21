@@ -132,7 +132,7 @@ function eSave(){
       for(key in result){
         if(key === "suggested"){
           unmatched.push(result);
-          searchItems[result["prodNum"]].style.color = "red";
+          searchItems[result["prodNum"] - 1].style.color = "red";
         }
       }
     });
