@@ -257,8 +257,9 @@ module.exports = (app) => {
                 "Response" : "Sample Data Cleared"
               });
             }
-    });
-    
+          });
+        });
+
     return router;
 }
 
