@@ -11,6 +11,7 @@ https://esave.herokuapp.com/
 To view table contents: https://esave.herokuapp.com/dev1
 
 To load sample data: https://esave.herokuapp.com/loadFakerData (password = loadfakedata)
+*To clear sample data: (password = clearfakedata)*
 
 ERD: https://www.lucidchart.com/invitations/accept/84d7eeea-faf2-4905-b715-91e382e00888
 
