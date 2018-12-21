@@ -157,11 +157,13 @@ function eSave(){
          prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
                                       ", Did You Mean...";
          prodNameHeader.style.color = "rgb(39, 206, 100)";
+         prodNameHeader.style.fontSize = "1.75rem";
          suggestionList.suggested.forEach( (suggestion, i) => {
            let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
            let suggestionName = suggestionRow.appendChild(document.createElement("td"));
            suggestionName.classList = "suggested-products";
            suggestionName.textContent = suggestion["name"];
+           suggestionName.style.fontSize = "1.25rem";
            if(i === suggestionList.suggested.length - 1){
              suggestionName.style.paddingBottom = "20px";
            }
