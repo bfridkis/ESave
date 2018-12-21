@@ -13,7 +13,7 @@ addProd.addEventListener("click", stageProduct.bind(addProd));
 document.addEventListener("keypress", stageProduct.bind("null"));
 
 function stageProduct(e){
-  if(e.keyCode === 13 || (String(this) !== "null" && this.getAttribute("id") === "submit")){
+  if(e.keyCode === 13 || (String(this) !== "null" && this.getAttribute("id") === "stage-prod")){
     if(prodInput.value !== ""){
       let row = document.createElement("tr");
       row.setAttribute("class", "searchItemRow");
