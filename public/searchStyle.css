@@ -304,11 +304,12 @@ body {
 }
 
 .suggested-products.div {
-	transition: scale 1s ease-in;
+
 }
 
 .suggested-products-div-hidden {
 	transform: scale(0);
+	transition: transform 1s ease-in;
 }
 
 .suggested-products:hover {
