@@ -18,6 +18,11 @@ module.exports = (app) => {
             }
 						else {
 							var orderID = row.insertId;
+              //Work around so auto-timestamp feature can be used for "Created_On" in
+              //addition to "last_ppdated". (Only one field can be designated with "ON
+              //UPDATE CURRENT_TIMESTAMP". This is used for the last_updated field, where
+              //the value is immediately copied to the "created_on" field at the time the
+              //record is created.)
 							mysql.pool.query("update `order` a INNER JOIN `order` b ON a.id = b.id " +
 																`SET b.created_on = a.last_updated where a.id = ${orderID}`,
 			          (err, row, fields) => {
