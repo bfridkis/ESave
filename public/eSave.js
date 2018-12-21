@@ -129,11 +129,9 @@ function eSave(){
     let unmatched = [];
     let searchItems = document.querySelectorAll(".searchItem");
     results.forEach((result, i) => {
-      for(key in result){
-        if(key === "suggested"){
-          unmatched.push(result);
-          searchItems[result["prodNum"] - 1].style.color = "red";
-        }
+      if(result.hasOwnProperty("suggested")){
+        unmatched.push(result);
+        searchItems[result["prodNum"] - 1].style.color = "red";
       }
     });
 
