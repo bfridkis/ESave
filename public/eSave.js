@@ -132,8 +132,7 @@ function eSave(){
       for(key in result){
         if(key.substring(0, 9) === "suggested"){
           unmatched.push(result);
-          searchItems[Number(Object.keys(suggestionList)[0].substring(10)]).
-            style.color = "red";
+          searchItems[suggestionList["prodNum"]]).style.color = "red";
         }
       }
     });
