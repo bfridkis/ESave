@@ -117,7 +117,8 @@ function eSave(){
 
     //Parse the results and save in results array
     let results = JSON.parse(req.responseText);
-    console.log(results);//*****************************
+    //console.log(results);
+
     //If some (or all) products cannot be matched, present user suggested matches.
     //Else render results.
     let orderStageRightText = document.querySelector("#order-stage-right-text");
@@ -134,7 +135,7 @@ function eSave(){
         searchItems[result["prodNum"] - 1].style.color = "red";
       }
     });
-    console.log(unmatched);//************************************
+
     if(!(unmatched.length === 0)){
        processUnmatched(orderStageRight, orderStageRightText,
                         unmatched, searchItems);
