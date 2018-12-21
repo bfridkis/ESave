@@ -75,7 +75,12 @@ $.fn.sparkleh = function( options ) {
 
     $("#esave-button").click( e => {
       sparkle.over();
-        sleepFor(2000, sparkle, ".stage-table-cap");
+      let searchItems = document.querySelector(".searchItem");
+      let delay = 0;
+      if(searchItems){
+        delay = 2000;
+      }
+      sleepFor(delay, sparkle, ".stage-table-cap");
     });
 
     async function sleepFor(time_ms, sparkle, resultCheckNode) {
