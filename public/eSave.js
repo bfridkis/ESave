@@ -135,7 +135,7 @@ function eSave(){
       }
     });
     console.log(unmatched);//************************************
-    if(!(unmatched === [])){
+    if(!(unmatched.length === 0)){
        processUnmatched(orderStageRight, orderStageRightText,
                         unmatched, searchItems);
      }
