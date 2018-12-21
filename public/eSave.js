@@ -59,34 +59,33 @@ function eSave(){
       });
     queryString += "ret=NULL";
 
-    //Setup new XMLHttpRequest request
-    var req = new XMLHttpRequest();
-    //Open GET request, using queryString
-    req.open("GET", queryString, true);
+    if(queryString !== "/search?"){
+      //Setup new XMLHttpRequest request
+      var req = new XMLHttpRequest();
+      //Open GET request, using queryString
+      req.open("GET", queryString, true);
 
-    //Event listener for completed GET request
-    req.addEventListener("load", () => {
-      if(req.status >= 200 && req.status < 400){
-
-       //If parameters were sent (i.e. user did not engage ESave button with empty stage),
-       //Wait present loading icon for a minimum of 1.5 seconds, to simulate loading process.
-       //See processESave for remaining logic for processing ESave search request.
-       //(This delay is artifical and can be removed in production by setting the first parameter
-       //of processESave to 0.)
-       if(queryString !== "/search?"){
+      //Event listener for completed GET request
+      req.addEventListener("load", () => {
+        if(req.status >= 200 && req.status < 400){
+         //If parameters were sent (i.e. user did not engage ESave button with empty stage),
+         //Wait while presenting loading icon for a minimum of 1.5 seconds, to simulate loading process.
+         //See processESave for remaining logic for processing ESave search request.
+         //(This delay is artifical and can be removed in production by setting the first parameter
+         //of processESave to 0.)
          processESave(1500, req, qts);
-       }
-       //If no products were staged, print message on right stage accordingly.
-       else{
-         orderStageRightText.innerHTML =
-            'Add products and click "<i class="fas fa-check-square"></i>" to ESave staged order...';
-       }
-      }
-      else{
-        alert("Error: " + req.status + " " + req.statusText);
-      }
-    });
-    req.send(null);
+        }
+        else{
+          alert("Error: " + req.status + " " + req.statusText);
+        }
+      });
+      req.send(null);
+    }
+    //If no products were staged, print message on right stage accordingly.
+    else{
+      orderStageRightText.innerHTML =
+         'Add products and click "<i class="fas fa-check-square"></i>" to ESave staged order...';
+    }
   });
 
   //Event listener to clear product (left) stage when user clicks the "X" button
