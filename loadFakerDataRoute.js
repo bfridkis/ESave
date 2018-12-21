@@ -241,24 +241,31 @@ module.exports = (app) => {
 				        });
 
     router.delete('/', (req, res, next) => {
-      let mysql = req.app.get('mysql');
-      deleteQuery = "DELETE FROM promotion where id > '31';" +
-                    "DELETE FROM retailer WHERE id > '51';" +
-                    "DELETE FROM product WHERE id > '71';";
-      mysql.pool.query(selectQuery,
-        (err, row, fields) => {
-            if (err) {
-              res.write(JSON.stringify(err));
-              res.status(400);
-              res.end();
-            }
-            else {
-              res.send({
-                "Response" : "Sample Data Cleared"
-              });
-            }
+      if (req.body.password === process.env.loadfakerpassword) {
+        let mysql = req.app.get('mysql');
+        deleteQuery = "DELETE FROM promotion where id > '31';" +
+                      "DELETE FROM retailer WHERE id > '51';" +
+                      "DELETE FROM product WHERE id > '71';";
+        mysql.pool.query(selectQuery,
+          (err, row, fields) => {
+              if (err) {
+                res.write(JSON.stringify(err));
+                res.status(400);
+                res.end();
+              }
+              else {
+                res.send({
+                  "Response" : "Sample Data Cleared"
+                });
+              }
+            });
+        }
+        else{
+          res.send({
+            "Response": "Invalid Password"
           });
-        });
+        }
+      });
 
     return router;
 }
