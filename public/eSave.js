@@ -138,7 +138,7 @@ function eSave(){
     });
 
     if(unmatched){
-       processUnmatched();
+       processUnmatched(orderStageRight, orderStageRightText, unmatched);
      }
      else{
        //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
@@ -287,7 +287,7 @@ function eSave(){
      }
   }
 
-  function processUnmatched(){
+  function processUnmatched(orderStageRight, orderStageRightText, unmatched){
     orderStageRightText.innerHTML = "";
     //Create and format a table for the right stage. This will hold product suggestions.
     //Append the table to the right stage.
