@@ -74,8 +74,7 @@ module.exports = app => {
 					          res.end();
 					        }
 					        else{
-										suggestedKey = "suggested_" + key
-										eSaveResults.push({ suggestedKey : suggested);
+										eSaveResults.push({ ("suggested_" + key) : suggested});
 										complete();
 								}
 							});
