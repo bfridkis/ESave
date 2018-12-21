@@ -156,12 +156,14 @@ function eSave(){
          prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
                                       ", Did You Mean...";
          prodNameHeader.style.color = "rgb(39, 206, 100)";
-         suggestionList.suggested.forEach( suggestion => {
+         suggestionList.suggested.forEach( (suggestion, i) => {
            let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
            let suggestionName = suggestionRow.appendChild(document.createElement("td"));
-           prodName.textContent = suggestion["name"];
-           prodName.style.paddingBottom = "20px";
-           prodName.addEventListener("click", e => {
+           suggestionName.textContent = suggestion["name"];
+           if(i === suggestionList.suggested.length){
+             suggestionName.style.paddingBottom = "20px";
+           }
+           suggestionName.addEventListener("click", e => {
              searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
              searchItems[suggestionList["prodNum"] - 1].style.color = "black";
              document.removeChild(containerDiv);
