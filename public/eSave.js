@@ -155,7 +155,7 @@ function eSave(){
          let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
          prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
                                       ", Did You Mean...";
-         prodNameHeader.style.textDecoration = "underline";
+         prodNameHeader.style.color = "rgb(39, 206, 100)";
          suggestionList.suggested.forEach( suggestion => {
            let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
            let suggestionName = suggestionRow.appendChild(document.createElement("td"));
