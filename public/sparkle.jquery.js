@@ -81,7 +81,7 @@ $.fn.sparkleh = function( options ) {
     async function sleepFor(time_ms, sparkle, nodeQS) {
       await sleep(time_ms);
       let charCheck = document.querySelector(nodeQS).textContent[0];
-      //console.log("charCheck", charCheck);
+      console.log("charCheck", charCheck);
       if(charCheck === "N" || charCheck === "A" || charCheck === "S"){
         sparkle.out();
       }
