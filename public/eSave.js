@@ -172,6 +172,7 @@ function eSave(){
              if(!document.querySelectorAll(".suggested-products-div").length){
                orderStageRightText.innerHTML =
             'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
+            console.log("TEST");//****************************
              }
            })
          });
