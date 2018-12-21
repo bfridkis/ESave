@@ -84,7 +84,7 @@ module.exports = app => {
 		    });
 		  }
 		}
-
+	}
 		else{
 			context.user = req.user.username;
 			res.render('search/search', context)
