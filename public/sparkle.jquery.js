@@ -78,9 +78,9 @@ $.fn.sparkleh = function( options ) {
         sleepFor(2000, sparkle, ".stage-table-cap");
     });
 
-    async function sleepFor(time_ms, sparkle, resultCheck) {
+    async function sleepFor(time_ms, sparkle, resultCheckNode) {
       await sleep(time_ms);
-      let sparkle = document.querySelector(resultCheck);
+      let resultCheck = document.querySelector(resultCheckNode);
       //console.log("charCheck", charCheck);
       if(resultCheck || resultCheck.textContent[0] !== "E"){
         sparkle.out();
