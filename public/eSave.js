@@ -59,7 +59,7 @@ function eSave(){
       });
     queryString += "ret=NULL";
     console.log(queryString);//*****************************
-    if(queryString !== "/search?"){
+    if(queryString !== "/search?ret=NULL"){
       //Setup new XMLHttpRequest request
       var req = new XMLHttpRequest();
       //Open GET request, using queryString
