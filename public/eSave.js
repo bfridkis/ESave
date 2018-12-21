@@ -153,7 +153,7 @@ function eSave(){
          let containerDiv = stageTable.appendChild(document.createElement("div"));
          let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
          let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
-         prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum" - 1]].textContent}'` +
+         prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
                                       ", Did You Mean...";
          prodNameHeader.style.textDecoration = "underline";
          suggestionList.forEach( suggestion => {
