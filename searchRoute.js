@@ -3,6 +3,7 @@ module.exports = app => {
 	var router = express.Router();
 	//var app = express();
 
+	//Route for an ESave request
 	router.get('/', isLoggedIn, (req, res, next) => {
 		var callbackCount = 0;
 		var eSaveResults = [];
@@ -11,6 +12,8 @@ module.exports = app => {
 		context.css = ["sparkle.css", "searchStyle.css"];
 		context.navbarLogo = ["images/logo.jpg"];
 		context.mainLogo = ["images/logo-medium.jpg"];
+		//For each product queried, find the lowest possible price (and associated retailer)
+		//by applying all available promotions in table query.
 		if(Object.keys(req.query).length !== 0){
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
@@ -53,6 +56,8 @@ module.exports = app => {
 		        }
 		        else{
 							//console.log(rows);
+
+							//Determine result row with minimum price
 							let minPrice = Number.MAX_SAFE_INTEGER, minRowNumber = 0;
 							rows.forEach( (row, i) => {
 								if(Number(row["FINAL_PRICE"]) < minPrice){
@@ -60,10 +65,14 @@ module.exports = app => {
 									minRowNumber = i;
 								}
 							});
+							//Save row with minimum price
 							if(rows[minRowNumber]){
 		          	eSaveResults.push(rows[minRowNumber]);
 								complete();
 							}
+
+							//If no results are matched for user's query, provide a list of 10
+							//suggestions instead.
 							else{
 								queryString = "SELECT product.name FROM product JOIN " +
 															"retailer_product ON product.id = retailer_product.product " +
@@ -88,11 +97,14 @@ module.exports = app => {
 		  }
 		}
 	}
+		//If no ESave criteria are specified, render page.
 		else{
 			context.user = req.user.username;
 			res.render('search/search', context)
 		}
 
+		//Function to track number of products queried, and send results to client
+		//only after all queried products are returned
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= (Object.keys(req.query).length / 2) - 1){
