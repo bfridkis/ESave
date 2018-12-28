@@ -49,7 +49,6 @@ function eSaveWrapper(timeout){
   //Set border color back to purple if necessary
   let orderStageRight = document.querySelector("#stage-wrapper-right");
   orderStageRight.style.borderColor = "purple";
-  var orderStageRightInitialHeight = orderStageRight.offsetHeight;
 
   //Load stage right with "loading" icon
   let orderStageRightText = document.querySelector("#order-stage-right-text");
@@ -126,6 +125,8 @@ async function processESave(time_ms, req, qts) {
   //Else render results.
   let orderStageRightText = document.querySelector("#order-stage-right-text");
   let orderStageRight = document.querySelector("#stage-wrapper-right");
+  //oSRIH stands for "order stage right initial height"
+  let oSRIH = orderStageRight.offsetHeight;
 
   //Check if all search parameters matched products. If not, convert
   //unmatched products to red text on stage left and present suggested
@@ -141,7 +142,7 @@ async function processESave(time_ms, req, qts) {
 
   if(!(unmatched.length === 0)){
      processUnmatched(orderStageRight, orderStageRightText,
-                      unmatched, searchItems);
+                      unmatched, searchItems, oSRIH);
    }
    else{
      //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
@@ -291,7 +292,7 @@ async function processESave(time_ms, req, qts) {
 }
 
 function processUnmatched(orderStageRight, orderStageRightText,
-                          unmatched, searchItems){
+                          unmatched, searchItems, oSRIH){
   orderStageRightText.innerHTML = "";
   //Create and format a table for the right stage. This will hold product suggestions.
   //Append the table to the right stage.
@@ -325,7 +326,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
             e.target.textContent.slice(0, -1);
           searchItems[suggestionList["prodNum"] - 1].style.color = "black";
           containerDiv.classList = "suggested-products-div-hidden";
-          removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
+          removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText, oSRIH);
         })
       }
     });
@@ -340,12 +341,12 @@ function processUnmatched(orderStageRight, orderStageRightText,
   });
 }
 
-async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText){
+async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText, oSRIH){
   await sleep(500);
   containerDiv.style.display = "none";
   if(!document.querySelectorAll(".suggested-products-div").length){
     orderStageRight.removeChild(orderStageRight.lastChild);
-    orderStageRight.style.height = orderStageRightInitialHeight;
+    orderStageRight.style.height = oSRIH;
     orderStageRightText.innerHTML =
       'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
   }
