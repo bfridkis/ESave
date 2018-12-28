@@ -300,7 +300,8 @@ function processUnmatched(orderStageRight, orderStageRightText,
   stageTable.classList.add("order-table");
   stageTableCap = stageTable.appendChild(document.createElement("caption"));
   stageTableCap.classList.add("stage-table-cap");
-  stageTableCap.innerText = "Whoops! One or More Products Not Found...";
+  stageTableCap.innerHTML = "Whoops!<br>One or More Products Not Found...";
+  stageTableCap.style.fontSize = "2rem";
   orderStageRight.appendChild(stageTable);
 
   unmatched.forEach( suggestionList => {
