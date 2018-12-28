@@ -334,7 +334,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
     if(suggestionList.suggested.length > 10){
       let pageButtonsRow = containerDiv.appendChild(document.createElement("tr"));
       let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
-      nextButton.innerHTML = '<i class="fas fa-arrow-right" class="next"></i>';
+      nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
       page === "esave-button" ? page = "0" : page = Number(page) + 1;
       nextButton.firstChild.setAttribute("id", String(page));
       nextButton.firstChild.addEventListener("click", eSaveWrapper);

@@ -318,7 +318,7 @@ body {
 	text-decoration: underline;
 }
 
-#next:hover {
+.next:hover {
 	cursor:pointer;
 	color: rgb(39, 206, 100);
 }
