@@ -72,6 +72,8 @@ function eSaveWrapper(timeout){
     queryString += "p" + (i + 1) + "=" + item.textContent + "&"
                   + "q" + (i + 1) + "=" + qts[i].textContent + "&";
     });
+  console.log("this", this);//******************************
+  console.log("argument[0]", arguments);//******************************
   let page = this.getAttribute("id");
   queryString +=
     `ret=NULL${page === "esave-button" ? "&page=0" : `&page=${page + 1}`}`;
