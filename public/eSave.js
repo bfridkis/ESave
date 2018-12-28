@@ -346,6 +346,7 @@ async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRight
   containerDiv.style.display = "none";
   if(!document.querySelectorAll(".suggested-products-div").length){
     orderStageRight.removeChild(orderStageRight.lastChild);
+    console.log(oSRIH);//*******************************************
     orderStageRight.style.height = `${oSRIH}px`;
     orderStageRightText.innerHTML =
       'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
