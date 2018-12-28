@@ -435,7 +435,7 @@ function suggestNextPage(currentPage, prodNum){
       thisSuggestionList.innerHTML = "";
       let headerRow = thisSuggestionList.appendChild(document.createElement("tr"));
       let headerRowContent = headerRow.appendChild(document.createElement("th"));
-      headerRowContent.innnerText = `By '${userInput}', Did You Mean...`;
+      headerRowContent.textContent = `By '${userInput}', Did You Mean...`;
 
       let results = JSON.parse(req.responseText);
       results.forEach( (suggestion, i) => {
