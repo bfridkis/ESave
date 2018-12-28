@@ -79,7 +79,7 @@ module.exports = app => {
 															" WHERE product.name LIKE '%" +
 															req.query[key] + "%' OR retailer_product.description LIKE '%" +
 															req.query[key] + `%' LIMIT ${Number(req.query["page"]) * 10}, 11`;
-								console.log(queryString);//*******************************************
+								console.log(queryString, Number(req.query["page"]));//*******************************************
 								mysql.pool.query(queryString, (err, suggested, fields) => {
 									if(err){
 					          res.write(JSON.stringify(err));
