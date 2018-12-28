@@ -436,7 +436,8 @@ function suggestNextPage(currentPage, prodNum){
       let headerRow = thisSuggestionList.appendChild(document.createElement("tr"));
       let headerRowContent = headerRow.appendChild(document.createElement("th"));
       headerRowContent.textContent = `By '${userInput}', Did You Mean...`;
-
+      headerRowContent.style.color = "rgb(39, 206, 100)";
+      headerRowContent.style.fontSize = "1.75rem";
       let results = JSON.parse(req.responseText);
       results.forEach( (suggestion, i) => {
         if(i < 10){
