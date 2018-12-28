@@ -72,8 +72,6 @@ function eSaveWrapper(timeout){
     queryString += "p" + (i + 1) + "=" + item.textContent + "&"
                   + "q" + (i + 1) + "=" + qts[i].textContent + "&";
     });
-  console.log("this", this);//******************************
-  console.log("argument[0]", arguments);//******************************
   let page = this.getAttribute("id");
   queryString +=
     `ret=NULL${page === "esave-button" ? "&page=0" : `&page=${page + 1}`}`;
@@ -339,7 +337,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
       page === "esave-button" ? page = "0" : page = Number(page) + 1;
       nextButton.firstChild.setAttribute("id", String(page));
-      nextButton.firstChild.addEventListener("click", eSaveWrapper(nextButton.firstChild, 0));
+      nextButton.firstChild.addEventListener("click", eSaveWrapper.bind(nextButton.firstChild, 0));
     }
   });
 }
