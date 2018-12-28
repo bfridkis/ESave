@@ -335,7 +335,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       let nextButton = nextButtonRow.appendChild(document.createElement("td"));
       nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
       nextButton.firstChild.
-        addEventListener("click", suggestNextPage.bind(nextButton.firstChild, 0,
+        addEventListener("click", suggestNextPage.bind(nextButton.firstChild, 1,
             suggestionList["prodNum"] - 1));
     }
   });
@@ -457,7 +457,7 @@ function suggestNextPage(currentPage, prodNum){
         }
       });
       if(results.length > 10){
-        let pageButtonsRow = containerDiv.appendChild(document.createElement("tr"));
+        let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
         nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
         nextButton.firstChild.
