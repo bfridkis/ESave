@@ -108,7 +108,7 @@ module.exports = app => {
 		//only after all queried products are returned
 		function complete(){
 			callbackCount++;
-			if(callbackCount >= (Object.keys(req.query).length / 2) - 2){
+			if(callbackCount >= ((Object.keys(req.query).length - 2) / 2)){
 				//console.log(eSaveResults);
 				res.send(JSON.stringify(eSaveResults));
 			}
