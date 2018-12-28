@@ -438,7 +438,7 @@ function suggestNextPage(currentPage, prodNum){
       headerRowContent.innnerText = `By '${userInput}', Did You Mean...`;
 
       let results = JSON.parse(req.responseText);
-      results.forEach( suggestion => {
+      results.forEach( (suggestion, i) => {
         if(i < 10){
           let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
           let suggestionName = suggestionRow.appendChild(document.createElement("td"));
@@ -456,7 +456,7 @@ function suggestNextPage(currentPage, prodNum){
           })
         }
       });
-      if(suggestionList.suggested.length > 10){
+      if(results.length > 10){
         let pageButtonsRow = containerDiv.appendChild(document.createElement("tr"));
         let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
         nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
