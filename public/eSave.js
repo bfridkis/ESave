@@ -334,9 +334,10 @@ function processUnmatched(orderStageRight, orderStageRightText,
     if(suggestionList.suggested.length > 10){
       let pageButtonsRow = containerDiv.appendChild(document.createElement("tr"));
       let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
-      nextButton.innerHTML = '<i class="fas fa-arrow-right"></i>';
-      nextButton.setAttribute("id", `${page === "esave-button" ? "0" : `${page + 1}`}`);
-      nextButton.addEventListener("click", eSaveWrapper);
+      nextButton.innerHTML = '<i class="fas fa-arrow-right" class="next"></i>';
+      nextButton.firstChild.setAttribute("id",
+        `${page === "esave-button" ? "0" : `${page + 1}`}`);
+      nextButton.firstChild.addEventListener("click", eSaveWrapper);
     }
   });
 }

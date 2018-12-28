@@ -317,3 +317,8 @@ body {
 	cursor:pointer;
 	text-decoration: underline;
 }
+
+#next {
+	cursor:pointer;
+	color: rgb(39, 206, 100);
+}
