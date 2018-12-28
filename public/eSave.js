@@ -321,12 +321,12 @@ function processUnmatched(orderStageRight, orderStageRightText,
         suggestionName.classList = "suggested-products";
         suggestionName.textContent = suggestion["name"] + "?";
         suggestionName.style.fontSize = "1.25rem";
+        console.log(oSRIH);//***********************************************
         suggestionName.addEventListener("click", e => {
           searchItems[suggestionList["prodNum"] - 1].textContent =
             e.target.textContent.slice(0, -1);
           searchItems[suggestionList["prodNum"] - 1].style.color = "black";
           containerDiv.classList = "suggested-products-div-hidden";
-          console.log(oSRIH);//***********************************************
           removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText, oSRIH);
         })
       }
