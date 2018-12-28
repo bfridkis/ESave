@@ -49,6 +49,7 @@ function eSaveWrapper(timeout){
   //Set border color back to purple if necessary
   let orderStageRight = document.querySelector("#stage-wrapper-right");
   orderStageRight.style.borderColor = "purple";
+  var orderStageRightInitialHeight = orderStageRight.offsetHeight;
 
   //Load stage right with "loading" icon
   let orderStageRightText = document.querySelector("#order-stage-right-text");
@@ -344,6 +345,7 @@ async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRight
   containerDiv.style.display = "none";
   if(!document.querySelectorAll(".suggested-products-div").length){
     orderStageRight.removeChild(orderStageRight.lastChild);
+    orderStageRight.style.height = orderStageRightInitialHeight;
     orderStageRightText.innerHTML =
       'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
   }
