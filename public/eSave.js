@@ -445,7 +445,7 @@ function suggestNextPage(currentPage, prodNum){
           suggestionName.classList = "suggested-products";
           suggestionName.textContent = suggestion["name"] + "?";
           suggestionName.style.fontSize = "1.25rem";
-          if(i === suggestionList.suggested.length - 1){
+          if(results.length === 11 && i === 9 || i === results.length - 1){
             suggestionName.style.paddingBottom = "20px";
           }
           suggestionName.addEventListener("click", e => {
