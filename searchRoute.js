@@ -122,7 +122,7 @@ module.exports = app => {
 											"retailer_product ON product.id = retailer_product.product " +
 											" WHERE product.name LIKE '%" +
 											req.query[key] + "%' OR retailer_product.description LIKE '%" +
-											req.query[key] + `%' LIMIT 10`;
+											req.query[key] + `%' LIMIT ${req.params.page} 10`;
 		mysql.pool.query(queryString, (err, suggested, fields) => {
 			if(err){
 				res.write(JSON.stringify(err));
@@ -133,6 +133,7 @@ module.exports = app => {
 				res.send(JSON.stringify(suggested));
 		}
 	});
+});
 
 	return router;
 
