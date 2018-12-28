@@ -440,7 +440,7 @@ function suggestNextPage(currentPage, prodNum){
       let results = JSON.parse(req.responseText);
       results.forEach( (suggestion, i) => {
         if(i < 10){
-          let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
+          let suggestionRow = thisSuggestionList.appendChild(document.createElement("tr"));
           let suggestionName = suggestionRow.appendChild(document.createElement("td"));
           suggestionName.classList = "suggested-products";
           suggestionName.textContent = suggestion["name"] + "?";
