@@ -3,7 +3,7 @@
 //ESave database.
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
-  eSaveButton.addEventListener("click", eSaveWrapper);
+  eSaveButton.addEventListener("click", eSaveWrapper.bind(null, 1500));
 
   //Event listener to clear product (left) stage when user clicks the "X" button
   let clearButton = document.querySelector("#clear-button");
@@ -18,7 +18,8 @@ function eSave(){
   });
 }
 
-function eSaveWrapper(){
+//See notes for function processESave below for information on the timeout parameter.
+function eSaveWrapper(timeout){
   //If previous order was staged, clear it
   let prevOrderTable = document.querySelector(".order-table");
   if(prevOrderTable){
@@ -88,9 +89,8 @@ function eSaveWrapper(){
        //If parameters were sent (i.e. user did not engage ESave button with empty stage),
        //Wait while presenting loading icon for a minimum of 1.5 seconds, to simulate loading process.
        //See processESave for remaining logic for processing ESave search request.
-       //(This delay is artifical and can be removed in production by setting the first parameter
-       //of processESave to 0.)
-       processESave(1500, req, qts, page);
+       //(This delay is artifical and can be removed in production by setting timeout to 0.)
+       processESave(timeout, req, qts, page);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
@@ -337,7 +337,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
       page === "esave-button" ? page = "0" : page = Number(page) + 1;
       nextButton.firstChild.setAttribute("id", String(page));
-      nextButton.firstChild.addEventListener("click", eSaveWrapper);
+      nextButton.firstChild.addEventListener("click", eSaveWrapper(null, 0));
     }
   });
 }
