@@ -336,7 +336,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
       nextButton.firstChild.
         addEventListener("click", suggestNextPage.bind(nextButton.firstChild, 1,
-            suggestionList["prodNum"] - 1), orderStageRight, orderStageRightText);
+            suggestionList["prodNum"] - 1));
     }
   });
 }
@@ -417,11 +417,12 @@ function listAdder(list, orderData, promo_id){
   }
 }
 
-function suggestNextPage(currentPage, prodNum,
-                          orderStageRight, orderStageRightText){
+function suggestNextPage(currentPage, prodNum){
   let searchItems = document.querySelectorAll(".searchItem");
   let userInput = searchItems[prodNum].textContent;
   let queryString = `/search/${currentPage}?p=${userInput}`;
+  let orderStageRight = document.querySelector("#stage-wrapper-right");
+  let orderStageRightText = document.querySelector("#order-stage-right-text");
 
   //Setup new XMLHttpRequest request
   var req = new XMLHttpRequest();
@@ -463,8 +464,7 @@ function suggestNextPage(currentPage, prodNum,
         nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
         nextButton.firstChild.
           addEventListener("click", suggestNextPage.
-            bind(nextButton.firstChild, currentPage + 1, prodNum,
-                  orderStageRight, orderStageRightText));
+            bind(nextButton.firstChild, currentPage + 1, prodNum));
       }
     }
     else{
