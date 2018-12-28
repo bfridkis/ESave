@@ -3,8 +3,9 @@
 //ESave database.
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
-  eSaveButton.addEventListener("click", () => {
+  eSaveButton.addEventListener("click", eSaveWrapper);
 
+  function eSaveWrapper(){
     //If previous order was staged, clear it
     let prevOrderTable = document.querySelector(".order-table");
     if(prevOrderTable){
@@ -57,10 +58,12 @@ function eSave(){
       queryString += "p" + (i + 1) + "=" + item.textContent + "&"
                     + "q" + (i + 1) + "=" + qts[i].textContent + "&";
       });
-    queryString += "ret=NULL";
+    let page = argument[0].getAttribute("id");
+    queryString +=
+      `ret=NULL${page === "esave-button" ? "&page=0" : `&page=${page + 1}`}`;
 
     //If product stage (stage-left) is not empty...
-    if(queryString !== "/search?ret=NULL"){
+    if(queryString.includes("q")){
       //Setup new XMLHttpRequest request
       var req = new XMLHttpRequest();
       //Open GET request, using queryString
@@ -87,7 +90,7 @@ function eSave(){
       orderStageRightText.innerHTML =
          'Add products and click "<i class="fas fa-check-square"></i>" to ESave staged order...';
     }
-  });
+  }
 
   //Event listener to clear product (left) stage when user clicks the "X" button
   let clearButton = document.querySelector("#clear-button");
@@ -138,7 +141,7 @@ function eSave(){
 
     if(!(unmatched.length === 0)){
        processUnmatched(orderStageRight, orderStageRightText,
-                        unmatched, searchItems);
+                        unmatched, searchItems, page);
      }
      else{
        //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
@@ -288,7 +291,7 @@ function eSave(){
   }
 
   function processUnmatched(orderStageRight, orderStageRightText,
-                            unmatched, searchItems){
+                            unmatched, searchItems, page){
     orderStageRightText.innerHTML = "";
     //Create and format a table for the right stage. This will hold product suggestions.
     //Append the table to the right stage.
@@ -310,21 +313,30 @@ function eSave(){
       prodNameHeader.style.color = "rgb(39, 206, 100)";
       prodNameHeader.style.fontSize = "1.75rem";
       suggestionList.suggested.forEach( (suggestion, i) => {
-        let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
-        let suggestionName = suggestionRow.appendChild(document.createElement("td"));
-        suggestionName.classList = "suggested-products";
-        suggestionName.textContent = suggestion["name"];
-        suggestionName.style.fontSize = "1.25rem";
-        if(i === suggestionList.suggested.length - 1){
-          suggestionName.style.paddingBottom = "20px";
+        if(i < 10){
+          let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
+          let suggestionName = suggestionRow.appendChild(document.createElement("td"));
+          suggestionName.classList = "suggested-products";
+          suggestionName.textContent = suggestion["name"] + "?";
+          suggestionName.style.fontSize = "1.25rem";
+          if(i === suggestionList.suggested.length - 1){
+            suggestionName.style.paddingBottom = "20px";
+          }
+          suggestionName.addEventListener("click", e => {
+            searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
+            searchItems[suggestionList["prodNum"] - 1].style.color = "black";
+            containerDiv.classList = "suggested-products-div-hidden";
+            removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
+          })
         }
-        suggestionName.addEventListener("click", e => {
-          searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
-          searchItems[suggestionList["prodNum"] - 1].style.color = "black";
-          containerDiv.classList = "suggested-products-div-hidden";
-          removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
-        })
       });
+      if(suggestionList.suggested.length > 10){
+        let pageButtonsRow = containerDiv.appendChild(document.createElement("tr"));
+        let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
+        nextButton.innerHTML = '<i class="fas fa-arrow-right"></i>';
+        nextButton.setAttribute("id", `${page === "esave-button" ? "0" : `${page + 1}`}`);
+        nextButton.addEventListener("click", eSaveWrapper);
+      }
     });
   }
 

@@ -78,7 +78,7 @@ module.exports = app => {
 															"retailer_product ON product.id = retailer_product.product " +
 															" WHERE product.name LIKE '%" +
 															req.query[key] + "%' OR retailer_product.description LIKE '%" +
-															req.query[key] + "%' LIMIT 10";
+															req.query[key] + `%' LIMIT ${req.query[page]}, 10`;
 								mysql.pool.query(queryString, (err, suggested, fields) => {
 									if(err){
 					          res.write(JSON.stringify(err));
@@ -107,7 +107,7 @@ module.exports = app => {
 		//only after all queried products are returned
 		function complete(){
 			callbackCount++;
-			if(callbackCount >= (Object.keys(req.query).length / 2) - 1){
+			if(callbackCount >= (Object.keys(req.query).length / 2) - 2){
 				//console.log(eSaveResults);
 				res.send(JSON.stringify(eSaveResults));
 			}
@@ -136,3 +136,4 @@ function isLoggedIn(req, res, next) {
 // * https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html#function_truncate
 // * https://www.w3resource.com/mysql/string-functions/mysql-format-function.php
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
+// * https://blog.udemy.com/sql-limit/
