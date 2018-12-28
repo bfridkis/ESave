@@ -461,7 +461,8 @@ function suggestNextPage(currentPage, prodNum){
         let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
         nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
         nextButton.firstChild.
-          addEventListener("click", suggestNextPage.bind(nextButton.firstChild, currentPage + 1, prodNum));
+          addEventListener("click", suggestNextPage.
+            bind(nextButton.firstChild, currentPage + 1, prodNum));
       }
     }
     else{
