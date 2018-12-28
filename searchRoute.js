@@ -17,7 +17,7 @@ module.exports = app => {
 		if(Object.keys(req.query).length !== 0){
 		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
-		    if(key.charAt(0) === "p"){
+		    if(key.charAt(0) === "p" && key !== "page"){
 		      let qtKey = "q" + key.substring(1);
 					queryString = "select product.id AS PROD_ID, retailer.id AS RET_ID, " +
 												"product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
