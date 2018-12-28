@@ -421,6 +421,7 @@ function suggestNextPage(currentPage, prodNum){
   let queryString = `/search/${currentPage}?p=${userInput}`;
   let orderStageRight = document.querySelector("#stage-wrapper-right");
   let orderStageRightText = document.querySelector("#order-stage-right-text");
+  let orderStageRightHeight = orderStageRight.offsetHeight;
 
   //Setup new XMLHttpRequest request
   var req = new XMLHttpRequest();
@@ -433,6 +434,7 @@ function suggestNextPage(currentPage, prodNum){
       let thisSuggestionList =
         document.querySelectorAll(".suggested-products-div")[prodNum];
       thisSuggestionList.innerHTML = "";
+      orderStageRight.style.height = String(orderStageRightHeight) + "px";
       let headerRow = thisSuggestionList.appendChild(document.createElement("tr"));
       let headerRowContent = headerRow.appendChild(document.createElement("th"));
       headerRowContent.textContent = `By '${userInput}', Did You Mean...`;
