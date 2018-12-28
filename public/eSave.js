@@ -77,7 +77,7 @@ function eSave(){
          //See processESave for remaining logic for processing ESave search request.
          //(This delay is artifical and can be removed in production by setting the first parameter
          //of processESave to 0.)
-         processESave(1500, req, qts);
+         processESave(1500, req, qts, page);
         }
         else{
           alert("Error: " + req.status + " " + req.statusText);
@@ -110,7 +110,7 @@ function eSave(){
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async function processESave(time_ms, req, qts) {
+  async function processESave(time_ms, req, qts, page) {
     //Simulate loading time
     await sleep(time_ms);
 
