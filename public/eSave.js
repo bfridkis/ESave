@@ -326,6 +326,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
             e.target.textContent.slice(0, -1);
           searchItems[suggestionList["prodNum"] - 1].style.color = "black";
           containerDiv.classList = "suggested-products-div-hidden";
+          console.log(oSRIH);//***********************************************
           removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText, oSRIH);
         })
       }
