@@ -3,7 +3,7 @@
 //ESave database.
 function eSave(){
   let eSaveButton = document.querySelector("#esave-button");
-  eSaveButton.addEventListener("click", eSaveWrapper.bind(null, 1500));
+  eSaveButton.addEventListener("click", eSaveWrapper.bind(eSaveButton, 1500));
 
   //Event listener to clear product (left) stage when user clicks the "X" button
   let clearButton = document.querySelector("#clear-button");
@@ -337,7 +337,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
       page === "esave-button" ? page = "0" : page = Number(page) + 1;
       nextButton.firstChild.setAttribute("id", String(page));
-      nextButton.firstChild.addEventListener("click", eSaveWrapper(null, 0));
+      nextButton.firstChild.addEventListener("click", eSaveWrapper(nextButton.firstChild, 0));
     }
   });
 }
