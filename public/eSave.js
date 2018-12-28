@@ -58,8 +58,7 @@ function eSave(){
       queryString += "p" + (i + 1) + "=" + item.textContent + "&"
                     + "q" + (i + 1) + "=" + qts[i].textContent + "&";
       });
-      console.log(arguments[0]);//************************************
-    let page = arguments[0].getAttribute("id");
+    let page = arguments[0].target.getAttribute("id");
     queryString +=
       `ret=NULL${page === "esave-button" ? "&page=0" : `&page=${page + 1}`}`;
 
