@@ -336,7 +336,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
       nextButton.firstChild.
         addEventListener("click", suggestNextPage.bind(nextButton.firstChild, 1,
-            suggestionList["prodNum"] - 1));
+            suggestionList["prodNum"] - 1), orderStageRight, orderStageRightText);
     }
   });
 }
@@ -417,7 +417,8 @@ function listAdder(list, orderData, promo_id){
   }
 }
 
-function suggestNextPage(currentPage, prodNum){
+function suggestNextPage(currentPage, prodNum,
+                          orderStageRight, orderStageRightText){
   let searchItems = document.querySelectorAll(".searchItem");
   let userInput = searchItems[prodNum].textContent;
   let queryString = `/search/${currentPage}?p=${userInput}`;
@@ -462,7 +463,8 @@ function suggestNextPage(currentPage, prodNum){
         nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
         nextButton.firstChild.
           addEventListener("click", suggestNextPage.
-            bind(nextButton.firstChild, currentPage + 1, prodNum));
+            bind(nextButton.firstChild, currentPage + 1, prodNum,
+                  orderStageRight, orderStageRightText));
       }
     }
     else{
