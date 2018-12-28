@@ -79,7 +79,6 @@ module.exports = app => {
 															" WHERE product.name LIKE '%" +
 															req.query[key] + "%' OR retailer_product.description LIKE '%" +
 															req.query[key] + `%' LIMIT 11`;
-								console.log(queryString, Number(req.query["page"]));//*******************************************
 								mysql.pool.query(queryString, (err, suggested, fields) => {
 									if(err){
 					          res.write(JSON.stringify(err));
@@ -121,8 +120,8 @@ module.exports = app => {
 		let queryString = "SELECT product.name FROM product JOIN " +
 											"retailer_product ON product.id = retailer_product.product " +
 											" WHERE product.name LIKE '%" +
-											req.query[key] + "%' OR retailer_product.description LIKE '%" +
-											req.query[key] + `%' LIMIT ${req.params.page} 10`;
+											req.query["p"] + "%' OR retailer_product.description LIKE '%" +
+											req.query["p"] + `%' LIMIT ${req.params.page} 10`;
 		mysql.pool.query(queryString, (err, suggested, fields) => {
 			if(err){
 				res.write(JSON.stringify(err));
