@@ -319,9 +319,6 @@ function processUnmatched(orderStageRight, orderStageRightText,
         suggestionName.classList = "suggested-products";
         suggestionName.textContent = suggestion["name"] + "?";
         suggestionName.style.fontSize = "1.25rem";
-        if(i === suggestionList.suggested.length - 1){
-          suggestionName.style.paddingBottom = "20px";
-        }
         suggestionName.addEventListener("click", e => {
           searchItems[suggestionList["prodNum"] - 1].textContent =
             e.target.textContent.slice(0, -1);
@@ -448,9 +445,6 @@ function suggestNextPage(currentPage, prodNum){
           suggestionName.classList = "suggested-products";
           suggestionName.textContent = suggestion["name"] + "?";
           suggestionName.style.fontSize = "1.25rem";
-          if(results.length === 11 && i === 9 || i === results.length - 1){
-            suggestionName.style.paddingBottom = "20px";
-          }
           suggestionName.addEventListener("click", e => {
             searchItems[prodNum].textContent = e.target.textContent.slice(0, -1);
             searchItems[prodNum].style.color = "black";
