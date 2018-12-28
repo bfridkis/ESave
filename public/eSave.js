@@ -88,7 +88,7 @@ function eSaveWrapper(timeout){
        //Wait while presenting loading icon for a minimum of 1.5 seconds, to simulate loading process.
        //See processESave for remaining logic for processing ESave search request.
        //(This delay is artifical and can be removed in production by setting timeout to 0.)
-       processESave(timeout, req, qts, page);
+       processESave(timeout, req, qts);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
@@ -109,7 +109,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function processESave(time_ms, req, qts, page) {
+async function processESave(time_ms, req, qts) {
   //Simulate loading time
   await sleep(time_ms);
 
@@ -140,7 +140,7 @@ async function processESave(time_ms, req, qts, page) {
 
   if(!(unmatched.length === 0)){
      processUnmatched(orderStageRight, orderStageRightText,
-                      unmatched, searchItems, page);
+                      unmatched, searchItems);
    }
    else{
      //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
@@ -290,7 +290,7 @@ async function processESave(time_ms, req, qts, page) {
 }
 
 function processUnmatched(orderStageRight, orderStageRightText,
-                          unmatched, searchItems, page){
+                          unmatched, searchItems){
   orderStageRightText.innerHTML = "";
   //Create and format a table for the right stage. This will hold product suggestions.
   //Append the table to the right stage.
