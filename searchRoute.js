@@ -78,7 +78,7 @@ module.exports = app => {
 															"retailer_product ON product.id = retailer_product.product " +
 															" WHERE product.name LIKE '%" +
 															req.query[key] + "%' OR retailer_product.description LIKE '%" +
-															req.query[key] + `%' LIMIT ${Number(req.query["page"]) * 10}, 11`;
+															req.query[key] + `%' LIMIT 10`;
 								console.log(queryString, Number(req.query["page"]));//*******************************************
 								mysql.pool.query(queryString, (err, suggested, fields) => {
 									if(err){
@@ -108,10 +108,29 @@ module.exports = app => {
 		//only after all queried products are returned
 		function complete(){
 			callbackCount++;
-			if(callbackCount >= ((Object.keys(req.query).length - 2) / 2)){
+			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
 				//console.log(eSaveResults);
 				res.send(JSON.stringify(eSaveResults));
 			}
+		}
+	});
+
+	//Route for a suggested products 'next page' request
+	router.get('/:page', isLoggedIn, (req, res, next) => {
+		let mysql = req.app.get('mysql');
+		let queryString = "SELECT product.name FROM product JOIN " +
+											"retailer_product ON product.id = retailer_product.product " +
+											" WHERE product.name LIKE '%" +
+											req.query[key] + "%' OR retailer_product.description LIKE '%" +
+											req.query[key] + `%' LIMIT 10`;
+		mysql.pool.query(queryString, (err, suggested, fields) => {
+			if(err){
+				res.write(JSON.stringify(err));
+				res.end();
+			}
+			else{
+				console.log(suggested);//*****************************
+				res.send(JSON.stringify(suggested));
 		}
 	});
 

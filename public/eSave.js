@@ -72,9 +72,7 @@ function eSaveWrapper(timeout){
     queryString += "p" + (i + 1) + "=" + item.textContent + "&"
                   + "q" + (i + 1) + "=" + qts[i].textContent + "&";
     });
-  let page = this.getAttribute("id");
-  queryString +=
-    `ret=NULL${page === "esave-button" ? "&page=0" : `&page=${Number(page) + 1}`}`;
+  queryString += "ret=NULL";
 
   //If product stage (stage-left) is not empty...
   if(queryString.includes("q")){
@@ -333,13 +331,12 @@ function processUnmatched(orderStageRight, orderStageRightText,
       }
     });
     if(suggestionList.suggested.length > 10){
-      let pageButtonsRow = containerDiv.appendChild(document.createElement("tr"));
-      let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
+      let nextButtonRow = containerDiv.appendChild(document.createElement("tr"));
+      let nextButton = nextButtonRow.appendChild(document.createElement("td"));
       nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
-      page === "esave-button" ? page = "0" : page = Number(page) + 1;
-      console.log(page);//***********************************************
-      nextButton.firstChild.setAttribute("id", String(page));
-      nextButton.firstChild.addEventListener("click", eSaveWrapper.bind(nextButton.firstChild, 500));
+      nextButton.firstChild.
+        addEventListener("click", suggestNextPage.bind(nextButton.firstChild, 0,
+            suggestionList["prodNum"] - 1));
     }
   });
 }
@@ -418,6 +415,60 @@ function listAdder(list, orderData, promo_id){
     });
     req.send(JSON.stringify(data));
   }
+}
+
+function suggestNextPage(currentPage, prodNum){
+  let searchItems = document.querySelectorAll(".searchItem");
+  let userInput = searchItems[prodNum].textContent;
+  let queryString = `/search/${currentPage}?p=${userInput}`;
+
+  //Setup new XMLHttpRequest request
+  var req = new XMLHttpRequest();
+  //Open GET request, using queryString
+  req.open("GET", queryString, true);
+
+  //Event listener for completed GET request
+  req.addEventListener("load", () => {
+    if(req.status >= 200 && req.status < 400){
+      let thisSuggestionList =
+        document.querySelectorAll(".suggested-products-div")[prodNum];
+      thisSuggestionList.innerHTML = "";
+      let headerRow = thisSuggestionList.appendChild(document.createElement("tr"));
+      let headerRowContent = headerRow.appendChild(document.createElement("th"));
+      headerRowContent.innnerText = `By '${userInput}', Did You Mean...`;
+
+      let results = JSON.parse(req.responseText);
+      results.forEach( suggestion => {
+        if(i < 10){
+          let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
+          let suggestionName = suggestionRow.appendChild(document.createElement("td"));
+          suggestionName.classList = "suggested-products";
+          suggestionName.textContent = suggestion["name"] + "?";
+          suggestionName.style.fontSize = "1.25rem";
+          if(i === suggestionList.suggested.length - 1){
+            suggestionName.style.paddingBottom = "20px";
+          }
+          suggestionName.addEventListener("click", e => {
+            searchItems[prodNum].textContent = e.target.textContent;
+            searchItems[prodNum].style.color = "black";
+            containerDiv.classList = "suggested-products-div-hidden";
+            removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
+          })
+        }
+      });
+      if(suggestionList.suggested.length > 10){
+        let pageButtonsRow = containerDiv.appendChild(document.createElement("tr"));
+        let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
+        nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
+        nextButton.firstChild.
+          addEventListener("click", suggestNextPage.bind(nextButton.firstChild, currentPage + 1, prodNum));
+      }
+    }
+    else{
+      alert("Error: " + req.status + " " + req.statusText);
+    }
+  });
+  req.send(null);
 }
 
 // References
