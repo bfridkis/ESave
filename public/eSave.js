@@ -125,8 +125,6 @@ async function processESave(time_ms, req, qts) {
   //Else render results.
   let orderStageRightText = document.querySelector("#order-stage-right-text");
   let orderStageRight = document.querySelector("#stage-wrapper-right");
-  //oSRIH stands for "order stage right initial height"
-  let oSRIH = orderStageRight.offsetHeight;
 
   //Check if all search parameters matched products. If not, convert
   //unmatched products to red text on stage left and present suggested
@@ -142,7 +140,7 @@ async function processESave(time_ms, req, qts) {
 
   if(!(unmatched.length === 0)){
      processUnmatched(orderStageRight, orderStageRightText,
-                      unmatched, searchItems, oSRIH);
+                      unmatched, searchItems);
    }
    else{
      //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
@@ -292,7 +290,7 @@ async function processESave(time_ms, req, qts) {
 }
 
 function processUnmatched(orderStageRight, orderStageRightText,
-                          unmatched, searchItems, oSRIH){
+                          unmatched, searchItems){
   orderStageRightText.innerHTML = "";
   //Create and format a table for the right stage. This will hold product suggestions.
   //Append the table to the right stage.
@@ -321,13 +319,12 @@ function processUnmatched(orderStageRight, orderStageRightText,
         suggestionName.classList = "suggested-products";
         suggestionName.textContent = suggestion["name"] + "?";
         suggestionName.style.fontSize = "1.25rem";
-        console.log(oSRIH);//***********************************************
         suggestionName.addEventListener("click", e => {
           searchItems[suggestionList["prodNum"] - 1].textContent =
             e.target.textContent.slice(0, -1);
           searchItems[suggestionList["prodNum"] - 1].style.color = "black";
           containerDiv.classList = "suggested-products-div-hidden";
-          removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText, oSRIH);
+          removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
         })
       }
     });
@@ -342,13 +339,12 @@ function processUnmatched(orderStageRight, orderStageRightText,
   });
 }
 
-async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText, oSRIH){
+async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText){
   await sleep(500);
   containerDiv.style.display = "none";
   if(!document.querySelectorAll(".suggested-products-div").length){
     orderStageRight.removeChild(orderStageRight.lastChild);
-    console.log(oSRIH);//*******************************************
-    orderStageRight.style.height = `${oSRIH}px`;
+    orderStageRight.style.height = "300px";
     orderStageRightText.innerHTML =
       'Products updated. Click "<i class="fas fa-check-square"></i>" to ESave staged order!';
   }
