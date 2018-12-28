@@ -74,7 +74,7 @@ function eSaveWrapper(timeout){
     });
   let page = this.getAttribute("id");
   queryString +=
-    `ret=NULL${page === "esave-button" ? "&page=0" : `&page=${page + 1}`}`;
+    `ret=NULL${page === "esave-button" ? "&page=0" : `&page=${Number(page) + 1}`}`;
 
   //If product stage (stage-left) is not empty...
   if(queryString.includes("q")){
