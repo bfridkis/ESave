@@ -451,8 +451,8 @@ function suggestNextPage(currentPage, prodNum){
           suggestionName.addEventListener("click", e => {
             searchItems[prodNum].textContent = e.target.textContent;
             searchItems[prodNum].style.color = "black";
-            containerDiv.classList = "suggested-products-div-hidden";
-            removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
+            thisSuggestionList.classList = "suggested-products-div-hidden";
+            removeSuggestedDiv(thisSuggestionList, orderStageRight, orderStageRightText);
           })
         }
       });
