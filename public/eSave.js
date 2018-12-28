@@ -323,7 +323,8 @@ function processUnmatched(orderStageRight, orderStageRightText,
           suggestionName.style.paddingBottom = "20px";
         }
         suggestionName.addEventListener("click", e => {
-          searchItems[suggestionList["prodNum"] - 1].textContent = e.target.textContent;
+          searchItems[suggestionList["prodNum"] - 1].textContent =
+            e.target.textContent.slice(0, -1);
           searchItems[suggestionList["prodNum"] - 1].style.color = "black";
           containerDiv.classList = "suggested-products-div-hidden";
           removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
@@ -451,7 +452,7 @@ function suggestNextPage(currentPage, prodNum){
             suggestionName.style.paddingBottom = "20px";
           }
           suggestionName.addEventListener("click", e => {
-            searchItems[prodNum].textContent = e.target.textContent;
+            searchItems[prodNum].textContent = e.target.textContent.slice(0, -1);
             searchItems[prodNum].style.color = "black";
             thisSuggestionList.classList = "suggested-products-div-hidden";
             removeSuggestedDiv(thisSuggestionList, orderStageRight, orderStageRightText);
@@ -498,6 +499,7 @@ function suggestNextPage(currentPage, prodNum){
 // * https://www.w3schools.com/sql/sql_alter.asp
 // * https://stackoverflow.com/questions/267658/having-both-a-created-and-last-updated-timestamp-columns-in-mysql-4-0
 // * https://www.w3schools.com/csSref/pr_class_cursor.asp
+// * https://stackoverflow.com/questions/952924/javascript-chop-slice-trim-off-last-character-in-string
 
 // ** Unused... **
 
