@@ -174,7 +174,7 @@ module.exports = (app) => {
                                                       insertQuery += `("${discount}", "${retailer_products[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
                                                                      `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
                                                                      `${qt_required !== null ? `"${qt_required}"` : null}, ` +
-                                                                     `"${min_spend}"), `;
+                                                                     `${qt_required !== null ? null : `"${min_spend}"`), `;
                                                     }
                                                     //Remove trailing ", " from insert query, and run query.
                                                     insertQuery = insertQuery.substring(0, insertQuery.length - 2);
