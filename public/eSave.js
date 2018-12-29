@@ -305,7 +305,8 @@ function processUnmatched(orderStageRight, orderStageRightText,
   unmatched.forEach( suggestionList => {
     //Add product name header and product name to result table.
     let containerDiv = stageTable.appendChild(document.createElement("div"));
-    containerDiv.classList = `suggested-products-div prod-${suggestionList["prodNum"]}`;
+    containerDiv.classList =
+      `suggested-products-div prod-${Number(suggestionList["prodNum"]) - 1}`;
     let prodNameHeaderRow = containerDiv.appendChild(document.createElement("tr"));
     let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
     prodNameHeader.textContent = `By '${searchItems[suggestionList["prodNum"] - 1].textContent}'` +
