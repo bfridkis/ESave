@@ -459,7 +459,7 @@ function suggestNextPage(currentPage, prodNum){
           })
         }
       });
-      var pageButtonsRow = null, buttonCell = null, prevButton = null, nextButton = null;
+      let pageButtonsRow = null, buttonCell = null, prevButton = null, nextButton = null;
       if(currentPage !== 0){
         pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
