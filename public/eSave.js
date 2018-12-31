@@ -469,14 +469,18 @@ function suggestNextPage(currentPage, prodNum){
             bind(buttonCell.firstChild, currentPage - 1, prodNum));
       }
       if(results.length > 10){
+        let prevButtonPresent = True;
         if(typeof(pageButtonsRow) === "undefined"){
-          var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-        }
-        if(typeof(buttonCell === "undefined")){
+          let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
           let buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
+          prevButtonPresent = False;
         }
         buttonCell.innerHTML += '<i class="fas fa-arrow-right next"></i>';
         buttonCell.lastChild.style.marginBottom = "20px";
+        if(prevButtonPresent){
+            buttonCell.firstChild.style.marginRight = "10px";
+            buttonCell.lastChild.style.marginRight = "10px";
+        }
         buttonCell.lastChild.
           addEventListener("click", suggestNextPage.
             bind(buttonCell.lastChild, currentPage + 1, prodNum));
