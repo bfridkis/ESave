@@ -119,7 +119,7 @@ module.exports = app => {
 							resultsTotalsByRetailer[result.retailer]["discount"] = result.TOTAL_DISCOUNT
 							resultsTotalsByRetailer[result.retailer]["initial_price"] = result.INITIAL_PRICE;
 							resultsTotalsByRetailer[result.retailer]["prices"] =
-								{ `${productResults["prodNum"]}` : result["PRICE_PER_UNIT"] };
+								{ String(productResults["prodNum"]) : result["PRICE_PER_UNIT"] };
 							resultsTotalsByRetailer[result.retailer]["num_prods"] = 1;
 						}
 					});
