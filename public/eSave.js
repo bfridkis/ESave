@@ -469,6 +469,7 @@ function suggestNextPage(currentPage, prodNum){
         buttonCell.firstChild.
           addEventListener("click", suggestNextPage.
             bind(buttonCell.firstChild, currentPage - 1, prodNum));
+        console.log("made it here!");//*********************************
       }
       if(results.length > 10){
         let prevButtonPresent;
