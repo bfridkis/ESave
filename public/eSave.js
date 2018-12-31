@@ -463,12 +463,12 @@ function suggestNextPage(currentPage, prodNum){
       if(currentPage !== 0){
         pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
-        buttonCell.innerHTML = '<i class="fas fa-arrow-left next"></i>';
+        buttonCell.innerHTML = `<i class="fas fa-arrow-left ip-${prodNum} next"></i>`;
         buttonCell.firstChild.style.marginBottom = "20px";
         console.log(currentPage);//*********************************
-        buttonCell.firstChild.
-          addEventListener("click", suggestNextPage.
-            bind(buttonCell.firstChild, currentPage - 1, prodNum));
+        let prevButton = document.querySelector(`.ip-${prodNum}`);
+        prevButton.addEventListener("click", suggestNextPage.
+            bind(prevButton, currentPage - 1, prodNum));
         console.log("made it here!");//*********************************
       }
       if(results.length > 10){
@@ -478,15 +478,15 @@ function suggestNextPage(currentPage, prodNum){
         if(buttonCell === null){
           buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         }
-        buttonCell.innerHTML += '<i class="fas fa-arrow-right next"></i>';
+        buttonCell.innerHTML += `<i class="fas fa-arrow-right in-${prodNum} next"></i>`;
         buttonCell.lastChild.style.marginBottom = "20px";
         if(prevButtonPresent){
             buttonCell.firstChild.style.marginRight = "10px";
             buttonCell.lastChild.style.marginRight = "10px";
         }
-        buttonCell.lastChild.
-          addEventListener("click", suggestNextPage.
-            bind(buttonCell.lastChild, currentPage + 1, prodNum));
+        let nextButton = document.querySelector(`.ip-${prodNum}`);
+        nextButton.addEventListener("click", suggestNextPage.
+          bind(nextButton, currentPage + 1, prodNum));
       }
 
       if(typeof(buttonCell) === "undefined"){
