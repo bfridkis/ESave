@@ -469,7 +469,7 @@ function suggestNextPage(currentPage, prodNum){
             bind(nextButton.firstChild, currentPage + 1, prodNum));
       }
       if(currentPage !== 0){
-        if(typeof(pageButtonsRow === "undefined")){
+        if(typeof(pageButtonsRow) === "undefined"){
           let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         }
         let prevButton = pageButtonsRow.appendChild(document.createElement("td"));
