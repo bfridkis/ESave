@@ -459,9 +459,10 @@ function suggestNextPage(currentPage, prodNum){
           })
         }
       });
+      let pageButtonsRow, buttonCell;
       if(currentPage !== 0){
-        var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-        var buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
+        pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+        buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         buttonCell.innerHTML = '<i class="fas fa-arrow-left next"></i>';
         buttonCell.firstChild.style.marginBottom = "20px";
         console.log(currentPage);//*********************************
@@ -470,12 +471,10 @@ function suggestNextPage(currentPage, prodNum){
             bind(buttonCell.firstChild, currentPage - 1, prodNum));
       }
       if(results.length > 10){
-        let prevButtonPresent = true;
-        if(typeof(pageButtonsRow) === "undefined"){
-          let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-          let buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
-          prevButtonPresent = false;
-        }
+        let prevButtonPresent;
+        pageButtonsRow === null ? prevButtonPresent = false : prevButtonPresent = true;
+        pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+        buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         buttonCell.innerHTML += '<i class="fas fa-arrow-right next"></i>';
         buttonCell.lastChild.style.marginBottom = "20px";
         if(prevButtonPresent){
