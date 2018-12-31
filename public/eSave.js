@@ -467,6 +467,8 @@ function suggestNextPage(currentPage, prodNum){
         buttonCell.firstChild.style.marginBottom = "20px";
         console.log(currentPage);//*********************************
         let prevButton = document.querySelector(`.ip-${prodNum}`);
+        prevButton.addEventListener("click", suggestNextPage.
+          bind(prevButton, currentPage - 1, prodNum));
         console.log(prevButton);//*********************************
       }
       if(results.length > 10){
@@ -483,12 +485,8 @@ function suggestNextPage(currentPage, prodNum){
             buttonCell.lastChild.style.marginRight = "10px";
         }
         let nextButton = document.querySelector(`.in-${prodNum}`);
-        nextButton.addEventListener("click", suggestNextPage.
-          bind(nextButton, currentPage + 1, prodNum));
-      }
-      if(typeof(prevButton) !== "undefined"){
-        prevButton.addEventListener("click", suggestNextPage.
-          bind(prevButton, currentPage - 1, prodNum));
+        //nextButton.addEventListener("click", suggestNextPage.
+        //  bind(nextButton, currentPage + 1, prodNum));
       }
       if(typeof(buttonCell) === "undefined"){
         thisSuggestionList.lastChild.firstChild.style.paddingBottom = "20px";
