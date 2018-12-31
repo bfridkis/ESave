@@ -484,7 +484,7 @@ function suggestNextPage(currentPage, prodNum){
             buttonCell.firstChild.style.marginRight = "10px";
             buttonCell.lastChild.style.marginRight = "10px";
         }
-        let nextButton = document.querySelector(`.ip-${prodNum}`);
+        let nextButton = document.querySelector(`.in-${prodNum}`);
         nextButton.addEventListener("click", suggestNextPage.
           bind(nextButton, currentPage + 1, prodNum));
       }
