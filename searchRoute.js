@@ -57,17 +57,10 @@ module.exports = app => {
 		        else{
 							//console.log(rows);
 
-							//Determine result row with minimum price
-							let minPrice = Number.MAX_SAFE_INTEGER, minRowNumber = 0;
-							rows.forEach( (row, i) => {
-								if(Number(row["FINAL_PRICE"]) < minPrice){
-									minPrice = Number(row["FINAL_PRICE"]);
-									minRowNumber = i;
-								}
-							});
-							//Save row with minimum price
-							if(rows[minRowNumber]){
-		          	eSaveResults.push(rows[minRowNumber]);
+							//Save results for each product, if any are returned
+							if(rows[0]){
+		          	eSaveResults.push({"results" : rows,
+																	 "prodNum" : Number(key.substring(1)));
 								complete();
 							}
 
@@ -109,13 +102,48 @@ module.exports = app => {
 			callbackCount++;
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
 				//console.log(eSaveResults);
-				eSaveResults.sort(compare);
-				res.send(JSON.stringify(eSaveResults));
-			}
+				let resultsTotalsByRetailer = {};
+				eSaveResults.forEach( (productResults, i) => {
+					productResults.results.forEach( (result, j) => {
+						if(resultsTotalsByRetailer.hasOwnProperty(result.retailer)){
+							resultsTotalsByRetailer[result.retailer]["final_price"] += result.FINAL_PRICE;
+							resultsTotalsByRetailer[result.retailer]["discount"] += result.TOTAL_DISCOUNT;
+							resultsTotalsByRetailer[result.retailer]["initial_price"] += result.INITIAL_PRICE;
+							resultsTotalsByRetailer[result.retailer]["prices"][productResults.prodNum] = result.PRICE_PER_UNIT;
+							resultsTotalsByRetailer[result.retailer]["num_prods"]++;
+						}
+						else{
+							resultsTotalsByRetailer[result.retailer]["final_price"] = result.FINAL_PRICE;
+							resultsTotalsByRetailer[result.retailer]["shipping_price"] = result.SHIPPING_PRICE;
+							resultsTotalsByRetailer[result.retailer]["discount"] = result.TOTAL_DISCOUNT
+							resultsTotalsByRetailer[result.retailer]["initial_price"] = result.INITIAL_PRICE;
+							resultsTotalsByRetailer[result.retailer]["prices"] = { productResults.prodNum : result.PRICE_PER_UNIT};
+							resultsTotalsByRetailer[result.retailer]["num_prods"] = 1;
+						}
+					});
+				});
 
-			//Compare function used for sorting final array of result objects.
+				for(retailer in resultsTotalsByRetailer){
+					if(resultsTotalsByRetailer[retailer]["num_prods"] !==
+							(Object.keys(req.query).length - 1) / 2){
+								delete resultsTotalsByRetailer[retailer];
+					}
+				}
+
+				if(resultsTotalsByRetailer.length){
+					console.log(resultsTotalsByRetailer);//********************************
+					res.send(JSON.stringify(eSaveResults));
+				}
+				else{
+					eSaveResults.sort(compare2);
+					res.send(JSON.stringify(eSaveResults));
+			}
+		}
+
+			//Compare function used for sorting final array of result objects when
+			//not all products can be matched.
 			//See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-			function compare(a, b){
+			function compare2(a, b){
 				return a.prodNum - b.prodNum;
 			}
 		}
@@ -165,3 +193,4 @@ function isLoggedIn(req, res, next) {
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 // * https://blog.udemy.com/sql-limit/
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+// * https://stackoverflow.com/questions/3455405/how-do-i-remove-a-key-from-a-javascript-object
