@@ -466,7 +466,7 @@ function suggestNextPage(currentPage, prodNum){
         buttonCell.innerHTML = '<i class="fas fa-arrow-left next"></i>';
         buttonCell.firstChild.style.marginBottom = "20px";
         console.log(currentPage);//*********************************
-        document.querySelector(".fa-arrow-left").
+        buttonCell.firstChild.
           addEventListener("click", suggestNextPage.
             bind(buttonCell.firstChild, currentPage - 1, prodNum));
       }
