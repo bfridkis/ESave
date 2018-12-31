@@ -117,7 +117,7 @@ module.exports = app => {
 	//Route for a suggested products 'next page' request
 	router.get('/:page', isLoggedIn, (req, res, next) => {
 		let mysql = req.app.get('mysql');
-		let queryString = "SELECT distinct product.name FROM product JOIN " +
+		let queryString = "SELECT DISTINCT product.name FROM product JOIN " +
 											"retailer_product ON product.id = retailer_product.product " +
 											" WHERE product.name LIKE '%" +
 											req.query["p"] + "%' OR retailer_product.description LIKE '%" +
