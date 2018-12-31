@@ -469,11 +469,11 @@ function suggestNextPage(currentPage, prodNum){
             bind(buttonCell.firstChild, currentPage - 1, prodNum));
       }
       if(results.length > 10){
-        let prevButtonPresent = True;
+        let prevButtonPresent = true;
         if(typeof(pageButtonsRow) === "undefined"){
           let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
           let buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
-          prevButtonPresent = False;
+          prevButtonPresent = false;
         }
         buttonCell.innerHTML += '<i class="fas fa-arrow-right next"></i>';
         buttonCell.lastChild.style.marginBottom = "20px";
