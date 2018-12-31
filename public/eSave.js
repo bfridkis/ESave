@@ -471,6 +471,7 @@ function suggestNextPage(currentPage, prodNum){
       if(currentPage !== 0){
         if(typeof(pageButtonsRow) === "undefined"){
           let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+          console.log("here!");//******************************
         }
         let prevButton = pageButtonsRow.appendChild(document.createElement("td"));
         prevButton.innerHTML = '<i class="fas fa-arrow-left next"></i>';
