@@ -466,7 +466,7 @@ function suggestNextPage(currentPage, prodNum){
         buttonCell.firstChild.style.marginBottom = "20px";
         buttonCell.firstChild.
           addEventListener("click", suggestNextPage.
-            bind(prevButton.firstChild, currentPage - 1, prodNum));
+            bind(buttonCell.firstChild, currentPage - 1, prodNum));
       }
       if(results.length > 10){
         if(typeof(pageButtonsRow) === "undefined"){
@@ -479,7 +479,7 @@ function suggestNextPage(currentPage, prodNum){
         buttonCell.lastChild.style.marginBottom = "20px";
         buttonCell.lastChild.
           addEventListener("click", suggestNextPage.
-            bind(nextButton.lastChild, currentPage + 1, prodNum));
+            bind(buttonCell.lastChild, currentPage + 1, prodNum));
       }
 
       if(typeof(buttonCell) === "undefined"){
