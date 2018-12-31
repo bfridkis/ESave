@@ -465,11 +465,9 @@ function suggestNextPage(currentPage, prodNum){
         buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         buttonCell.innerHTML = `<i class="fas fa-arrow-left ip-${prodNum} next"></i>`;
         buttonCell.firstChild.style.marginBottom = "20px";
-        console.log(currentPage);//*********************************
         let prevButton = document.querySelector(`.ip-${prodNum}`);
         prevButton.addEventListener("click", suggestNextPage.
           bind(prevButton, currentPage - 1, prodNum));
-        console.log(prevButton);//*********************************
       }
       if(results.length > 10){
         let prevButtonPresent = true;

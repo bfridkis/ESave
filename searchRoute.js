@@ -85,7 +85,7 @@ module.exports = app => {
 					          res.end();
 					        }
 					        else{
-										console.log(suggested);//*****************************
+										//console.log(suggested);
 										eSaveResults.push({ "suggested" : suggested,
 																				"prodNum" : Number(key.substring(1))});
 										complete();
@@ -128,7 +128,7 @@ module.exports = app => {
 				res.end();
 			}
 			else{
-				console.log(suggested);//*****************************
+				//console.log(suggested);
 				res.send(JSON.stringify(suggested));
 		}
 	});
