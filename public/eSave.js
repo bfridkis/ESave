@@ -460,7 +460,7 @@ function suggestNextPage(currentPage, prodNum){
         }
       });
       if(results.length > 10){
-        let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+        var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
         nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
         nextButton.firstChild.style.marginBottom = "20px";
