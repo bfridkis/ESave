@@ -460,7 +460,7 @@ function suggestNextPage(currentPage, prodNum){
         }
       });
       let pageButtonsRow = null, buttonCell = null;
-      if(currentPage !== 0){
+      //if(currentPage !== 0){
         pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         buttonCell.innerHTML = `<i class="fas fa-arrow-left ip-${prodNum} next"></i>`;
@@ -471,7 +471,7 @@ function suggestNextPage(currentPage, prodNum){
           addEventListener("click", suggestNextPage.
             bind(document.querySelector(`.ip-${prodNum}`), currentPage - 1, prodNum));
         console.log(prevButton);//*********************************
-      }
+      //}
       if(results.length > 10){
         let prevButtonPresent;
         pageButtonsRow === null ? prevButtonPresent = false : prevButtonPresent = true;
