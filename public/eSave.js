@@ -460,18 +460,17 @@ function suggestNextPage(currentPage, prodNum){
         }
       });
       let pageButtonsRow = null, buttonCell = null;
-      //if(currentPage !== 0){
+      if(currentPage !== 0){
         pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         buttonCell.innerHTML = `<i class="fas fa-arrow-left ip-${prodNum} next"></i>`;
         buttonCell.firstChild.style.marginBottom = "20px";
         console.log(currentPage);//*********************************
         let prevButton = document.querySelector(`.ip-${prodNum}`);
-        document.querySelector(`.ip-${prodNum}`).
-          addEventListener("onclick", suggestNextPage.
-            bind(document.querySelector(`.ip-${prodNum}`), currentPage - 1, prodNum));
+        prevButton.addEventListener("click", suggestNextPage.
+          bind(prevButton, currentPage - 1, prodNum));
         console.log(prevButton);//*********************************
-      //}
+      }
       if(results.length > 10){
         let prevButtonPresent;
         pageButtonsRow === null ? prevButtonPresent = false : prevButtonPresent = true;
@@ -486,7 +485,7 @@ function suggestNextPage(currentPage, prodNum){
             buttonCell.lastChild.style.marginRight = "10px";
         }
         let nextButton = document.querySelector(`.in-${prodNum}`);
-        nextButton.addEventListener("onclick", suggestNextPage.
+        nextButton.addEventListener("click", suggestNextPage.
           bind(nextButton, currentPage + 1, prodNum));
       }
       if(typeof(buttonCell) === "undefined"){
