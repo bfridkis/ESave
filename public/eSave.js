@@ -459,28 +459,30 @@ function suggestNextPage(currentPage, prodNum){
           })
         }
       });
-      if(results.length > 10){
-        var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-        let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
-        nextButton.innerHTML = '<i class="fas fa-arrow-right next"></i>';
-        nextButton.firstChild.style.marginBottom = "20px";
-        nextButton.firstChild.
-          addEventListener("click", suggestNextPage.
-            bind(nextButton.firstChild, currentPage + 1, prodNum));
-      }
       if(currentPage !== 0){
-        if(typeof(pageButtonsRow) === "undefined"){
-          var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-          console.log("here!");//******************************
-        }
-        let prevButton = pageButtonsRow.appendChild(document.createElement("td"));
-        prevButton.innerHTML = '<i class="fas fa-arrow-left next"></i>';
-        prevButton.firstChild.style.marginBottom = "20px";
-        prevButton.firstChild.
+        var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+        var buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
+        buttonCell.innerHTML = '<i class="fas fa-arrow-left next"></i>';
+        buttonCell.firstChild.style.marginBottom = "20px";
+        buttonCell.firstChild.
           addEventListener("click", suggestNextPage.
             bind(prevButton.firstChild, currentPage - 1, prodNum));
       }
-      if(typeof(nextButton) === "undefined" && typeof(prevButton) === "undefined"){
+      if(results.length > 10){
+        if(typeof(pageButtonsRow) === "undefined"){
+          var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+        }
+        if(typeof(buttonCell === "undefined")){
+          let buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
+        }
+        buttonCell.innerHTML += '<i class="fas fa-arrow-right next"></i>';
+        buttonCell.lastChild.style.marginBottom = "20px";
+        buttonCell.lastChild.
+          addEventListener("click", suggestNextPage.
+            bind(nextButton.lastChild, currentPage + 1, prodNum));
+      }
+
+      if(typeof(buttonCell) === "undefined"){
         thisSuggestionList.lastChild.firstChild.style.paddingBottom = "20px";
       }
     }
