@@ -471,7 +471,7 @@ function suggestNextPage(currentPage, prodNum){
           bind(prevButton, currentPage - 1, prodNum));
         console.log(prevButton);//*********************************
       }
-      if(results.length > 10){
+      /*if(results.length > 10){
         let prevButtonPresent = true;
         if(pageButtonsRow === null){
           pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
@@ -489,7 +489,7 @@ function suggestNextPage(currentPage, prodNum){
         nextButton = document.querySelector(`.in-${prodNum}`);
         nextButton.addEventListener("click", suggestNextPage.
           bind(nextButton, currentPage + 1, prodNum));
-      }
+      }*/
       if(typeof(buttonCell) === "undefined"){
         thisSuggestionList.lastChild.firstChild.style.paddingBottom = "20px";
       }
