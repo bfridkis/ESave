@@ -468,7 +468,7 @@ function suggestNextPage(currentPage, prodNum){
         console.log(currentPage);//*********************************
         let prevButton = document.querySelector(`.ip-${prodNum}`);
         document.querySelector(`.ip-${prodNum}`).
-          addEventListener("click", suggestNextPage.
+          addEventListener("onclick", suggestNextPage.
             bind(document.querySelector(`.ip-${prodNum}`), currentPage - 1, prodNum));
         console.log(prevButton);//*********************************
       //}
@@ -486,7 +486,7 @@ function suggestNextPage(currentPage, prodNum){
             buttonCell.lastChild.style.marginRight = "10px";
         }
         let nextButton = document.querySelector(`.in-${prodNum}`);
-        nextButton.addEventListener("click", suggestNextPage.
+        nextButton.addEventListener("onclick", suggestNextPage.
           bind(nextButton, currentPage + 1, prodNum));
       }
       if(typeof(buttonCell) === "undefined"){
