@@ -43,7 +43,7 @@ module.exports = app => {
 												"JOIN retailer ON (retailer_product.retailer = retailer.id  OR " +
 												"retailer.id = '" + req.query.ret + "' OR retailer.name = '" + req.query.ret + "') " +
 												"LEFT JOIN promotion ON promotion.retailer = retailer.id AND " +
-												"(promotion.product = product.id OR promotion.product IS NULL) AND " +
+												"(promotion.product = product.id) AND " +
 												"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' "+
 												"OR promotion.min_spend IS NULL) AND " +
 												"(promotion.qt_required <= '" + req.query[qtKey] + "' OR promotion.qt_required IS NULL) " +
