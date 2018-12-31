@@ -485,8 +485,8 @@ function suggestNextPage(currentPage, prodNum){
             buttonCell.lastChild.style.marginRight = "10px";
         }
         let nextButton = document.querySelector(`.in-${prodNum}`);
-        nextButton.addEventListener("click", suggestNextPage.
-          bind(nextButton, currentPage + 1, prodNum));
+        //nextButton.addEventListener("click", suggestNextPage.
+        //  bind(nextButton, currentPage + 1, prodNum));
       }
 
       if(typeof(buttonCell) === "undefined"){
