@@ -460,7 +460,7 @@ function suggestNextPage(currentPage, prodNum){
         }
       });
       let pageButtonsRow, buttonCell;
-      if(currentPage !== 0){
+      //if(currentPage !== 0){
         pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         buttonCell.innerHTML = `<i class="fas fa-arrow-left ip-${prodNum} next"></i>`;
@@ -470,7 +470,7 @@ function suggestNextPage(currentPage, prodNum){
         prevButton.addEventListener("click", suggestNextPage.
             bind(prevButton, currentPage - 1, prodNum));
         console.log(prevButton);//*********************************
-      }
+      //}
       if(results.length > 10){
         let prevButtonPresent;
         pageButtonsRow === null ? prevButtonPresent = false : prevButtonPresent = true;
@@ -485,8 +485,8 @@ function suggestNextPage(currentPage, prodNum){
             buttonCell.lastChild.style.marginRight = "10px";
         }
         let nextButton = document.querySelector(`.in-${prodNum}`);
-        //nextButton.addEventListener("click", suggestNextPage.
-        //  bind(nextButton, currentPage + 1, prodNum));
+        nextButton.addEventListener("click", suggestNextPage.
+          bind(nextButton, currentPage + 1, prodNum));
       }
 
       if(typeof(buttonCell) === "undefined"){
