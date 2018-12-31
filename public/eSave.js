@@ -467,15 +467,15 @@ function suggestNextPage(currentPage, prodNum){
         nextButton.firstChild.
           addEventListener("click", suggestNextPage.
             bind(nextButton.firstChild, currentPage + 1, prodNum));
-        if(currentPage !== 0){
-          let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-          let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
-          nextButton.innerHTML = '<i class="fas fa-arrow-left next"></i>';
-          nextButton.firstChild.style.marginBottom = "20px";
-          nextButton.firstChild.
-            addEventListener("click", suggestNextPage.
-              bind(nextButton.firstChild, currentPage - 1, prodNum));
-        }
+      }
+      if(currentPage !== 0){
+        let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+        let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
+        nextButton.innerHTML = '<i class="fas fa-arrow-left next"></i>';
+        nextButton.firstChild.style.marginBottom = "20px";
+        nextButton.firstChild.
+          addEventListener("click", suggestNextPage.
+            bind(nextButton.firstChild, currentPage - 1, prodNum));
       }
       else{
         thisSuggestionList.lastChild.firstChild.style.paddingBottom = "20px";
