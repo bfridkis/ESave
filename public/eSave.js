@@ -469,15 +469,17 @@ function suggestNextPage(currentPage, prodNum){
             bind(nextButton.firstChild, currentPage + 1, prodNum));
       }
       if(currentPage !== 0){
-        let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-        let nextButton = pageButtonsRow.appendChild(document.createElement("td"));
-        nextButton.innerHTML = '<i class="fas fa-arrow-left next"></i>';
-        nextButton.firstChild.style.marginBottom = "20px";
-        nextButton.firstChild.
+        if(!pageButtonsRow){
+          let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+        }
+        let prevButton = pageButtonsRow.appendChild(document.createElement("td"));
+        prevButton.innerHTML = '<i class="fas fa-arrow-left next"></i>';
+        prevButton.firstChild.style.marginBottom = "20px";
+        prevButton.firstChild.
           addEventListener("click", suggestNextPage.
-            bind(nextButton.firstChild, currentPage - 1, prodNum));
+            bind(prevButton.firstChild, currentPage - 1, prodNum));
       }
-      else{
+      if(!nextButton && !prevButton){
         thisSuggestionList.lastChild.firstChild.style.paddingBottom = "20px";
       }
     }
