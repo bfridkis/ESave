@@ -60,7 +60,8 @@ module.exports = app => {
 							//Save results for each product, if any are returned
 							if(rows[0]){
 		          	eSaveResults.push({"results" : rows,
-																	 "prodNum" : Number(key.substring(1)));
+																	 "prodNum" : Number(key.substring(1))
+																 });
 								complete();
 							}
 
