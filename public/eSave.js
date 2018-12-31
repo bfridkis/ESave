@@ -470,7 +470,7 @@ function suggestNextPage(currentPage, prodNum){
       }
       if(currentPage !== 0){
         if(typeof(pageButtonsRow) === "undefined"){
-          let pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
+          var pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
           console.log("here!");//******************************
         }
         let prevButton = pageButtonsRow.appendChild(document.createElement("td"));
