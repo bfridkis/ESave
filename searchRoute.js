@@ -109,7 +109,14 @@ module.exports = app => {
 			callbackCount++;
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
 				//console.log(eSaveResults);
+				eSaveResults.sort(compare);
 				res.send(JSON.stringify(eSaveResults));
+			}
+
+			//Compare function used for sorting final array of result objects.
+			//See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+			function compare(a, b){
+				return a.prodNum - b.prodNum;
 			}
 		}
 	});
@@ -157,3 +164,4 @@ function isLoggedIn(req, res, next) {
 // * https://www.w3resource.com/mysql/string-functions/mysql-format-function.php
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 // * https://blog.udemy.com/sql-limit/
+// * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
