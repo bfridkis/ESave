@@ -459,14 +459,14 @@ function suggestNextPage(currentPage, prodNum){
           })
         }
       });
-      let pageButtonsRow = null, buttonCell = null, prevButton = null, nextButton = null;
+      let pageButtonsRow = null, buttonCell = null;
       if(currentPage !== 0){
         pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
         buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         buttonCell.innerHTML = `<i class="fas fa-arrow-left ip-${prodNum} next"></i>`;
         buttonCell.firstChild.style.marginBottom = "20px";
         console.log(currentPage);//*********************************
-        prevButton = document.querySelector(`.ip-${prodNum}`);
+        let prevButton = document.querySelector(`.ip-${prodNum}`);
         prevButton.addEventListener("click", suggestNextPage.
           bind(prevButton, currentPage - 1, prodNum));
         console.log(prevButton);//*********************************
@@ -480,15 +480,17 @@ function suggestNextPage(currentPage, prodNum){
         if(buttonCell === null){
           buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
         }
-        buttonCell.innerHTML += `<i class="fas fa-arrow-right in-${prodNum} next"></i>`;
+        buttonCell.appendChild(document.createElement("i"));
+        buttonCell.lastChild.classList.add("fas", "fa-arrow-right",
+          `in-${prodNum}`, "next");
         buttonCell.lastChild.style.marginBottom = "20px";
         if(prevButtonPresent){
             buttonCell.firstChild.style.marginRight = "10px";
             buttonCell.lastChild.style.marginRight = "10px";
         }
-        nextButton = document.querySelector(`.in-${prodNum}`);
-        //nextButton.addEventListener("click", suggestNextPage.
-        //  bind(nextButton, currentPage + 1, prodNum));
+        let nextButton = document.querySelector(`.in-${prodNum}`);
+        nextButton.addEventListener("click", suggestNextPage.
+          bind(nextButton, currentPage + 1, prodNum));
       }
       if(typeof(buttonCell) === "undefined"){
         thisSuggestionList.lastChild.firstChild.style.paddingBottom = "20px";
