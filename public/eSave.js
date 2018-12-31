@@ -474,7 +474,9 @@ function suggestNextPage(currentPage, prodNum){
         let prevButtonPresent;
         pageButtonsRow === null ? prevButtonPresent = false : prevButtonPresent = true;
         pageButtonsRow = thisSuggestionList.appendChild(document.createElement("tr"));
-        buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
+        if(buttonCell === null){
+          buttonCell = pageButtonsRow.appendChild(document.createElement("td"));
+        }
         buttonCell.innerHTML += '<i class="fas fa-arrow-right next"></i>';
         buttonCell.lastChild.style.marginBottom = "20px";
         if(prevButtonPresent){
