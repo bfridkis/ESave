@@ -469,7 +469,7 @@ function suggestNextPage(currentPage, prodNum){
         let prevButton = document.querySelector(`.ip-${prodNum}`);
         prevButton.addEventListener("click", suggestNextPage.
             bind(prevButton, currentPage - 1, prodNum));
-        console.log("made it here!");//*********************************
+        console.log(prevButton);//*********************************
       }
       if(results.length > 10){
         let prevButtonPresent;
