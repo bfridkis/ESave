@@ -117,22 +117,22 @@ module.exports = app => {
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( (result, j) => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
-								resultsTotalsByRetailer[result.RET_NAME]["final_price"] += result.FINAL_PRICE;
-								resultsTotalsByRetailer[result.RET_NAME]["discount"] += result.TOTAL_DISCOUNT;
-								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] += result.INITIAL_PRICE;
+								resultsTotalsByRetailer[result.RET_NAME]["final_price"] += Number(result.FINAL_PRICE);
+								resultsTotalsByRetailer[result.RET_NAME]["discount"] += Number(result.TOTAL_DISCOUNT);
+								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] += Number(result.INITIAL_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
-									= result.PRICE_PER_UNIT;
+									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
 							}
 							else{
 								resultsTotalsByRetailer[result.RET_NAME] = {};
-								resultsTotalsByRetailer[result.RET_NAME]["final_price"] = result.FINAL_PRICE;
-								resultsTotalsByRetailer[result.RET_NAME]["shipping_price"] = result.SHIPPING_PRICE;
-								resultsTotalsByRetailer[result.RET_NAME]["discount"] = result.TOTAL_DISCOUNT
-								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] = result.INITIAL_PRICE;
+								resultsTotalsByRetailer[result.RET_NAME]["final_price"] = Number(result.FINAL_PRICE);
+								resultsTotalsByRetailer[result.RET_NAME]["shipping_price"] = Number(result.SHIPPING_PRICE);
+								resultsTotalsByRetailer[result.RET_NAME]["discount"] = Number(result.TOTAL_DISCOUNT);
+								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] = Number(result.INITIAL_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["prices"] = {};
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
-									= result.PRICE_PER_UNIT;
+									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
 							}
 						});
