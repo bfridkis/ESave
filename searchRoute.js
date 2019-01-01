@@ -108,7 +108,7 @@ module.exports = app => {
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
-				//console.log(eSaveResults);
+				console.log(eSaveResults);
 				eSaveResults.sort(compare);
 				res.send(JSON.stringify(eSaveResults));
 			}
