@@ -150,7 +150,7 @@ module.exports = app => {
 									delete resultsTotalsByRetailer[retailer];
 						}
 					}
-					console.log(resultsTotalsByRetailer);//********************************
+					console.log("resultsTotalsByRetailer After Deletion: ", resultsTotalsByRetailer);//********************************
 					let minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
 					let mysql = req.app.get('mysql');
 					for(retailer in resultsTotalsByRetailer){
@@ -202,6 +202,7 @@ module.exports = app => {
 			//available.
 			function complete2(){
 				callbackCount2++;
+				console.log("Got here this time...");//*************************
 				if(resultsTotalsByRetailer.length
 						&& callbackCount2 === resultsTotalsByRetailer.length){
 					console.log("Discounted Final Results: ", resultsTotalsByRetailer);//***************
