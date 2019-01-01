@@ -201,3 +201,4 @@ function isLoggedIn(req, res, next) {
 // * https://stackoverflow.com/questions/3455405/how-do-i-remove-a-key-from-a-javascript-object
 // * https://stackoverflow.com/questions/14593538/make-heroku-run-non-master-git-branch
 // * https://devcenter.heroku.com/articles/multiple-environments#advanced-linking-local-branches-to-remote-apps
+// * https://www.google.com/search?q=force+a+push+heroku&rlz=1C1GGRV_enUS818US818&oq=force+a+push+heroku&aqs=chrome..69i57j0.2670j0j7&sourceid=chrome&ie=UTF-8
