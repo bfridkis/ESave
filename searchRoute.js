@@ -117,9 +117,15 @@ module.exports = app => {
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( (result, j) => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
-								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] += Number(result.DISCOUNTED_PRICE);
-								resultsTotalsByRetailer[result.RET_NAME]["discount"] += Number(result.TOTAL_DISCOUNT);
-								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] += Number(result.INITIAL_PRICE);
+								//When establishing retailer specific object values, use scaling when
+								//necessary to keep all values rounded to two decimal places.
+								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
+								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
+									Math.round(Number(result.DISCOUNTED_PRICE) + 0.00001) * 100 / 100;
+								resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
+									Math.round(Number(result.TOTAL_DISCOUNT) + 0.00001) * 100 / 100;
+								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
+									Math.round(Number(result.INITIAL_PRICE) + 0.00001) * 100 / 100;
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
 									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
@@ -209,3 +215,4 @@ function isLoggedIn(req, res, next) {
 // * https://devcenter.heroku.com/articles/multiple-environments#advanced-linking-local-branches-to-remote-apps
 // * https://www.google.com/search?q=force+a+push+heroku&rlz=1C1GGRV_enUS818US818&oq=force+a+push+heroku&aqs=chrome..69i57j0.2670j0j7&sourceid=chrome&ie=UTF-8
 // * https://stackoverflow.com/questions/2641347/short-circuit-array-foreach-like-calling-break
+// * https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
