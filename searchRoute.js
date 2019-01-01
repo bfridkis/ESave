@@ -5,7 +5,7 @@ module.exports = app => {
 
 	//Route for an ESave request
 	router.get('/', isLoggedIn, (req, res, next) => {
-		var callbackCount = 0;
+		var callbackCount = 0, callbackCount2 = 0;
 		var eSaveResults = [];
 		context = {};
 		context.jsscriptsSearchPage = ["sparkle.jquery.js", "search.js", "eSave.js"];
@@ -139,6 +139,7 @@ module.exports = app => {
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
 									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
+								resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
 							}
 						});
 					});
@@ -149,18 +150,65 @@ module.exports = app => {
 									delete resultsTotalsByRetailer[retailer];
 						}
 					}
-					if(resultsTotalsByRetailer.length){
-						console.log(resultsTotalsByRetailer);//********************************
-						res.send(JSON.stringify(eSaveResults));
+					console.log(resultsTotalsByRetailer);//********************************
+					var minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
+					for(retailer in resultsTotalsByRetailer){
+						queryString = "SELECT discount, min_spend, ecoupon, description " +
+													"FROM promoion WHERE " +
+													`retailer = ${resultsTotalsByRetailer[retailer]["ret_id"]} ` +
+													"AND qt_required IS NULL AND (min_spend IS NULL OR " +
+													`min_spend <= ${resultsTotalsByRetailer[retailer]["discounted_price"]}) ` +
+													"ORDER BY discount DESC";
+						mysql.pool.query(queryString, (err, discounts, fields) => {
+							if(err){
+								res.write(JSON.stringify(err));
+								res.end();
+							}
+							else{
+								//Greedy algorithm to apply non-product specfic promotions. The largest
+								//discount possible is applied, followed by any smaller discounts from
+								//largest to smallest.
+								discounts.forEach( discount => {
+									if(resultsTotalsByRetailer[retailer]["discounted_price"] >=
+										Number(discount.discount)){
+											resultsTotalsByRetailer[retailer]["discount"] +=
+												Number(discount.discount);
+											resultsTotalsByRetailer[retailer]["discounted_price"] -=
+												Number(discount.discount);
+										}
+									});
+									if(resultsTotalsByRetailer[retailer]["discounted_price"] <
+											minFinalPrice){
+												minFinalPrice = resultsTotalsByRetailer[retailer]["discounted_price"];
+												minFinalPriceRetailer = retailer;
+											}
+									complete2();
+								}
+							});
+						}
 					}
-			}
-		}
+				}
 
 			//Compare function used for sorting final array of result objects when
 			//not all products can be matched.
 			//See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 			function compare2(a, b){
 				return a.prodNum - b.prodNum;
+			}
+
+			//Secondary complete function to track callbacks while each eligible retailer's
+			//non-product specific promotions are applied (using a greedy technique) as
+			//available.
+			function complete2(){
+				callbackCount2++;
+				if(resultsTotalsByRetailer.length && callbackCount2 === resultsTotalsByRetailer){
+					console.log("Discounted Final Results: ", resultsTotalsByRetailer);//***************
+					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
+					res.send(JSON.stringify(resultsTotalsByRetailer[minFinalPriceRetailer]));
+				}
+				else{
+					res.send({"Response" : "No Retailers With All Requested Products"});
+				}
 			}
 		}
 	});
