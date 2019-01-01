@@ -124,6 +124,7 @@ module.exports = app => {
 								resultsTotalsByRetailer[result.retailer]["num_prods"]++;
 							}
 							else{
+								resultsTotalsByRetailer[result.retailer] = {};
 								resultsTotalsByRetailer[result.retailer]["final_price"] = result.FINAL_PRICE;
 								resultsTotalsByRetailer[result.retailer]["shipping_price"] = result.SHIPPING_PRICE;
 								resultsTotalsByRetailer[result.retailer]["discount"] = result.TOTAL_DISCOUNT
