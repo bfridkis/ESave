@@ -137,6 +137,7 @@ module.exports = app => {
 							}
 						});
 					});
+					console.log("resultsTotalsByRetailer Before Deletion: ", resultsTotalsByRetailer);//*************
 					for(retailer in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[retailer]["num_prods"] !==
 								(Object.keys(req.query).length - 1) / 2){
