@@ -104,17 +104,15 @@ module.exports = app => {
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
 				console.log(eSaveResults);
 
-				let allProductsMatched = true;
-				eSaveResults.forEach( result => {
+				let someProductsUnmatched = eSaveResults.some( result => {
 					if(result.hasOwnProperty("suggested")){
 						eSaveResults.sort(compare2);
 						res.send(JSON.stringify(eSaveResults));
-						allProductsMatched = false;
-						break;
+						return result.hasOwnProperty("suggested")
 					}
 				})
 
-				if(allProductsMatched){
+				if(!someProductsUnmatched){
 					let resultsTotalsByRetailer = {};
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( (result, j) => {
