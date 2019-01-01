@@ -203,7 +203,7 @@ module.exports = app => {
 			//available.
 			function complete2(resultsTotalsByRetailer){
 				callbackCount2++;
-				console.log("Got here this time...");//*************************
+				console.log("resultsTotalsByRetailer length: ", resultsTotalsByRetailer.length);//*************************
 				if(resultsTotalsByRetailer.length
 						&& callbackCount2 === resultsTotalsByRetailer.length){
 					console.log("Discounted Final Results: ", resultsTotalsByRetailer);//***************
