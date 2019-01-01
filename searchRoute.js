@@ -151,7 +151,8 @@ module.exports = app => {
 						}
 					}
 					console.log(resultsTotalsByRetailer);//********************************
-					var minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
+					let minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
+					let mysql = req.app.get('mysql');
 					for(retailer in resultsTotalsByRetailer){
 						queryString = "SELECT discount, min_spend, ecoupon, description " +
 													"FROM promoion WHERE " +
@@ -201,7 +202,8 @@ module.exports = app => {
 			//available.
 			function complete2(){
 				callbackCount2++;
-				if(resultsTotalsByRetailer.length && callbackCount2 === resultsTotalsByRetailer){
+				if(resultsTotalsByRetailer.length
+						&& callbackCount2 === resultsTotalsByRetailer.length){
 					console.log("Discounted Final Results: ", resultsTotalsByRetailer);//***************
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
 					res.send(JSON.stringify(resultsTotalsByRetailer[minFinalPriceRetailer]));
