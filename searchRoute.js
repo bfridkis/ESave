@@ -155,7 +155,7 @@ module.exports = app => {
 					let mysql = req.app.get('mysql');
 					for(retailer in resultsTotalsByRetailer){
 						queryString = "SELECT discount, min_spend, ecoupon, description " +
-													"FROM promoion WHERE " +
+													"FROM promotion WHERE " +
 													`retailer = ${resultsTotalsByRetailer[retailer]["ret_id"]} ` +
 													"AND qt_required IS NULL AND (min_spend IS NULL OR " +
 													`min_spend <= ${resultsTotalsByRetailer[retailer]["discounted_price"]}) ` +
