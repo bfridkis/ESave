@@ -103,6 +103,9 @@ module.exports = app => {
 			callbackCount++;
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
 				console.log(eSaveResults);
+
+				//NEED TO CHECK FOR SUGGESTED KEYS HERE, THEN RENDER SUGGESTED IF PRESENT
+
 				let resultsTotalsByRetailer = {};
 				eSaveResults.forEach( (productResults, i) => {
 					productResults.results.forEach( (result, j) => {
