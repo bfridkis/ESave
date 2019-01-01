@@ -104,44 +104,48 @@ module.exports = app => {
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
 				console.log(eSaveResults);
 
-				//NEED TO CHECK FOR SUGGESTED KEYS HERE, THEN RENDER SUGGESTED IF PRESENT
-
-				let resultsTotalsByRetailer = {};
-				eSaveResults.forEach( (productResults, i) => {
-					productResults.results.forEach( (result, j) => {
-						if(resultsTotalsByRetailer.hasOwnProperty(result.retailer)){
-							resultsTotalsByRetailer[result.retailer]["final_price"] += result.FINAL_PRICE;
-							resultsTotalsByRetailer[result.retailer]["discount"] += result.TOTAL_DISCOUNT;
-							resultsTotalsByRetailer[result.retailer]["initial_price"] += result.INITIAL_PRICE;
-							resultsTotalsByRetailer[result.retailer]["prices"][productResults.prodNum] = result.PRICE_PER_UNIT;
-							resultsTotalsByRetailer[result.retailer]["num_prods"]++;
-						}
-						else{
-							resultsTotalsByRetailer[result.retailer]["final_price"] = result.FINAL_PRICE;
-							resultsTotalsByRetailer[result.retailer]["shipping_price"] = result.SHIPPING_PRICE;
-							resultsTotalsByRetailer[result.retailer]["discount"] = result.TOTAL_DISCOUNT
-							resultsTotalsByRetailer[result.retailer]["initial_price"] = result.INITIAL_PRICE;
-							resultsTotalsByRetailer[result.retailer]["prices"][productResults.prodNum]
-								= result.PRICE_PER_UNIT;
-							resultsTotalsByRetailer[result.retailer]["num_prods"] = 1;
-						}
-					});
-				});
-
-				for(retailer in resultsTotalsByRetailer){
-					if(resultsTotalsByRetailer[retailer]["num_prods"] !==
-							(Object.keys(req.query).length - 1) / 2){
-								delete resultsTotalsByRetailer[retailer];
+				let allProductsMatched = true;
+				eSaveResults.forEach( result => {
+					if(result.hasOwnProperty("suggested")){
+						eSaveResults.sort(compare2);
+						res.send(JSON.stringify(eSaveResults));
+						allProductsMatched = false;
+						break;
 					}
-				}
+				})
 
-				if(resultsTotalsByRetailer.length){
-					console.log(resultsTotalsByRetailer);//********************************
-					res.send(JSON.stringify(eSaveResults));
-				}
-				else{
-					eSaveResults.sort(compare2);
-					res.send(JSON.stringify(eSaveResults));
+				if(allProductsMatched){
+					let resultsTotalsByRetailer = {};
+					eSaveResults.forEach( (productResults, i) => {
+						productResults.results.forEach( (result, j) => {
+							if(resultsTotalsByRetailer.hasOwnProperty(result.retailer)){
+								resultsTotalsByRetailer[result.retailer]["final_price"] += result.FINAL_PRICE;
+								resultsTotalsByRetailer[result.retailer]["discount"] += result.TOTAL_DISCOUNT;
+								resultsTotalsByRetailer[result.retailer]["initial_price"] += result.INITIAL_PRICE;
+								resultsTotalsByRetailer[result.retailer]["prices"][productResults.prodNum] = result.PRICE_PER_UNIT;
+								resultsTotalsByRetailer[result.retailer]["num_prods"]++;
+							}
+							else{
+								resultsTotalsByRetailer[result.retailer]["final_price"] = result.FINAL_PRICE;
+								resultsTotalsByRetailer[result.retailer]["shipping_price"] = result.SHIPPING_PRICE;
+								resultsTotalsByRetailer[result.retailer]["discount"] = result.TOTAL_DISCOUNT
+								resultsTotalsByRetailer[result.retailer]["initial_price"] = result.INITIAL_PRICE;
+								resultsTotalsByRetailer[result.retailer]["prices"][productResults.prodNum]
+									= result.PRICE_PER_UNIT;
+								resultsTotalsByRetailer[result.retailer]["num_prods"] = 1;
+							}
+						});
+					});
+					for(retailer in resultsTotalsByRetailer){
+						if(resultsTotalsByRetailer[retailer]["num_prods"] !==
+								(Object.keys(req.query).length - 1) / 2){
+									delete resultsTotalsByRetailer[retailer];
+						}
+					}
+					if(resultsTotalsByRetailer.length){
+						console.log(resultsTotalsByRetailer);//********************************
+						res.send(JSON.stringify(eSaveResults));
+					}
 			}
 		}
 
