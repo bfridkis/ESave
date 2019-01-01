@@ -156,9 +156,9 @@ module.exports = app => {
 					for(retailer in resultsTotalsByRetailer){
 						queryString = "SELECT discount, min_spend, ecoupon, description " +
 													"FROM promotion WHERE " +
-													`retailer = ${resultsTotalsByRetailer[retailer]["ret_id"]} ` +
+													`retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
 													"AND qt_required IS NULL AND (min_spend IS NULL OR " +
-													`min_spend <= ${resultsTotalsByRetailer[retailer]["discounted_price"]}) ` +
+													`min_spend <= '${resultsTotalsByRetailer[retailer]["discounted_price"]}') ` +
 													"ORDER BY discount DESC";
 						mysql.pool.query(queryString, (err, discounts, fields) => {
 							if(err){
