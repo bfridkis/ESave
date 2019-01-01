@@ -337,6 +337,9 @@ function processUnmatched(orderStageRight, orderStageRightText,
         addEventListener("click", suggestNextPage.bind(nextButton.firstChild, 1,
             suggestionList["prodNum"] - 1));
     }
+    else{
+      containerDiv.lastChild.lastChild.style.paddingBottom = "20px";
+    }
   });
 }
 
