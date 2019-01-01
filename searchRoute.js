@@ -184,7 +184,7 @@ module.exports = app => {
 												minFinalPriceRetailer = retailer;
 											}
 									console.log("Got here right before complete2...");//*************************
-									complete2();
+									complete2(resultsTotalsByRetailer);
 								}
 							});
 						}
@@ -201,7 +201,7 @@ module.exports = app => {
 			//Secondary complete function to track callbacks while each eligible retailer's
 			//non-product specific promotions are applied (using a greedy technique) as
 			//available.
-			function complete2(){
+			function complete2(resultsTotalsByRetailer){
 				callbackCount2++;
 				console.log("Got here this time...");//*************************
 				if(resultsTotalsByRetailer.length
