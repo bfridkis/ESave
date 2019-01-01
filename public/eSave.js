@@ -490,7 +490,7 @@ function suggestNextPage(currentPage, prodNum){
         nextButton.addEventListener("click", suggestNextPage.
           bind(nextButton, currentPage + 1, prodNum));
       }
-      if(typeof(buttonCell) === "undefined"){
+      if(buttonCell === null){
         thisSuggestionList.lastChild.firstChild.style.paddingBottom = "20px";
       }
     }
