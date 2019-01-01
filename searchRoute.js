@@ -29,7 +29,7 @@ module.exports = app => {
 												"         '" + req.query[qtKey] + "' + retailer.shipping_price, 2) " +
 												"    else FORMAT(retailer_product.price * '" + req.query[qtKey] +
 												"         - sum(promotion.discount), 2) " +
-												"		 end AS DISCOUNTED_PRICE, " +
+												"		 end AS FINAL_PRICE, " +
 												"FORMAT(retailer.shipping_price, 2) AS SHIPPING_PRICE, " +
 												"case  " +
 												"     when sum(promotion.discount) IS NULL then 0.00 " +
@@ -117,7 +117,7 @@ module.exports = app => {
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( (result, j) => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
-								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] += Number(result.DISCOUNTED_PRICE);
+								resultsTotalsByRetailer[result.RET_NAME]["final_price"] += Number(result.FINAL_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] += Number(result.TOTAL_DISCOUNT);
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] += Number(result.INITIAL_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
@@ -126,7 +126,7 @@ module.exports = app => {
 							}
 							else{
 								resultsTotalsByRetailer[result.RET_NAME] = {};
-								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] = Number(result.DISCOUNTED_PRICE);
+								resultsTotalsByRetailer[result.RET_NAME]["final_price"] = Number(result.FINAL_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["shipping_price"] = Number(result.SHIPPING_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] = Number(result.TOTAL_DISCOUNT);
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] = Number(result.INITIAL_PRICE);
