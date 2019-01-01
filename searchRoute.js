@@ -102,7 +102,7 @@ module.exports = app => {
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
-				//console.log(eSaveResults);
+				console.log(eSaveResults);
 				let resultsTotalsByRetailer = {};
 				eSaveResults.forEach( (productResults, i) => {
 					productResults.results.forEach( (result, j) => {
