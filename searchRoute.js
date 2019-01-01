@@ -196,3 +196,5 @@ function isLoggedIn(req, res, next) {
 // * https://blog.udemy.com/sql-limit/
 // * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 // * https://stackoverflow.com/questions/3455405/how-do-i-remove-a-key-from-a-javascript-object
+// * https://stackoverflow.com/questions/14593538/make-heroku-run-non-master-git-branch
+// * https://devcenter.heroku.com/articles/multiple-environments#advanced-linking-local-branches-to-remote-apps
