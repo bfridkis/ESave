@@ -27,8 +27,8 @@ module.exports = app => {
 												"case " +
 												"    when sum(promotion.discount) IS NULL then FORMAT(retailer_product.price * " +
 												"         '" + req.query[qtKey] + "' + retailer.shipping_price, 2) " +
-												"    else FORMAT(retailer_product.price * '" + req.query[qtKey] +
-												"         - sum(promotion.discount), 2) " +
+												"    else FORMAT(retailer_product.price * '" + req.query[qtKey] + "' + " +
+												"         retailer.shipping_price - sum(promotion.discount), 2) " +
 												"		 end AS FINAL_PRICE, " +
 												"FORMAT(retailer.shipping_price, 2) AS SHIPPING_PRICE, " +
 												"case  " +
