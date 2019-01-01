@@ -203,9 +203,9 @@ module.exports = app => {
 			//available.
 			function complete2(resultsTotalsByRetailer){
 				callbackCount2++;
-				console.log("resultsTotalsByRetailer length: ", resultsTotalsByRetailer.keys.length);//*************************
-				if(resultsTotalsByRetailer.keys.length
-						&& callbackCount2 === resultsTotalsByRetailer.keys.length){
+				console.log("resultsTotalsByRetailer length: ", Object.keys(resultsTotalsByRetailer).length);//*************************
+				if(Object.keys(resultsTotalsByRetailer).length
+						&& callbackCount2 === Object.keys(resultsTotalsByRetailer).length){
 					console.log("Discounted Final Results: ", resultsTotalsByRetailer);//***************
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
 					res.send(JSON.stringify(resultsTotalsByRetailer[minFinalPriceRetailer]));
