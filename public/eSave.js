@@ -338,7 +338,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
             suggestionList["prodNum"] - 1));
     }
     else{
-      containerDiv.lastChild.style.paddingBottom = "20px";
+      containerDiv.lastChild.lastChild.style.paddingBottom = "20px";
     }
   });
 }
