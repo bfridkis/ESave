@@ -183,6 +183,7 @@ module.exports = app => {
 												minFinalPrice = resultsTotalsByRetailer[retailer]["discounted_price"];
 												minFinalPriceRetailer = retailer;
 											}
+									console.log("Got here right before complete2...");//*************************
 									complete2();
 								}
 							});
