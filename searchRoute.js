@@ -113,7 +113,7 @@ module.exports = app => {
 				})
 
 				if(!someProductsUnmatched){
-					let resultsTotalsByRetailer = {};
+					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( (result, j) => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
@@ -151,7 +151,7 @@ module.exports = app => {
 						}
 					}
 					console.log("resultsTotalsByRetailer After Deletion: ", resultsTotalsByRetailer);//********************************
-					let minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
+					var minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
 					let mysql = req.app.get('mysql');
 					for(retailer in resultsTotalsByRetailer){
 						queryString = "SELECT discount, min_spend, ecoupon, description " +
@@ -184,7 +184,7 @@ module.exports = app => {
 												minFinalPriceRetailer = retailer;
 											}
 									console.log("Got here right before complete2...");//*************************
-									complete2(resultsTotalsByRetailer);
+									complete2();
 								}
 							});
 						}
@@ -201,7 +201,7 @@ module.exports = app => {
 			//Secondary complete function to track callbacks while each eligible retailer's
 			//non-product specific promotions are applied (using a greedy technique) as
 			//available.
-			function complete2(resultsTotalsByRetailer){
+			function complete2(){
 				callbackCount2++;
 				console.log("resultsTotalsByRetailer length: ", Object.keys(resultsTotalsByRetailer).length);//*************************
 				if(Object.keys(resultsTotalsByRetailer).length
