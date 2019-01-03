@@ -258,8 +258,8 @@ async function processESave(time_ms, req, qts, items) {
      finPriHeader.style.color = "purple";
      let finPriRow = stageTable.appendChild(document.createElement("tr"));
      let finPri = finPriRow.appendChild(document.createElement("td"));
-     finPri.textContent = (results[0]["discounted_price"] +
-          results[0]["shipping_price"]).toFixed(2) + "$";
+     finPri.textContent = String(results[0]["discounted_price"] +
+          results[0]["shipping_price"]) + "$";
      finPri.style.paddingBottom = "20px";
      finPri.style.color = "rgb(39, 206, 100)";
 
