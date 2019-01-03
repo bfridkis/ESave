@@ -85,7 +85,7 @@ function eSaveWrapper(timeout){
     req.addEventListener("load", () => {
       if(req.status >= 200 && req.status < 400){
        //If parameters were sent (i.e. user did not engage ESave button with empty stage),
-       //Wait while presenting loading icon for a minimum of 1.5 seconds, to simulate loading process.
+       //wait while presenting loading icon for a minimum of 1.5 seconds, to simulate loading process.
        //See processESave for remaining logic for processing ESave search request.
        //(This delay is artifical and can be removed in production by setting timeout to 0.)
        processESave(timeout, req, qts);
@@ -164,14 +164,14 @@ async function processESave(time_ms, req, qts) {
      orderStageRight.appendChild(stageTable);
 
      //Add product name header and product name to result table.
-     let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
-     prodNameHeader.textContent = "PRODUCT";
-     prodNameHeader.style.textDecoration = "underline";
-     let prodNameRow = stageTable.appendChild(document.createElement("tr"));
-     let prodName = prodNameRow.appendChild(document.createElement("td"));
-     prodName.textContent = results[0]["PROD_NAME"];
-     prodName.style.paddingBottom = "20px";
+     //let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+     //let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
+     //prodNameHeader.textContent = "PRODUCT";
+     //prodNameHeader.style.textDecoration = "underline";
+     //let prodNameRow = stageTable.appendChild(document.createElement("tr"));
+     //let prodName = prodNameRow.appendChild(document.createElement("td"));
+     //prodName.textContent = results[0]["PROD_NAME"];
+    //prodName.style.paddingBottom = "20px";
 
      //Add retailer name header and retailer name to result table.
      let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
@@ -180,7 +180,7 @@ async function processESave(time_ms, req, qts) {
      retNameHeader.style.textDecoration = "underline";
      let retNameRow = stageTable.appendChild(document.createElement("tr"));
      let retName = retNameRow.appendChild(document.createElement("td"));
-     retName.textContent = results[0]["RET_NAME"];
+     retName.textContent = results[0]["retailer"];
      retName.style.paddingBottom = "20px";
 
      //Add price per unit header and price per unit to result table.
@@ -188,10 +188,16 @@ async function processESave(time_ms, req, qts) {
      let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
      ppuHeader.textContent = "PRICE PER UNIT";
      ppuHeader.style.textDecoration = "underline";
-     let ppuRow = stageTable.appendChild(document.createElement("tr"));
-     let ppu = ppuRow.appendChild(document.createElement("td"));
-     ppu.textContent = results[0]["PRICE_PER_UNIT"] + "$";
-     ppu.style.paddingBottom = "20px";
+     let searchItems = document.querySelectorAll(".searchItem");
+     Object.keys(results[0]["prices"]).sort().forEach( (product, i) => ){
+       let ppuRow = stageTable.appendChild(document.createElement("tr"));
+       let prod = ppuRow.appendChild(document.createElement("td"));
+       prod.textContent = searchItems[i].value;
+       let ppu = ppuRow.appendChild(document.createElement("td"));
+       ppu.textContent =  "$" + results[0]["prices"][product];
+       if(i === Object.keys(results[0]["prices"]).length - 1){
+         ppu.style.paddingBottom = "20px";
+     })
 
      //Add initial price (price before shipping and promotions are applied) header
      //and initial price to results table.
@@ -201,7 +207,7 @@ async function processESave(time_ms, req, qts) {
      initPriHeader.style.textDecoration = "underline";
      let initPriRow = stageTable.appendChild(document.createElement("tr"));
      let initPri = initPriRow.appendChild(document.createElement("td"));
-     initPri.textContent = results[0]["INITIAL_PRICE"] + "$";
+     initPri.textContent = results[0]["initial_price"] + "$";
      let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
      let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
      initPriBDS.style.fontSize = "0.9rem";
@@ -217,7 +223,7 @@ async function processESave(time_ms, req, qts) {
      totDiscHeader.style.textDecoration = "underline";
      let totDiscRow = stageTable.appendChild(document.createElement("tr"));
      let totDisc = totDiscRow.appendChild(document.createElement("td"));
-     totDisc.textContent = "-" + results[0]["TOTAL_DISCOUNT"] + "$";
+     totDisc.textContent = "-" + results[0]["discount"] + "$";
      totDisc.style.paddingBottom = "20px";
 
      //Add shipping price header and shipping price to results table.
@@ -227,7 +233,7 @@ async function processESave(time_ms, req, qts) {
      shipPriHeader.style.textDecoration = "underline";
      let shipPriRow = stageTable.appendChild(document.createElement("tr"));
      let shipPri = shipPriRow.appendChild(document.createElement("td"));
-     shipPri.textContent = results[0]["SHIPPING_PRICE"] + "$";
+     shipPri.textContent = results[0]["shipping_price"] + "$";
      shipPri.style.paddingBottom = "20px";
 
      //Add final price (price after shipping and promotions have been applied) header
@@ -240,7 +246,8 @@ async function processESave(time_ms, req, qts) {
      finPriHeader.style.color = "purple";
      let finPriRow = stageTable.appendChild(document.createElement("tr"));
      let finPri = finPriRow.appendChild(document.createElement("td"));
-     finPri.textContent = results[0]["FINAL_PRICE"] + "$";
+     finPri.textContent = String(results[0]["discounted_price"] +
+                            results[0]["shipping_price"]) + "$";
      finPri.style.paddingBottom = "20px";
      finPri.style.color = "rgb(39, 206, 100)";
 

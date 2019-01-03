@@ -106,7 +106,7 @@ module.exports = app => {
 
 				let someProductsUnmatched = eSaveResults.some( result => {
 					if(result.hasOwnProperty("suggested")){
-						eSaveResults.sort(compare2);
+						eSaveResults.sort(compare);
 						res.send(JSON.stringify(eSaveResults));
 						return result.hasOwnProperty("suggested")
 					}
@@ -187,6 +187,13 @@ module.exports = app => {
 						}
 					}
 				}
+
+			//Compare function used for sorting final array of result objects when
+			//not all products can be matched.
+			//See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+			function compare(a, b){
+				return a.prodNum - b.prodNum;
+			}
 
 			//Compare function used for sorting final array of result objects when
 			//not all products can be matched.
