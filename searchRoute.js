@@ -156,13 +156,13 @@ module.exports = app => {
 						console.log("Before discount selection: ", retailer);//**********************
 						console.log(resultsTotalsByRetailer[retailer]["ret_id"]);//*******************
 						queryString = "SELECT promotion.discount, promotion.min_spend, promotion.ecoupon, " +
-													"promotion.description, retailer.ret_name " +
+													"promotion.description, retailer.name " +
 													"FROM promotion JOIN retailer " +
 													"ON promotion.retailer = retailer.id WHERE " +
 													`promotion.retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
-													"AND qt_required IS NULL AND (min_spend IS NULL OR " +
-													`min_spend <= '${resultsTotalsByRetailer[retailer]["discounted_price"]}') ` +
-													"ORDER BY discount DESC";
+													"AND promotion.qt_required IS NULL AND (promotion.min_spend IS NULL OR " +
+													`promotion.min_spend <= '${resultsTotalsByRetailer[retailer]["discounted_price"]}') ` +
+													"ORDER BY promotion.discount DESC";
 						mysql.pool.query(queryString, (err, discounts, fields) => {
 							if(err){
 								res.write(JSON.stringify(err));
