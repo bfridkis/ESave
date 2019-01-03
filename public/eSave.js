@@ -138,14 +138,16 @@ async function processESave(time_ms, req, qts, items) {
     }
   });
 
-  if(!(unmatched.length === 0)){
+  if(typeof(results.Error) !== "undefined"){
+    orderStageRightText.innerHTML = "Sorry. No Retailer Carries All Requested Products<br>" +
+                                    "Please Remove One or More Products and Try Again.";
+  }
+
+  else if(!(unmatched.length === 0)){
      processUnmatched(orderStageRight, orderStageRightText,
                       unmatched, searchItems);
    }
-   else if(typeof(results.Error) !== "undefined"){
-     orderStageRightText.innerHTML = "Sorry. No Retailer Carries All Requested Products<br>" +
-                                     "Please Remove One or More Products and Try Again.";
-   }
+   
    else{
      //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
      orderStageRight.style.borderColor = "rgb(39, 206, 100)";
