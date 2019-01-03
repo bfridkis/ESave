@@ -127,8 +127,8 @@ async function processESave(time_ms, req, qts, items) {
   let orderStageRight = document.querySelector("#stage-wrapper-right");
 
   if(typeof(results.Error) !== "undefined"){
-    orderStageRightText.innerHTML = "Sorry. No Retailer Carries All Requested Products<br>" +
-                                    "Please Remove One or More Products and Try Again.";
+    orderStageRightText.innerHTML = "Sorry. No Retailer Carries All Requested Products.<br>" +
+                                    "<br>Please Remove One or More Products and Try Again.";
   }
 
   else{
