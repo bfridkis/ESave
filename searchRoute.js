@@ -207,6 +207,7 @@ module.exports = app => {
 			//as available.
 			function complete2(){
 				callbackCount2++;
+				console.log("Callbackcount2: ", callbackCount2);//*********************
 				if(Object.keys(resultsTotalsByRetailer).length
 						&& callbackCount2 === Object.keys(resultsTotalsByRetailer).length){
 					let minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
