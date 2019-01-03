@@ -558,16 +558,4 @@ function suggestNextPage(currentPage, prodNum){
 // * https://stackoverflow.com/questions/267658/having-both-a-created-and-last-updated-timestamp-columns-in-mysql-4-0
 // * https://www.w3schools.com/csSref/pr_class_cursor.asp
 // * https://stackoverflow.com/questions/952924/javascript-chop-slice-trim-off-last-character-in-string
-
-// ** Unused... **
-
-//Code to insert a parent "wrapper" around the #shopping-cart-inner node.
-//See https://stackoverflow.com/questions/6938248/insert-a-div-element-as-parent
-/*
-var retailerLink = document.createElement("a");
-retailerLink.setAttribute("href", "//www." + results[0]["RET_WEB_ADD"]);
-retailerLink.setAttribute("target", "_blank");
-let wrapped = document.querySelector("#shopping-cart-inner")
-shoppingCart.replaceChild(retailerLink, wrapped);
-retailerLink.appendChild(wrapped);
-*/
+// * https://www.w3schools.com/jsref/jsref_tofixed.asp

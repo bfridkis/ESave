@@ -278,3 +278,4 @@ function isLoggedIn(req, res, next) {
 // * https://www.google.com/search?q=force+a+push+heroku&rlz=1C1GGRV_enUS818US818&oq=force+a+push+heroku&aqs=chrome..69i57j0.2670j0j7&sourceid=chrome&ie=UTF-8
 // * https://stackoverflow.com/questions/2641347/short-circuit-array-foreach-like-calling-break
 // * https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
+// * https://www.w3schools.com/jsref/jsref_tofixed.asp
