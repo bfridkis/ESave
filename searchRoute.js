@@ -154,6 +154,7 @@ module.exports = app => {
 					console.log("results totals by retailer: ", resultsTotalsByRetailer);//********
 					for(retailer in resultsTotalsByRetailer){
 						console.log("Before discount selection: ", retailer);//**********************
+						console.log(resultsTotalsByRetailer[retailer]["ret_id"]);//*******************
 						queryString = "SELECT discount, min_spend, ecoupon, description " +
 													"FROM promotion WHERE " +
 													`retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
