@@ -123,6 +123,7 @@ module.exports = app => {
 								let discount_pri = Number(result.DISCOUNTED_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
 									discount_pri.toFixed(2);
+								console.log("What the... ", resultsTotalsByRetailer[result.RET_NAME]["discounted_price"]);//*******
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
 									Math.round(Number(result.TOTAL_DISCOUNT) + 0.00001) * 100 / 100;
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
