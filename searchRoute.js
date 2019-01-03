@@ -113,9 +113,9 @@ module.exports = app => {
 				})
 
 				if(!someProductsUnmatched){
-					console.log(eSaveResults);//****************************
 					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach( (productResults, i) => {
+						console.log(productResults);//*********************************
 						productResults.results.forEach( (result, j) => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
