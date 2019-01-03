@@ -217,7 +217,7 @@ module.exports = app => {
 					let minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
 					for(key in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[key]["discounted_price"] < minFinalPrice){
-									minFinalPrice = resultsTotalsByRetailer[ret_name]["discounted_price"];
+									minFinalPrice = resultsTotalsByRetailer[key]["discounted_price"];
 									minFinalPriceRetailer = key;
 						}
 					}
