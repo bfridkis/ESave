@@ -88,7 +88,7 @@ function eSaveWrapper(timeout){
        //wait while presenting loading icon for a minimum of 1.5 seconds, to simulate loading process.
        //See processESave for remaining logic for processing ESave search request.
        //(This delay is artifical and can be removed in production by setting timeout to 0.)
-       processESave(timeout, req, qts);
+       processESave(timeout, req, qts, items);
       }
       else{
         alert("Error: " + req.status + " " + req.statusText);
