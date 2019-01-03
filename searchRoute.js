@@ -149,7 +149,6 @@ module.exports = app => {
 									delete resultsTotalsByRetailer[retailer];
 						}
 					}
-					var minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
 					let mysql = req.app.get('mysql');
 					console.log("results totals by retailer: ", resultsTotalsByRetailer);//********
 					for(retailer in resultsTotalsByRetailer){
@@ -187,11 +186,6 @@ module.exports = app => {
 											}
 										});
 									}
-									if(resultsTotalsByRetailer[ret_name]["discounted_price"] <
-											minFinalPrice){
-												minFinalPrice = resultsTotalsByRetailer[ret_name]["discounted_price"];
-												minFinalPriceRetailer = ret_name;
-											}
 									complete2();
 								}
 							});
@@ -220,6 +214,13 @@ module.exports = app => {
 				callbackCount2++;
 				if(Object.keys(resultsTotalsByRetailer).length
 						&& callbackCount2 === Object.keys(resultsTotalsByRetailer).length){
+					let minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
+					for(key in resultsTotalsByRetailer){
+						if(resultsTotalsByRetailer[key]["discounted_price"] < minFinalPrice){
+									minFinalPrice = resultsTotalsByRetailer[ret_name]["discounted_price"];
+									minFinalPriceRetailer = ret_name;
+						}
+					}
 					delete resultsTotalsByRetailer[minFinalPriceRetailer]["ret_id"];
 					resultsTotalsByRetailer[minFinalPriceRetailer]["retailer"] = minFinalPriceRetailer;
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
