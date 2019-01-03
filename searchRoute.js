@@ -149,11 +149,9 @@ module.exports = app => {
 									delete resultsTotalsByRetailer[retailer];
 						}
 					}
+					console.log("eligible retailer count: ", Object.keys(resultsTotalsByRetailer).length);//*****
 					let mysql = req.app.get('mysql');
-					console.log("results totals by retailer: ", resultsTotalsByRetailer);//********
 					for(retailer in resultsTotalsByRetailer){
-						console.log("Before discount selection: ", retailer);//**********************
-						console.log(resultsTotalsByRetailer[retailer]["ret_id"]);//*******************
 						queryString = "SELECT promotion.discount, promotion.min_spend, promotion.ecoupon, " +
 													"promotion.description, retailer.name AS ret_name " +
 													"FROM promotion JOIN retailer " +
@@ -168,15 +166,12 @@ module.exports = app => {
 								res.end();
 							}
 							else{
-								console.log("discounts: ", discounts);//*********************
-								if(discounts.length > 0){console.log(`discounts for ${discounts[0]["ret_name"]}: `, discounts);}//******************************
 								//Greedy algorithm to apply non-product specfic promotions. The largest
 								//discount possible is applied, followed by any smaller discounts from
 								//largest to smallest.
 								if(discounts.length > 0){
 									let ret_name = discounts[0]["ret_name"];
 									discounts.forEach( discount => {
-										console.log(ret_name, discount);//*****************************
 										if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
 											Number(discount.discount)){
 												resultsTotalsByRetailer[ret_name]["discount"] +=
