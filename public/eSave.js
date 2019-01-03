@@ -188,11 +188,10 @@ async function processESave(time_ms, req, qts) {
      let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
      ppuHeader.textContent = "PRICE PER UNIT";
      ppuHeader.style.textDecoration = "underline";
-     let searchItems = document.querySelectorAll(".searchItem");
      Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
        let ppuRow = stageTable.appendChild(document.createElement("tr"));
        let prod = ppuRow.appendChild(document.createElement("td"));
-       prod.textContent = searchItems[i].value;
+       prod.textContent = items[i].textContent;
        let ppu = ppuRow.appendChild(document.createElement("td"));
        ppu.textContent =  "$" + results[0]["prices"][product];
        if(i === Object.keys(results[0]["prices"]).length - 1){
@@ -209,11 +208,14 @@ async function processESave(time_ms, req, qts) {
      let initPriRow = stageTable.appendChild(document.createElement("tr"));
      let initPri = initPriRow.appendChild(document.createElement("td"));
      initPri.textContent = results[0]["initial_price"] + "$";
-     let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
-     let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
-     initPriBDS.style.fontSize = "0.9rem";
-     initPriBDS.style.textDecoration = "italic";
-     initPriBDS.textContent = " (qt " + qts[0].textContent + " x " + results[0]["PRICE_PER_UNIT"] + "$)";
+     Object.keys(results[0]["prices"]).sort().forEach( product => {
+       let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
+       let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
+       initPriBDS.style.fontSize = "0.9rem";
+       initPriBDS.style.textDecoration = "italic";
+       initPriBDS.textContent = `(p1 '${items[i].textContent}' qt ${qts[0].textContent} x ` +
+                                `${results[0]["prices"][i + 1]}$)`;
+     });
      //initPriBDS.style.whiteSpace = "nowrap";
      initPriBDS.style.paddingBottom = "20px";
 
@@ -247,8 +249,8 @@ async function processESave(time_ms, req, qts) {
      finPriHeader.style.color = "purple";
      let finPriRow = stageTable.appendChild(document.createElement("tr"));
      let finPri = finPriRow.appendChild(document.createElement("td"));
-     finPri.textContent = String(results[0]["discounted_price"] +
-                            results[0]["shipping_price"]) + "$";
+     finPri.textContent = String(Math.round(Number(results[0]["discounted_price"] +
+          results[0]["shipping_price"]) + 0.00001) * 100 / 100) + "$";
      finPri.style.paddingBottom = "20px";
      finPri.style.color = "rgb(39, 206, 100)";
 
