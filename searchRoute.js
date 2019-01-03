@@ -137,7 +137,7 @@ module.exports = app => {
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] = Number(result.TOTAL_DISCOUNT);
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] = Number(result.INITIAL_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["prices"] = {};
-								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
+								resultsTotalsByRetailer[result.RET_NAME]["prices"][`${productResults.prodNum}`]
 									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
@@ -222,9 +222,9 @@ module.exports = app => {
 					resultsTotalsByRetailer[minFinalPriceRetailer]["retailer"] = minFinalPriceRetailer;
 					resultsTotalsByRetailer[minFinalPriceRetailer]["discounted_price"] =
 						resultsTotalsByRetailer[minFinalPriceRetailer]["discounted_price"].toFixed(2);
-					resultsTotalsByRetailer[minFinalPriceRetailer]["discount"] =
-						resultsTotalsByRetailer[minFinalPriceRetailer]["discount"].toFixed(2);
-					resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"] = 
+					//resultsTotalsByRetailer[minFinalPriceRetailer]["discount"] =
+					//	resultsTotalsByRetailer[minFinalPriceRetailer]["discount"].toFixed(2);
+					resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"] =
 						resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"].toFixed(2);
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
