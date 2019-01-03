@@ -194,9 +194,6 @@ async function processESave(time_ms, req, qts, items) {
        prod.textContent = items[i].textContent;
        let ppu = ppuRow.appendChild(document.createElement("td"));
        ppu.textContent =  "$" + results[0]["prices"][product];
-       if(i === Object.keys(results[0]["prices"]).length - 1){
-         ppu.style.paddingBottom = "20px";
-       }
      });
 
      //Add initial price (price before shipping and promotions are applied) header
@@ -205,10 +202,11 @@ async function processESave(time_ms, req, qts, items) {
      let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
      initPriHeader.textContent = "TOTAL PRODUCT COST";
      initPriHeader.style.textDecoration = "underline";
+     initPriHeader.style.paddingTop = "20px";
      let initPriRow = stageTable.appendChild(document.createElement("tr"));
      let initPri = initPriRow.appendChild(document.createElement("td"));
      initPri.textContent = results[0]["initial_price"] + "$";
-     Object.keys(results[0]["prices"]).sort().forEach( product => {
+     Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
        let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
        let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
        initPriBDS.style.fontSize = "0.9rem";
