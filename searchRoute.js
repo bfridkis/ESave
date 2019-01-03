@@ -115,7 +115,6 @@ module.exports = app => {
 				if(!someProductsUnmatched){
 					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach( (productResults, i) => {
-						console.log(productResults);//*********************************
 						productResults.results.forEach( (result, j) => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
@@ -169,6 +168,7 @@ module.exports = app => {
 								//discount possible is applied, followed by any smaller discounts from
 								//largest to smallest.
 								discounts.forEach( discount => {
+									console.log(retailer, discount);//*****************************
 									if(resultsTotalsByRetailer[retailer]["discounted_price"] >=
 										Number(discount.discount)){
 											resultsTotalsByRetailer[retailer]["discount"] +=
