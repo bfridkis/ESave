@@ -118,12 +118,14 @@ module.exports = app => {
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( result => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
+								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
+								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
 								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
-									parseFloat(result.DISCOUNTED_PRICE).toFixed(2);
+									Number(result.DISCOUNTED_PRICE).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
-									parseFloat(result.TOTAL_DISCOUNT).toFixed(2);
+									Math.round(Number(result.TOTAL_DISCOUNT) + 0.00001) * 100 / 100;
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
-									parseFloat(result.INITIAL_PRICE).toFixed(2);
+									Math.round(Number(result.INITIAL_PRICE) + 0.00001) * 100 / 100;
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
 									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
@@ -278,4 +280,3 @@ function isLoggedIn(req, res, next) {
 // * https://www.google.com/search?q=force+a+push+heroku&rlz=1C1GGRV_enUS818US818&oq=force+a+push+heroku&aqs=chrome..69i57j0.2670j0j7&sourceid=chrome&ie=UTF-8
 // * https://stackoverflow.com/questions/2641347/short-circuit-array-foreach-like-calling-break
 // * https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
-// * https://www.w3schools.com/jsref/jsref_tofixed.asp
