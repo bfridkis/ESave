@@ -189,7 +189,7 @@ async function processESave(time_ms, req, qts) {
      ppuHeader.textContent = "PRICE PER UNIT";
      ppuHeader.style.textDecoration = "underline";
      let searchItems = document.querySelectorAll(".searchItem");
-     Object.keys(results[0]["prices"]).sort().forEach( (product, i) => ){
+     Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
        let ppuRow = stageTable.appendChild(document.createElement("tr"));
        let prod = ppuRow.appendChild(document.createElement("td"));
        prod.textContent = searchItems[i].value;
