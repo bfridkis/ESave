@@ -107,6 +107,7 @@ module.exports = app => {
 				let someProductsUnmatched = eSaveResults.some( result => {
 					if(result.hasOwnProperty("suggested")){
 						eSaveResults.sort(compare);
+						console.log("Sending Suggested");//***********************************
 						res.send(JSON.stringify(eSaveResults));
 						return result.hasOwnProperty("suggested")
 					}
