@@ -197,7 +197,8 @@ async function processESave(time_ms, req, qts) {
        ppu.textContent =  "$" + results[0]["prices"][product];
        if(i === Object.keys(results[0]["prices"]).length - 1){
          ppu.style.paddingBottom = "20px";
-     })
+       }
+     });
 
      //Add initial price (price before shipping and promotions are applied) header
      //and initial price to results table.
