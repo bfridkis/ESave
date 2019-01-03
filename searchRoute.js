@@ -152,7 +152,7 @@ module.exports = app => {
 						}
 					}
 					if(Object.keys(resultsTotalsByRetailer).length === 0){
-						res.send({"Response" : "No Retailers With All Requested Products"});
+						res.send({"Error" : "No Retailers With All Requested Products"});
 					}
 					else{
 						console.log("eligible retailer count: ", Object.keys(resultsTotalsByRetailer).length);//*****
