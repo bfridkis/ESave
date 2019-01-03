@@ -113,6 +113,7 @@ module.exports = app => {
 				})
 
 				if(!someProductsUnmatched){
+					console.log(eSaveResults);//****************************
 					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( (result, j) => {
