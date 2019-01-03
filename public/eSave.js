@@ -325,6 +325,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
       let suggestionName = suggestionRow.appendChild(document.createElement("td"));
       suggestionName.textContent = "Sorry. No Suggestions Available. :(";
+      suggestionName.style.fontSize = "1.25rem";
     }
     else{
       suggestionList.suggested.forEach( (suggestion, i) => {
