@@ -218,7 +218,7 @@ module.exports = app => {
 					for(key in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[key]["discounted_price"] < minFinalPrice){
 									minFinalPrice = resultsTotalsByRetailer[ret_name]["discounted_price"];
-									minFinalPriceRetailer = ret_name;
+									minFinalPriceRetailer = key;
 						}
 					}
 					delete resultsTotalsByRetailer[minFinalPriceRetailer]["ret_id"];
