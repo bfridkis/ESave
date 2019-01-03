@@ -205,7 +205,7 @@ module.exports = app => {
 					delete resultsTotalsByRetailer[minFinalPriceRetailer]["ret_id"];
 					resultsTotalsByRetailer[minFinalPriceRetailer]["retailer"] = minFinalPriceRetailer;
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
-					res.send(JSON.stringify(resultsTotalsByRetailer[minFinalPriceRetailer]));
+					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
 				else{
 					res.send({"Response" : "No Retailers With All Requested Products"});
