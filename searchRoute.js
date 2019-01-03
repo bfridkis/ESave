@@ -68,7 +68,7 @@ module.exports = app => {
 							//If no results are matched for user's query, provide a list of 10
 							//suggestions instead.
 							else{
-								queryString = "SELECT product.name FROM product JOIN " +
+								queryString = "SELECT DISTINCT product.name FROM product JOIN " +
 															"retailer_product ON product.id = retailer_product.product " +
 															" WHERE product.name LIKE '%" +
 															req.query[key] + "%' OR retailer_product.description LIKE '%" +
