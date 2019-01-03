@@ -151,6 +151,7 @@ module.exports = app => {
 					}
 					var minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
 					let mysql = req.app.get('mysql');
+					console.log("results totals by retailer: ", resultsTotalsByRetailer);//********
 					for(retailer in resultsTotalsByRetailer){
 						queryString = "SELECT discount, min_spend, ecoupon, description " +
 													"FROM promotion WHERE " +
