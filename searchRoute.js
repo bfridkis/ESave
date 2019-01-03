@@ -156,7 +156,7 @@ module.exports = app => {
 						console.log("Before discount selection: ", retailer);//**********************
 						console.log(resultsTotalsByRetailer[retailer]["ret_id"]);//*******************
 						queryString = "SELECT promotion.discount, promotion.min_spend, promotion.ecoupon, " +
-													"promotion.description, retailer.name " +
+													"promotion.description, retailer.name AS ret_name " +
 													"FROM promotion JOIN retailer " +
 													"ON promotion.retailer = retailer.id WHERE " +
 													`promotion.retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
@@ -170,21 +170,23 @@ module.exports = app => {
 							}
 							else{
 								console.log("discounts: ", discounts);//*********************
-								console.log(`discounts for ${discounts[0]["ret_name"]}: `, discounts);//******************************
+								if(discounts.length > 0){console.log(`discounts for ${discounts[0]["ret_name"]}: `, discounts);}//******************************
 								//Greedy algorithm to apply non-product specfic promotions. The largest
 								//discount possible is applied, followed by any smaller discounts from
 								//largest to smallest.
-								let ret_name = discounts[0]["ret_name"];
-								discounts.forEach( discount => {
-									console.log(ret_name, discount);//*****************************
-									if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
-										Number(discount.discount)){
-											resultsTotalsByRetailer[ret_name]["discount"] +=
-												Number(discount.discount);
-											resultsTotalsByRetailer[ret_name]["discounted_price"] -=
-												Number(discount.discount);
-										}
-									});
+								if(discounts.length > 0){
+									let ret_name = discounts[0]["ret_name"];
+									discounts.forEach( discount => {
+										console.log(ret_name, discount);//*****************************
+										if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
+											Number(discount.discount)){
+												resultsTotalsByRetailer[ret_name]["discount"] +=
+													Number(discount.discount);
+												resultsTotalsByRetailer[ret_name]["discounted_price"] -=
+													Number(discount.discount);
+											}
+										});
+									}
 									if(resultsTotalsByRetailer[ret_name]["discounted_price"] <
 											minFinalPrice){
 												minFinalPrice = resultsTotalsByRetailer[ret_name]["discounted_price"];
