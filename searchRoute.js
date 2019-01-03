@@ -151,41 +151,46 @@ module.exports = app => {
 									delete resultsTotalsByRetailer[retailer];
 						}
 					}
-					console.log("eligible retailer count: ", Object.keys(resultsTotalsByRetailer).length);//*****
-					let mysql = req.app.get('mysql');
-					for(retailer in resultsTotalsByRetailer){
-						queryString = "SELECT promotion.discount, promotion.min_spend, promotion.ecoupon, " +
-													"promotion.description, retailer.name AS ret_name " +
-													"FROM promotion JOIN retailer " +
-													"ON promotion.retailer = retailer.id WHERE " +
-													`promotion.retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
-													"AND promotion.qt_required IS NULL AND (promotion.min_spend IS NULL OR " +
-													`promotion.min_spend <= '${resultsTotalsByRetailer[retailer]["discounted_price"]}') ` +
-													"ORDER BY promotion.discount DESC";
-						mysql.pool.query(queryString, (err, discounts, fields) => {
-							if(err){
-								res.write(JSON.stringify(err));
-								res.end();
-							}
-							else{
-								//Greedy algorithm to apply non-product specfic promotions. The largest
-								//discount possible is applied, followed by any smaller discounts from
-								//largest to smallest.
-								if(discounts.length > 0){
-									let ret_name = discounts[0]["ret_name"];
-									discounts.forEach( discount => {
-										if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
-											Number(discount.discount)){
-												resultsTotalsByRetailer[ret_name]["discount"] +=
-													Number(discount.discount);
-												resultsTotalsByRetailer[ret_name]["discounted_price"] -=
-													Number(discount.discount);
-											}
-										});
-									}
-									complete2();
+					if(Object.keys(resultsTotalsByRetailer).length === 0){
+						res.send({"Response" : "No Retailers With All Requested Products"});
+					}
+					else{
+						console.log("eligible retailer count: ", Object.keys(resultsTotalsByRetailer).length);//*****
+						let mysql = req.app.get('mysql');
+						for(retailer in resultsTotalsByRetailer){
+							queryString = "SELECT promotion.discount, promotion.min_spend, promotion.ecoupon, " +
+														"promotion.description, retailer.name AS ret_name " +
+														"FROM promotion JOIN retailer " +
+														"ON promotion.retailer = retailer.id WHERE " +
+														`promotion.retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
+														"AND promotion.qt_required IS NULL AND (promotion.min_spend IS NULL OR " +
+														`promotion.min_spend <= '${resultsTotalsByRetailer[retailer]["discounted_price"]}') ` +
+														"ORDER BY promotion.discount DESC";
+							mysql.pool.query(queryString, (err, discounts, fields) => {
+								if(err){
+									res.write(JSON.stringify(err));
+									res.end();
 								}
-							});
+								else{
+									//Greedy algorithm to apply non-product specfic promotions. The largest
+									//discount possible is applied, followed by any smaller discounts from
+									//largest to smallest.
+									if(discounts.length > 0){
+										let ret_name = discounts[0]["ret_name"];
+										discounts.forEach( discount => {
+											if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
+												Number(discount.discount)){
+													resultsTotalsByRetailer[ret_name]["discount"] +=
+														Number(discount.discount);
+													resultsTotalsByRetailer[ret_name]["discounted_price"] -=
+														Number(discount.discount);
+												}
+											});
+										}
+										complete2();
+									}
+								});
+							}
 						}
 					}
 				}
@@ -229,9 +234,6 @@ module.exports = app => {
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"].toFixed(2));
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
-				}
-				else if(callbackCount2 === Object.keys(resultsTotalsByRetailer).length){
-					res.send({"Response" : "No Retailers With All Requested Products"});
 				}
 			}
 		}
