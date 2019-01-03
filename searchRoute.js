@@ -121,7 +121,7 @@ module.exports = app => {
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
 								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
 								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
-									parseFloat(result.DISCOUNTED_PRICE).toFixed(2);
+									result.DISCOUNTED_PRICE).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
 									Math.round(Number(result.TOTAL_DISCOUNT) + 0.00001) * 100 / 100;
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
