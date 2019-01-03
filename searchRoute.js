@@ -119,11 +119,11 @@ module.exports = app => {
 						productResults.results.forEach( result => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
-									(Number(result.DISCOUNTED_PRICE)).toFixed(2);
+									parseFloat(result.DISCOUNTED_PRICE).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
-									(Number(result.TOTAL_DISCOUNT)).toFixed(2);
+									parseFloat(result.TOTAL_DISCOUNT).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
-									(Number(result.INITIAL_PRICE)).toFixed(2);
+									parseFloat(result.INITIAL_PRICE).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
 									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
