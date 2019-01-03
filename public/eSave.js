@@ -321,7 +321,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
                                  ", Did You Mean...";
     prodNameHeader.style.color = "rgb(39, 206, 100)";
     prodNameHeader.style.fontSize = "1.75rem";
-    if(suggestionList.length === 0){
+    if(suggestionList.suggested.length === 0){
       let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
       let suggestionName = suggestionRow.appendChild(document.createElement("td"));
       suggestionName.textContent = "Sorry. No Suggestions Available. :(";
