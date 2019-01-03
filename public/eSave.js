@@ -194,6 +194,9 @@ async function processESave(time_ms, req, qts, items) {
        prod.innerHTML = items[i].textContent + "&nbsp-&nbsp";
        let ppu = ppuRow.appendChild(document.createElement("td"));
        ppu.textContent =  "$" + results[0]["prices"][product];
+       if(results[0]["prices"][product] % 1 === 0){
+         ppu.textContent += ".00";
+       }
      });
 
      //Add initial price (price before shipping and discounts are applied) header
@@ -206,7 +209,7 @@ async function processESave(time_ms, req, qts, items) {
      let initPriRow = stageTable.appendChild(document.createElement("tr"));
      let initPri = initPriRow.appendChild(document.createElement("td"));
      let iniPriBDS;
-     initPri.textContent = results[0]["initial_price"] + "$";
+     initPri.textContent = "$" + results[0]["initial_price"];
      Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
        let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
        initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
@@ -214,6 +217,9 @@ async function processESave(time_ms, req, qts, items) {
        initPriBDS.style.textDecoration = "italic";
        initPriBDS.textContent = `('${items[i].textContent}' - ${qts[0].textContent} x ` +
                                 `${results[0]["prices"][i + 1]}$)`;
+       if(results[0]["prices"][i + 1] % 1 === 0){
+         initPriBDS.textContent += ".00";
+       }
      });
      //initPriBDS.style.whiteSpace = "nowrap";
      initPriBDS.style.paddingBottom = "20px";
@@ -225,7 +231,10 @@ async function processESave(time_ms, req, qts, items) {
      totDiscHeader.style.textDecoration = "underline";
      let totDiscRow = stageTable.appendChild(document.createElement("tr"));
      let totDisc = totDiscRow.appendChild(document.createElement("td"));
-     totDisc.textContent = "-" + results[0]["discount"] + "$";
+     totDisc.textContent = "-$" + results[0]["discount"];
+     if(results[0]["discount"] % 1 === 0){
+       initPriBDS.textContent += ".00";
+     }
      totDisc.style.paddingBottom = "20px";
 
      //Add shipping price header and shipping price to results table.
@@ -235,7 +244,10 @@ async function processESave(time_ms, req, qts, items) {
      shipPriHeader.style.textDecoration = "underline";
      let shipPriRow = stageTable.appendChild(document.createElement("tr"));
      let shipPri = shipPriRow.appendChild(document.createElement("td"));
-     shipPri.textContent = results[0]["shipping_price"] + "$";
+     shipPri.textContent = "$" + results[0]["shipping_price"];
+     if(results[0]["shipping_price"] % 1 === 0){
+       shipPri.textContent += ".00";
+     }
      shipPri.style.paddingBottom = "20px";
 
      //Add final price (price after shipping and promotions have been applied) header
@@ -248,8 +260,8 @@ async function processESave(time_ms, req, qts, items) {
      finPriHeader.style.color = "purple";
      let finPriRow = stageTable.appendChild(document.createElement("tr"));
      let finPri = finPriRow.appendChild(document.createElement("td"));
-     finPri.textContent = String(Math.round(Number(results[0]["discounted_price"] +
-          results[0]["shipping_price"]) + 0.00001) * 100 / 100) + "$";
+     finPri.textContent = (results[0]["discounted_price"] +
+          results[0]["shipping_price"]).toFixed(2) + "$";
      finPri.style.paddingBottom = "20px";
      finPri.style.color = "rgb(39, 206, 100)";
 

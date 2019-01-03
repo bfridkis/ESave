@@ -118,14 +118,12 @@ module.exports = app => {
 					eSaveResults.forEach( (productResults, i) => {
 						productResults.results.forEach( result => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
-								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
-								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
 								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
-									Math.round(Number(result.DISCOUNTED_PRICE) + 0.00001) * 100 / 100;
+									Number(result.DISCOUNTED_PRICE).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
-									Math.round(Number(result.TOTAL_DISCOUNT) + 0.00001) * 100 / 100;
+									Number(result.TOTAL_DISCOUNT).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
-									Math.round(Number(result.INITIAL_PRICE) + 0.00001) * 100 / 100;
+									Number(result.INITIAL_PRICE).toFixed(2);
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
 									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
