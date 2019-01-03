@@ -191,12 +191,12 @@ async function processESave(time_ms, req, qts, items) {
      Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
        let ppuRow = stageTable.appendChild(document.createElement("tr"));
        let prod = ppuRow.appendChild(document.createElement("td"));
-       prod.textContent = items[i].textContent + " - ";
+       prod.innerHTML = items[i].textContent + "&nbsp-&nbsp";
        let ppu = ppuRow.appendChild(document.createElement("td"));
        ppu.textContent =  "$" + results[0]["prices"][product];
      });
 
-     //Add initial price (price before shipping and promotions are applied) header
+     //Add initial price (price before shipping and discounts are applied) header
      //and initial price to results table.
      let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
      let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
@@ -205,13 +205,14 @@ async function processESave(time_ms, req, qts, items) {
      initPriHeader.style.paddingTop = "20px";
      let initPriRow = stageTable.appendChild(document.createElement("tr"));
      let initPri = initPriRow.appendChild(document.createElement("td"));
+     let iniPriBDS;
      initPri.textContent = results[0]["initial_price"] + "$";
      Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
        let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
-       let initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
+       initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
        initPriBDS.style.fontSize = "0.9rem";
        initPriBDS.style.textDecoration = "italic";
-       initPriBDS.textContent = `(p1 '${items[i].textContent}' qt ${qts[0].textContent} x ` +
+       initPriBDS.textContent = `('${items[i].textContent}' - ${qts[0].textContent} x ` +
                                 `${results[0]["prices"][i + 1]}$)`;
      });
      //initPriBDS.style.whiteSpace = "nowrap";
