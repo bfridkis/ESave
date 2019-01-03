@@ -115,7 +115,7 @@ module.exports = app => {
 				if(!someProductsUnmatched){
 					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach( (productResults, i) => {
-						productResults.results.forEach( (result, j) => {
+						productResults.results.forEach( result => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
 								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
@@ -153,6 +153,7 @@ module.exports = app => {
 					let mysql = req.app.get('mysql');
 					console.log("results totals by retailer: ", resultsTotalsByRetailer);//********
 					for(retailer in resultsTotalsByRetailer){
+						console.log("Before discount selection: ", retailer);//**********************
 						queryString = "SELECT discount, min_spend, ecoupon, description " +
 													"FROM promotion WHERE " +
 													`retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
