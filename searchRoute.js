@@ -223,7 +223,7 @@ module.exports = app => {
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
-				else{
+				else if(callbackCount2 === Object.keys(resultsTotalsByRetailer).length){
 					res.send({"Response" : "No Retailers With All Requested Products"});
 				}
 			}
