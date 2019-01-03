@@ -321,22 +321,29 @@ function processUnmatched(orderStageRight, orderStageRightText,
                                  ", Did You Mean...";
     prodNameHeader.style.color = "rgb(39, 206, 100)";
     prodNameHeader.style.fontSize = "1.75rem";
-    suggestionList.suggested.forEach( (suggestion, i) => {
-      if(i < 10){
-        let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
-        let suggestionName = suggestionRow.appendChild(document.createElement("td"));
-        suggestionName.classList = "suggested-products";
-        suggestionName.textContent = suggestion["name"] + "?";
-        suggestionName.style.fontSize = "1.25rem";
-        suggestionName.addEventListener("click", e => {
-          searchItems[suggestionList["prodNum"] - 1].textContent =
-            e.target.textContent.slice(0, -1);
-          searchItems[suggestionList["prodNum"] - 1].style.color = "black";
-          containerDiv.classList = "suggested-products-div-hidden";
-          removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
-        })
-      }
-    });
+    if(suggestionList.length === 0){
+      let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
+      let suggestionName = suggestionRow.appendChild(document.createElement("td"));
+      suggestionName.textContent = "Sorry. No Suggestions Available. :(";
+    }
+    else{
+      suggestionList.suggested.forEach( (suggestion, i) => {
+        if(i < 10){
+          let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
+          let suggestionName = suggestionRow.appendChild(document.createElement("td"));
+          suggestionName.classList = "suggested-products";
+          suggestionName.textContent = suggestion["name"] + "?";
+          suggestionName.style.fontSize = "1.25rem";
+          suggestionName.addEventListener("click", e => {
+            searchItems[suggestionList["prodNum"] - 1].textContent =
+              e.target.textContent.slice(0, -1);
+            searchItems[suggestionList["prodNum"] - 1].style.color = "black";
+            containerDiv.classList = "suggested-products-div-hidden";
+            removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText);
+          })
+        }
+      });
+    }
     if(suggestionList.suggested.length > 10){
       let nextButtonRow = containerDiv.appendChild(document.createElement("tr"));
       let nextButton = nextButtonRow.appendChild(document.createElement("td"));
