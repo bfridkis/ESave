@@ -126,192 +126,194 @@ async function processESave(time_ms, req, qts, items) {
   let orderStageRightText = document.querySelector("#order-stage-right-text");
   let orderStageRight = document.querySelector("#stage-wrapper-right");
 
-  //Check if all search parameters matched products. If not, convert
-  //unmatched products to red text on stage left and present suggested
-  //products for each on stage left.
-  let unmatched = [];
-  let searchItems = document.querySelectorAll(".searchItem");
-  results.forEach((result, i) => {
-    if(result.hasOwnProperty("suggested")){
-      unmatched.push(result);
-      searchItems[result["prodNum"] - 1].style.color = "red";
-    }
-  });
-
   if(typeof(results.Error) !== "undefined"){
     orderStageRightText.innerHTML = "Sorry. No Retailer Carries All Requested Products<br>" +
                                     "Please Remove One or More Products and Try Again.";
   }
 
-  else if(!(unmatched.length === 0)){
-     processUnmatched(orderStageRight, orderStageRightText,
-                      unmatched, searchItems);
-   }
-   
-   else{
-     //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
-     orderStageRight.style.borderColor = "rgb(39, 206, 100)";
-
-     //Remove padding from bottom of shopping cart (because a checkout message will
-     //be added underneath it shortly...
-     let shoppingCart = document.querySelector("#shopping-cart-outer");
-     shoppingCart.style.paddingBottom = "0";
-
-     //Clear right stage's previous content.
-     orderStageRightText.innerHTML = "";
-
-     //Create and format a table for the right stage. This will hold product results.
-     //Append the table to the right stage.
-     let stageTable = document.createElement("table");
-     stageTable.classList.add("order-table");
-     stageTableCap = stageTable.appendChild(document.createElement("caption"));
-     stageTableCap.classList.add("stage-table-cap");
-     stageTableCap.innerText = "ESave's Best Offer";
-     orderStageRight.appendChild(stageTable);
-
-     //Add product name header and product name to result table.
-     //let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     //let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
-     //prodNameHeader.textContent = "PRODUCT";
-     //prodNameHeader.style.textDecoration = "underline";
-     //let prodNameRow = stageTable.appendChild(document.createElement("tr"));
-     //let prodName = prodNameRow.appendChild(document.createElement("td"));
-     //prodName.textContent = results[0]["PROD_NAME"];
-    //prodName.style.paddingBottom = "20px";
-
-     //Add retailer name header and retailer name to result table.
-     let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     let retNameHeader = retNameHeaderRow.appendChild(document.createElement("th"));
-     retNameHeader.textContent = "RETAILER";
-     retNameHeader.style.textDecoration = "underline";
-     let retNameRow = stageTable.appendChild(document.createElement("tr"));
-     let retName = retNameRow.appendChild(document.createElement("td"));
-     retName.textContent = results[0]["retailer"];
-     retName.style.paddingBottom = "20px";
-
-     //Add price per unit header and price per unit to result table.
-     let ppuHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
-     ppuHeader.textContent = "PRICE PER UNIT";
-     ppuHeader.style.textDecoration = "underline";
-     Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
-       let ppuRow = stageTable.appendChild(document.createElement("tr"));
-       let prod = ppuRow.appendChild(document.createElement("td"));
-       prod.innerHTML = items[i].textContent + "&nbsp-&nbsp";
-       let ppu = ppuRow.appendChild(document.createElement("td"));
-       ppu.textContent =  "$" + results[0]["prices"][product];
-       if(results[0]["prices"][product] % 1 === 0){
-         ppu.textContent += ".00";
+  else{
+     //Check if all search parameters matched products. If not, convert
+     //unmatched products to red text on stage left and present suggested
+     //products for each on stage left.
+     let unmatched = [];
+     let searchItems = document.querySelectorAll(".searchItem");
+     results.forEach((result, i) => {
+       if(result.hasOwnProperty("suggested")){
+         unmatched.push(result);
+         searchItems[result["prodNum"] - 1].style.color = "red";
        }
      });
 
-     //Add initial price (price before shipping and discounts are applied) header
-     //and initial price to results table.
-     let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
-     initPriHeader.textContent = "TOTAL PRODUCT COST";
-     initPriHeader.style.textDecoration = "underline";
-     initPriHeader.style.paddingTop = "20px";
-     let initPriRow = stageTable.appendChild(document.createElement("tr"));
-     let initPri = initPriRow.appendChild(document.createElement("td"));
-     let iniPriBDS;
-     initPri.textContent = "$" + results[0]["initial_price"];
-     Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
-       let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
-       initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
-       initPriBDS.style.fontSize = "0.9rem";
-       initPriBDS.style.textDecoration = "italic";
-       initPriBDS.textContent = `('${items[i].textContent}' - ${qts[0].textContent} x ` +
-                                `${results[0]["prices"][i + 1]}` +
-                                `${results[0]["prices"][i + 1] % 1 === 0 ? '.00' : ''}$)`;
-     });
-     //initPriBDS.style.whiteSpace = "nowrap";
-     initPriBDS.style.paddingBottom = "20px";
+     if(!(unmatched.length === 0)){
+     processUnmatched(orderStageRight, orderStageRightText,
+                      unmatched, searchItems);
+      }
 
-     //Add total discount header and total discount to results table.
-     let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
-     totDiscHeader.textContent = "TOTAL DISCOUNT";
-     totDiscHeader.style.textDecoration = "underline";
-     let totDiscRow = stageTable.appendChild(document.createElement("tr"));
-     let totDisc = totDiscRow.appendChild(document.createElement("td"));
-     totDisc.textContent = "-$" + results[0]["discount"];
-     if(results[0]["discount"] % 1 === 0){
-       totDisc.textContent += ".00";
+     else{
+       //Change right stage border color to green (rgb(39, 206, 100)) to indicate successful result.
+       orderStageRight.style.borderColor = "rgb(39, 206, 100)";
+
+       //Remove padding from bottom of shopping cart (because a checkout message will
+       //be added underneath it shortly...
+       let shoppingCart = document.querySelector("#shopping-cart-outer");
+       shoppingCart.style.paddingBottom = "0";
+
+       //Clear right stage's previous content.
+       orderStageRightText.innerHTML = "";
+
+       //Create and format a table for the right stage. This will hold product results.
+       //Append the table to the right stage.
+       let stageTable = document.createElement("table");
+       stageTable.classList.add("order-table");
+       stageTableCap = stageTable.appendChild(document.createElement("caption"));
+       stageTableCap.classList.add("stage-table-cap");
+       stageTableCap.innerText = "ESave's Best Offer";
+       orderStageRight.appendChild(stageTable);
+
+       //Add product name header and product name to result table.
+       //let prodNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       //let prodNameHeader = prodNameHeaderRow.appendChild(document.createElement("th"));
+       //prodNameHeader.textContent = "PRODUCT";
+       //prodNameHeader.style.textDecoration = "underline";
+       //let prodNameRow = stageTable.appendChild(document.createElement("tr"));
+       //let prodName = prodNameRow.appendChild(document.createElement("td"));
+       //prodName.textContent = results[0]["PROD_NAME"];
+      //prodName.style.paddingBottom = "20px";
+
+       //Add retailer name header and retailer name to result table.
+       let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let retNameHeader = retNameHeaderRow.appendChild(document.createElement("th"));
+       retNameHeader.textContent = "RETAILER";
+       retNameHeader.style.textDecoration = "underline";
+       let retNameRow = stageTable.appendChild(document.createElement("tr"));
+       let retName = retNameRow.appendChild(document.createElement("td"));
+       retName.textContent = results[0]["retailer"];
+       retName.style.paddingBottom = "20px";
+
+       //Add price per unit header and price per unit to result table.
+       let ppuHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
+       ppuHeader.textContent = "PRICE PER UNIT";
+       ppuHeader.style.textDecoration = "underline";
+       Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
+         let ppuRow = stageTable.appendChild(document.createElement("tr"));
+         let prod = ppuRow.appendChild(document.createElement("td"));
+         prod.innerHTML = items[i].textContent + "&nbsp-&nbsp";
+         let ppu = ppuRow.appendChild(document.createElement("td"));
+         ppu.textContent =  "$" + results[0]["prices"][product];
+         if(results[0]["prices"][product] % 1 === 0){
+           ppu.textContent += ".00";
+         }
+       });
+
+       //Add initial price (price before shipping and discounts are applied) header
+       //and initial price to results table.
+       let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
+       initPriHeader.textContent = "TOTAL PRODUCT COST";
+       initPriHeader.style.textDecoration = "underline";
+       initPriHeader.style.paddingTop = "20px";
+       let initPriRow = stageTable.appendChild(document.createElement("tr"));
+       let initPri = initPriRow.appendChild(document.createElement("td"));
+       let iniPriBDS;
+       initPri.textContent = "$" + results[0]["initial_price"];
+       Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
+         let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
+         initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
+         initPriBDS.style.fontSize = "0.9rem";
+         initPriBDS.style.textDecoration = "italic";
+         initPriBDS.textContent = `('${items[i].textContent}' - ${qts[0].textContent} x ` +
+                                  `${results[0]["prices"][i + 1]}` +
+                                  `${results[0]["prices"][i + 1] % 1 === 0 ? '.00' : ''}$)`;
+       });
+       //initPriBDS.style.whiteSpace = "nowrap";
+       initPriBDS.style.paddingBottom = "20px";
+
+       //Add total discount header and total discount to results table.
+       let totDiscHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let totDiscHeader = totDiscHeaderRow.appendChild(document.createElement("th"));
+       totDiscHeader.textContent = "TOTAL DISCOUNT";
+       totDiscHeader.style.textDecoration = "underline";
+       let totDiscRow = stageTable.appendChild(document.createElement("tr"));
+       let totDisc = totDiscRow.appendChild(document.createElement("td"));
+       totDisc.textContent = "-$" + results[0]["discount"];
+       if(results[0]["discount"] % 1 === 0){
+         totDisc.textContent += ".00";
+       }
+       totDisc.style.paddingBottom = "20px";
+
+       //Add shipping price header and shipping price to results table.
+       let shipPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let shipPriHeader = shipPriHeaderRow.appendChild(document.createElement("th"));
+       shipPriHeader.textContent = "SHIPPING COST";
+       shipPriHeader.style.textDecoration = "underline";
+       let shipPriRow = stageTable.appendChild(document.createElement("tr"));
+       let shipPri = shipPriRow.appendChild(document.createElement("td"));
+       shipPri.textContent = "$" + results[0]["shipping_price"];
+       if(results[0]["shipping_price"] % 1 === 0){
+         shipPri.textContent += ".00";
+       }
+       shipPri.style.paddingBottom = "20px";
+
+       //Add final price (price after shipping and promotions have been applied) header
+       //and final price to result table.
+       let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
+       let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
+       finPriHeader.innerHTML = "<span style='color:rgb(39, 206, 100)'>$$</span> " +
+                                "<span style='text-decoration:underline'>ESAVE BEST PRICE</span> " +
+                                "<span style='color:rgb(39, 206, 100)'>$$</span>";
+       finPriHeader.style.color = "purple";
+       let finPriRow = stageTable.appendChild(document.createElement("tr"));
+       let finPri = finPriRow.appendChild(document.createElement("td"));
+       finPri.textContent = String((results[0]["discounted_price"] +
+            results[0]["shipping_price"]).toFixed(2)) + "$";
+       finPri.style.paddingBottom = "20px";
+       finPri.style.color = "rgb(39, 206, 100)";
+
+       //Add "add to favorites" and "add to wish list" buttons for ESaved order
+       let buttonTable = orderStageRight.appendChild(document.createElement("table"));
+       buttonTable.classList.add("button-table");
+       buttonTable.style.margin = "auto";
+       let buttonRow = buttonTable.appendChild(document.createElement("tr"));
+       let favButton = buttonRow.appendChild(document.createElement("td"));
+       favButton.innerHTML = "<i class='fas fa-heart list-add'></i>";
+       favButton.style.paddingRight = "10px";
+       let wishlistButton = buttonRow.appendChild(document.createElement("td"));
+       wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
+       wishlistButton.style.paddingLeft = "10px";
+       let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
+       let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
+       favButtonDescription.setAttribute("id", "fav-button-desc");
+       favButtonDescription.textContent = "(add to favorites)";
+       favButtonDescription.classList.add("list-button-description");
+       favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results, null));
+       let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
+       wishlistButtonDescription.setAttribute("id", "wl-button-desc");
+       wishlistButtonDescription.innerHTML = "&nbsp&nbsp(add to wishlist)";
+       wishlistButtonDescription.classList.add("list-button-description");
+       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results, null));
+       let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
+       let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
+       orderNameInputCell.setAttribute("colspan", "2");
+       orderNameInputCell.style.paddingTop = "10px";
+       let orderNameInput = orderNameInputCell.appendChild(document.createElement("input"));
+       orderNameInput.setAttribute("type", "text");
+       orderNameInput.classList.add("list-add-input", "form-control");
+       orderNameInput.setAttribute("placeholder", "Enter Order Name (Optional)");
+
+       //Reset stage left height to height before ESave operation
+       orderStageLeft.style.height = orderStageLeftHeight + "px";
+
+       //Add checkout message to bottom of ESave shopping cart at bottom of page.
+       //Set the shopping cart and checkout message to link to the retailer for
+       //ESave result.
+       let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
+       checkoutMessageLinkContainer.style.display = "block";
+       let retailerLink = document.querySelector("#retailer-link");
+       retailerLink.setAttribute("href", "//" + results[0]["ret_web_add"]);
+       retailerLink.classList.remove("disable_a_href");
      }
-     totDisc.style.paddingBottom = "20px";
-
-     //Add shipping price header and shipping price to results table.
-     let shipPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     let shipPriHeader = shipPriHeaderRow.appendChild(document.createElement("th"));
-     shipPriHeader.textContent = "SHIPPING COST";
-     shipPriHeader.style.textDecoration = "underline";
-     let shipPriRow = stageTable.appendChild(document.createElement("tr"));
-     let shipPri = shipPriRow.appendChild(document.createElement("td"));
-     shipPri.textContent = "$" + results[0]["shipping_price"];
-     if(results[0]["shipping_price"] % 1 === 0){
-       shipPri.textContent += ".00";
-     }
-     shipPri.style.paddingBottom = "20px";
-
-     //Add final price (price after shipping and promotions have been applied) header
-     //and final price to result table.
-     let finPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
-     let finPriHeader = finPriHeaderRow.appendChild(document.createElement("th"));
-     finPriHeader.innerHTML = "<span style='color:rgb(39, 206, 100)'>$$</span> " +
-                              "<span style='text-decoration:underline'>ESAVE BEST PRICE</span> " +
-                              "<span style='color:rgb(39, 206, 100)'>$$</span>";
-     finPriHeader.style.color = "purple";
-     let finPriRow = stageTable.appendChild(document.createElement("tr"));
-     let finPri = finPriRow.appendChild(document.createElement("td"));
-     finPri.textContent = String((results[0]["discounted_price"] +
-          results[0]["shipping_price"]).toFixed(2)) + "$";
-     finPri.style.paddingBottom = "20px";
-     finPri.style.color = "rgb(39, 206, 100)";
-
-     //Add "add to favorites" and "add to wish list" buttons for ESaved order
-     let buttonTable = orderStageRight.appendChild(document.createElement("table"));
-     buttonTable.classList.add("button-table");
-     buttonTable.style.margin = "auto";
-     let buttonRow = buttonTable.appendChild(document.createElement("tr"));
-     let favButton = buttonRow.appendChild(document.createElement("td"));
-     favButton.innerHTML = "<i class='fas fa-heart list-add'></i>";
-     favButton.style.paddingRight = "10px";
-     let wishlistButton = buttonRow.appendChild(document.createElement("td"));
-     wishlistButton.innerHTML = "<i class='fas fa-clipboard-check list-add'></i>";
-     wishlistButton.style.paddingLeft = "10px";
-     let buttonDescriptionRow = buttonTable.appendChild(document.createElement("tr"));
-     let favButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
-     favButtonDescription.setAttribute("id", "fav-button-desc");
-     favButtonDescription.textContent = "(add to favorites)";
-     favButtonDescription.classList.add("list-button-description");
-     favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results, null));
-     let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
-     wishlistButtonDescription.setAttribute("id", "wl-button-desc");
-     wishlistButtonDescription.innerHTML = "&nbsp&nbsp(add to wishlist)";
-     wishlistButtonDescription.classList.add("list-button-description");
-     wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results, null));
-     let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
-     let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
-     orderNameInputCell.setAttribute("colspan", "2");
-     orderNameInputCell.style.paddingTop = "10px";
-     let orderNameInput = orderNameInputCell.appendChild(document.createElement("input"));
-     orderNameInput.setAttribute("type", "text");
-     orderNameInput.classList.add("list-add-input", "form-control");
-     orderNameInput.setAttribute("placeholder", "Enter Order Name (Optional)");
-
-     //Reset stage left height to height before ESave operation
-     orderStageLeft.style.height = orderStageLeftHeight + "px";
-
-     //Add checkout message to bottom of ESave shopping cart at bottom of page.
-     //Set the shopping cart and checkout message to link to the retailer for
-     //ESave result.
-     let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
-     checkoutMessageLinkContainer.style.display = "block";
-     let retailerLink = document.querySelector("#retailer-link");
-     retailerLink.setAttribute("href", "//" + results[0]["ret_web_add"]);
-     retailerLink.classList.remove("disable_a_href");
-   }
+ }
 }
 
 function processUnmatched(orderStageRight, orderStageRightText,
