@@ -303,7 +303,7 @@ async function processESave(time_ms, req, qts, items) {
      let checkoutMessageLinkContainer = document.querySelector("#inner-checkout-message-link-container");
      checkoutMessageLinkContainer.style.display = "block";
      let retailerLink = document.querySelector("#retailer-link");
-     retailerLink.setAttribute("href", "//" + results[0]["RET_WEB_ADD"]);
+     retailerLink.setAttribute("href", "//" + results[0]["ret_web_add"]);
      retailerLink.classList.remove("disable_a_href");
    }
 }
