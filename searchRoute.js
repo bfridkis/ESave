@@ -169,6 +169,7 @@ module.exports = app => {
 								res.end();
 							}
 							else{
+								console.log("discounts: ", discounts);//*********************
 								console.log(`discounts for ${discounts[0]["ret_name"]}: `, discounts);//******************************
 								//Greedy algorithm to apply non-product specfic promotions. The largest
 								//discount possible is applied, followed by any smaller discounts from
