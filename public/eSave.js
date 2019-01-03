@@ -231,7 +231,7 @@ async function processESave(time_ms, req, qts, items) {
      let totDisc = totDiscRow.appendChild(document.createElement("td"));
      totDisc.textContent = "-$" + results[0]["discount"];
      if(results[0]["discount"] % 1 === 0){
-       initPriBDS.textContent += ".00";
+       totDisc.textContent += ".00";
      }
      totDisc.style.paddingBottom = "20px";
 
