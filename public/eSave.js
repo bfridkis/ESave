@@ -286,12 +286,12 @@ async function processESave(time_ms, req, qts, items) {
        favButtonDescription.setAttribute("id", "fav-button-desc");
        favButtonDescription.textContent = "(add to favorites)";
        favButtonDescription.classList.add("list-button-description");
-       favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results[0]));
+       favButton.addEventListener("click", listAdder.bind(favButton.firstChild, "favorites", results[0], null));
        let wishlistButtonDescription = buttonDescriptionRow.appendChild(document.createElement("td"));
        wishlistButtonDescription.setAttribute("id", "wl-button-desc");
        wishlistButtonDescription.innerHTML = "&nbsp&nbsp(add to wishlist)";
        wishlistButtonDescription.classList.add("list-button-description");
-       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results[0]));
+       wishlistButton.addEventListener("click", listAdder.bind(wishlistButton.firstChild, "wish list", results[0], null));
        let orderNameInputRow = buttonTable.appendChild(document.createElement("tr"));
        let orderNameInputCell = buttonTable.appendChild(document.createElement("td"));
        orderNameInputCell.setAttribute("colspan", "2");
