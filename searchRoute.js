@@ -47,6 +47,7 @@ module.exports = app => {
 												"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' "+
 												"OR promotion.min_spend IS NULL) AND " +
 												"(promotion.qt_required <= '" + req.query[qtKey] + "' OR promotion.qt_required IS NULL) " +
+												"WHERE (retailer.id, product.id) IN (SELECT retailer, product from retailer_product)"
 					 						  "GROUP BY retailer.id, product.id ORDER BY DISCOUNTED_PRICE ASC";
 		      mysql.pool.query(queryString,
 		      (err, rows, fields) => {
