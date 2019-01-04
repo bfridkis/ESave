@@ -114,7 +114,7 @@ module.exports = app => {
 
 				if(!someProductsUnmatched){
 					var resultsTotalsByRetailer = {};
-					if(req.query.ret !== "NULL"){
+					/*if(req.query.ret !== "NULL"){
 						let retIndex;
 						eSaveResults[0].results.some((result, i) => {
 							if(result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret){
@@ -146,8 +146,8 @@ module.exports = app => {
 						resultsTotalsByRetailer[req.query.ret]["ret_web_add"] =
 							eSaveResults[0].results[retIndex].RET_WEB_ADD;
 						resultsTotalsByRetailer[req.query.ret]["discount_ids"] = {};
-					}
-					else{
+					}*/
+					//else{
 						eSaveResults.forEach((productResults, i) => {
 							productResults.results.forEach(result => {
 								if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
@@ -189,7 +189,7 @@ module.exports = app => {
 								}
 							});
 						});
-					}
+					//}
 					for(retailer in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[retailer]["num_prods"] !==
 								(Object.keys(req.query).length - 1) / 2){
