@@ -56,7 +56,7 @@ module.exports = app => {
 		          res.end();
 		        }
 		        else{
-							//console.log(rows);
+							console.log("ROWS!: ", rows);;//*********************
 
 							//Save results for each product, if any are returned
 							if(rows[0]){
