@@ -8,7 +8,7 @@ module.exports = (app) => {
   function getWishList(res, mysql, context, userid){
 
       mysql.pool.query("SELECT (@rownum := @rownum + 1) AS row_number, z.* " +
-          "FROM (SELECT wish_list.order AS order_id, order.current_price, DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
+          "FROM (SELECT wish_list.order AS order_id, order.current_price, order.name AS name, DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
           "INNER JOIN `order` ON wish_list.order = order.id " +
           "INNER JOIN order_product ON order.id = order_product.order " +
           "INNER JOIN product ON order_product.product = product.id " +
