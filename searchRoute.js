@@ -39,14 +39,13 @@ module.exports = app => {
 												"(product.name = '" + req.query[key] + "' OR " +
 												"'" + req.query[key] + "' = product.upc OR '" + req.query[key] +
 												"' = product.model_number) " +
-												"JOIN retailer ON (retailer_product.retailer = retailer.id  OR " +
-												"retailer.id = '" + req.query.ret + "' OR retailer.name = '" + req.query.ret + "') " +
+												"JOIN retailer ON retailer_product.retailer = retailer.id  AND " +
+												"retailer.product.product = product.id " +
 												"LEFT JOIN promotion ON promotion.retailer = retailer.id AND " +
 												"(promotion.product = product.id) AND " +
 												"(promotion.min_spend <= retailer_product.price * '" + req.query[qtKey] + "' "+
 												"OR promotion.min_spend IS NULL) AND " +
 												"(promotion.qt_required <= '" + req.query[qtKey] + "' OR promotion.qt_required IS NULL) " +
-												"WHERE (retailer.id, product.id) IN (SELECT retailer, product from retailer_product)"
 					 						  "GROUP BY retailer.id, product.id ORDER BY DISCOUNTED_PRICE ASC";
 		      mysql.pool.query(queryString,
 		      (err, rows, fields) => {
