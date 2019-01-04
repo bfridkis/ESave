@@ -198,7 +198,7 @@ async function processESave(time_ms, req, qts, items) {
        Object.keys(results[0]["prices"]).sort().forEach((product, i) => {
          let ppuRow = stageTable.appendChild(document.createElement("tr"));
          let prod = ppuRow.appendChild(document.createElement("td"));
-         prod.innerHTML = items[i].textContent + "&nbsp-&nbsp";
+         prod.innerHTML = items[i].textContent + "&nbsp:&nbsp";
          let ppu = ppuRow.appendChild(document.createElement("td"));
          ppu.textContent =  "$" + results[0]["prices"][product];
          if(results[0]["prices"][product] % 1 === 0){
