@@ -45,7 +45,7 @@ module.exports = app => {
 			                    }
 													else {
 			                      if (++callbackCount === req.body.products.length) {
-			                        if(Object.keys(req.body.discount_ids) > 0){
+			                        if(Object.keys(req.body.discount_ids).length > 0){
                                 let insertQuery = "INSERT INTO order_promotion values ";
   			                        for(key in req.body.discount_ids){
   		                            insertQuery += `(${req.body.discount_ids[key]}, ${row["id"]}),`;
