@@ -19,7 +19,7 @@ module.exports = (app) => {
 				else{
 					if(orders.length > 0){
 						var list = [];
-						order.forEach((order, i) => {
+						orders.forEach((order, i) => {
 							list.push({});
 							list[i]["current_price"] = order.current_price;
 							if(order.name){list[i]["name"] = order.name;}
