@@ -10,6 +10,7 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
    req.addEventListener("load", () => {
   	 if(req.status >= 200 && req.status < 400)
      {
+       console.log("results :", results);//****************************
     	 let results = JSON.parse(req.responseText);
     			 listAdder(list, results, promo);
      }
