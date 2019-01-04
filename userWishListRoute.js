@@ -59,9 +59,11 @@ module.exports = (app) => {
 									}
 								}
 						});
-					}
+					});
 				}
-			})
+			}
+		});
+
 
 			/*
       mysql.pool.query("SELECT (@rownum := @rownum + 1) AS row_number, z.* " +
