@@ -1,11 +1,11 @@
-module.exports = (app) => {
+module.exports = app => {
     var express = require('express');
     var router = express.Router();
     //var app = express();
 
     router.post('/', isLoggedIn, (req, res, next) => {
         var callbackCount = 0;
-        //let orderDetails = JSON.parse(req.body);
+        console.log("body: ", req.body, "user: ", req.user);//************************
         let mysql = req.app.get('mysql');
         let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?,?)";
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price),
