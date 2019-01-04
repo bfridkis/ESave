@@ -19,7 +19,7 @@ module.exports = app => {
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p" && key !== "page"){
 		      let qtKey = "q" + key.substring(1);
-					queryString = "select product.id AS PROD_ID, retailer.id AS RET_ID, " +
+					queryString = `select product.id AS PROD_ID, retailer.id AS RET_ID, ${req.query[qtKey]} AS QT, ` +
 												"product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
 												"retailer.web_address AS RET_WEB_ADD, " +
 												"FORMAT(retailer_product.price * '" + req.query[qtKey] + "', 2) AS INITIAL_PRICE, " +
@@ -141,6 +141,8 @@ module.exports = app => {
 									= Number(result.PRICE_PER_UNIT);
 								resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
 									= Number(result.PROD_ID);
+								resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
+									= Number(result.QT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_web_add"] = result.RET_WEB_ADD;
