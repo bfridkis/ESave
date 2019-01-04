@@ -19,7 +19,7 @@ module.exports = app => {
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p" && key !== "page"){
 		      let qtKey = "q" + key.substring(1);
-					queryString = `select product.id AS PROD_ID, retailer.id AS RET_ID, ${req.query[qtKey]} AS QT, ` +
+					queryString = "select product.id AS PROD_ID, retailer.id AS RET_ID, " +
 												"product.name AS PROD_NAME, retailer.name AS RET_NAME, " +
 												"retailer.web_address AS RET_WEB_ADD, " +
 												"FORMAT(retailer_product.price * '" + req.query[qtKey] + "', 2) AS INITIAL_PRICE, " +
@@ -61,6 +61,7 @@ module.exports = app => {
 							if(rows[0]){
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1))
+																	 "qt" : req.query[qtKey];
 																 });
 								complete();
 							}
@@ -131,7 +132,7 @@ module.exports = app => {
 								resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
 									= Number(result.PROD_ID);
 								resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
-									= Number(result.QT);
+									= Number(productResults.qt);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
 							}
 							else{
@@ -148,7 +149,7 @@ module.exports = app => {
 									= Number(result.PROD_ID);
 								resultsTotalsByRetailer[result.RET_NAME]["qts"] = {};
 								resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
-									= Number(result.QT);
+									= Number(productResults.qt);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_web_add"] = result.RET_WEB_ADD;
