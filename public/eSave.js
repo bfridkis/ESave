@@ -195,7 +195,7 @@ async function processESave(time_ms, req, qts, items) {
        let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
        ppuHeader.textContent = "PRICE PER UNIT";
        ppuHeader.style.textDecoration = "underline";
-       Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
+       Object.keys(results[0]["prices"]).sort().forEach((product, i) => {
          let ppuRow = stageTable.appendChild(document.createElement("tr"));
          let prod = ppuRow.appendChild(document.createElement("td"));
          prod.innerHTML = items[i].textContent + "&nbsp-&nbsp";
@@ -217,7 +217,7 @@ async function processESave(time_ms, req, qts, items) {
        let initPri = initPriRow.appendChild(document.createElement("td"));
        let iniPriBDS;
        initPri.textContent = "$" + results[0]["initial_price"];
-       Object.keys(results[0]["prices"]).sort().forEach( (product, i) => {
+       Object.keys(results[0]["prices"]).sort().forEach((product, i) => {
          let initPriBDSRow = stageTable.appendChild(document.createElement("tr"));
          initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
          initPriBDS.style.fontSize = "0.9rem";
@@ -329,7 +329,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
   stageTableCap.style.fontSize = "2rem";
   orderStageRight.appendChild(stageTable);
 
-  unmatched.forEach( suggestionList => {
+  unmatched.forEach(suggestionList => {
     //Add product name header and product name to result table.
     let containerDiv = stageTable.appendChild(document.createElement("div"));
     containerDiv.classList =
@@ -347,7 +347,7 @@ function processUnmatched(orderStageRight, orderStageRightText,
       suggestionName.style.fontSize = "1.25rem";
     }
     else{
-      suggestionList.suggested.forEach( (suggestion, i) => {
+      suggestionList.suggested.forEach((suggestion, i) => {
         if(i < 10){
           let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
           let suggestionName = suggestionRow.appendChild(document.createElement("td"));
@@ -482,7 +482,7 @@ function suggestNextPage(currentPage, prodNum){
       headerRowContent.style.color = "rgb(39, 206, 100)";
       headerRowContent.style.fontSize = "1.75rem";
       let results = JSON.parse(req.responseText);
-      results.forEach( (suggestion, i) => {
+      results.forEach((suggestion, i) => {
         if(i < 10){
           let suggestionRow = thisSuggestionList.appendChild(document.createElement("tr"));
           let suggestionName = suggestionRow.appendChild(document.createElement("td"));

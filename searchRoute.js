@@ -115,8 +115,8 @@ module.exports = app => {
 
 				if(!someProductsUnmatched){
 					var resultsTotalsByRetailer = {};
-					eSaveResults.forEach( (productResults, i) => {
-						productResults.results.forEach( result => {
+					eSaveResults.forEach((productResults, i) => {
+						productResults.results.forEach(result => {
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
 								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
@@ -177,7 +177,7 @@ module.exports = app => {
 									//largest to smallest.
 									if(discounts.length > 0){
 										let ret_name = discounts[0]["ret_name"];
-										discounts.forEach( discount => {
+										discounts.forEach(discount => {
 											if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
 												Number(discount.discount)){
 													resultsTotalsByRetailer[ret_name]["discount"] +=
