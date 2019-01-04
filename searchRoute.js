@@ -55,8 +55,6 @@ module.exports = app => {
 		          res.end();
 		        }
 		        else{
-							console.log("ROWS!: ", rows);;//*********************
-
 							//Save results for each product, if any are returned
 							if(rows[0]){
 		          	eSaveResults.push({"results" : rows,
@@ -117,7 +115,6 @@ module.exports = app => {
 					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach((productResults, i) => {
 						productResults.results.forEach(result => {
-							console.log("prod: ", productResults);//****************
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
 								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
@@ -169,7 +166,6 @@ module.exports = app => {
 					else{
 						let mysql = req.app.get('mysql');
 						let productListString = null;
-						console.log("retailer info out: ", resultsTotalsByRetailer[retailer]);//***********
 						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
 							if(i === 0){
 								productListString = `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
@@ -177,12 +173,10 @@ module.exports = app => {
 							else{
 								productListString += `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
 							}
-							console.log("pid: ", pid);//*********************
 							if(i === Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).length - 1){
 								productListString = productListString.slice(0, -1);
 							}
 						});
-						console.log("productListString: ", productListString);//********************
 						for(retailer in resultsTotalsByRetailer){
 							queryString = "SELECT promotion.*, retailer.name AS ret_name " +
 														"FROM promotion JOIN retailer " +

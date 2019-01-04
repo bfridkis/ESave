@@ -23,7 +23,6 @@ module.exports = (app) => {
               res.end();
           }
           context.list  = rows;
-					console.log("context.list: ", context.list);//********************
           res.render('wish_list/wishList', context);
       });
   }
