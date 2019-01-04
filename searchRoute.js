@@ -116,7 +116,7 @@ module.exports = app => {
 					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach((productResults, i) => {
 						productResults.results.forEach(result => {
-							console.log("prodNUM: ", productResults.prodNum);//****************
+							console.log("prod: ", productResults);//****************
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
 								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
