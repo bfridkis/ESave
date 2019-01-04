@@ -167,9 +167,14 @@ module.exports = app => {
 					else{
 						let mysql = req.app.get('mysql');
 						let productListString = null;
-						console.log("prods_ids: ", resultsTotalsByRetailer[retailer]);//***********
+						console.log("retailer info out: ", resultsTotalsByRetailer[retailer]);//***********
 						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
-							i === 0 ? productListString = `'${pid}',` : productListString += `'${pid}',`;
+							if(i === 0){
+								productListString = `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
+							}
+							else{
+								productListString += `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
+							}
 							console.log("pid: ", pid);//*********************
 							if(i === Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).length - 1){
 								productListString = productListString.slice(0, -1);
@@ -254,7 +259,7 @@ module.exports = app => {
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["discount"].toFixed(2));
 					resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"] =
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"].toFixed(2));
-					//console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
+					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
 			}
