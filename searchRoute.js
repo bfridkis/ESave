@@ -227,13 +227,6 @@ module.exports = app => {
 				return a.prodNum - b.prodNum;
 			}
 
-			//Compare function used for sorting final array of result objects when
-			//not all products can be matched.
-			//See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-			function compare2(a, b){
-				return a.prodNum - b.prodNum;
-			}
-
 			//Secondary complete function to track callbacks while each eligible retailer's
 			//non-product specific promotions are applied (using a greedy technique, see above)
 			//as available.
@@ -255,7 +248,7 @@ module.exports = app => {
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["discount"].toFixed(2));
 					resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"] =
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"].toFixed(2));
-					//console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
+					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
 			}
