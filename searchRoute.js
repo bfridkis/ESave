@@ -15,7 +15,7 @@ module.exports = app => {
 		//For each product queried, find the lowest possible price (and associated retailer)
 		//by applying all available promotions in table query.
 		if(Object.keys(req.query).length !== 0){
-		  for(let key in req.query){
+		  for(key in req.query){
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p" && key !== "page"){
 		      let qtKey = "q" + key.substring(1);
@@ -151,6 +151,7 @@ module.exports = app => {
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_web_add"] = result.RET_WEB_ADD;
+								resultsTotalsByRetailer[result.RET_NAME]["discount_ids"] = {};
 							}
 						});
 					});
@@ -165,13 +166,18 @@ module.exports = app => {
 					}
 					else{
 						let mysql = req.app.get('mysql');
+						let productListString;
+						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach(pid => {
+							productListString += `'${pid}',`;
+						});
+						productListString = productListString.slice(0, -1);
 						for(retailer in resultsTotalsByRetailer){
-							queryString = "SELECT promotion.discount, promotion.min_spend, promotion.ecoupon, " +
-														"promotion.description, retailer.name AS ret_name " +
+							queryString = "SELECT promotion.*, retailer.name AS ret_name " +
 														"FROM promotion JOIN retailer " +
 														"ON promotion.retailer = retailer.id WHERE " +
 														`promotion.retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
-														"AND promotion.qt_required IS NULL AND (promotion.min_spend IS NULL OR " +
+														`AND (promotion.qt_required IS NULL OR promotion.product IN (${productListString})) ` +
+														"AND (promotion.min_spend IS NULL OR " +
 														`promotion.min_spend <= '${resultsTotalsByRetailer[retailer]["discounted_price"]}') ` +
 														"ORDER BY promotion.discount DESC";
 							mysql.pool.query(queryString, (err, discounts, fields) => {
@@ -185,13 +191,18 @@ module.exports = app => {
 									//largest to smallest.
 									if(discounts.length > 0){
 										let ret_name = discounts[0]["ret_name"];
-										discounts.forEach(discount => {
-											if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
-												Number(discount.discount)){
-													resultsTotalsByRetailer[ret_name]["discount"] +=
-														Number(discount.discount);
-													resultsTotalsByRetailer[ret_name]["discounted_price"] -=
-														Number(discount.discount);
+										discounts.forEach((discount, i) => {
+											if(discount.product === null &&
+												resultsTotalsByRetailer[ret_name]["discounted_price"] >=
+													Number(discount.discount)){
+														resultsTotalsByRetailer[ret_name]["discount"] +=
+															Number(discount.discount);
+														resultsTotalsByRetailer[ret_name]["discounted_price"] -=
+															Number(discount.discount);
+														resultsTotalsByRetailer[ret_name]["discount_ids"][String(i)] = discount.id;
+												}
+												else{
+													resultsTotalsByRetailer[ret_name]["discount_ids"][String(i)] = discount.id;
 												}
 											});
 										}
