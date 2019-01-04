@@ -167,8 +167,9 @@ module.exports = app => {
 					else{
 						let mysql = req.app.get('mysql');
 						let productListString = null;
+						console.log("prods_ids: ", resultsTotalsByRetailer[retailer]["prod_ids"]);//***********
 						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
-							productListString += `'${pid}',`;
+							i === 0 ? productListString = `'${pid}',` : productListString += `'${pid}',`;
 							console.log("pid: ", pid);//*********************
 							if(i === Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).length - 1){
 								productListString = productListString.slice(0, -1);
