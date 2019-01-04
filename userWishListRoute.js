@@ -6,7 +6,63 @@ module.exports = (app) => {
 
 
   function getWishList(res, mysql, context, userid){
+			var callbackCount = 0;
+			let selectQuery = "SELECT wish_list.order, order.current_price, order.name, " +
+												"order.created_on, order.retailer " +
+												"from wish_list JOIN `order` ON order.id = wish_list.order " +
+												`WHERE order.user = ${user}`;
+			mysql.pool.query(selectQuery, (err, orders, next) => {
+				if(err){
+						res.write(JSON.stringify(err));
+						res.end();
+				}
+				else{
+					if(orders.length > 0){
+						var list = [];
+						order.forEach((order, i) => {
+							list.push({});
+							list[i]["current_price"] = order.current_price;
+							if(order.name){list[i]["name"] = order.name;}
+							list[i]["created_on"] = order.created_on;
+							list[i]["retailer"] = order.retailer;
+							list[i]["order_id"] = order.order;
+							selectQuery = "SELECT order_product.quantity, product.name AS product, " +
+														"promotion.description AS promotion FROM wish_list " +
+														"JOIN `order` ON wish_list.order = order.id " +
+														"JOIN order_product ON order.id = order_product.order " +
+														"JOIN product ON order_product.product = product.id " +
+														"LEFT JOIN order_promotion ON order.id = order_promotion.order " +
+														"LEFT JOIN promotion ON order_promotion.promotion = promotion.id " +
+														`WHERE wish_list.user = ${userid} and wish_list.order = ${order.order}`;
+							mysql.pool.query(selectQuery, (err, orderProducts, next) => {
+								if(err){
+										res.write(JSON.stringify(err));
+										res.end();
+								}
+								else{
+									callbackCount++;
+									list[i]["products"] = [];
+									orderProducts.forEach((orderProduct, j) => {
+										list[i]["products"].push({});
+										list[i]["products"][j]["name"] = orderProduct.product;
+										list[i]["products"][j]["qt"] = orderProduct.quantity;
+										list[i]["products"][j]["promotion"] = orderProduct.promotion;
+									});
+									if(callbackCount === orders.length){
+										list.sort(compare);
+										list.forEach((order, i) => {
+											order["row_number"] = i + 1;
+										});
+										context.list = list;
+										res.render('wish_list/wishList', context);
+									}
+								}
+						});
+					}
+				}
+			})
 
+			/*
       mysql.pool.query("SELECT (@rownum := @rownum + 1) AS row_number, z.* " +
           "FROM (SELECT wish_list.order AS order_id, order.current_price, order.name AS name, DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
           "INNER JOIN `order` ON wish_list.order = order.id " +
@@ -25,6 +81,7 @@ module.exports = (app) => {
           context.list  = rows;
           res.render('wish_list/wishList', context);
       });
+			*/
   }
 
 	router.get('/', isLoggedIn, (req, res, next) => {
@@ -65,6 +122,10 @@ function isLoggedIn(req, res, next) {
 
 	// if they aren't redirect them to the login page
 	res.redirect('/');
+}
+
+function compare(a, b){
+	return a.created_on - b.created_on;
 }
 
 /* reference:
