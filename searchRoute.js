@@ -139,6 +139,8 @@ module.exports = app => {
 								resultsTotalsByRetailer[result.RET_NAME]["prices"] = {};
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
 									= Number(result.PRICE_PER_UNIT);
+								resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
+									= Number(result.PROD_ID);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
 								resultsTotalsByRetailer[result.RET_NAME]["ret_web_add"] = result.RET_WEB_ADD;
