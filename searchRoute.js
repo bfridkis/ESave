@@ -127,6 +127,10 @@ module.exports = app => {
 									Number(result.INITIAL_PRICE);
 								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
 									= Number(result.PRICE_PER_UNIT);
+								resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
+									= Number(result.PROD_ID);
+								resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
+									= Number(result.QT);
 								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
 							}
 							else{
