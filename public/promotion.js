@@ -21,7 +21,7 @@ req.send(null);
 
 function listAdder(list, orderData, promo_id){
   let promo = document.querySelector(`.${promo_id}`);
-  promo.firstChild.classList.add("thinking");
+  document.querySelector(`.${promo_id}_li`).firstChild.classList.add("thinking");
     //Setup new XMLHttpRequest request
     let req = new XMLHttpRequest();
     //Open GET request, using queryString
