@@ -48,16 +48,18 @@ module.exports = app => {
 			                        if(Object.keys(req.body.discount_ids).length > 0){
                                 let insertQuery = "INSERT INTO order_promotion values ";
   			                        for(let key in req.body.discount_ids){
-  		                            insertQuery += `(${req.body.discount_ids[key]}, ${row["id"]}),`;
+  		                            insertQuery += `(${req.body.discount_ids[key]}, ${orderID}),`;
                                   }
                                 insertQuery = insertQuery.slice(0, -1);
   		                          mysql.pool.query(insertQuery,
-  		                            (err, rows, fields) => {
+  		                            (err, row, fields) => {
   		                              if (err) {
+                                      console.log("err: ", err);//************
   		                                res.write(JSON.stringify(err));
   		                                res.end();
   		                              }
   																	else {
+                                      console.log("row: ", row);//************
   																		if(req.body.list === "favorites"){
   																			insertQuery = "Insert into favorites_order values (?, ?)";
   																		}
