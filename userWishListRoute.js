@@ -8,8 +8,8 @@ module.exports = (app) => {
   function getWishList(res, mysql, context, userid){
 			var callbackCount = 0;
 			let selectQuery = "SELECT wish_list.order, order.current_price, order.name, " +
-												"order.created_on, order.retailer " +
-												"from wish_list JOIN `order` ON order.id = wish_list.order " +
+												"DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, " +
+												"order.retailer FROM wish_list JOIN `order` ON order.id = wish_list.order " +
 												`WHERE order.user = ${userid}`;
 			mysql.pool.query(selectQuery, (err, orders, next) => {
 				if(err){
