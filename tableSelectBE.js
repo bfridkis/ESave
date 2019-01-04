@@ -59,7 +59,7 @@ module.exports = tableName => {
     let pkValues = req.params.pk_values.split("-");
 		let sql = "DELETE FROM `" + tableName + "` WHERE ";
     pkFields.forEach(field => {
-      sql += `${field}=? AND `
+      sql += "`" + field + "`=? AND ";
     })
     sql = sql.substring(0, sql.length - 5);
 		sql = mysql.pool.query(sql, pkValues, function(error, results, fields){
