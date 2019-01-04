@@ -48,7 +48,7 @@ module.exports = app => {
 			                        if(Object.keys(req.body.discount_ids).length > 0){
                                 let insertQuery = "INSERT INTO order_promotion values ";
   			                        for(let key in req.body.discount_ids){
-  		                            insertQuery += `(${req.body.discount_ids[key]}, ${orderID}),`;
+  		                            insertQuery += `(${orderID}, ${req.body.discount_ids[key]}),`;
                                   }
                                 insertQuery = insertQuery.slice(0, -1);
   		                          mysql.pool.query(insertQuery,
