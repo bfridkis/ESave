@@ -114,7 +114,7 @@ module.exports = app => {
 
 				if(!someProductsUnmatched){
 					var resultsTotalsByRetailer = {};
-					/*if(req.query.ret !== "NULL"){
+					if(req.query.ret !== "NULL"){
 						let retIndex;
 						eSaveResults[0].results.some((result, i) => {
 							if(result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret){
@@ -146,8 +146,8 @@ module.exports = app => {
 						resultsTotalsByRetailer[req.query.ret]["ret_web_add"] =
 							eSaveResults[0].results[retIndex].RET_WEB_ADD;
 						resultsTotalsByRetailer[req.query.ret]["discount_ids"] = {};
-					}*/
-					//else{
+					}
+					else{
 						eSaveResults.forEach((productResults, i) => {
 							productResults.results.forEach(result => {
 								if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
@@ -189,7 +189,7 @@ module.exports = app => {
 								}
 							});
 						});
-					//}
+					}
 					for(retailer in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[retailer]["num_prods"] !==
 								(Object.keys(req.query).length - 1) / 2){
@@ -202,18 +202,18 @@ module.exports = app => {
 					else{
 						let mysql = req.app.get('mysql');
 						let productListString = null;
-						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
-							if(i === 0){
-								productListString = `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
-							}
-							else{
-								productListString += `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
-							}
-							if(i === Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).length - 1){
-								productListString = productListString.slice(0, -1);
-							}
-						});
 						for(retailer in resultsTotalsByRetailer){
+							Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
+								if(i === 0){
+									productListString = `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
+								}
+								else{
+									productListString += `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
+								}
+								if(i === Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).length - 1){
+									productListString = productListString.slice(0, -1);
+								}
+							});
 							queryString = "SELECT promotion.*, retailer.name AS ret_name " +
 														"FROM promotion JOIN retailer " +
 														"ON promotion.retailer = retailer.id WHERE " +
