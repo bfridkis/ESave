@@ -6,6 +6,7 @@ module.exports = app => {
     router.post('/', isLoggedIn, (req, res, next) => {
         var callbackCount = 0;
         let mysql = req.app.get('mysql');
+        console.log("body: ", req.body);//**************************
         let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?,?)";
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price),
 																			 req.body.order_name],
