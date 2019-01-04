@@ -222,7 +222,7 @@ async function processESave(time_ms, req, qts, items) {
          initPriBDS = initPriBDSRow.appendChild(document.createElement("td"));
          initPriBDS.style.fontSize = "0.9rem";
          initPriBDS.style.textDecoration = "italic";
-         initPriBDS.textContent = `('${items[i].textContent}' - ${qts[0].textContent} x ` +
+         initPriBDS.textContent = `('${items[i].textContent}' : ${qts[0].textContent} x ` +
                                   `${results[0]["prices"][i + 1]}` +
                                   `${results[0]["prices"][i + 1] % 1 === 0 ? '.00' : ''}$)`;
        });
