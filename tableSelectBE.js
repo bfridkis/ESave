@@ -64,6 +64,7 @@ module.exports = tableName => {
     sql = sql.substring(0, sql.length - 5);
 		sql = mysql.pool.query(sql, pkValues, function(error, results, fields){
 			if(error){
+        console.log("error: ", error);//**********************
 				res.write(JSON.stringify(error));
 				res.status(400);
 				res.end();
