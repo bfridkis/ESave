@@ -230,7 +230,6 @@ module.exports = app => {
 									minFinalPriceRetailer = key;
 						}
 					}
-					delete resultsTotalsByRetailer[minFinalPriceRetailer]["ret_id"];
 					resultsTotalsByRetailer[minFinalPriceRetailer]["retailer"] = minFinalPriceRetailer;
 					resultsTotalsByRetailer[minFinalPriceRetailer]["discounted_price"] =
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["discounted_price"].toFixed(2));
