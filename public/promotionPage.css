@@ -127,6 +127,6 @@ li
 
 }
 
-.fa-clipboard:hover, .fa-heard:hover{
+.fa-clipboard-check:hover, .fa-heart:hover{
   cursor:pointer;
 }
