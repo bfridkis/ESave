@@ -119,7 +119,7 @@ async function processESave(time_ms, req, qts, items) {
 
   //Parse the results and save in results array
   let results = JSON.parse(req.responseText);
-  console.log(results);
+  //console.log(results);
 
   //If some (or all) products cannot be matched, present user suggested matches.
   //Else render results.
