@@ -56,7 +56,7 @@ module.exports = app => {
 		        }
 		        else{
 							//Save results for each product, if any are returned
-							console.log("rows", rows);//***********************
+							//console.log(rows);
 							if(rows[0]){
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1)),
@@ -114,47 +114,82 @@ module.exports = app => {
 
 				if(!someProductsUnmatched){
 					var resultsTotalsByRetailer = {};
-					eSaveResults.forEach((productResults, i) => {
-						productResults.results.forEach(result => {
-							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
-								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
-								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
-								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
-									Number(result.DISCOUNTED_PRICE);
-								resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
-									Number(result.TOTAL_DISCOUNT);
-								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
-									Number(result.INITIAL_PRICE);
-								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
-									= Number(result.PRICE_PER_UNIT);
-								resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
-									= Number(result.PROD_ID);
-								resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
-									= Number(productResults.qt);
-								resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
+					if(req.query.ret !== "NULL"){
+						let retIndex;
+						eSaveResults[0].results.some((result, i) => {
+							if(result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret){
+								retIndex = i;
 							}
-							else{
-								resultsTotalsByRetailer[result.RET_NAME] = {};
-								resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] = Number(result.DISCOUNTED_PRICE);
-								resultsTotalsByRetailer[result.RET_NAME]["shipping_price"] = Number(result.SHIPPING_PRICE);
-								resultsTotalsByRetailer[result.RET_NAME]["discount"] = Number(result.TOTAL_DISCOUNT);
-								resultsTotalsByRetailer[result.RET_NAME]["initial_price"] = Number(result.INITIAL_PRICE);
-								resultsTotalsByRetailer[result.RET_NAME]["prices"] = {};
-								resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
-									= Number(result.PRICE_PER_UNIT);
-								resultsTotalsByRetailer[result.RET_NAME]["prod_ids"] = {};
-								resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
-									= Number(result.PROD_ID);
-								resultsTotalsByRetailer[result.RET_NAME]["qts"] = {};
-								resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
-									= Number(productResults.qt);
-								resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
-								resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
-								resultsTotalsByRetailer[result.RET_NAME]["ret_web_add"] = result.RET_WEB_ADD;
-								resultsTotalsByRetailer[result.RET_NAME]["discount_ids"] = {};
-							}
+							return result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret;
 						});
-					});
+						resultsTotalsByRetailer[req.query.ret] = {};
+						resultsTotalsByRetailer[req.query.ret]["discounted_price"] =
+							Number(eSaveResults[0].results[retIndex].DISCOUNTED_PRICE);
+						resultsTotalsByRetailer[req.query.ret]["shipping_price"] =
+							Number(eSaveResults[0].results[retIndex].SHIPPING_PRICE);
+						resultsTotalsByRetailer[req.query.ret]["discount"] =
+						  Number(eSaveResults[0].results[retIndex].TOTAL_DISCOUNT);
+						resultsTotalsByRetailer[req.query.ret]["initial_price"] =
+							Number(eSaveResults[0].results[retIndex].INITIAL_PRICE);
+						resultsTotalsByRetailer[req.query.ret]["prices"] = {};
+						resultsTotalsByRetailer[req.query.ret]["prices"]["1"]
+							= Number(eSaveResults[0].results[retIndex].PRICE_PER_UNIT);
+						resultsTotalsByRetailer[req.query.ret]["prod_ids"] = {};
+						resultsTotalsByRetailer[req.query.ret]["prod_ids"]["1"]
+							= Number(eSaveResults[0].results[retIndex].PROD_ID);
+						resultsTotalsByRetailer[req.query.ret]["qts"] = {};
+						resultsTotalsByRetailer[req.query.ret]["qts"]["1"]
+							= Number(eSaveResults[0].qt);
+						resultsTotalsByRetailer[req.query.ret]["num_prods"] = 1;
+						resultsTotalsByRetailer[req.query.ret]["ret_id"] =
+							eSaveResults[0].results[retIndex].RET_ID;
+						resultsTotalsByRetailer[req.query.ret]["ret_web_add"] =
+							eSaveResults[0].results[retIndex].RET_WEB_ADD;
+						resultsTotalsByRetailer[req.query.ret]["discount_ids"] = {};
+					}
+					else{
+						eSaveResults.forEach((productResults, i) => {
+							productResults.results.forEach(result => {
+								if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
+									//Use scaling where necessary to ensure all values are rounded to 2 decimal places
+									//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
+									resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
+										Number(result.DISCOUNTED_PRICE);
+									resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
+										Number(result.TOTAL_DISCOUNT);
+									resultsTotalsByRetailer[result.RET_NAME]["initial_price"] +=
+										Number(result.INITIAL_PRICE);
+									resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
+										= Number(result.PRICE_PER_UNIT);
+									resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
+										= Number(result.PROD_ID);
+									resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
+										= Number(productResults.qt);
+									resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
+								}
+								else{
+									resultsTotalsByRetailer[result.RET_NAME] = {};
+									resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] = Number(result.DISCOUNTED_PRICE);
+									resultsTotalsByRetailer[result.RET_NAME]["shipping_price"] = Number(result.SHIPPING_PRICE);
+									resultsTotalsByRetailer[result.RET_NAME]["discount"] = Number(result.TOTAL_DISCOUNT);
+									resultsTotalsByRetailer[result.RET_NAME]["initial_price"] = Number(result.INITIAL_PRICE);
+									resultsTotalsByRetailer[result.RET_NAME]["prices"] = {};
+									resultsTotalsByRetailer[result.RET_NAME]["prices"][productResults.prodNum]
+										= Number(result.PRICE_PER_UNIT);
+									resultsTotalsByRetailer[result.RET_NAME]["prod_ids"] = {};
+									resultsTotalsByRetailer[result.RET_NAME]["prod_ids"][productResults.prodNum]
+										= Number(result.PROD_ID);
+									resultsTotalsByRetailer[result.RET_NAME]["qts"] = {};
+									resultsTotalsByRetailer[result.RET_NAME]["qts"][productResults.prodNum]
+										= Number(productResults.qt);
+									resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
+									resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
+									resultsTotalsByRetailer[result.RET_NAME]["ret_web_add"] = result.RET_WEB_ADD;
+									resultsTotalsByRetailer[result.RET_NAME]["discount_ids"] = {};
+								}
+							});
+						});
+					}
 					for(retailer in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[retailer]["num_prods"] !==
 								(Object.keys(req.query).length - 1) / 2){
