@@ -15,7 +15,7 @@ module.exports = app => {
 		//For each product queried, find the lowest possible price (and associated retailer)
 		//by applying all available promotions in table query.
 		if(Object.keys(req.query).length !== 0){
-		  for(key in req.query){
+		  for(let key in req.query){
 		    let mysql = req.app.get('mysql');
 		    if(key.charAt(0) === "p" && key !== "page"){
 		      let qtKey = "q" + key.substring(1);
