@@ -56,6 +56,7 @@ module.exports = app => {
 		        }
 		        else{
 							//Save results for each product, if any are returned
+							console.log("rows[0]", rows[0]);//***********************
 							if(rows[0]){
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1)),
