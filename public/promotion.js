@@ -29,7 +29,7 @@ function listAdder(list, orderData, promo_id){
     req.setRequestHeader('Content-Type', 'application/json');
     let data = {list: list,
                 products: [],
-                retailer: orderData["retailer"]};
+                retailer: orderData["ret_id"]};
     for(key in orderData["prod_ids"]){
       data.products.push({ product_id : orderData["prod_ids"][key],
                            quantity: orderData["qts"][key]
