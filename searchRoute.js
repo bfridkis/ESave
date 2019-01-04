@@ -116,6 +116,7 @@ module.exports = app => {
 					var resultsTotalsByRetailer = {};
 					eSaveResults.forEach((productResults, i) => {
 						productResults.results.forEach(result => {
+							console.log("prodNUM: ", productResults.prodNum);//****************
 							if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
 								//Use scaling where necessary to ensure all values are rounded to 2 decimal places
 								//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
@@ -259,7 +260,7 @@ module.exports = app => {
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["discount"].toFixed(2));
 					resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"] =
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"].toFixed(2));
-					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
+					//console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
 			}
