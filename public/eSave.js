@@ -400,7 +400,7 @@ function listAdder(list, orderData, promo_id){
                 products: [],
                 retailer: orderData["ret_id"]};
     console.log("orderData prod_ids: ", orderData["prod_ids"]);//****************
-    for(key in orderData["prod_ids"]){
+    for(let key in orderData["prod_ids"]){
       data.products.push({ product_id : orderData["prod_ids"][key],
                            quantity: orderData["qts"][key]
                          });
