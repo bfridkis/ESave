@@ -57,7 +57,7 @@ module.exports = tableName => {
 		var mysql = req.app.get('mysql');
     let pkFields = req.params.primarykey.split("-");
     let pkValues = req.params.pk_values.split("-");
-		let sql = `DELETE FROM ${tableName} WHERE `;
+		let sql = `DELETE FROM '${tableName}' WHERE `;
     pkFields.forEach(field => {
       sql += `${field}=? AND `
     })
