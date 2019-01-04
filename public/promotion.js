@@ -37,7 +37,8 @@ function listAdder(list, orderData, promo_id){
     }
     data["current_price"] = orderData["discounted_price"];
     data["initial_price"] = orderData["initial_price"];
-    //data["order_name"] = document.querySelector(".list-add-input").value;
+    console.log("data: ", data);//*************************************
+
     req.addEventListener('load', () => {
       if(req.status >= 200 && req.status < 400){
         //promo.setAttribute("added", "yes");
