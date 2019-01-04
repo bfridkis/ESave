@@ -12,6 +12,7 @@ module.exports = app => {
 																			 req.body.order_name],
           (err, row, fields) => {
             if (err) {
+              console.log("err: ", err);//************************
 							res.write(JSON.stringify(err));
 							res.status(400);
 							res.end();
