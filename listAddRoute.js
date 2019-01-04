@@ -5,20 +5,17 @@ module.exports = app => {
 
     router.post('/', isLoggedIn, (req, res, next) => {
         var callbackCount = 0;
-        console.log("body: ", req.body, "user: ", req.user);//************************
         let mysql = req.app.get('mysql');
         let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?,?)";
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price),
 																			 req.body.order_name],
           (err, row, fields) => {
             if (err) {
-              console.log("err: ", err);//************************
 							res.write(JSON.stringify(err));
 							res.status(400);
 							res.end();
             }
 						else {
-              console.log("row: ", row);//************************
 							var orderID = row.insertId;
               //Work around so auto-timestamp feature can be used for "Created_On" in
               //addition to "last_ppdated". (Only one field can be designated with "ON

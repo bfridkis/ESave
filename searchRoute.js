@@ -107,7 +107,6 @@ module.exports = app => {
 				let someProductsUnmatched = eSaveResults.some( result => {
 					if(result.hasOwnProperty("suggested")){
 						eSaveResults.sort(compare);
-						console.log("Sending Suggested");//***********************************
 						res.send(JSON.stringify(eSaveResults));
 						return result.hasOwnProperty("suggested")
 					}
@@ -161,7 +160,6 @@ module.exports = app => {
 						res.send({"Error" : "No Retailers With All Requested Products"});
 					}
 					else{
-						console.log("eligible retailer count: ", Object.keys(resultsTotalsByRetailer).length);//*****
 						let mysql = req.app.get('mysql');
 						for(retailer in resultsTotalsByRetailer){
 							queryString = "SELECT promotion.discount, promotion.min_spend, promotion.ecoupon, " +
@@ -220,7 +218,6 @@ module.exports = app => {
 			//as available.
 			function complete2(){
 				callbackCount2++;
-				console.log("Callbackcount2: ", callbackCount2);//*********************
 				if(Object.keys(resultsTotalsByRetailer).length
 						&& callbackCount2 === Object.keys(resultsTotalsByRetailer).length){
 					let minFinalPrice = Number.MAX_SAFE_INTEGER, minFinalPriceRetailer;
@@ -237,7 +234,7 @@ module.exports = app => {
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["discount"].toFixed(2));
 					resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"] =
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"].toFixed(2));
-					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);//**************
+					//console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
 			}

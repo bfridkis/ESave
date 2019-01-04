@@ -11,7 +11,6 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
   	 if(req.status >= 200 && req.status < 400)
      {
     	 let results = JSON.parse(req.responseText);
-       console.log("results :", results);//****************************
     			 listAdder(list, results[0], promo);
      }
   	 else
@@ -37,7 +36,6 @@ function listAdder(list, orderData, promo_id){
     }
     data["current_price"] = orderData["discounted_price"];
     data["initial_price"] = orderData["initial_price"];
-    console.log("data: ", data);//*************************************
 
     req.addEventListener('load', () => {
       if(req.status >= 200 && req.status < 400){
