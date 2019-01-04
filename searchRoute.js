@@ -169,8 +169,10 @@ module.exports = app => {
 						let productListString;
 						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach(pid => {
 							productListString += `'${pid}',`;
+							console.log("pid: ", pid);//*********************
 						});
 						productListString = productListString.slice(0, -1);
+						console.log("productListString: ", productListString);//********************
 						for(retailer in resultsTotalsByRetailer){
 							queryString = "SELECT promotion.*, retailer.name AS ret_name " +
 														"FROM promotion JOIN retailer " +
