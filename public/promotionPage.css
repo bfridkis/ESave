@@ -130,3 +130,11 @@ li
 .fa-clipboard-check:hover, .fa-heart:hover{
   cursor:pointer;
 }
+
+.thinking:hover{
+  cursor:progress;
+}
+
+.finished:hover{
+  cursor:default;
+}

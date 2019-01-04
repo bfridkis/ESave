@@ -21,6 +21,7 @@ req.send(null);
 
 function listAdder(list, orderData, promo_id){
   let promo = document.querySelector(`.${promo_id}`);
+  promo.firstChild.classList.add("thinking");
     //Setup new XMLHttpRequest request
     let req = new XMLHttpRequest();
     //Open GET request, using queryString
@@ -38,6 +39,7 @@ function listAdder(list, orderData, promo_id){
     data["initial_price"] = orderData["initial_price"];
 
     req.addEventListener('load', () => {
+      document.querySelector(`.${promo_id}_li`).firstChild.classList.add("finished");
       if(req.status >= 200 && req.status < 400){
         //promo.setAttribute("added", "yes");
         if(promo.classList.contains("fa-heart")){
