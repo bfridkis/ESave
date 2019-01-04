@@ -59,7 +59,7 @@ module.exports = app => {
 							if(rows[0]){
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1)),
-																	 "qt" : req.query[qtKey];
+																	 "qt" : req.query[qtKey]
 																 });
 								complete();
 							}
