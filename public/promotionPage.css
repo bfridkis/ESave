@@ -127,6 +127,6 @@ li
 
 }
 
-.fa-clipboard, .fa-heard{
+.fa-clipboard:hover, .fa-heard:hover{
   cursor:pointer;
 }
