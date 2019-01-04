@@ -1,22 +1,24 @@
-<h1>{{title}}</h1>
-<table>
-	<thead>
-		<th>User</th>
-		<th>Order</th>
-	</thead>
-	<tbody>
-		{{#each wish_list}}
-		<tr>
-			<td>{{user}}</td>
-			<td>{{order}}</td>
-			<td class="deleteButton"><button onclick="deleteRow('user-order', '{{user}}-{{order}}', 'wish_list')">Delete</button></td>
-		</tr>
-		{{/each}}
-	</tbody>
-</table>
-<form action="/dev1" method="get">
-	<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
-</form>
-{{#each jsscriptsTableView}}
-	<script src="{{this}}"></script>
-{{/each}}
+<div>
+	<h1>{{title}}</h1>
+	<table>
+		<thead>
+			<th>User</th>
+			<th>Order</th>
+		</thead>
+		<tbody>
+			{{#each wish_list}}
+			<tr>
+				<td>{{user}}</td>
+				<td>{{order}}</td>
+				<td class="deleteButton"><button onclick="deleteRow('user-order', '{{user}}-{{order}}', 'wish_list')">Delete</button></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<form action="/dev1" method="get">
+		<button class="homePage" type="submit" value="Home Page" name="Home Page">Home Page</button>
+	</form>
+	{{#each jsscriptsTableView}}
+		<script src="{{this}}"></script>
+	{{/each}}
+</div>
