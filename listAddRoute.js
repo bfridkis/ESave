@@ -17,6 +17,7 @@ module.exports = app => {
 							res.end();
             }
 						else {
+              console.log("row: ", row);//************************
 							var orderID = row.insertId;
               //Work around so auto-timestamp feature can be used for "Created_On" in
               //addition to "last_ppdated". (Only one field can be designated with "ON
