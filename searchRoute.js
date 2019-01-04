@@ -166,12 +166,14 @@ module.exports = app => {
 					}
 					else{
 						let mysql = req.app.get('mysql');
-						let productListString;
-						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach(pid => {
+						let productListString = null;
+						Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
 							productListString += `'${pid}',`;
 							console.log("pid: ", pid);//*********************
+							if(i === Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).length - 1){
+								productListString = productListString.slice(0, -1);
+							}
 						});
-						productListString = productListString.slice(0, -1);
 						console.log("productListString: ", productListString);//********************
 						for(retailer in resultsTotalsByRetailer){
 							queryString = "SELECT promotion.*, retailer.name AS ret_name " +
