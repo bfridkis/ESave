@@ -35,7 +35,8 @@ function listAdder(list, orderData, promo_id){
                            quantity: orderData["qts"][key]
                          });
     }
-    data["current_price"] = orderData["discounted_price"];
+    data["current_price"] = Number(orderData["discounted_price"]) +
+                            Number(orderData["shipping_price"]);
     data["initial_price"] = orderData["initial_price"];
     data["discount_ids"] = orderData["discount_ids"];
     req.addEventListener('load', () => {
