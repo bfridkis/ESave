@@ -21,8 +21,7 @@ req.send(null);
 
 function listAdder(list, orderData, promo_id){
   let promo = document.querySelector(`.${promo_id}`);
-  console.log("promo DOM :", promo);//************************
-  document.querySelector(`.${promo_id}_li`).firstChild.classList.add("thinking");
+  promo.classList.add("thinking");
     //Setup new XMLHttpRequest request
     let req = new XMLHttpRequest();
     //Open GET request, using queryString
@@ -48,7 +47,7 @@ function listAdder(list, orderData, promo_id){
             //favButtonDescription.textContent = "(added to favorites!)";
             //favButtonDescription.style.color = "purple";
             document.querySelector(`.${promo_id}_li`).innerHTML =
-              "<i style='color:rgb(39, 206, 100)' class='fas fa-heart'></i>&nbsp&nbsp Added!";
+              "<i style='color:rgb(39, 206, 100)' class='fas fa-heart finished'></i>&nbsp&nbsp Added!";
 
         }
         else{
@@ -57,7 +56,7 @@ function listAdder(list, orderData, promo_id){
           //wishlistButtonDescription.style.color = "purple";
           promo.style.color = "rgb(39, 206, 100)";
           document.querySelector(`.${promo_id}_li`).innerHTML=
-            "<i style='color:rgb(39, 206, 100)' class='fas fa-clipboard-check'></i>&nbsp&nbsp Added!";
+            "<i style='color:rgb(39, 206, 100)' class='fas fa-clipboard-check finished'></i>&nbsp&nbsp Added!";
         }
       }
       else{
