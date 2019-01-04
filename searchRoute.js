@@ -39,7 +39,7 @@ module.exports = app => {
 												"(product.name = '" + req.query[key] + "' OR " +
 												"'" + req.query[key] + "' = product.upc OR '" + req.query[key] +
 												"' = product.model_number) " +
-												"JOIN retailer ON retailer_product.retailer = retailer.id  AND " +
+												"JOIN retailer ON retailer_product.retailer = retailer.id AND " +
 												"retailer.product.product = product.id " +
 												"LEFT JOIN promotion ON promotion.retailer = retailer.id AND " +
 												"(promotion.product = product.id) AND " +
@@ -50,6 +50,7 @@ module.exports = app => {
 		      mysql.pool.query(queryString,
 		      (err, rows, fields) => {
 		        if(err){
+							console.log("ERROR: ", err);//*************************
 		          res.write(JSON.stringify(err));
 		          res.end();
 		        }
