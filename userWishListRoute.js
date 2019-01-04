@@ -10,7 +10,7 @@ module.exports = (app) => {
 			let selectQuery = "SELECT wish_list.order, order.current_price, order.name, " +
 												"order.created_on, order.retailer " +
 												"from wish_list JOIN `order` ON order.id = wish_list.order " +
-												`WHERE order.user = ${user}`;
+												`WHERE order.user = ${userid}`;
 			mysql.pool.query(selectQuery, (err, orders, next) => {
 				if(err){
 						res.write(JSON.stringify(err));
