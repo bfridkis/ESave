@@ -116,37 +116,46 @@ module.exports = app => {
 				if(!someProductsUnmatched){
 					var resultsTotalsByRetailer = {};
 					if(req.query.ret !== "NULL"){
-						let retIndex;
-						eSaveResults[0].results.some((result, i) => {
-							if(result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret){
-								retIndex = i;
-							}
-							return result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret;
-						});
 						resultsTotalsByRetailer[req.query.ret] = {};
-						resultsTotalsByRetailer[req.query.ret]["discounted_price"] =
-							Number(eSaveResults[0].results[retIndex].DISCOUNTED_PRICE);
-						resultsTotalsByRetailer[req.query.ret]["shipping_price"] =
-							Number(eSaveResults[0].results[retIndex].SHIPPING_PRICE);
-						resultsTotalsByRetailer[req.query.ret]["discount"] =
-						  Number(eSaveResults[0].results[retIndex].TOTAL_DISCOUNT);
-						resultsTotalsByRetailer[req.query.ret]["initial_price"] =
-							Number(eSaveResults[0].results[retIndex].INITIAL_PRICE);
 						resultsTotalsByRetailer[req.query.ret]["prices"] = {};
-						resultsTotalsByRetailer[req.query.ret]["prices"]["1"]
-							= Number(eSaveResults[0].results[retIndex].PRICE_PER_UNIT);
-						resultsTotalsByRetailer[req.query.ret]["prod_ids"] = {};
-						resultsTotalsByRetailer[req.query.ret]["prod_ids"]["1"]
-							= Number(eSaveResults[0].results[retIndex].PROD_ID);
 						resultsTotalsByRetailer[req.query.ret]["qts"] = {};
-						resultsTotalsByRetailer[req.query.ret]["qts"]["1"]
-							= Number(eSaveResults[0].qt);
-						resultsTotalsByRetailer[req.query.ret]["num_prods"] = 1;
-						resultsTotalsByRetailer[req.query.ret]["ret_id"] =
-							eSaveResults[0].results[retIndex].RET_ID;
-						resultsTotalsByRetailer[req.query.ret]["ret_web_add"] =
-							eSaveResults[0].results[retIndex].RET_WEB_ADD;
+						resultsTotalsByRetailer[req.query.ret]["prod_ids"] = {};
 						resultsTotalsByRetailer[req.query.ret]["discount_ids"] = {};
+						resultsTotalsByRetailer[req.query.ret]["discounted_price"] = 0;
+						resultsTotalsByRetailer[req.query.ret]["shipping_price"] = 0;
+						resultsTotalsByRetailer[req.query.ret]["discount"] = 0;
+						resultsTotalsByRetailer[req.query.ret]["initial_price"] = 0;
+						resultsTotalsByRetailer[req.query.ret]["num_prods"] = 0;
+						let retIndex;
+						eSaveResults.forEach(eSaveResult => {
+							let retailerMatch = eSaveResult.results.some((result, i) => {
+								if(result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret){
+									retIndex = i;
+								}
+								return result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret;
+							});
+							if(retailerMatch){
+								resultsTotalsByRetailer[req.query.ret]["discounted_price"] +=
+									Number(eSaveResult.results[retIndex].DISCOUNTED_PRICE);
+								resultsTotalsByRetailer[req.query.ret]["shipping_price"] +=
+									Number(eSaveResult.results[retIndex].SHIPPING_PRICE);
+								resultsTotalsByRetailer[req.query.ret]["discount"] +=
+								  Number(eSaveResult.results[retIndex].TOTAL_DISCOUNT);
+								resultsTotalsByRetailer[req.query.ret]["initial_price"] +=
+									Number(eSaveResult.results[retIndex].INITIAL_PRICE);
+								resultsTotalsByRetailer[req.query.ret]["prices"][eSaveResult.prodNum]
+									= Number(eSaveResult.results[retIndex].PRICE_PER_UNIT);
+								resultsTotalsByRetailer[req.query.ret]["prod_ids"][eSaveResult.prodNum]
+									= Number(eSaveResult.results[retIndex].PROD_ID);
+								resultsTotalsByRetailer[req.query.ret]["qts"][eSaveResult.prodNum]
+									= Number(eSaveResult.qt);
+								resultsTotalsByRetailer[req.query.ret]["num_prods"]++;
+								resultsTotalsByRetailer[req.query.ret]["ret_id"] =
+									eSaveResult.results[retIndex].RET_ID;
+								resultsTotalsByRetailer[req.query.ret]["ret_web_add"] =
+									eSaveResult.results[retIndex].RET_WEB_ADD;
+							}
+						});
 					}
 					else{
 						eSaveResults.forEach((productResults, i) => {
