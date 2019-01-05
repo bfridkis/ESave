@@ -200,8 +200,9 @@ module.exports = (app) => {
                                                                 });
                                                               }
                                                             });
-                                                          });
-                                                        }
+                                                          }
+                                                        });
+                                                      }
                                                     else {
                                                       res.send({
                                                         "Response": "Sample Data Added!"
