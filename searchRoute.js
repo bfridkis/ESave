@@ -137,6 +137,7 @@ module.exports = app => {
 							if(retailerMatch){
 								resultsTotalsByRetailer[req.query.ret]["discounted_price"] +=
 									Number(eSaveResult.results[retIndex].DISCOUNTED_PRICE);
+									console.log("discounted price?: ", resultsTotalsByRetailer[req.query.ret]["discounted_price"])//*******
 								resultsTotalsByRetailer[req.query.ret]["shipping_price"] +=
 									Number(eSaveResult.results[retIndex].SHIPPING_PRICE);
 								resultsTotalsByRetailer[req.query.ret]["discount"] +=
