@@ -71,18 +71,18 @@
             {{#each products}}
               <tr>
                   <td>{{name}}</td>
-                  {{#if @first}}<td rowspan={{../../num_prods}}>{{../retailer}}</td>{{/if}}
+                  {{#if @first}}<td rowspan={{../../num_prods}}>{{../../retailer}}</td>{{/if}}
                   <td>{{qt}}</td>
-                  {{#if @first}}<td rowspan={{../num_prods}}>{{../current_price}}</td>{{/if}}
+                  {{#if @first}}<td rowspan={{../../num_prods}}>{{../../current_price}}</td>{{/if}}
                   {{#if promotion}}
                   <td>{{promotion}}</td>
                   {{else}}
                   <td>None Available</td>
                   {{/if}}
-                  {{#if @first}}<td rowspan={{../num_prods}}>{{../created_on}}</td>{{/if}}
+                  {{#if @first}}<td rowspan={{../../num_prods}}>{{../../created_on}}</td>{{/if}}
                   {{#if @first}}
-                    <td rowspan={{num_prods}}>
-                      <button onclick="deleteWishListItem({{../order_id}})" id="deletebtn">
+                    <td rowspan={{../../num_prods}}>
+                      <button onclick="deleteWishListItem({{../../order_id}})" id="deletebtn">
                         <i class='fas fa-minus-circle' style='font-size:18px;color:red'>
                       </button>
                     </td>
