@@ -99,7 +99,14 @@ body {
     padding-left: 12px;
 }
 
-#wishlist tr:nth-child(even){background-color: #f2f2f2;}
+/* #wishlist tr:nth-child(even){background-color: #f2f2f2;} */
+.order_header {
+
+}
+
+.order_details {
+	background-color: #f2f2f2;
+}
 
 #wishlist tr:hover {background-color: #ddd;}
 

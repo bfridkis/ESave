@@ -63,11 +63,11 @@
       </thead>
       <tbody>
           {{#each list}}
-          <tr>
+          <tr class="order_header">
             <td colspan="7">
               Order #{{row_number}} {{#if name}} - {{name}} {{/if}}
             </td>
-          </tr>
+          </tr class="order_details">
             {{#each products}}
               <tr>
                   <td>{{name}}</td>
