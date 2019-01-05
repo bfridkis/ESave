@@ -114,12 +114,8 @@ body {
 	{background-color: #ddd;}
 }
 
-td {
+.quantity, .price {
 	text-align: center;
-}
-
-.promotion {
-	text-align: left;
 }
 
 #wishlist th {
