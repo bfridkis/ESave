@@ -5,6 +5,7 @@ module.exports = app => {
 
 	//Route for an ESave request
 	router.get('/', isLoggedIn, (req, res, next) => {
+		console.log("req.query: ", req.query);//***************************************
 		var callbackCount = 0, callbackCount2 = 0;
 		var eSaveResults = [];
 		context = {};
