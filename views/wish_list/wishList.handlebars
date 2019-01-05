@@ -71,17 +71,17 @@
             {{#each products}}
             <tr>
                 <td>{{name}}</td>
-                <td rowspan={{@this.length}}>{{../retailer}}</td>
+                <td rowspan={{../num_prods}}>{{../retailer}}</td>
                 <td>{{qt}}</td>
-                <td rowspan={{@this.length}}>{{../current_price}}</td>
+                <td rowspan={{../num_prods}}>{{../current_price}}</td>
                 {{#if promotion}}
                 <td>{{promotion}}</td>
 
                 {{else}}
                 <td>None Available</td>
                 {{/if}}
-                <td rowspan={{@this.length}}>{{../created_on}}</td>
-                <td rowspan={{@this.length}}>
+                <td rowspan={{../num_prods}}>{{../created_on}}</td>
+                <td rowspan={{../num_prods}}>
                   <button onclick="deleteWishListItem({{../order_id}})" id="deletebtn">
                     <i class='fas fa-minus-circle' style='font-size:18px;color:red'>
                   </button>

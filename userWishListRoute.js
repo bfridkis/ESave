@@ -48,6 +48,7 @@ module.exports = (app) => {
 										list[i]["products"][j]["qt"] = orderProduct.quantity;
 										list[i]["products"][j]["promotion"] = orderProduct.promotion;
 									});
+									list[i]["num_prods"] = list[i]["products"].length;
 									if(callbackCount === orders.length){
 										list.sort(compare);
 										list.forEach((order, i) => {
