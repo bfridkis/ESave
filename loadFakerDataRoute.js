@@ -200,7 +200,7 @@ module.exports = (app) => {
                                                                 });
                                                               }
                                                             });
-                                                          }
+                                                          });
                                                         }
                                                     else {
                                                       res.send({
