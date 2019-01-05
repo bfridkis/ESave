@@ -9,7 +9,9 @@ module.exports = (app) => {
 			var callbackCount = 0;
 			let selectQuery = "SELECT wish_list.order, order.current_price, order.name, " +
 												"DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, " +
-												"order.retailer FROM wish_list JOIN `order` ON order.id = wish_list.order " +
+												"retailer.name AS retailer FROM wish_list JOIN `order` " +
+												"ON order.id = wish_list.order " +
+												"JOIN retailer ON retailer.id = order.retailer "
 												`WHERE order.user = ${userid}`;
 			mysql.pool.query(selectQuery, (err, orders, next) => {
 				if(err){
