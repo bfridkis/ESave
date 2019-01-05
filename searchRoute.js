@@ -156,6 +156,7 @@ module.exports = app => {
 									eSaveResult.results[retIndex].RET_WEB_ADD;
 							}
 						});
+						console.log('results totals by ret: ', resultsTotalsByRetailer);//*****************
 					}
 					else{
 						eSaveResults.forEach((productResults, i) => {
