@@ -149,7 +149,8 @@ module.exports = (app) => {
                                                 else {
                                                   //If sample promotions are specified...
                                                   if (req.body.numPromos > 0) {
-                                                    selectQuery = "SELECT retailer as RET, product as PROD FROM retailer_product;"
+                                                    selectQuery = "SELECT retailer as RET, product as PROD, " +
+                                                                  "price FROM retailer_product;"
                                                     mysql.pool.query(selectQuery,
                                                       (err, retailer_products, fields) => {
                                                         if (err) {
