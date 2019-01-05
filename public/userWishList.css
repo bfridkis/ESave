@@ -108,7 +108,11 @@ body {
 	background-color: #f2f2f2;
 }
 
-#wishlist tr:hover {background-color: #ddd;}
+/* #wishlist tr:hover {background-color: #ddd;} */
+
+.order {
+	{background-color: #ddd;}
+}
 
 #wishlist th {
     padding-top: 12px;

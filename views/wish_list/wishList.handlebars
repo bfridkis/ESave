@@ -68,6 +68,7 @@
               Order #{{row_number}} {{#if name}} - {{name}} {{/if}}
             </td>
           </tr>
+          <div class="order">
             {{#each products}}
               <tr class="order_details">
                   <td>{{name}}</td>
@@ -89,6 +90,7 @@
                   {{/if}}
                 </tr>
             {{/each}}
+          </div>
           {{/each}}
       </tbody>
   </table>
