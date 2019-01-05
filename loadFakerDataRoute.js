@@ -164,7 +164,8 @@ module.exports = (app) => {
                                                           //For each sample promotion, generate a fake discout, description, ecoupon code,
                                                           //expiration date, qt_required, & min_spend.
                                                           for(let j = 0; j < req.body.numPromos; j++){
-                                                            let discount = Number(Math.random() * prices[j]).toFixed(2);
+                                                            let randomRow = getRandomInt(retailer_products.length);
+                                                            let discount = Number(Math.random() * retailer_products[randomRow].price).toFixed(2);
                                                             let promoDescription = faker.lorem.sentence();
                                                             let ecoupon = "";
                                                             for (let k = 0; k < 6; k++){
@@ -179,7 +180,7 @@ module.exports = (app) => {
                                                             //min_spend is optional. Should be assigned null for ~50% of sample promos.
                                                             let min_spend = getRandomInt(2) === 1 ? discount * 4 : discount * 2;
                                                             //randomRow is used to select a random row from retailer_products
-                                                            let randomRow = getRandomInt(retailer_products.length);
+
                                                             insertQuery += `("${discount}", "${retailer_products[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
                                                                            `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
                                                                            `${qt_required !== null ? `"${qt_required}"` : null}, ` +
