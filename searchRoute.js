@@ -103,7 +103,7 @@ module.exports = app => {
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
-				console.log("Results for Search: ", eSaveResults[1]);
+				console.log("Results for Search: ", eSaveResults[0]);
 
 				let someProductsUnmatched = eSaveResults.some( result => {
 					if(result.hasOwnProperty("suggested")){
