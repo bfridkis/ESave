@@ -67,9 +67,9 @@
             <td colspan="7">
               Order #{{row_number}} {{#if name}} - {{name}} {{/if}}
             </td>
-          </tr class="order_details">
+          </tr>
             {{#each products}}
-              <tr>
+              <tr class="order_details">
                   <td>{{name}}</td>
                   <td>{{qt}}</td>
                   {{#if promotion}}
