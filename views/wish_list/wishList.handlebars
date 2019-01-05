@@ -72,14 +72,14 @@
             {{#each products}}
               <tr class="order_details">
                   <td>{{name}}</td>
-                  <td>{{qt}}</td>
+                  <td class="quantity">{{qt}}</td>
                   {{#if promotion}}
-                  <td class="promotion">{{promotion}}</td>
+                  <td>{{promotion}}</td>
                   {{else}}
                   <td>None Available</td>
                   {{/if}}
                   {{#if @first}}<td rowspan={{../../num_prods}}>{{../../retailer}}</td>{{/if}}
-                  {{#if @first}}<td rowspan={{../../num_prods}}>{{../../current_price}}</td>{{/if}}
+                  {{#if @first}}<td class="price" rowspan={{../../num_prods}}>{{../../current_price}}</td>{{/if}}
                   {{#if @first}}<td rowspan={{../../num_prods}}>{{../../created_on}}</td>{{/if}}
                   {{#if @first}}
                     <td rowspan={{../../num_prods}}>
