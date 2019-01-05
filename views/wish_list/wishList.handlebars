@@ -81,13 +81,13 @@
                 <td>None Available</td>
                 {{/if}}
                 {{#if @first}}<td rowspan={{../num_prods}}>{{../created_on}}</td>{{/if}}
-                {{#if @first}}<td rowspan={{../num_prods}}>{{/if}}
-                  <button onclick="deleteWishListItem({{../order_id}})" id="deletebtn">
-                    <i class='fas fa-minus-circle' style='font-size:18px;color:red'>
-                  </button>
-                </td>
+              {{/each}}
+              <td rowspan={{num_prods}}>{{/if}}
+                <button onclick="deleteWishListItem({{order_id}})" id="deletebtn">
+                  <i class='fas fa-minus-circle' style='font-size:18px;color:red'>
+                </button>
+              </td>
             </tr>
-            {{/each}}
           {{/each}}
       </tbody>
   </table>
