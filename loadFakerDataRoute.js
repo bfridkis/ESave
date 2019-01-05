@@ -165,7 +165,8 @@ module.exports = (app) => {
                                                           //expiration date, qt_required, & min_spend.
                                                           for(let j = 0; j < req.body.numPromos; j++){
                                                             let randomRow = getRandomInt(retailer_products.length);
-                                                            let discount = Number(Math.random() * retailer_products[randomRow].price).toFixed(2);
+                                                            let discount = Number(Math.random() *
+                                                              Number(retailer_products[randomRow].price)).toFixed(2);
                                                             let promoDescription = faker.lorem.sentence();
                                                             let ecoupon = "";
                                                             for (let k = 0; k < 6; k++){
