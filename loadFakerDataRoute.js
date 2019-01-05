@@ -170,7 +170,6 @@ module.exports = (app) => {
                                                       //min_spend is optional. Should be assigned null for ~50% of sample promos.
                                                       let min_spend = getRandomInt(2) === 1 ? discount * 4 : discount * 2;
                                                       //randomRow is used to select a random row from retailer_products
-                                                      console.log(retailer_products);//********************************
                                                       let randomRow = getRandomInt(retailer_products.length);
                                                       insertQuery += `("${discount}", "${retailer_products[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
                                                                      `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
