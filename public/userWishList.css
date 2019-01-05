@@ -114,6 +114,14 @@ body {
 	{background-color: #ddd;}
 }
 
+td {
+	text-align: center;
+}
+
+.promotion {
+	text-align: left;
+}
+
 #wishlist th {
     padding-top: 12px;
     padding-bottom: 12px;

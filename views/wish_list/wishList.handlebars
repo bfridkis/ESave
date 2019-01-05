@@ -54,10 +54,10 @@
   <table id="wishlist">
       <thead>
           <th>Product</th>
-          <th>Retailer</th>
-          <th>Quantity</th>
-          <th>Final Price</th>
           <th>Promotion</th>
+          <th>Quantity</th>
+          <th>Retailer</th>
+          <th>Final Price</th>
           <th>Created On</th>
           <th></th>
       </thead>
@@ -74,7 +74,7 @@
                   <td>{{name}}</td>
                   <td>{{qt}}</td>
                   {{#if promotion}}
-                  <td>{{promotion}}</td>
+                  <td class="promotion">{{promotion}}</td>
                   {{else}}
                   <td>None Available</td>
                   {{/if}}
