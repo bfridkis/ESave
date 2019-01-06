@@ -307,16 +307,16 @@ module.exports = app => {
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
 			}
+		}
 
-			//Function to return a string which is the str parameters with all
-			//commas removed. (Used for values returned from sql search query greater
-			//than 999.99).
-			function stripCommas(str){
-				while(str.indexOf(",") !== -1){
-					str = str.slice(0, ip.indexOf(",")) + str.slice(indexOf(",") + 1);
-				}
-				return str;
+		//Function to return a string which is the str parameters with all
+		//commas removed. (Used for values returned from sql search query greater
+		//than 999.99).
+		function stripCommas(str){
+			while(str.indexOf(",") !== -1){
+				str = str.slice(0, ip.indexOf(",")) + str.slice(indexOf(",") + 1);
 			}
+			return str;
 		}
 	});
 
