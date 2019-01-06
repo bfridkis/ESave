@@ -59,6 +59,7 @@ module.exports = app => {
 							//Save results for each product, if any are returned
 							//console.log(rows);
 							if(rows[0]){
+								console.log("ROWS!!!: ", rows);//******************
 								rows.forEach(row => {
 									row.INITIAL_PRICE = stripCommas(row.INITIAL_PRICE);
 									row.PRICE_PER_UNIT = stripCommas(row.PRICE_PER_UNIT);
