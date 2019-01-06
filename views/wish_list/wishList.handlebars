@@ -74,11 +74,12 @@
                   <td class="quantity">{{qt}}</td>
                   {{#if promotions}}
                     {{#if @first}}<td rowspan={{../../num_prods}}><td>
-                      {{#../promotions}}
+                      {{#each ../promotions}}
                         {{@this}}<br><br>
                       {{/each}}
                     </td>
                     {{/if}}
+                  {{/if}}
                   {{else}}
                   <td>None Available</td>
                   {{/if}}
