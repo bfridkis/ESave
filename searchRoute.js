@@ -62,11 +62,11 @@ module.exports = app => {
 								console.log("ROWS!!!: ", rows);//******************
 								rows.forEach(row => {
 									console.log("Row Initial Price: ", row.INITIAL_PRICE, typeof(row.INITIAL_PRICE));//***********
-									row.INITIAL_PRICE = stripCommas(String(row.INITIAL_PRICE));
-									row.PRICE_PER_UNIT = stripCommas(String(row.PRICE_PER_UNIT));
-									row.DISCOUNTED_PRICE = stripCommas(String(row.DISCOUNTED_PRICE));
-									row.SHIPPING_PRICE = stripCommas(String(row.SHIPPING_PRICE));
-									row.TOTAL_DISCOUNT = stripCommas(String(row.TOTAL_DISCOUNT));
+									row.INITIAL_PRICE = stripCommas(row.INITIAL_PRICE);
+									row.PRICE_PER_UNIT = stripCommas(row.PRICE_PER_UNIT);
+									row.DISCOUNTED_PRICE = stripCommas(row.DISCOUNTED_PRICE);
+									row.SHIPPING_PRICE = stripCommas(row.SHIPPING_PRICE);
+									row.TOTAL_DISCOUNT = stripCommas(row.TOTAL_DISCOUNT);
 								});
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1)),
@@ -317,8 +317,7 @@ module.exports = app => {
 		function stripCommas(str){
 			console.log("TESTING: ", "test".indexOf("e"));//***************
 			console.log("TESTING STR: ", str, typeof(str));//***************
-			let strippedStr = str;
-			while(strippedStr.indexOf(",") !== -1){
+			while(str.indexOf(",") !== -1){
 				console.log("WORKED IN WHILE LOOP!");//***************
 				//strippedStr = strippedStr.slice(0, strippedStr.indexOf(",")) +
 					//strippedStr.slice(indexOf(",") + 1);
