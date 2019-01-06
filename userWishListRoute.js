@@ -53,11 +53,6 @@ module.exports = (app) => {
 										list[i]["products"].push({});
 										list[i]["products"][j]["name"] = orderProduct.product;
 										list[i]["products"][j]["qt"] = orderProduct.quantity;
-										/*list[i]["products"][j]["promotion"] = orderProduct.promotion;
-										if(orderProduct.promo_count > 1){
-										list[i]["products"][j]["additional_promo_count"] =
-											Number(orderProduct.promo_count) - 1;
-									}*/
 									});
 									list[i]["num_prods"] = list[i]["products"].length;
 									selectQuery = "SELECT promotion.description FROM promotion " +
