@@ -73,7 +73,11 @@
                   <td>{{name}}</td>
                   <td class="quantity">{{qt}}</td>
                   {{#if promotion}}
-                  <td>{{promotion}}</td>
+                  <td>{{promotion}}
+                    {{#if additional_promo_count}}
+                      <br><br>&nbsp&nbsp+{{additional_promo_count}} More Promos...
+                    {{/if}}
+                  </td>
                   {{else}}
                   <td>None Available</td>
                   {{/if}}
