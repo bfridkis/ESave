@@ -319,8 +319,9 @@ module.exports = app => {
 			console.log("TESTING STR: ", str, typeof(str));//***************
 			let strippedStr = str;
 			while(strippedStr.indexOf(",") !== -1){
-				strippedStr = strippedStr.slice(0, strippedStr.indexOf(",")) +
-					strippedStr.slice(indexOf(",") + 1);
+				console.log("WORKED IN WHILE LOOP!");//***************
+				//strippedStr = strippedStr.slice(0, strippedStr.indexOf(",")) +
+					//strippedStr.slice(indexOf(",") + 1);
 			}
 			return strippedStr;
 		}
