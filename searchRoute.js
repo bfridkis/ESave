@@ -314,7 +314,7 @@ module.exports = app => {
 		//than 999.99).
 		function stripCommas(str){
 			while(str.indexOf(",") !== -1){
-				str = str.slice(0, ip.indexOf(",")) + str.slice(indexOf(",") + 1);
+				str = str.slice(0, str.indexOf(",")) + str.slice(indexOf(",") + 1);
 			}
 			return str;
 		}
