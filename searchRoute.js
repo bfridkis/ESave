@@ -316,6 +316,7 @@ module.exports = app => {
 		//than 999.99).
 		function stripCommas(str){
 			console.log("TESTING: ", "test".indexOf("e"));//***************
+			console.log("TESTING STR: ", str, typeof(str));//***************
 			while(str.indexOf(",") !== -1){
 				str = str.slice(0, str.indexOf(",")) + str.slice(indexOf(",") + 1);
 			}
