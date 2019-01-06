@@ -28,7 +28,12 @@ module.exports = (app) => {
 							list[i]["created_on"] = order.created_on;
 							list[i]["retailer"] = order.retailer;
 							list[i]["order_id"] = order.order;
-							selectQuery = "SELECT COUNT(1) AS promo_count, order_product.quantity, " +
+							selectQuery = "SELECT product.name AS product, order_product.quantity FROM product " +
+														"JOIN order_product ON product.id = order_product.product " +
+														"JOIN `order` ON order.id = order_product.order " +
+														"JOIN wish_list ON order.id = wish_list.order " +
+														`WHERE wish_list.user = ${userid} AND wish_list.order = ${order.order}`;
+							/*selectQuery = "SELECT COUNT(1) AS promo_count, order_product.quantity, " +
 														"product.name AS product, " +
 														"promotion.description AS promotion FROM wish_list " +
 														"JOIN `order` ON wish_list.order = order.id " +
@@ -36,35 +41,52 @@ module.exports = (app) => {
 														"JOIN product ON order_product.product = product.id " +
 														"LEFT JOIN order_promotion ON order.id = order_promotion.order " +
 														"LEFT JOIN promotion ON order_promotion.promotion = promotion.id " +
-														`WHERE wish_list.user = ${userid} and wish_list.order = ${order.order}`;
+														`WHERE wish_list.user = ${userid} and wish_list.order = ${order.order}`;*/
 							mysql.pool.query(selectQuery, (err, orderProducts, next) => {
 								if(err){
 										res.write(JSON.stringify(err));
 										res.end();
 								}
 								else{
-									callbackCount++;
 									list[i]["products"] = [];
 									orderProducts.forEach((orderProduct, j) => {
 										list[i]["products"].push({});
 										list[i]["products"][j]["name"] = orderProduct.product;
 										list[i]["products"][j]["qt"] = orderProduct.quantity;
-										list[i]["products"][j]["promotion"] = orderProduct.promotion;
+										/*list[i]["products"][j]["promotion"] = orderProduct.promotion;
 										if(orderProduct.promo_count > 1){
 										list[i]["products"][j]["additional_promo_count"] =
 											Number(orderProduct.promo_count) - 1;
-									}
+									}*/
 									});
 									list[i]["num_prods"] = list[i]["products"].length;
-									if(callbackCount === orders.length){
-										list.sort(compare);
-										list.forEach((order, i) => {
-											order["row_number"] = i + 1;
-										});
-										context.list = list;
-										console.log("LIST: ", context.list);//******************************
-										res.render('wish_list/wishList', context);
-									}
+									selectQuery = "SELECT promotion.description FROM promotion " +
+																"JOIN order_promotion on promotion.id = order_promotion.promotion " +
+																`WHERE order_promotion.order = ${order.order}`;
+									mysql.pool.query(selectQuery, (err, orderPromotions, next) => {
+										if(err){
+												res.write(JSON.stringify(err));
+												res.end();
+										}
+										else{
+											callbackCount++;
+											if(orderPromotions.length){
+												list[i]["promotions"] = [];
+												orderPromotions.forEach(orderPromotion => {
+													list[i]["promotions"].push(orderPromotion.description);
+												});
+											}
+											if(callbackCount === orders.length){
+												list.sort(compare);
+												list.forEach((order, i) => {
+													order["row_number"] = i + 1;
+												});
+												context.list = list;
+												console.log("LIST: ", context.list);//******************************
+												res.render('wish_list/wishList', context);
+											}
+										}
+									});
 								}
 						});
 					});

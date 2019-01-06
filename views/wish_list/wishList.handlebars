@@ -72,12 +72,13 @@
               <tr class="order_details">
                   <td>{{name}}</td>
                   <td class="quantity">{{qt}}</td>
-                  {{#if promotion}}
-                  <td>{{promotion}}
-                    {{#if additional_promo_count}}
-                      <br><br>&nbsp&nbsp+{{additional_promo_count}} More Promos...
+                  {{#if promotions}}
+                    {{#if @first}}<td rowspan={{../../num_prods}}><td>
+                      {{#../promotions}}
+                        {{@this}}<br><br>
+                      {{/each}}
+                    </td>
                     {{/if}}
-                  </td>
                   {{else}}
                   <td>None Available</td>
                   {{/if}}
