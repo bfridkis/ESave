@@ -5,7 +5,6 @@ module.exports = app => {
 
 	//Route for an ESave request
 	router.get('/', isLoggedIn, (req, res, next) => {
-		console.log("req.query: ", req.query);//***************************************
 		var callbackCount = 0, callbackCount2 = 0;
 		var eSaveResults = [];
 		context = {};
@@ -51,7 +50,6 @@ module.exports = app => {
 		      mysql.pool.query(queryString,
 		      (err, rows, fields) => {
 		        if(err){
-							console.log("ERROR: ", err);//*************************
 		          res.write(JSON.stringify(err));
 		          res.end();
 		        }
@@ -59,9 +57,7 @@ module.exports = app => {
 							//Save results for each product, if any are returned
 							//console.log(rows);
 							if(rows[0]){
-								console.log("ROWS!!!: ", rows);//******************
 								rows.forEach(row => {
-									console.log("Row Initial Price: ", row.INITIAL_PRICE, typeof(row.INITIAL_PRICE));//***********
 									row.INITIAL_PRICE = row.INITIAL_PRICE.replace(',', '');
 									row.PRICE_PER_UNIT = row.PRICE_PER_UNIT.replace(',', '');
 									row.DISCOUNTED_PRICE = row.DISCOUNTED_PRICE.replace(',', '');
@@ -112,7 +108,6 @@ module.exports = app => {
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= ((Object.keys(req.query).length - 1) / 2)){
-				console.log("Results for Search: ", eSaveResults[0]);
 
 				let someProductsUnmatched = eSaveResults.some( result => {
 					if(result.hasOwnProperty("suggested")){
@@ -146,7 +141,6 @@ module.exports = app => {
 							if(retailerMatch){
 								resultsTotalsByRetailer[req.query.ret]["discounted_price"] +=
 									Number(eSaveResult.results[retIndex].DISCOUNTED_PRICE);
-									console.log("discounted price?: ", resultsTotalsByRetailer[req.query.ret]["discounted_price"])//*******
 								resultsTotalsByRetailer[req.query.ret]["shipping_price"] +=
 									Number(eSaveResult.results[retIndex].SHIPPING_PRICE);
 								resultsTotalsByRetailer[req.query.ret]["discount"] +=
@@ -166,7 +160,6 @@ module.exports = app => {
 									eSaveResult.results[retIndex].RET_WEB_ADD;
 							}
 						});
-						console.log('results totals by ret: ', resultsTotalsByRetailer);//*****************
 					}
 					else{
 						eSaveResults.forEach((productResults, i) => {
