@@ -33,15 +33,6 @@ module.exports = (app) => {
 														"JOIN `order` ON order.id = order_product.order " +
 														"JOIN wish_list ON order.id = wish_list.order " +
 														`WHERE wish_list.user = ${userid} AND wish_list.order = ${order.order}`;
-							/*selectQuery = "SELECT COUNT(1) AS promo_count, order_product.quantity, " +
-														"product.name AS product, " +
-														"promotion.description AS promotion FROM wish_list " +
-														"JOIN `order` ON wish_list.order = order.id " +
-														"JOIN order_product ON order.id = order_product.order " +
-														"JOIN product ON order_product.product = product.id " +
-														"LEFT JOIN order_promotion ON order.id = order_promotion.order " +
-														"LEFT JOIN promotion ON order_promotion.promotion = promotion.id " +
-														`WHERE wish_list.user = ${userid} and wish_list.order = ${order.order}`;*/
 							mysql.pool.query(selectQuery, (err, orderProducts, next) => {
 								if(err){
 										res.write(JSON.stringify(err));
