@@ -11,6 +11,7 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
   	 if(req.status >= 200 && req.status < 400)
      {
     	 let results = JSON.parse(req.responseText);
+       console.log("RESULTS BACK FROM SEARCH LIST ADD: ", results);//***********
     			 listAdder(list, results[0], promo);
      }
   	 else
