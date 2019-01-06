@@ -315,6 +315,7 @@ module.exports = app => {
 		//commas removed. (Used for values returned from sql search query greater
 		//than 999.99).
 		function stripCommas(str){
+			console.log("TESTING: ", "test".indexOf("e"));//***************
 			while(str.indexOf(",") !== -1){
 				str = str.slice(0, str.indexOf(",")) + str.slice(indexOf(",") + 1);
 			}
