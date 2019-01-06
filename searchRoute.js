@@ -61,7 +61,7 @@ module.exports = app => {
 							if(rows[0]){
 								console.log("ROWS!!!: ", rows);//******************
 								rows.forEach(row => {
-									console.log("Row Initial Price: ", row.INITIAL_PRICE);//***********
+									console.log("Row Initial Price: ", row.INITIAL_PRICE, typeof(row.INITIAL_PRICE));//***********
 									row.INITIAL_PRICE = stripCommas(String(row.INITIAL_PRICE));
 									row.PRICE_PER_UNIT = stripCommas(String(row.PRICE_PER_UNIT));
 									row.DISCOUNTED_PRICE = stripCommas(String(row.DISCOUNTED_PRICE));
