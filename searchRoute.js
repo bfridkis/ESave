@@ -317,10 +317,12 @@ module.exports = app => {
 		function stripCommas(str){
 			console.log("TESTING: ", "test".indexOf("e"));//***************
 			console.log("TESTING STR: ", str, typeof(str));//***************
-			while(str.indexOf(",") !== -1){
-				str = str.slice(0, str.indexOf(",")) + str.slice(indexOf(",") + 1);
+			let strippedStr = str;
+			while(strippedStr.indexOf(",") !== -1){
+				strippedStr = strippedStr.slice(0, strippedStr.indexOf(",")) +
+					strippedStr.slice(indexOf(",") + 1);
 			}
-			return str;
+			return strippedStr;
 		}
 	});
 
