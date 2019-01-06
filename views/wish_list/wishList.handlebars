@@ -74,7 +74,7 @@
                   <td class="quantity">{{qt}}</td>
                   {{#if ../promotions}}
                     {{#if @first}}<td rowspan={{../../../num_prods}}><td>
-                      {{#each ../../promotions as |promotion|}}
+                      {{#each ../../../promotions as |promotion|}}
                         {{promotion}}<br><br>
                       {{/each}}
                     </td>
