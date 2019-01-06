@@ -61,11 +61,11 @@ module.exports = app => {
 							if(rows[0]){
 								console.log("ROWS!!!: ", rows);//******************
 								rows.forEach(row => {
-									row.INITIAL_PRICE = stripCommas(row.INITIAL_PRICE);
-									row.PRICE_PER_UNIT = stripCommas(row.PRICE_PER_UNIT);
-									row.DISCOUNTED_PRICE = stripCommas(row.DISCOUNTED_PRICE);
-									row.SHIPPING_PRICE = stripCommas(row.SHIPPING_PRICE);
-									row.TOTAL_DISCOUNT = stripCommas(row.TOTAL_DISCOUNT);
+									row.INITIAL_PRICE = stripCommas(String(row.INITIAL_PRICE));
+									row.PRICE_PER_UNIT = stripCommas(String(row.PRICE_PER_UNIT));
+									row.DISCOUNTED_PRICE = stripCommas(String(row.DISCOUNTED_PRICE));
+									row.SHIPPING_PRICE = stripCommas(String(row.SHIPPING_PRICE));
+									row.TOTAL_DISCOUNT = stripCommas(String(row.TOTAL_DISCOUNT));
 								});
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1)),
