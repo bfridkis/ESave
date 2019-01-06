@@ -315,7 +315,7 @@ module.exports = app => {
 				while(str.indexOf(",") !== -1){
 					str = str.slice(0, ip.indexOf(",")) + str.slice(indexOf(",") + 1);
 				}
-				return = str;
+				return str;
 			}
 		}
 	});
