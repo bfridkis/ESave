@@ -59,6 +59,13 @@ module.exports = app => {
 							//Save results for each product, if any are returned
 							//console.log(rows);
 							if(rows[0]){
+								rows.forEach(row => {
+									row.INITIAL_PRICE = stripCommas(row.INITIAL_PRICE);
+									row.PRICE_PER_UNIT = stripCommas(row.PRICE_PER_UNIT);
+									row.DISCOUNTED_PRICE = stripCommas(row.DISCOUNTED_PRICE);
+									row.SHIPPING_PRICE = stripCommas(row.SHIPPING_PRICE);
+									row.TOTAL_DISCOUNT = stripCommas(row.TOTAL_DISCOUNT);
+								});
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1)),
 																	 "qt" : Number(req.query[qtKey])
@@ -299,6 +306,16 @@ module.exports = app => {
 					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
+			}
+
+			//Function to return a string which is the str parameters with all
+			//commas removed. (Used for values returned from sql search query greater
+			//than 999.99).
+			function stripCommas(str){
+				while(str.indexOf(",") !== -1){
+					str = str.slice(0, ip.indexOf(",")) + str.slice(indexOf(",") + 1);
+				}
+				return = str;
 			}
 		}
 	});
