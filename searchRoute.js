@@ -62,11 +62,11 @@ module.exports = app => {
 								console.log("ROWS!!!: ", rows);//******************
 								rows.forEach(row => {
 									console.log("Row Initial Price: ", row.INITIAL_PRICE, typeof(row.INITIAL_PRICE));//***********
-									row.INITIAL_PRICE = stripCommas(row.INITIAL_PRICE);
-									row.PRICE_PER_UNIT = stripCommas(row.PRICE_PER_UNIT);
-									row.DISCOUNTED_PRICE = stripCommas(row.DISCOUNTED_PRICE);
-									row.SHIPPING_PRICE = stripCommas(row.SHIPPING_PRICE);
-									row.TOTAL_DISCOUNT = stripCommas(row.TOTAL_DISCOUNT);
+									row.INITIAL_PRICE = row.INITIAL_PRICE.replace(',', '');
+									row.PRICE_PER_UNIT = row.PRICE_PER_UNIT.replace(',', '');
+									row.DISCOUNTED_PRICE = row.DISCOUNTED_PRICE.replace(',', '');
+									row.SHIPPING_PRICE = row.SHIPPING_PRICE.replace(',', '');
+									row.TOTAL_DISCOUNT = row.TOTAL_DISCOUNT.replace(',', '');
 								});
 		          	eSaveResults.push({"results" : rows,
 																	 "prodNum" : Number(key.substring(1)),
@@ -310,20 +310,6 @@ module.exports = app => {
 				}
 			}
 		}
-
-		//Function to return a string which is the str parameters with all
-		//commas removed. (Used for values returned from sql search query greater
-		//than 999.99).
-		function stripCommas(str){
-			console.log("TESTING: ", "test".indexOf("e"));//***************
-			console.log("TESTING STR: ", str, typeof(str));//***************
-			while(str.indexOf(",") !== -1){
-				console.log("WORKED IN WHILE LOOP!");//***************
-				//strippedStr = strippedStr.slice(0, strippedStr.indexOf(",")) +
-					//strippedStr.slice(indexOf(",") + 1);
-			}
-			return strippedStr;
-		}
 	});
 
 	//Route for a suggested products 'next page' request
@@ -376,3 +362,4 @@ function isLoggedIn(req, res, next) {
 // * https://www.google.com/search?q=force+a+push+heroku&rlz=1C1GGRV_enUS818US818&oq=force+a+push+heroku&aqs=chrome..69i57j0.2670j0j7&sourceid=chrome&ie=UTF-8
 // * https://stackoverflow.com/questions/2641347/short-circuit-array-foreach-like-calling-break
 // * https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
+// * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript/9932996
