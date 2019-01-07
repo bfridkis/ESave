@@ -68,7 +68,6 @@ module.exports = (app) => {
 													order["row_number"] = i + 1;
 												});
 												context.list = list;
-												console.log("LIST: ", context.list);//******************************
 												res.render('wish_list/wishList', context);
 											}
 										}
