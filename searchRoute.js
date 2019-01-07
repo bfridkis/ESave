@@ -325,7 +325,7 @@ module.exports = app => {
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["discount"].toFixed(2));
 					resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"] =
 						Number(resultsTotalsByRetailer[minFinalPriceRetailer]["initial_price"].toFixed(2));
-					//console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
+					console.log("Winner :", resultsTotalsByRetailer[minFinalPriceRetailer]);
 					res.send(JSON.stringify([resultsTotalsByRetailer[minFinalPriceRetailer]]));
 				}
 			}
