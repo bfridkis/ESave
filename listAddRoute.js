@@ -1,11 +1,10 @@
-module.exports = (app) => {
+module.exports = app => {
     var express = require('express');
     var router = express.Router();
     //var app = express();
 
     router.post('/', isLoggedIn, (req, res, next) => {
         var callbackCount = 0;
-        //let orderDetails = JSON.parse(req.body);
         let mysql = req.app.get('mysql');
         let insertQuery = "Insert into `order` ( user, retailer, current_price, name ) values (?,?,?,?)";
         mysql.pool.query(insertQuery, [req.user.id, req.body.retailer, Number(req.body.current_price),
@@ -43,96 +42,65 @@ module.exports = (app) => {
 			                    }
 													else {
 			                      if (++callbackCount === req.body.products.length) {
-			                        callbackCount = 0;
-			                        req.body.products.forEach((product, i) => {
-			                          let selectQuery;
-			                          if (i === 0) {
-			                            //Only yield non-product specific promotions on the first query to the promotion
-			                            //table (i.e. only when querying promotions for the first product).
-			                            selectQuery = `Select id from promotion where retailer = '${req.body.retailer}' AND` +
-			                              `(product = ${product.product_id} OR product IS NULL) AND` +
-			                              `(qt_required = ${product.quantity} OR qt_required IS NULL) AND` +
-			                              `(min_spend <= ${req.body.initial_price} OR min_spend IS NULL)`;
+			                        if(Object.keys(req.body.discount_ids).length > 0){
+                                let insertQuery = "INSERT INTO order_promotion values ";
+  			                        for(let key in req.body.discount_ids){
+  		                            insertQuery += `(${orderID}, ${req.body.discount_ids[key]}),`;
+                                  }
+                                insertQuery = insertQuery.slice(0, -1);
+  		                          mysql.pool.query(insertQuery,
+  		                            (err, row, fields) => {
+  		                              if (err) {
+  		                                res.write(JSON.stringify(err));
+  		                                res.end();
+  		                              }
+  																	else {
+  																		if(req.body.list === "favorites"){
+  																			insertQuery = "Insert into favorites_order values (?, ?)";
+  																		}
+  																		else{
+  																			insertQuery = "Insert into wish_list values (?, ?)";
+  																		}
+  	                                  mysql.pool.query(insertQuery, [req.user.id, orderID],
+  																			(err, row, fields) => {
+                                          if (err) {
+                                            res.write(JSON.stringify(err));
+                                            res.end();
+                                          }
+  																				else {
+  																					res.status(202).end();
+  																				}
+  																		});
+                                    }
+                                  });
+                                }
+																else{
+																	if(req.body.list === "favorites"){
+																		insertQuery = "Insert into favorites_order values (?, ?)";
+																	}
+																	else{
+																		insertQuery = "Insert into wish_list values (?, ?)";
+																	}
+																	mysql.pool.query(insertQuery, [req.user.id, orderID],
+																		(err, row, fields) => {
+																			if (err) {
+																				res.write(JSON.stringify(err));
+																				res.end();
+																			}
+																			else {
+																				res.status(202).end();
+																			}
+                                   });
+                                  }
+																 }
 			                          }
-																else {
-			                            selectQuery = `Select id from promotion where retailer = '${req.body.retailer}' AND` +
-			                              `product = ${product.product_id} AND` +
-			                              `(qt_required = ${product.quantity} OR qt_required IS NULL) AND` +
-			                              `(min_spend <= ${req.body.initial_price} OR min_spend IS NULL)`;
-			                          }
-			                          mysql.pool.query(selectQuery,
-			                            (err, rows, fields) => {
-			                              if (err) {
-			                                res.write(JSON.stringify(err));
-			                                res.end();
-			                              }
-																		else {
-			                                callbackCount++;
-			                                let opInsertCallBackCount = 0;
-																			let numPromos = rows.length;
-																			if(numPromos > 0){
-																				rows.forEach((row, i) => {
-				                                  insertQuery = "Insert into order_promotion values (?, ?)"
-				                                  mysql.pool.query(insertQuery, [orderID, row["id"]],
-				                                    (err, rows, fields) => {
-				                                      if (err) {
-				                                        res.write(JSON.stringify(err));
-				                                        res.end();
-				                                      }
-																							else {
-				                                        if (++opInsertCallBackCount === numPromos &&
-				                                          callbackCount === req.body.products.length) {
-																										if(req.body.list === "favorites"){
-																											insertQuery = "Insert into favorites_order values (?, ?)";
-																										}
-																										else{
-																											insertQuery = "Insert into wish_list values (?, ?)";
-																										}
-									                                  mysql.pool.query(insertQuery, [req.user.id, orderID],
-																											(err, row, fields) => {
-								                                        if (err) {
-								                                          res.write(JSON.stringify(err));
-								                                          res.end();
-								                                        }
-																												else {
-																													res.status(202).end();
-																												}
-																										});
-																									}
-																								}
-				                                      });
-				                                    });
-																					}
-																					else{
-																						if(req.body.list === "favorites"){
-																							insertQuery = "Insert into favorites_order values (?, ?)";
-																						}
-																						else{
-																							insertQuery = "Insert into wish_list values (?, ?)";
-																						}
-																						mysql.pool.query(insertQuery, [req.user.id, orderID],
-																							(err, row, fields) => {
-																								if (err) {
-																									res.write(JSON.stringify(err));
-																									res.end();
-																								}
-																								else {
-																									res.status(202).end();
-																								}
-																						});
-																					}
-			                                  }
-			                              });
-																	});
-			                          }
-			                        }
+			                        });
 			                      });
-			                    });
-												}
-											});
-										}
+			                    }
+												});
+											}
+										});
                   });
-                });
 
       return router;
 };

@@ -89,7 +89,7 @@ body {
 
 
 .promos {
-        
+
         font-family: 'Righteous', cursive;
             border: 3px dashed purple;
 
@@ -124,6 +124,17 @@ body {
 
 li
 {
-    
+
 }
 
+.fa-clipboard-check:hover, .fa-heart:hover{
+  cursor:pointer;
+}
+
+.thinking:hover{
+  cursor:progress;
+}
+
+.finished:hover{
+  cursor:default;
+}

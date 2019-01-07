@@ -11,7 +11,7 @@ function addWishList(list, product_name, quantity, retailer_name, product, promo
   	 if(req.status >= 200 && req.status < 400)
      {
     	 let results = JSON.parse(req.responseText);
-    			 listAdder(list, results, promo);
+    			 listAdder(list, results[0], promo);
      }
   	 else
         console.log("Error: " + req.statusText);
@@ -21,6 +21,7 @@ req.send(null);
 
 function listAdder(list, orderData, promo_id){
   let promo = document.querySelector(`.${promo_id}`);
+  promo.classList.add("thinking");
     //Setup new XMLHttpRequest request
     let req = new XMLHttpRequest();
     //Open GET request, using queryString
@@ -28,21 +29,18 @@ function listAdder(list, orderData, promo_id){
     req.setRequestHeader('Content-Type', 'application/json');
     let data = {list: list,
                 products: [],
-                retailer: orderData[0]["RET_ID"]};
-    orderData.forEach((row, i) => {
-      data.products.push({ product_id : row["PROD_ID"],
-                           quantity: row["QT"]
+                retailer: orderData["ret_id"]};
+    for(key in orderData["prod_ids"]){
+      data.products.push({ product_id : orderData["prod_ids"][key],
+                           quantity: orderData["qts"][key]
                          });
-    });
-    let orderFinalPrice = 0, orderInitialPrice = 0;
-    orderData.forEach((row, i) => {
-      orderFinalPrice += row["FINAL_PRICE"];
-      orderInitialPrice += row["INITIAL_PRICE"];
-    });
-    data["current_price"] = orderFinalPrice;
-    data["initial_price"] = orderInitialPrice;
-    //data["order_name"] = document.querySelector(".list-add-input").value;
+    }
+    data["current_price"] = (Number(orderData["discounted_price"]) +
+                            Number(orderData["shipping_price"])).toFixed(2);
+    data["initial_price"] = orderData["initial_price"];
+    data["discount_ids"] = orderData["discount_ids"];
     req.addEventListener('load', () => {
+      document.querySelector(`.${promo_id}_li`).firstChild.classList.add("finished");
       if(req.status >= 200 && req.status < 400){
         //promo.setAttribute("added", "yes");
         if(promo.classList.contains("fa-heart")){
@@ -50,7 +48,7 @@ function listAdder(list, orderData, promo_id){
             //favButtonDescription.textContent = "(added to favorites!)";
             //favButtonDescription.style.color = "purple";
             document.querySelector(`.${promo_id}_li`).innerHTML =
-              "<i style='color:rgb(39, 206, 100)' class='fas fa-heart'></i>&nbsp&nbsp Added!";
+              "<i style='color:rgb(39, 206, 100)' class='fas fa-heart finished'></i>&nbsp&nbsp Added!";
 
         }
         else{
@@ -59,7 +57,7 @@ function listAdder(list, orderData, promo_id){
           //wishlistButtonDescription.style.color = "purple";
           promo.style.color = "rgb(39, 206, 100)";
           document.querySelector(`.${promo_id}_li`).innerHTML=
-            "<i style='color:rgb(39, 206, 100)' class='fas fa-clipboard-check'></i>&nbsp&nbsp Added!";
+            "<i style='color:rgb(39, 206, 100)' class='fas fa-clipboard-check finished'></i>&nbsp&nbsp Added!";
         }
       }
       else{

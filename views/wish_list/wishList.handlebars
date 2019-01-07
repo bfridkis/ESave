@@ -54,37 +54,46 @@
   <table id="wishlist">
       <thead>
           <th>Product</th>
-          <th>Retailer</th>
           <th>Quantity</th>
-          <th>Price</th>
-          <th>Promotion</th>
+          <th>Promotions</th>
+          <th>Retailer</th>
+          <th>Final Price</th>
           <th>Created On</th>
           <th></th>
       </thead>
       <tbody>
           {{#each list}}
-          <tr>
+          <tr class="order_header">
             <td colspan="7">
-              Order #{{row_number}}
+              Order #{{row_number}} {{#if name}} - {{name}} {{/if}}
             </td>
-  </tr>
-          <tr>
-
-              <td>{{product}}</td>
-              <td>{{retailer}}</td>
-              <td>{{quantity}}</td>
-              <td>{{current_price}}</td>
-              {{#if promotion}}
-              <td>{{promotion}}</td>
-
-              {{else}}
-              <td>None Available</td>
-              {{/if}}
-              <td>{{created_on}}</td>
-              <td><button onclick="deleteWishListItem({{order_id}})" id="deletebtn">
-                <i class='fas fa-minus-circle' style='font-size:18px;color:red'>
-                </button></td>
           </tr>
+            {{#each products}}
+              <tr class="order_details">
+                  <td>{{name}}</td>
+                  <td class="quantity">{{qt}}</td>
+                  {{#if ../promotions}}
+                    {{#if @first}}<td rowspan={{../../../num_prods}}>
+                      {{#each ../../../promotions as |promotion|}}
+                        {{promotion}}<br><br>
+                      {{/each}}
+                    </td>
+                    {{/if}}
+                  {{else}}
+                  <td>None Available</td>
+                  {{/if}}
+                  {{#if @first}}<td rowspan={{../../num_prods}}>{{../../retailer}}</td>{{/if}}
+                  {{#if @first}}<td class="price" rowspan={{../../num_prods}}>{{../../current_price}}</td>{{/if}}
+                  {{#if @first}}<td rowspan={{../../num_prods}}>{{../../created_on}}</td>{{/if}}
+                  {{#if @first}}
+                    <td rowspan={{../../num_prods}}>
+                      <button onclick="deleteWishListItem({{../../order_id}})" id="deletebtn">
+                        <i class='fas fa-minus-circle' style='font-size:18px;color:red'></i>
+                      </button>
+                    </td>
+                  {{/if}}
+                </tr>
+            {{/each}}
           {{/each}}
       </tbody>
   </table>
@@ -97,3 +106,7 @@
 <i class="fab fa-twitter-square social-button"></i>
 <i class="fas fa-envelope social-button"></i>
 </div>
+
+<!-- References
+ * https://stackoverflow.com/questions/44849073/handlebars-first-first
+-->

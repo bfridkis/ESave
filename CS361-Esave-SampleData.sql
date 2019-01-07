@@ -14,7 +14,7 @@ INSERT INTO product values (21, 'Playstation 4', '785947295512', NULL),
 INSERT INTO retailer values (51, 'Wal-mart', 'walmart.com', NULL, 2.99);
 
 -- PROMOTIONS INSERTIONS --
-INSERT INTO promotion values (21, 25, 21, '$25 OFF coupon celebrating the PS4s 9th Birthday', 'ps40x9', NULL, 21, NULL, NULL),
+INSERT INTO promotion values (21, 25, 21, '$25 OFF coupon celebrating the PS4s 9th Birthday', 'ps40x9', NULL, 21, 1, NULL),
 				(31, 3.99, 31, 'Ink Pens BOGO while supplies last', 'nk39x9', NULL, 41, 3, NULL);
 
 -- RETAILER PRODUCT INSERTIONS --

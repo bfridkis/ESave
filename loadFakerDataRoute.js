@@ -149,49 +149,63 @@ module.exports = (app) => {
                                                 else {
                                                   //If sample promotions are specified...
                                                   if (req.body.numPromos > 0) {
-                                                    //Start the insert query for sample promotions...
-                                                    insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
-                                                                  "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
-                                                    //For each sample promotion, generate a fake discout, description, ecoupon code,
-                                                    //expiration date, qt_required, & min_spend.
-                                                    for(let j = 0; j < req.body.numPromos; j++){
-                                                      let discount = Number(Math.random() * prices[j]).toFixed(2);
-                                                      let promoDescription = faker.lorem.sentence();
-                                                      let ecoupon = "";
-                                                      for (let k = 0; k < 6; k++){
-                                                          ecoupon += faker.random.alphaNumeric();
-                                                      }
-                                                      let expirationDate = faker.date.future().toString();
-                                                      expirationDate = `${expirationDate.substring(11, 15)}-` +
-                                                                       `${getMonthFromString(expirationDate.substring(4, 7))}-` +
-                                                                       `${expirationDate.substring(8, 10)}`;
-                                                      //qt_required is optional. Should be assigned null for ~50% of sample promos.
-                                                      let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) + 1 : null;
-                                                      //min_spend is optional. Should be assigned null for ~50% of sample promos.
-                                                      let min_spend = getRandomInt(2) === 1 ? discount * 4 : discount * 2;
-                                                      //randomRow is used to select a random row from retailer_products
-                                                      let randomRow = getRandomInt(retailer_products.length);
-                                                      insertQuery += `("${discount}", "${retailer_products[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
-                                                                     `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
-                                                                     `${qt_required !== null ? `"${qt_required}"` : null}, ` +
-                                                                     `${qt_required !== null ? null : `"${min_spend}"`}), `;
-                                                    }
-                                                    //Remove trailing ", " from insert query, and run query.
-                                                    insertQuery = insertQuery.substring(0, insertQuery.length - 2);
-                                                    mysql.pool.query(insertQuery,
-                                                      (err, row, fields) => {
+                                                    selectQuery = "SELECT retailer as RET, product as PROD, " +
+                                                                  "price FROM retailer_product;"
+                                                    mysql.pool.query(selectQuery,
+                                                      (err, retailer_products, fields) => {
                                                         if (err) {
                                                           res.write(JSON.stringify(err));
                                                           res.status(400);
                                                           res.end();
                                                         }
-                                                        else {
-                                                          res.send({
-                                                            "Response": "Sample Data Added!"
-                                                          });
-                                                        }
-                                                      });
-                                                    }
+                                                        else{
+                                                          //Start the insert query for sample promotions...
+                                                          insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
+                                                                        "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
+                                                          //For each sample promotion, generate a fake discout, description, ecoupon code,
+                                                          //expiration date, qt_required, & min_spend.
+                                                          for(let j = 0; j < req.body.numPromos; j++){
+                                                            let randomRow = getRandomInt(retailer_products.length);
+                                                            let discount = Number(Math.random() *
+                                                              Number(retailer_products[randomRow].price)).toFixed(2);
+                                                            let promoDescription = faker.lorem.sentence();
+                                                            let ecoupon = "";
+                                                            for (let k = 0; k < 6; k++){
+                                                                ecoupon += faker.random.alphaNumeric();
+                                                            }
+                                                            let expirationDate = faker.date.future().toString();
+                                                            expirationDate = `${expirationDate.substring(11, 15)}-` +
+                                                                             `${getMonthFromString(expirationDate.substring(4, 7))}-` +
+                                                                             `${expirationDate.substring(8, 10)}`;
+                                                            //qt_required is optional. Should be assigned null for ~50% of sample promos.
+                                                            let qt_required = getRandomInt(2) === 1 ? getRandomInt(10) + 1 : null;
+                                                            //min_spend is optional. Should be assigned null for ~50% of sample promos.
+                                                            let min_spend = getRandomInt(2) === 1 ? discount * 4 : discount * 2;
+                                                            //randomRow is used to select a random row from retailer_products
+
+                                                            insertQuery += `("${discount}", "${retailer_products[randomRow].RET}", "${promoDescription}", "${ecoupon}", ` +
+                                                                           `"${expirationDate}", ${qt_required !== null ? `"${retailer_products[randomRow].PROD}"` : null}, ` +
+                                                                           `${qt_required !== null ? `"${qt_required}"` : null}, ` +
+                                                                           `${qt_required !== null ? null : `"${min_spend}"`}), `;
+                                                          }
+                                                          //Remove trailing ", " from insert query, and run query.
+                                                          insertQuery = insertQuery.substring(0, insertQuery.length - 2);
+                                                          mysql.pool.query(insertQuery,
+                                                            (err, row, fields) => {
+                                                              if (err) {
+                                                                res.write(JSON.stringify(err));
+                                                                res.status(400);
+                                                                res.end();
+                                                              }
+                                                              else {
+                                                                res.send({
+                                                                  "Response": "Sample Data Added!"
+                                                                });
+                                                              }
+                                                            });
+                                                          }
+                                                        });
+                                                      }
                                                     else {
                                                       res.send({
                                                         "Response": "Sample Data Added!"

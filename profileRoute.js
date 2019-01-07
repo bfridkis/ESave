@@ -16,21 +16,16 @@ module.exports = (app) => {
 		context = {};
 		let mysql = req.app.get('mysql');
 		var user_name  = req.user.username;
-		//console.log(user_name);
+
 		mysql.pool.query(`SELECT * FROM User WHERE Username = '${user_name}'`, function(error, results, fields){
 	  	if(error){
 	    		res.write(JSON.stringify(error));
 	    		res.end();
 	  	}
-		  //context.userdata = results[0];
-			//console.log(context.userdata.id);
 			context.jsscriptsProfilePage = "profile.js";
 			context.user = req.user;
 			context.navbarLogo = ["images/logo.jpg"];
-			//for (var x in req.user) { console.log(x); }
-			//console.log(context);
 			res.render('profile/profile', context);
-	    //complete();
 	 });
 
 router.post('/', jsonParser, (req, res, next) => {

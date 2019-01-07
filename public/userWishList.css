@@ -99,9 +99,24 @@ body {
     padding-left: 12px;
 }
 
-#wishlist tr:nth-child(even){background-color: #f2f2f2;}
+/* #wishlist tr:nth-child(even){background-color: #f2f2f2;} */
+.order_header {
 
-#wishlist tr:hover {background-color: #ddd;}
+}
+
+.order_details {
+	background-color: #f2f2f2;
+}
+
+/* #wishlist tr:hover {background-color: #ddd;} */
+
+.order {
+	{background-color: #ddd;}
+}
+
+.quantity, .price {
+	text-align: center;
+}
 
 #wishlist th {
     padding-top: 12px;

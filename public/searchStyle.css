@@ -167,7 +167,9 @@ body {
 }
 
 .order-table {
-	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .stage-table-cap {
