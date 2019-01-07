@@ -133,8 +133,7 @@ module.exports = app => {
 						resultsTotalsByRetailer[req.query.ret]["prices"] = {};
 						resultsTotalsByRetailer[req.query.ret]["qts"] = {};
 						resultsTotalsByRetailer[req.query.ret]["prod_ids"] = {};
-						//'nps_discount_ids' is for 'non-product-specific discount ids'
-						resultsTotalsByRetailer[req.query.ret]["nps_discount_ids"] = {};
+						resultsTotalsByRetailer[req.query.ret]["discount_ids"] = {};
 						resultsTotalsByRetailer[req.query.ret]["discounted_price"] = 0;
 						resultsTotalsByRetailer[req.query.ret]["shipping_price"] = 0;
 						resultsTotalsByRetailer[req.query.ret]["discount"] = 0;
@@ -220,7 +219,7 @@ module.exports = app => {
 									resultsTotalsByRetailer[result.RET_NAME]["num_prods"] = 1;
 									resultsTotalsByRetailer[result.RET_NAME]["ret_id"] = result.RET_ID;
 									resultsTotalsByRetailer[result.RET_NAME]["ret_web_add"] = result.RET_WEB_ADD;
-									resultsTotalsByRetailer[result.RET_NAME]["nps_discount_ids"] = {};
+									resultsTotalsByRetailer[result.RET_NAME]["discount_ids"] = {};
 								}
 							});
 						});
@@ -228,14 +227,14 @@ module.exports = app => {
 
 					//Delete any retailer from resultsTotalsByRetailer who has not matched
 					//all products queried.
-					for(retailer in resultsTotalsByRetailer){
+					for(let retailer in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[retailer]["num_prods"] !==
 								(Object.keys(req.query).length - 1) / 2){
 									delete resultsTotalsByRetailer[retailer];
 						}
 					}
 
-					//If no retailers match all products...
+					//If no retailers match all products, send error message accordingly.
 					if(Object.keys(resultsTotalsByRetailer).length === 0){
 						res.send({"Error" : "No Retailers With All Requested Products"});
 					}
@@ -243,15 +242,24 @@ module.exports = app => {
 						let mysql = req.app.get('mysql');
 						let productListString = null;
 
-						//For each retailer, determine all eligible non-product specific discounts, and
-						//udpate retailer data fields accordingly. (Note: all product-specific discounts
-					  //are accounted for in the initial sql query itself.)
+						//For each retailer, determine all
 						for(retailer in resultsTotalsByRetailer){
+							Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
+								if(i === 0){
+									productListString = `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
+								}
+								else{
+									productListString += `'${resultsTotalsByRetailer[retailer]["prod_ids"][pid]}',`;
+								}
+								if(i === Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).length - 1){
+									productListString = productListString.slice(0, -1);
+								}
+							});
 							queryString = "SELECT promotion.*, retailer.name AS ret_name " +
 														"FROM promotion JOIN retailer " +
 														"ON promotion.retailer = retailer.id WHERE " +
 														`promotion.retailer = '${resultsTotalsByRetailer[retailer]["ret_id"]}' ` +
-														`AND promotion.qt_required IS NULL ` +
+														`AND (promotion.qt_required IS NULL OR promotion.product IN (${productListString})) ` +
 														"AND (promotion.min_spend IS NULL OR " +
 														`promotion.min_spend <= '${resultsTotalsByRetailer[retailer]["discounted_price"]}') ` +
 														"ORDER BY promotion.discount DESC";
@@ -267,13 +275,24 @@ module.exports = app => {
 									if(discounts.length > 0){
 										let ret_name = discounts[0]["ret_name"];
 										discounts.forEach((discount, i) => {
-											if(resultsTotalsByRetailer[ret_name]["discounted_price"] >=
+											if(discount.product === null &&
+												resultsTotalsByRetailer[ret_name]["discounted_price"] >=
 													Number(discount.discount)){
 														resultsTotalsByRetailer[ret_name]["discount"] +=
 															Number(discount.discount);
 														resultsTotalsByRetailer[ret_name]["discounted_price"] -=
 															Number(discount.discount);
-														resultsTotalsByRetailer[ret_name]["nps_discount_ids"][String(i)] = discount.id;
+														resultsTotalsByRetailer[ret_name]["discount_ids"][String(i)] = discount.id;
+												}
+												else{
+													for(let key in resultsTotalsByRetailer[ret_name]["prod_ids"]){
+														if(String(resultsTotalsByRetailer[ret_name]["prod_ids"][key])
+																=== String(discount.product) &&
+															 Number(resultsTotalsByRetailer[ret_name]["prod_ids"][qts])
+															 	=== Number(discount.qt_required)){
+															resultsTotalsByRetailer[ret_name]["discount_ids"][String(i)] = discount.id;
+														}
+													}	
 												}
 											});
 										}
@@ -286,8 +305,7 @@ module.exports = app => {
 				}
 
 			//Compare function used for sorting final array of result objects when
-			//not all products can be matched. (This is so suggestions are displayed
-			//back to the user in the same order in which they were staged.)
+			//not all products can be matched.
 			//See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 			function compare(a, b){
 				return a.prodNum - b.prodNum;
@@ -295,8 +313,7 @@ module.exports = app => {
 
 			//Secondary complete function to track callbacks while each eligible retailer's
 			//non-product specific promotions are applied (using a greedy technique, see above)
-			//as available. Once all retailers' non-product specific discounts have been accounted
-			//for, round all values to two decimal places and send results to client.
+			//as available.
 			function complete2(){
 				callbackCount2++;
 				if(Object.keys(resultsTotalsByRetailer).length
