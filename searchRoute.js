@@ -290,7 +290,7 @@ module.exports = app => {
 																=== String(discount.product) &&
 															 Number(resultsTotalsByRetailer[ret_name]["qts"][key])
 															 	=== Number(discount.qt_required)){
-															resultsTotalsByRetailer[ret_name]["discount_ids"][String(i)] = discount.id;
+															resultsTotalsByRetailer[ret_name]["discount_ids"][String(j++)] = discount.id;
 														}
 													}
 												}
