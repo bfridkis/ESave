@@ -273,8 +273,8 @@ module.exports = app => {
 									//discount possible is applied, followed by any smaller discounts from
 									//largest to smallest.
 									if(discounts.length > 0){
-										let ret_name = discounts[0]["ret_name"];
-										discounts.forEach((discount, i) => {
+										let ret_name = discounts[0]["ret_name"], j = 1;
+										discounts.forEach(discount => {
 											if(discount.product === null &&
 												resultsTotalsByRetailer[ret_name]["discounted_price"] >=
 													Number(discount.discount)){
@@ -282,7 +282,7 @@ module.exports = app => {
 															Number(discount.discount);
 														resultsTotalsByRetailer[ret_name]["discounted_price"] -=
 															Number(discount.discount);
-														resultsTotalsByRetailer[ret_name]["discount_ids"][String(i)] = discount.id;
+														resultsTotalsByRetailer[ret_name]["discount_ids"][String(j++)] = discount.id;
 												}
 												else{
 													for(let key in resultsTotalsByRetailer[ret_name]["prod_ids"]){
