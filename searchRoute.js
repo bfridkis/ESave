@@ -295,7 +295,8 @@ module.exports = app => {
 
 			//Secondary complete function to track callbacks while each eligible retailer's
 			//non-product specific promotions are applied (using a greedy technique, see above)
-			//as available.
+			//as available. Once all retailers' non-product specific discounts have been accounted
+			//for, round all values to two decimal places and send results to client.
 			function complete2(){
 				callbackCount2++;
 				if(Object.keys(resultsTotalsByRetailer).length
