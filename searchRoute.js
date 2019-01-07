@@ -54,8 +54,10 @@ module.exports = app => {
 		          res.end();
 		        }
 		        else{
-							//Save results for each product, if any are returned
 							//console.log(rows);
+
+							//Save results for each product, if any are returned.
+							//Also remove any commas if they are present in value designations.
 							if(rows[0]){
 								rows.forEach(row => {
 									row.INITIAL_PRICE = row.INITIAL_PRICE.replace(',', '');
@@ -118,7 +120,14 @@ module.exports = app => {
 				})
 
 				if(!someProductsUnmatched){
+					//Convert data format for processing, tracking, storing and
+					//cumulating values by retailer.
+					//(Outermost object is resultsTotalsByRetailer.)
 					var resultsTotalsByRetailer = {};
+
+					//If a retailer specfic query is issued
+					//(e.g. when adding a specific promotion to wishlist or favorites),
+					//proceed as such...
 					if(req.query.ret !== "NULL"){
 						resultsTotalsByRetailer[req.query.ret] = {};
 						resultsTotalsByRetailer[req.query.ret]["prices"] = {};
@@ -130,7 +139,10 @@ module.exports = app => {
 						resultsTotalsByRetailer[req.query.ret]["discount"] = 0;
 						resultsTotalsByRetailer[req.query.ret]["initial_price"] = 0;
 						resultsTotalsByRetailer[req.query.ret]["num_prods"] = 0;
+
 						let retIndex;
+						//Loop through results for each product, and exit when the index of the
+						//specified-retailer is determined. (Stored in retIndex).
 						eSaveResults.forEach(eSaveResult => {
 							let retailerMatch = eSaveResult.results.some((result, i) => {
 								if(result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret){
@@ -138,6 +150,8 @@ module.exports = app => {
 								}
 								return result.RET_NAME === req.query.ret || result.RET_ID === req.query.ret;
 							});
+
+							//If specified retailer product result is found, add data to resultsTotalsByRetailer.
 							if(retailerMatch){
 								resultsTotalsByRetailer[req.query.ret]["discounted_price"] +=
 									Number(eSaveResult.results[retIndex].DISCOUNTED_PRICE);
@@ -161,12 +175,16 @@ module.exports = app => {
 							}
 						});
 					}
+
+					//For non-retailer specific queries, load data as follows...
 					else{
+						//For each product, store results be retailer in resultsTotalsByRetailer
 						eSaveResults.forEach((productResults, i) => {
 							productResults.results.forEach(result => {
+								//If retailer is already established in resultsTotalsByRetailer
+								//(i.e. retailer had a product match for a previous product),
+								//add data to retailer's existing object.
 								if(resultsTotalsByRetailer.hasOwnProperty(result.RET_NAME)){
-									//Use scaling where necessary to ensure all values are rounded to 2 decimal places
-									//See https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
 									resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] +=
 										Number(result.DISCOUNTED_PRICE);
 									resultsTotalsByRetailer[result.RET_NAME]["discount"] +=
@@ -181,6 +199,8 @@ module.exports = app => {
 										= Number(productResults.qt);
 									resultsTotalsByRetailer[result.RET_NAME]["num_prods"]++;
 								}
+								//If retailer is not yet established in resultsTotalsByRetailer, establish
+								//retailer object and add data for product to retaier object.
 								else{
 									resultsTotalsByRetailer[result.RET_NAME] = {};
 									resultsTotalsByRetailer[result.RET_NAME]["discounted_price"] = Number(result.DISCOUNTED_PRICE);
@@ -204,18 +224,25 @@ module.exports = app => {
 							});
 						});
 					}
+
+					//Delete any retailer from resultsTotalsByRetailer who has not matched
+					//all products queried.
 					for(retailer in resultsTotalsByRetailer){
 						if(resultsTotalsByRetailer[retailer]["num_prods"] !==
 								(Object.keys(req.query).length - 1) / 2){
 									delete resultsTotalsByRetailer[retailer];
 						}
 					}
+
+					//If no retailers match all products...
 					if(Object.keys(resultsTotalsByRetailer).length === 0){
 						res.send({"Error" : "No Retailers With All Requested Products"});
 					}
 					else{
 						let mysql = req.app.get('mysql');
 						let productListString = null;
+
+						//For each retailer, determine all
 						for(retailer in resultsTotalsByRetailer){
 							Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
 								if(i === 0){
