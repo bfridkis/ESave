@@ -288,11 +288,11 @@ module.exports = app => {
 													for(let key in resultsTotalsByRetailer[ret_name]["prod_ids"]){
 														if(String(resultsTotalsByRetailer[ret_name]["prod_ids"][key])
 																=== String(discount.product) &&
-															 Number(resultsTotalsByRetailer[ret_name]["prod_ids"][qts])
+															 Number(resultsTotalsByRetailer[ret_name]["qts"][key])
 															 	=== Number(discount.qt_required)){
 															resultsTotalsByRetailer[ret_name]["discount_ids"][String(i)] = discount.id;
 														}
-													}	
+													}
 												}
 											});
 										}
