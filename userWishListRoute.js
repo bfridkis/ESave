@@ -4,9 +4,10 @@ module.exports = (app) => {
   var mysql = require('./dbcon.js');
 	//var app = express();
 
-
+	//Function to display user's wish_list contents
   function getWishList(res, mysql, context, userid){
 			var callbackCount = 0;
+			//Select all orders in user's wishlist from database
 			let selectQuery = "SELECT wish_list.order, order.current_price, order.name, " +
 												"DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, " +
 												"retailer.name AS retailer FROM wish_list JOIN `order` " +
@@ -21,6 +22,7 @@ module.exports = (app) => {
 				else{
 					if(orders.length > 0){
 						var list = [];
+						//For each order, populate the "list" array with pertinent order-related data.
 						orders.forEach((order, i) => {
 							list.push({});
 							list[i]["current_price"] = order.current_price;
@@ -28,6 +30,7 @@ module.exports = (app) => {
 							list[i]["created_on"] = order.created_on;
 							list[i]["retailer"] = order.retailer;
 							list[i]["order_id"] = order.order;
+							//Select each product and quantity associated with each wishlist order
 							selectQuery = "SELECT product.name AS product, order_product.quantity FROM product " +
 														"JOIN order_product ON product.id = order_product.product " +
 														"JOIN `order` ON order.id = order_product.order " +
@@ -39,6 +42,8 @@ module.exports = (app) => {
 										res.end();
 								}
 								else{
+									//For each wishlist order product, populate "products" object with
+									//name and quantity
 									list[i]["products"] = [];
 									orderProducts.forEach((orderProduct, j) => {
 										list[i]["products"].push({});
@@ -46,6 +51,8 @@ module.exports = (app) => {
 										list[i]["products"][j]["qt"] = orderProduct.quantity;
 									});
 									list[i]["num_prods"] = list[i]["products"].length;
+
+									//Lastly, for each wishlist order, select all promotions available
 									selectQuery = "SELECT promotion.description FROM promotion " +
 																"JOIN order_promotion on promotion.id = order_promotion.promotion " +
 																`WHERE order_promotion.order = ${order.order}`;
@@ -57,11 +64,14 @@ module.exports = (app) => {
 										else{
 											callbackCount++;
 											if(orderPromotions.length){
+												//Populate "promotions" key with list of promotion descriptions.
 												list[i]["promotions"] = [];
 												orderPromotions.forEach(orderPromotion => {
 													list[i]["promotions"].push(orderPromotion.description);
 												});
 											}
+											//If all orders have been queried, sort by created_on and
+											//render page with wishlist data.
 											if(callbackCount === orders.length){
 												list.sort(compare);
 												list.forEach((order, i) => {
@@ -78,28 +88,6 @@ module.exports = (app) => {
 				}
 			}
 		});
-
-
-			/*
-      mysql.pool.query("SELECT (@rownum := @rownum + 1) AS row_number, z.* " +
-          "FROM (SELECT wish_list.order AS order_id, order.current_price, order.name AS name, DATE_FORMAT(order.created_on, '%W, %M %e %Y, %I:%i %p') AS created_on, order_product.quantity, product.name AS product, promotion.description AS promotion, retailer.name AS retailer FROM wish_list " +
-          "INNER JOIN `order` ON wish_list.order = order.id " +
-          "INNER JOIN order_product ON order.id = order_product.order " +
-          "INNER JOIN product ON order_product.product = product.id " +
-          "LEFT JOIN order_promotion ON order.id = order_promotion.order " +
-          "LEFT JOIN promotion ON order_promotion.promotion = promotion.id " +
-          "INNER JOIN retailer ON order.retailer = retailer.id " +
-          "WHERE wish_list.user = ? " +
-          "ORDER BY order.created_on)z," +
-         "(SELECT @rownum := 0)y", userid, function(err, rows){
-          if(err){
-              res.write(JSON.stringify(err));
-              res.end();
-          }
-          context.list  = rows;
-          res.render('wish_list/wishList', context);
-      });
-			*/
   }
 
 	router.get('/', isLoggedIn, (req, res, next) => {
