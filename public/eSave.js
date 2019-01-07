@@ -178,7 +178,7 @@ async function processESave(time_ms, req, qts, items) {
        //let prodNameRow = stageTable.appendChild(document.createElement("tr"));
        //let prodName = prodNameRow.appendChild(document.createElement("td"));
        //prodName.textContent = results[0]["PROD_NAME"];
-      //prodName.style.paddingBottom = "20px";
+       //prodName.style.paddingBottom = "20px";
 
        //Add retailer name header and retailer name to result table.
        let retNameHeaderRow = stageTable.appendChild(document.createElement("tr"));
@@ -190,7 +190,7 @@ async function processESave(time_ms, req, qts, items) {
        retName.textContent = results[0]["retailer"];
        retName.style.paddingBottom = "20px";
 
-       //Add price per unit header and price per unit to result table.
+       //Add price per unit header and price per unit to result table for each product.
        let ppuHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let ppuHeader = ppuHeaderRow.appendChild(document.createElement("th"));
        ppuHeader.textContent = "PRICE PER UNIT";
@@ -207,7 +207,7 @@ async function processESave(time_ms, req, qts, items) {
        });
 
        //Add initial price (price before shipping and discounts are applied) header
-       //and initial price to results table.
+       //and initial price to results table for each product.
        let initPriHeaderRow = stageTable.appendChild(document.createElement("tr"));
        let initPriHeader = initPriHeaderRow.appendChild(document.createElement("th"));
        initPriHeader.textContent = "TOTAL PRODUCT COST";
@@ -316,6 +316,8 @@ async function processESave(time_ms, req, qts, items) {
  }
 }
 
+//Function to display "suggested" products to the user if one or more search
+//parameters do not match.
 function processUnmatched(orderStageRight, orderStageRightText,
                           unmatched, searchItems){
   orderStageRightText.innerHTML = "";
@@ -340,12 +342,16 @@ function processUnmatched(orderStageRight, orderStageRightText,
                                  ", Did You Mean...";
     prodNameHeader.style.color = "rgb(39, 206, 100)";
     prodNameHeader.style.fontSize = "1.75rem";
+
+    //If no suggested products available...
     if(suggestionList.suggested.length === 0){
       let suggestionRow = containerDiv.appendChild(document.createElement("tr"));
       let suggestionName = suggestionRow.appendChild(document.createElement("td"));
       suggestionName.textContent = "Sorry. No Suggestions Available. :(";
       suggestionName.style.fontSize = "1.25rem";
     }
+
+    //Else, display up to 10 suggestions...
     else{
       suggestionList.suggested.forEach((suggestion, i) => {
         if(i < 10){
@@ -364,6 +370,9 @@ function processUnmatched(orderStageRight, orderStageRightText,
         }
       });
     }
+
+    //If more than 10 suggestions are available, provide a button to select next
+    //"page" of up to 10 more suggestions
     if(suggestionList.suggested.length > 10){
       let nextButtonRow = containerDiv.appendChild(document.createElement("tr"));
       let nextButton = nextButtonRow.appendChild(document.createElement("td"));
@@ -378,6 +387,9 @@ function processUnmatched(orderStageRight, orderStageRightText,
   });
 }
 
+//Function to wait 0.5 seconds and then remove the div containing set of up to 10
+//suggested products. (This allows a "scale-to-0" animation to complete before removing
+//the div.)
 async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRightText){
   await sleep(500);
   containerDiv.style.display = "none";
@@ -389,6 +401,7 @@ async function removeSuggestedDiv(containerDiv, orderStageRight, orderStageRight
   }
 }
 
+//Function to add ESaved order to user wishlist or favorites
 function listAdder(list, orderData, promo_id){
   if(!this.getAttribute("added")){
     //Setup new XMLHttpRequest request
@@ -452,6 +465,7 @@ function listAdder(list, orderData, promo_id){
   }
 }
 
+//Function to provide the set of the next (up to) 10 suggested products
 function suggestNextPage(currentPage, prodNum){
   let searchItems = document.querySelectorAll(".searchItem");
   let userInput = searchItems[prodNum].textContent;
