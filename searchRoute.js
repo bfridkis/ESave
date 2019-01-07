@@ -242,7 +242,8 @@ module.exports = app => {
 						let mysql = req.app.get('mysql');
 						let productListString = null;
 
-						//For each retailer, determine all
+						//For each retailer, determine all eligible discounts, and update
+						//retailer results by adding discount ids to discout_ids orbject.
 						for(retailer in resultsTotalsByRetailer){
 							Object.keys(resultsTotalsByRetailer[retailer]["prod_ids"]).forEach((pid, i) => {
 								if(i === 0){
@@ -305,15 +306,17 @@ module.exports = app => {
 				}
 
 			//Compare function used for sorting final array of result objects when
-			//not all products can be matched.
+			//not all products can be matched. (This sort is performed so the suggested
+		  //product divs are displayed in the same order in which they were staged by the user.)
 			//See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 			function compare(a, b){
 				return a.prodNum - b.prodNum;
 			}
 
 			//Secondary complete function to track callbacks while each eligible retailer's
-			//non-product specific promotions are applied (using a greedy technique, see above)
-			//as available.
+			//promotions are applied (i.e. discount_ids object updated), using a greedy technique
+			//(as described above). All values are rounded to two decimal places. Once all
+			//retailers are updated, the results are sent to the client.
 			function complete2(){
 				callbackCount2++;
 				if(Object.keys(resultsTotalsByRetailer).length
