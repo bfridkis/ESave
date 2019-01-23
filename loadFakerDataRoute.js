@@ -104,10 +104,11 @@ module.exports = (app) => {
           });
         }
         else{
-          res.contentType = "application/json";
-          res.send(JSON.stringify({
-            Response: "Sample Data Added! Here"
-          }));
+          let response = JSON.stringify({
+            Response: "Sample Data Added!"
+          });
+          console.log("Response: ", response);//*************
+          res.send(response);
         }
       })
 
