@@ -141,6 +141,7 @@ module.exports = (app) => {
           res.end();
         }
         else{
+          res.contentType = "text/plain";
           res.send({
             "Response": "Sample Data Added!"
           });
