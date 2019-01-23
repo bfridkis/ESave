@@ -104,11 +104,9 @@ module.exports = (app) => {
           });
         }
         else{
-          let response = JSON.stringify({
-            Response: "Sample Data Added!"
+          res.send({
+            "Response": "Sample Data Added!"
           });
-          console.log("Response: ", response);//*************
-          res.send(response);
         }
       })
 
