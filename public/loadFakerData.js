@@ -106,6 +106,7 @@ function loadFakerData(){
           let results1 = document.querySelector("#results1"),
               results2 = document.querySelector("#results2");
           console.log(req.responseText);//***************************
+          console.log("Last char: ", req.responseText.substring(-1));//*************
           if(req.responseText.substring(-1) === "{"){
             req.responseText.substring(-1) = "}";
           }
