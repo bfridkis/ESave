@@ -155,6 +155,7 @@ module.exports = (app) => {
         let p4 = new Promise((resolve, reject) => {
           //Save # of available primary keys in unusedRetProdPKCount.
           let unusedRetProdPKCount = row[0].COUNT;
+          console.log("UNUSED PROD COUNT: ", unusedRetProdPKCount);//******************
           //If more retailer_products are requested than available, send error response
           //accordingly.
           if(unusedRetProdPKCount < req.body.numRetProds){
