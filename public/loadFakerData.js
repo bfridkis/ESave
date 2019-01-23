@@ -109,12 +109,12 @@ function loadFakerData(){
           console.log("Last char: ", req.responseText.slice(-1));//*************
           if(req.responseText.slice(-1) === "{"){
             console.log("Transforming...");//**************************
-            req.responseText =
+            let responseText =
               req.responseText.substring(0, req.responseText.length - 1) + "}";
           }
-          console.log("Transformed: ", req.responseText);//**************************
+          console.log("Transformed: ", responseText);//**************************
           if(req.status >= 200 && req.status < 400 &&
-              typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
+              typeof(JSON.parse(responseText).sqlMessage) === "undefined"){
             let response = JSON.parse(req.responseText).Response;
             if(results1.innerText === ""){
               console.log(response);//*********************
