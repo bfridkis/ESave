@@ -78,6 +78,7 @@ module.exports = (app) => {
             }
             //Trim trailing ", " from insert query, and run query.
             insertQuery = insertQuery.substring(0, insertQuery.length - 2);
+            console.log("INSERT QUERY: ", insertQuery);//*************
             mysql.pool.query(insertQuery, (err, row, fields) => {
               if(err){
                 reject(err);
