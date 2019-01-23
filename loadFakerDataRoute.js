@@ -16,9 +16,9 @@ module.exports = (app) => {
 
     //Handle HTTP POST request for loading faker data
     router.post('/', (req, res, next) => {
-      
+
       //Store database connection in mysql variable
-      let mysql = req.app.get('mysql');
+      var mysql = req.app.get('mysql');
 
       //Create an initial promise to begin chain of async db queries.
       let p1 = new Promise((resolve, reject) => {
