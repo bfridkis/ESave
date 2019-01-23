@@ -4,6 +4,7 @@ module.exports = (app) => {
     var express = require('express');
     var router = express.Router();
     var faker = require('faker');
+    var mysql = req.app.get('mysql');
     //var app = express();
 
     //Render interface for loading faker data
@@ -19,7 +20,6 @@ module.exports = (app) => {
 
       //Create an initial promise to begin chain of async db queries.
       let p1 = new Promise((resolve, reject) => {
-        let mysql = req.app.get('mysql');
         //Password is entered on interface page.
         if (req.body.password === process.env.loadfakerpassword) {
           //Start the insert query for sample products...
