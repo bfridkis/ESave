@@ -57,7 +57,7 @@ module.exports = (app) => {
       });
 
       //Create promise chain to implement remaining db query calls.
-      p1.then(row => {
+      p1.then( row => {
         let p2 = new Promise((resolve, reject) => {
           //If sample retailers are specified...
           if(req.body.numRets > 0){
@@ -91,7 +91,7 @@ module.exports = (app) => {
           }
         });
         return p2;
-      }).catch(err => {
+      }).catch( err => {
         if(err !== "Invalid Password"){
           res.write(JSON.stringify(err));
           res.status(400);
@@ -105,7 +105,7 @@ module.exports = (app) => {
       })
 
       //2nd potential db query...
-      .then(row => {
+      .then( row => {
         let p3 = new Promise((resolve, reject) => {
           //If sample retailer_products are specified...
           if (req.body.numRetProds > 0) {
@@ -128,7 +128,7 @@ module.exports = (app) => {
           }
         });
         return p3;
-      }).catch(finish => {
+      }).catch( finish => {
         if(finish !== "No Retailers"){
           res.write(JSON.stringify(finish));
           res.status(400);
@@ -142,7 +142,7 @@ module.exports = (app) => {
       })
 
       //3rd potential db query...
-      .then(row => {
+      .then( row => {
         let p4 = new Promise((resolve, reject) => {
           //Save # of available primary keys in unusedRetProdPKCount.
           let unusedRetProdPKCount = row[0].COUNT;
@@ -174,7 +174,7 @@ module.exports = (app) => {
           }
         });
         return p4;
-      }).catch(finish => {
+      }).catch( finish => {
         if(finish !== "Too many retailer products" && finish !== "No Retailer Products"){
           res.write(JSON.stringify(finish));
           res.status(400);
@@ -194,7 +194,7 @@ module.exports = (app) => {
       })
 
       //4th potential db query...
-      .then(retailer_products => {
+      .then( retailer_products => {
         let p5 = new Promise((resolve, reject) => {
           //Start insert query for retailer_products...
           insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) values ";
@@ -227,15 +227,14 @@ module.exports = (app) => {
             });
           });
           return p5;
-        });
-      }).catch(err => {
-        res.write(JSON.stringify(err));
-        res.status(400);
-        res.end();
+        }).catch( err => {
+            res.write(JSON.stringify(err));
+            res.status(400);
+            res.end();
       })
 
       //5th potential db query...
-      .then(row => {
+      .then( row => {
         let p6 = new Promise((resolve, reject) => {
             //If sample promotions are specified...
             if (req.body.numPromos > 0) {
@@ -255,14 +254,14 @@ module.exports = (app) => {
             }
           });
         return p6;
-      }).catch(err => {
-        res.write(JSON.stringify(err));
-        res.status(400);
-        res.end();
+      }).catch( err => {
+          res.write(JSON.stringify(err));
+          res.status(400);
+          res.end();
       })
 
       //6th potential db query...
-      .then(retailer_products => {
+      .then( retailer_products => {
         let p7 = new Promise((resolve, reject) => {
           //Start the insert query for sample promotions...
           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
@@ -305,7 +304,7 @@ module.exports = (app) => {
           });
         });
         return p7;
-      }).catch(finish => {
+      }).catch( finish => {
         if(finish !== "No promos"){
           res.write(JSON.stringify(err));
           res.status(400);
@@ -319,11 +318,11 @@ module.exports = (app) => {
       })
 
       //7th potential db query...
-      .then(() => {
+      .then( () => {
         res.send({
           "Response": "Sample Data Added!"
         });
-      }).catch(err => {
+      }).catch( err => {
         res.write(JSON.stringify(err));
         res.status(400);
         res.end();
