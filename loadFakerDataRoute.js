@@ -104,9 +104,9 @@ module.exports = (app) => {
           });
         }
         else{
-          res.contentType = "text/plain";
+          res.contentType = "application/json";
           res.send({
-            "Response": "Sample Data Added!"
+            Response: "Sample Data Added!"
           });
         }
       })
