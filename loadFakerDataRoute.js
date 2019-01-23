@@ -83,6 +83,7 @@ module.exports = (app) => {
                 reject(err);
               }
               else{
+                console.log("ROW: ", row);//********************
                 resolve(row);
               }
             })
