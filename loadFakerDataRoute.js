@@ -105,6 +105,7 @@ module.exports = (app) => {
         }
         else{
           res.send({
+            res.contentType = "text/plain";
             "Response": "Sample Data Added!"
           });
         }
@@ -135,13 +136,12 @@ module.exports = (app) => {
         });
         return p3;
       }).catch( finish => {
-        if(finish !== "No Retailers"){
+        if(finish !== "No Retailer Products"){
           res.write(JSON.stringify(finish));
           res.status(400);
           res.end();
         }
         else{
-          res.contentType = "text/plain";
           res.send({
             "Response": "Sample Data Added!"
           });
