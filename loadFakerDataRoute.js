@@ -16,10 +16,12 @@ module.exports = (app) => {
 
     //Handle HTTP POST request for loading faker data
     router.post('/', (req, res, next) => {
+      
+      //Store database connection in mysql variable
+      let mysql = req.app.get('mysql');
 
       //Create an initial promise to begin chain of async db queries.
       let p1 = new Promise((resolve, reject) => {
-        let mysql = req.app.get('mysql');
         //Password is entered on interface page.
         if (req.body.password === process.env.loadfakerpassword) {
           //Start the insert query for sample products...
