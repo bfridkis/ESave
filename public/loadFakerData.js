@@ -109,7 +109,7 @@ function loadFakerData(){
           console.log("Last char: ", req.responseText.slice(-1));//*************
           if(req.responseText.slice(-1) === "{"){
             req.responseText =
-              req.responseText.substring(req.responseText.length - 1) = "}";
+              req.responseText.substring(0, req.responseText.length - 1) + "}";
           }
           if(req.status >= 200 && req.status < 400 &&
               typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
