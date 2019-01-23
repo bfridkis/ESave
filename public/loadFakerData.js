@@ -109,6 +109,7 @@ function loadFakerData(){
               typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
             let response = JSON.parse(req.responseText).Response;
             if(results1.innerText === ""){
+              console.log(response);//*********************
               results1.innerText = response;
             }
             else{
