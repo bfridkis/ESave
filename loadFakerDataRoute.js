@@ -58,6 +58,7 @@ module.exports = (app) => {
 
       //Create promise chain to implement remaining db query calls.
       p1.then( row => {
+        console.log("Starting p2...");//********************
         let p2 = new Promise((resolve, reject) => {
           //If sample retailers are specified...
           if(req.body.numRets > 0){
@@ -92,7 +93,6 @@ module.exports = (app) => {
         });
         return p2;
       }).catch( finish => {
-        console.log("catching...", finish);//******************
         if(finish !== "Invalid Password" && finish !== "No Retailers"){
           res.write(JSON.stringify(err));
           res.status(400);
