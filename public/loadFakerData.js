@@ -105,17 +105,12 @@ function loadFakerData(){
           resultCount++;
           let results1 = document.querySelector("#results1"),
               results2 = document.querySelector("#results2");
-          console.log(req.responseText, typeof(req.responseText));//***************************
-          console.log("Last char: ", req.responseText.slice(-1));//*************
-          if(req.responseText.slice(-1) === "{"){
-            console.log("Transforming...");//**************************
-            let responseText =
-              req.responseText.substring(0, req.responseText.length - 1) + "}";
-          }
+          let responseText =
+            req.responseText.substring(0, req.responseText.length - 1) + "}";
           console.log("Transformed: ", responseText);//**************************
           if(req.status >= 200 && req.status < 400 &&
               typeof(JSON.parse(responseText).sqlMessage) === "undefined"){
-            let response = JSON.parse(req.responseText).Response;
+            let response = JSON.parse(responseText).Response;
             if(results1.innerText === ""){
               console.log(response);//*********************
               results1.innerText = response;
@@ -127,9 +122,9 @@ function loadFakerData(){
           }
           else{
             let response1, response2;
-            if(!(req.responseText.includes("<html>"))){
-              response1 = JSON.parse(req.responseText).sqlMessage;
-              response2 = JSON.parse(req.responseText).sql;
+            if(!(responseText.includes("<html>"))){
+              response1 = JSON.parse(responseText).sqlMessage;
+              response2 = JSON.parse(responseText).sql;
             }
             else{
               response1 = req.status + " " + req.statusText;
