@@ -153,6 +153,7 @@ module.exports = (app) => {
       //3rd potential db query...
       .then( row => {
         let p4 = new Promise((resolve, reject) => {
+          let mysql = req.app.get('mysql');
           //Save # of available primary keys in unusedRetProdPKCount.
           let unusedRetProdPKCount = row[0].COUNT;
           console.log("UNUSED PROD COUNT: ", unusedRetProdPKCount);//******************
