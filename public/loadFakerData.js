@@ -111,6 +111,7 @@ function loadFakerData(){
             req.responseText =
               req.responseText.substring(0, req.responseText.length - 1) + "}";
           }
+          console.log("Transformed: ", req.responseText);//**************************
           if(req.status >= 200 && req.status < 400 &&
               typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
             let response = JSON.parse(req.responseText).Response;
