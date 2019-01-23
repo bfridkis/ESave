@@ -115,6 +115,7 @@ module.exports = (app) => {
       //2nd potential db query...
       .then( row => {
         let p3 = new Promise((resolve, reject) => {
+          let mysql = req.app.get('mysql');
           //If sample retailer_products are specified...
           if (req.body.numRetProds > 0) {
             //Determine the number of available primary keys (product, retailer) in
