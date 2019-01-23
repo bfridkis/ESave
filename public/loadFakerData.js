@@ -105,6 +105,7 @@ function loadFakerData(){
           resultCount++;
           let results1 = document.querySelector("#results1"),
               results2 = document.querySelector("#results2");
+          console.log(req.responseText);//***************************
           if(req.status >= 200 && req.status < 400 &&
               typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
             let response = JSON.parse(req.responseText).Response;
