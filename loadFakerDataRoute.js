@@ -207,6 +207,7 @@ module.exports = (app) => {
       //4th potential db query...
       .then( retailer_products => {
         let p5 = new Promise((resolve, reject) => {
+          let mysql = req.app.get('mysql');
           //Start insert query for retailer_products...
           insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) values ";
           let prices = [];
