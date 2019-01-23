@@ -106,7 +106,7 @@ function loadFakerData(){
           let results1 = document.querySelector("#results1"),
               results2 = document.querySelector("#results2");
           //Bug workaround... "{" or """ being appended instead of "}"
-          console.log(responseText);//**************************
+          console.log(req.responseText);//**************************
           let responseText =
             req.responseText.substring(0, req.responseText.length - 1) + "}";
           if(req.status >= 200 && req.status < 400 &&
