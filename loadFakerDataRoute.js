@@ -276,7 +276,7 @@ module.exports = (app) => {
       //6th potential db query...
       .then( retailer_products => {
         let p7 = new Promise((resolve, reject) => {
-          //let mysql = req.app.get('mysql');
+          let mysql = req.app.get('mysql');
           //Start the insert query for sample promotions...
           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                         "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
