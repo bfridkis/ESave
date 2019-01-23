@@ -92,6 +92,7 @@ module.exports = (app) => {
         });
         return p2;
       }).catch( finish => {
+        console.log("catching...");//******************
         if(finish !== "Invalid Password" && finish !== "No Retailers"){
           res.write(JSON.stringify(err));
           res.status(400);
