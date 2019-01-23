@@ -105,7 +105,7 @@ module.exports = (app) => {
         }
         else{
           res.send({
-            "Response": "Sample Data Added"
+            "Response": "Sample Data Added!"
           });
         }
       })
@@ -142,7 +142,7 @@ module.exports = (app) => {
         }
         else{
           res.send({
-            "Response": "Sample Data Added"
+            "Response": "Sample Data Added!"
           });
         }
       })
@@ -194,7 +194,7 @@ module.exports = (app) => {
         }
         else{
           res.send({
-            "Response": "Sample Data Added"
+            "Response": "Sample Data Added!"
           });
         }
       })
@@ -318,7 +318,7 @@ module.exports = (app) => {
         }
         else{
           res.send({
-            "Response": "Sample Data Added"
+            "Response": "Sample Data Added!"
           });
         }
       })
