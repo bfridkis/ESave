@@ -107,8 +107,8 @@ function loadFakerData(){
               results2 = document.querySelector("#results2");
           console.log(req.responseText, typeof(req.responseText));//***************************
           console.log("Last char: ", req.responseText.slice(-1));//*************
-          if(req.responseText.substring(-1) === "{"){
-            req.responseText.substring(-1) = "}";
+          if(req.responseText.slice(-1) === "{"){
+            req.responseText.slice(-1) = "}";
           }
           if(req.status >= 200 && req.status < 400 &&
               typeof(JSON.parse(req.responseText).sqlMessage) === "undefined"){
