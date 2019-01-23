@@ -91,15 +91,20 @@ module.exports = (app) => {
           }
         });
         return p2;
-      }).catch( err => {
-        if(err !== "Invalid Password"){
+      }).catch( finish => {
+        if(finish !== "Invalid Password" && finish !== "No Retailers"){
           res.write(JSON.stringify(err));
           res.status(400);
           res.end();
         }
-        else{
+        else if(finish === "Invalid Password"){
           res.send({
             "Response": "Invalid Password"
+          });
+        }
+        else{
+          res.send({
+            "Response": "Sample Data Added"
           });
         }
       })
