@@ -58,8 +58,8 @@ module.exports = (app) => {
 
       //Create promise chain to implement remaining db query calls.
       p1.then( row => {
-        console.log("Starting p2...");//********************
         let p2 = new Promise((resolve, reject) => {
+          let mysql = req.app.get('mysql');
           //If sample retailers are specified...
           if(req.body.numRets > 0){
             //Start the insert query for sample retailers...
