@@ -106,7 +106,7 @@ module.exports = (app) => {
         else{
           res.contentType = "application/json";
           res.send(JSON.stringify({
-            Response: "Sample Data Added!"
+            Response: "Sample Data Added! Here"
           }));
         }
       })
