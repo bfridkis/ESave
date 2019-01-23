@@ -60,7 +60,6 @@ module.exports = (app) => {
       p1.then( row => {
         console.log("Starting p2...");//********************
         let p2 = new Promise((resolve, reject) => {
-          let mysql = req.app.get('mysql');
           //If sample retailers are specified...
           if(req.body.numRets > 0){
             //Start the insert query for sample retailers...
@@ -116,7 +115,6 @@ module.exports = (app) => {
       //2nd potential db query...
       .then( row => {
         let p3 = new Promise((resolve, reject) => {
-          let mysql = req.app.get('mysql');
           //If sample retailer_products are specified...
           if (req.body.numRetProds > 0) {
             //Determine the number of available primary keys (product, retailer) in
@@ -154,7 +152,6 @@ module.exports = (app) => {
       //3rd potential db query...
       .then( row => {
         let p4 = new Promise((resolve, reject) => {
-          let mysql = req.app.get('mysql');
           //Save # of available primary keys in unusedRetProdPKCount.
           let unusedRetProdPKCount = row[0].COUNT;
           //If more retailer_products are requested than available, send error response
@@ -207,7 +204,6 @@ module.exports = (app) => {
       //4th potential db query...
       .then( retailer_products => {
         let p5 = new Promise((resolve, reject) => {
-          let mysql = req.app.get('mysql');
           //Start insert query for retailer_products...
           insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) values ";
           let prices = [];
@@ -248,7 +244,6 @@ module.exports = (app) => {
       //5th potential db query...
       .then( row => {
         let p6 = new Promise((resolve, reject) => {
-          let mysql = req.app.get('mysql');
             //If sample promotions are specified...
             if (req.body.numPromos > 0) {
               selectQuery = "SELECT retailer as RET, product as PROD, " +
@@ -276,7 +271,6 @@ module.exports = (app) => {
       //6th potential db query...
       .then( retailer_products => {
         let p7 = new Promise((resolve, reject) => {
-          let mysql = req.app.get('mysql');
           //Start the insert query for sample promotions...
           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
                         "ecoupon, expiration_date, product, qt_required, min_spend )  values ";
