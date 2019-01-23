@@ -18,10 +18,14 @@ module.exports = (app) => {
     router.post('/', (req, res, next) => {
 
       //Store database connection in mysql variable
-      var mysql = req.app.get('mysql');
+      //var mysql = req.app.get('mysql');
 
       //Create an initial promise to begin chain of async db queries.
       let p1 = new Promise((resolve, reject) => {
+
+        //Store database connection in mysql variable
+        let mysql = req.app.get('mysql');
+
         //Password is entered on interface page.
         if (req.body.password === process.env.loadfakerpassword) {
           //Start the insert query for sample products...
@@ -60,7 +64,10 @@ module.exports = (app) => {
 
       //Create promise chain to implement remaining db query calls.
       p1.then( row => {
-        console.log("Starting p2...");//********************
+
+        //Store database connection in mysql variable
+        let mysql = req.app.get('mysql');
+
         let p2 = new Promise((resolve, reject) => {
           //If sample retailers are specified...
           if(req.body.numRets > 0){
@@ -116,6 +123,10 @@ module.exports = (app) => {
 
       //2nd potential db query...
       .then( row => {
+
+        //Store database connection in mysql variable
+        let mysql = req.app.get('mysql');
+
         let p3 = new Promise((resolve, reject) => {
           //If sample retailer_products are specified...
           if (req.body.numRetProds > 0) {
@@ -153,6 +164,10 @@ module.exports = (app) => {
 
       //3rd potential db query...
       .then( row => {
+
+        //Store database connection in mysql variable
+        let mysql = req.app.get('mysql');
+
         let p4 = new Promise((resolve, reject) => {
           //Save # of available primary keys in unusedRetProdPKCount.
           let unusedRetProdPKCount = row[0].COUNT;
@@ -205,6 +220,10 @@ module.exports = (app) => {
 
       //4th potential db query...
       .then( retailer_products => {
+
+        //Store database connection in mysql variable
+        let mysql = req.app.get('mysql');
+
         let p5 = new Promise((resolve, reject) => {
           //Start insert query for retailer_products...
           insertQuery = "INSERT INTO retailer_product (retailer, product, price, description) values ";
@@ -245,6 +264,10 @@ module.exports = (app) => {
 
       //5th potential db query...
       .then( row => {
+
+        //Store database connection in mysql variable
+        let mysql = req.app.get('mysql');
+
         let p6 = new Promise((resolve, reject) => {
             //If sample promotions are specified...
             if (req.body.numPromos > 0) {
@@ -272,6 +295,10 @@ module.exports = (app) => {
 
       //6th potential db query...
       .then( retailer_products => {
+
+        //Store database connection in mysql variable
+        let mysql = req.app.get('mysql');
+
         let p7 = new Promise((resolve, reject) => {
           //Start the insert query for sample promotions...
           insertQuery = "INSERT INTO promotion ( discount, retailer, description, " +
