@@ -108,6 +108,7 @@ function loadFakerData(){
           console.log(req.responseText, typeof(req.responseText));//***************************
           console.log("Last char: ", req.responseText.slice(-1));//*************
           if(req.responseText.slice(-1) === "{"){
+            console.log("Transforming...");//**************************
             req.responseText =
               req.responseText.substring(0, req.responseText.length - 1) + "}";
           }
