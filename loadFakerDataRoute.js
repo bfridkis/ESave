@@ -20,6 +20,7 @@ module.exports = (app) => {
       //Create an initial promise to begin chain of async db queries.
       let p1 = new Promise((resolve, reject) => {
         let mysql = req.app.get('mysql');
+        console.log(req.body.password);//*****************
         //Password is entered on interface page.
         if (req.body.password === process.env.loadfakerpassword) {
           //Start the insert query for sample products...
