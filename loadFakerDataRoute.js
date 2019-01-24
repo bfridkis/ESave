@@ -320,7 +320,7 @@ module.exports = (app) => {
         return p7;
       }).catch( finish => {
         console.log("FINISH: ", finish);//********************
-        console.log("???"");//********************
+        console.log("???");//********************
         if(finish !== "No promos"){
           res.write(JSON.stringify(err));
           res.status(400);
