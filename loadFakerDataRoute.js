@@ -70,7 +70,7 @@ module.exports = (app) => {
             //and append values to insert query.
             for (let i = 0; i < req.body.numRets; i++) {
               name = faker.company.companyName();
-              website = name.replace(/,/g, "").replace(/ /g, "") + ".com";
+              website = name.replace(/[, ]/g, "") + ".com";
               address = `${faker.address.streetAddress()} ${faker.address.city()}, ` +
                         `${faker.address.stateAbbr()} ${faker.address.zipCode()}`;
               shippingPrice = Math.floor((Math.random() * 7) + 2.99) + 0.99;
