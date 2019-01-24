@@ -197,19 +197,7 @@ module.exports = (app) => {
             });
           });
           return p5;
-        }).catch( (finish, err) => {
-            if(typeof(err) !== "undefined"){
-              res.write(JSON.stringify(err));
-              res.status(400);
-              res.end();
-            }
-            else if(finish === "Too many retailer products"){
-              res.send({
-                "Response": "Unable to add Retail_Products. Retail_Product request count exceeds " +
-                            "number of available primary keys. (Products and Retailers may have been added.)"
-              });
-            }
-      })
+        }).
 
       //5th potential db query...
       .then( row => {
@@ -300,6 +288,12 @@ module.exports = (app) => {
         else if(finish === "Invalid Password"){
           res.send({
             "Response": "Invalid Password"
+          });
+        }
+        else if(finish === "Too many retailer products"){
+          res.send({
+            "Response": "Unable to add Retail_Products. Retail_Product request count exceeds " +
+                        "number of available primary keys. (Products and Retailers may have been added.)"
           });
         }
         else{

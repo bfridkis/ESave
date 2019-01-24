@@ -46,6 +46,11 @@ function loadFakerData(){
       e.target.value = 0;
       results1.innerText = "Must add at least 1 retailer to add retailer_product."
     }
+    let promotionsInput = values[3];
+    else if(e.target.value < promotionsInput.value){
+      results1.innerText = "Promotions cannot exceed Retailer_Products."
+      promotionsInput.value = e.target.value;
+    }
     else{
       results1.innerText = "";
     }
