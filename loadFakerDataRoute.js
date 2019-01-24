@@ -96,18 +96,6 @@ module.exports = (app) => {
           }
         });
         return p2;
-      }).catch( (finish, err) => {
-        console.log("ERR: ", err, typeof(err));//*******************
-        if(typeof(err) !== "undefined"){
-          res.write(JSON.stringify(err));
-          res.status(400);
-          res.end();
-        }
-        else{
-          res.send({
-            "Response": "Invalid Password"
-          });
-        }
       })
 
       //2nd potential db query...
@@ -135,17 +123,6 @@ module.exports = (app) => {
           }
         });
         return p3;
-      }).catch( (finish, err) => {
-        if(typeof(err) !== "undefined"){
-          res.write(JSON.stringify(finish));
-          res.status(400);
-          res.end();
-        }
-        else{
-          res.send({
-            "Response": "Sample Data Added!"
-          });
-        }
       })
 
       //3rd potential db query...
@@ -183,17 +160,6 @@ module.exports = (app) => {
           }
         });
         return p4;
-      }).catch( (finish, err) => {
-        if(typeof(err) !== "undefined"){
-          res.write(JSON.stringify(finish));
-          res.status(400);
-          res.end();
-        }
-        else{
-          res.send({
-            "Response": "Sample Data Added!"
-          });
-        }
       })
 
       //4th potential db query...
@@ -223,7 +189,7 @@ module.exports = (app) => {
           insertQuery = insertQuery.substring(0, insertQuery.length - 2);
           mysql.pool.query(insertQuery, (err, row, fields) => {
               if(err){
-                reject(err);
+                reject(err, "err");
               }
               else{
                 resolve(row);
@@ -267,10 +233,6 @@ module.exports = (app) => {
             }
           });
         return p6;
-      }).catch( err => {
-          res.write(JSON.stringify(err));
-          res.status(400);
-          res.end();
       })
 
       //6th potential db query...
@@ -311,7 +273,7 @@ module.exports = (app) => {
           insertQuery = insertQuery.substring(0, insertQuery.length - 2);
           mysql.pool.query(insertQuery, (err, row, fields) => {
             if(err){
-              reject(err);
+              reject(err, "err");
             }
             else{
               resolve(row);
@@ -319,19 +281,6 @@ module.exports = (app) => {
           });
         });
         return p7;
-      }).catch( (finish, err) => {
-        console.log("FINISH ???: ", finish, "???");//********************
-        console.log("???");//********************
-        if(typeof(err) !== "undefined"){
-          res.write(JSON.stringify(err));
-          res.status(400);
-          res.end();
-        }
-        else{
-          res.send({
-            "Response": "Sample Data Added!"
-          });
-        }
       })
 
       //7th potential db query...
@@ -339,10 +288,25 @@ module.exports = (app) => {
         res.send({
           "Response": "Sample Data Added!"
         });
-      }).catch( err => {
-        res.write(JSON.stringify(err));
-        res.status(400);
-        res.end();
+      })
+
+      //Handles errors or early termination of promise chain.
+      .catch( (finish, err) => {
+        if(typeof(err) !== "undefined"){
+          res.write(JSON.stringify(err));
+          res.status(400);
+          res.end();
+        }
+        else if(finish === "Invalid Password"){
+          res.send({
+            "Response": "Invalid Password"
+          });
+        }
+        else{
+          res.send({
+            "Response": "Sample Data Added!"
+          });
+        }
       })
 
       //Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
