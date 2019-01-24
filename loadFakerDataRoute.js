@@ -48,6 +48,7 @@ module.exports = (app) => {
               reject(err, "err");
             }
             else{
+              console.log("RESOLVED: ", row);//************************
               resolve(row);
             }
           })
