@@ -20,7 +20,6 @@ module.exports = (app) => {
       //Create an initial promise to begin chain of async db queries.
       let p1 = new Promise((resolve, reject) => {
         let mysql = req.app.get('mysql');
-        console.log(req.body.password);//*****************
         //Password is entered on interface page.
         if (req.body.password === process.env.loadfakerpassword) {
           //Start the insert query for sample products...
@@ -48,7 +47,6 @@ module.exports = (app) => {
               reject(err, "err");
             }
             else{
-              console.log("RESOLVED: ", row);//************************
               resolve(row);
             }
           })
@@ -80,13 +78,11 @@ module.exports = (app) => {
             }
             //Trim trailing ", " from insert query, and run query.
             insertQuery = insertQuery.substring(0, insertQuery.length - 2);
-            console.log("INSERT QUERY: ", insertQuery);//*************
             mysql.pool.query(insertQuery, (err, row, fields) => {
               if(err){
                 reject(err, "err");
               }
               else{
-                console.log("ROW: ", row);//********************
                 resolve(row);
               }
             })
@@ -131,7 +127,6 @@ module.exports = (app) => {
           let mysql = req.app.get('mysql');
           //Save # of available primary keys in unusedRetProdPKCount.
           let unusedRetProdPKCount = row[0].COUNT;
-          console.log("UNUSED PROD COUNT: ", unusedRetProdPKCount);//******************
           //If more retailer_products are requested than available, send error response
           //accordingly.
           if(unusedRetProdPKCount < req.body.numRetProds){

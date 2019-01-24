@@ -110,10 +110,11 @@ function loadFakerData(){
           resultCount++;
           let results1 = document.querySelector("#results1"),
               results2 = document.querySelector("#results2");
+
           //Bug workaround... "{" or """ being appended instead of "}"
-          console.log(req.responseText);//**************************
           let responseText =
             req.responseText.substring(0, req.responseText.length - 1) + "}";
+
           if(req.status >= 200 && req.status < 400 &&
               typeof(JSON.parse(responseText).sqlMessage) === "undefined"){
             let response = JSON.parse(responseText).Response;
