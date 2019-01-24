@@ -44,7 +44,7 @@ module.exports = (app) => {
           insertQuery = insertQuery.substring(0, insertQuery.length - 2);
           mysql.pool.query(insertQuery, (err, row, fields) => {
             if(err){
-              reject(err);
+              reject(err, "err");
             }
             else{
               resolve(row);
@@ -94,20 +94,15 @@ module.exports = (app) => {
           }
         });
         return p2;
-      }).catch( finish => {
-        if(finish !== "Invalid Password" && finish !== "No Retailers"){
+      }).catch( (finish, err) => {
+        if(typeof(err) !== "undefined"){
           res.write(JSON.stringify(err));
           res.status(400);
           res.end();
         }
-        else if(finish === "Invalid Password"){
-          res.send({
-            "Response": "Invalid Password"
-          });
-        }
         else{
           res.send({
-            "Response": "Sample Data Added!"
+            "Response": "Invalid Password"
           });
         }
       })
@@ -125,7 +120,7 @@ module.exports = (app) => {
                               "(select product, retailer FROM retailer_product)";
             mysql.pool.query(selectQuery, (err, row, fields) => {
                 if(err){
-                  reject(err);
+                  reject(err, "err");
                 }
                 else{
                   resolve(row);
@@ -137,8 +132,8 @@ module.exports = (app) => {
           }
         });
         return p3;
-      }).catch( finish => {
-        if(finish !== "No Retailer Products"){
+      }).catch( (finish, err) => {
+        if(typeof(err) !== "undefined"){
           res.write(JSON.stringify(finish));
           res.status(400);
           res.end();
@@ -176,7 +171,7 @@ module.exports = (app) => {
                                   getRandomInt(unusedRetProdPKCount - 999) : 0}, 1000`;
             mysql.pool.query(selectQuery, (err, retailer_products, fields) => {
               if(err){
-                reject(err);
+                reject(err, "err");
               }
               else{
                 resolve(retailer_products);
@@ -185,17 +180,11 @@ module.exports = (app) => {
           }
         });
         return p4;
-      }).catch( finish => {
-        if(finish !== "Too many retailer products" && finish !== "No Retailer Products"){
+      }).catch( (finish, err) => {
+        if(typeof(err) !== "undefined"){
           res.write(JSON.stringify(finish));
           res.status(400);
           res.end();
-        }
-        else if(finish === "Too many retailer products"){
-          res.send({
-            "Response": "Unable to add Retail_Products. Retail_Product request count exceeds " +
-                        "number of available primary keys. (Products and Retailers may have been added.)"
-          });
         }
         else{
           res.send({
@@ -239,10 +228,18 @@ module.exports = (app) => {
             });
           });
           return p5;
-        }).catch( err => {
-            res.write(JSON.stringify(err));
-            res.status(400);
-            res.end();
+        }).catch( (finish, err) => {
+            if(typeof(err) !== "undefined"){
+              res.write(JSON.stringify(err));
+              res.status(400);
+              res.end();
+            }
+            else if(finish === "Too many retailer products"){
+              res.send({
+                "Response": "Unable to add Retail_Products. Retail_Product request count exceeds " +
+                            "number of available primary keys. (Products and Retailers may have been added.)"
+              });
+            }
       })
 
       //5th potential db query...
@@ -255,7 +252,7 @@ module.exports = (app) => {
                             "price FROM retailer_product;"
               mysql.pool.query(selectQuery, (err, retailer_products, fields) => {
                 if(err){
-                  reject(err);
+                  reject(err, "err");
                 }
                 else{
                   resolve(retailer_products);
@@ -318,10 +315,10 @@ module.exports = (app) => {
           });
         });
         return p7;
-      }).catch( finish => {
+      }).catch( (finish, err) => {
         console.log("FINISH ???: ", finish, "???");//********************
         console.log("???");//********************
-        if(finish !== "No promos"){
+        if(typeof(err) !== "undefined"){
           res.write(JSON.stringify(err));
           res.status(400);
           res.end();
