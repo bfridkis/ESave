@@ -41,15 +41,15 @@ function loadFakerData(){
   ret_prodsInput.addEventListener("input", e => {
     let prods = values[0].value;
     let rets = values[1].value;
+    let promosInput = values[3];
     let results1 = document.querySelector("#results1");
     if(e.target.value > 0 && Number(rets) === 0){
       e.target.value = 0;
       results1.innerText = "Must add at least 1 retailer to add retailer_product."
     }
-    let promotionsInput = values[3];
-    else if(e.target.value < promotionsInput.value){
+    else if(e.target.value < promosInput.value){
       results1.innerText = "Promotions cannot exceed Retailer_Products."
-      promotionsInput.value = e.target.value;
+      promosInput.value = e.target.value;
     }
     else{
       results1.innerText = "";
