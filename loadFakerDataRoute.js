@@ -96,6 +96,7 @@ module.exports = (app) => {
         });
         return p2;
       }).catch( (finish, err) => {
+        console.log("ERR: ", err, typeof(err));//*******************
         if(typeof(err) !== "undefined"){
           res.write(JSON.stringify(err));
           res.status(400);
