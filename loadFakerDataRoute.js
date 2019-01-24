@@ -197,7 +197,7 @@ module.exports = (app) => {
             });
           });
           return p5;
-        }).
+        })
 
       //5th potential db query...
       .then( row => {
